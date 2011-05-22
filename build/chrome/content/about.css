@@ -1,0 +1,38 @@
+@import url("chrome://global/skin/");
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+.name{
+    font-size: x-large !important;
+    padding-right: 0.25em !important;
+}
+
+.name, .title{
+    font-weight: bold !important;
+}
+
+#httpsfinder-about-details{
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 0.5em !important;
+    margin-left: 0 !important;
+}
+
+#logo{
+    position:absolute;
+    right:-35px !important;
+}
+
+description{
+    margin-left: 0 !important;
+}
+
+.title{
+    font-weight: bold !important;
+    padding-top: 0.5em !important;
+}
+
+.url{
+    color: #0000ff !important;
+    cursor: pointer !important;
+    text-decoration: underline !important;
+}

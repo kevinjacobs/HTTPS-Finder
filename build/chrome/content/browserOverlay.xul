@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
+<?xml-stylesheet type="text/css" href="chrome://httpsfinder/skin/browserOverlay.css" ?>
+
+<!DOCTYPE overlay SYSTEM "chrome://httpsfinder/locale/browserOverlay.dtd">
+<overlay id="httpsfinder-browser-overlay"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="application/x-javascript" src="chrome://httpsfinder/content/browserOverlay.js" />
+    <script type="application/x-javascript" src="chrome://httpsfinder/content/preferences.js" />
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="httpsfinderStrings"
+      src="chrome://httpsfinder/locale/browserOverlay.properties" />
+    </stringbundleset>
+
+    <menupopup id="menu_ToolsPopup">
+        <menu class="menu-iconic" id="httpsfinderMenu" label="&httpsfinder.title;"
+      accesskey="H" image="chrome://httpsfinder/skin/iconSmall.png"
+      insertafter="javascriptConsole,devToolsSeparator">
+            <menupopup>
+                <menuitem class="menuitem-iconic"
+                    id="httpsfinderSettingsItem"
+                    image="chrome://httpsfinder/skin/settings.png"
+                    label="&httpsfinder.menu.settings;" accesskey="&httpsfinder.menu.settingsKey;"
+                    oncommand="window.openDialog('chrome://httpsfinder/content/preferences.xul', '',
+                        'chrome, dialog, modal,centerscreen, resizable=no', null).focus();" />
+                <menuitem class="menuitem-iconic"
+                    id="httpsfinderReloadWhitelist"
+                    image="chrome://httpsfinder/skin/refresh.png"
+                    label="&httpsfinder.menu.refresh;" accesskey="&httpsfinder.menu.refreshKey;"
+                    oncommand="httpsfinder.browserOverlay.importWhitelist();
+                        httpsfinder.browserOverlay.popupNotify('HTTPS Finder', 'Whitelist and session detection results cleared');" />
+                <menuseparator/>
+                <menuitem class="menuitem-iconic" id="httpsfinderHomepageItem"
+                    image="chrome://httpsfinder/skin/iconSmall.png"
+                    label="&httpsfinder.menu.homepage;" accesskey="&httpsfinder.menu.homepageKey;"
+                    oncommand="gBrowser.selectedTab = gBrowser.addTab('https://code.google.com/p/https-finder/');" />
+                <menuitem class="menuitem-iconic" id="httpsfinderReviewItem"
+                    image="chrome://httpsfinder/skin/rate.png"
+                    label="&httpsfinder.menu.rate;" accesskey="&httpsfinder.menu.rateKey;"
+                    oncommand="gBrowser.selectedTab = gBrowser.addTab('https://addons.mozilla.org/en-US/firefox/addon/https-finder/reviews/add');" />
+                <menuitem class="menuitem-iconic" id="httpsfinderHelpItem"
+                    image="chrome://httpsfinder/skin/help.png"
+                    label="&httpsfinder.menu.help;" accesskey="&httpsfinder.menu.helpKey;"
+                    oncommand="gBrowser.selectedTab = gBrowser.addTab('https://code.google.com/p/https-finder/wiki/Help');" />
+            </menupopup>
+        </menu>
+    </menupopup>
+
+
+</overlay>
+
+

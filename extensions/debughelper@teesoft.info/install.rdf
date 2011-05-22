@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <RDF:Description RDF:about="urn:mozilla:install-manifest">
+
+        <em:name>debughelper</em:name>
+        <em:version>1.0.1</em:version>
+        <em:id>debughelper@teesoft.info</em:id>
+        <em:description>debughelper is a plugin to venkman to helper debug</em:description>
+        <em:creator>foxbeans</em:creator>
+        <em:optionsURL>chrome://debughelper/content/options.xul</em:optionsURL>
+        <em:homepageURL>http://www.teesoft.info/</em:homepageURL>
+        <em:contributor>someone</em:contributor>
+        <em:translator>someone</em:translator>
+        
+<em:targetApplication>
+<!-- Mozilla Firefox -->
+	<RDF:Description>
+		<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>5.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+<em:targetApplication>
+<!-- Mozilla Thunderbird -->
+	<RDF:Description>
+		<em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>3.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+<em:targetApplication>
+<!-- Mozilla Suite 1.x -->
+	<RDF:Description>
+		<em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>3.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+<em:targetApplication>
+<!-- Mozilla Firefox -->
+	<RDF:Description>
+		<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>3.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+<em:targetApplication>
+<!-- Mozilla Suite 1.x -->
+	<RDF:Description>
+		<em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>3.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+<em:targetApplication>
+<!-- Netscape -->
+	<RDF:Description>
+		<em:id>{3db10fab-e461-4c80-8b97-957ad5f8ea47}</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>3.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+<em:targetApplication>
+<!-- Flock -->
+	<RDF:Description>
+		<em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>3.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+<em:targetApplication>
+<!-- xulrunner -->
+	<RDF:Description>
+		<em:id>toolkit@mozilla.org</em:id>
+		<em:minVersion>1.0</em:minVersion>
+		<em:maxVersion>3.0.*</em:maxVersion>
+	</RDF:Description>
+</em:targetApplication>
+
+
+        
+    </RDF:Description>
+</RDF:RDF>

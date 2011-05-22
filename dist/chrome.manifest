@@ -1,0 +1,9 @@
+content httpsfinder                               jar:chrome/httpsfinder.jar!/content/
+skin        httpsfinder        classic/1.0           jar:chrome/httpsfinder.jar!/skin/
+
+locale        httpsfinder        en-US                      jar:chrome/httpsfinder.jar!/locale/en-US/
+locale        httpsfinder        de                      jar:chrome/httpsfinder.jar!/locale/de/
+
+
+
+overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/browserOverlay.xul

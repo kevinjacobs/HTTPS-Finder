@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://debughelper/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://debughelper/locale/overlay.dtd">
+<overlay id="debughelper-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    
+    <script src="chrome://debughelper/content/overlay.js"/> 
+</overlay>
+          

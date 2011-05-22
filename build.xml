@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<project name="foxbeans-build" default="dist">
+    <import file="nbproject/build-moz-impl.xml"/>
+
+<!--
+
+    There exist several targets which are by default empty and which can be 
+    used for execution of your tasks. These targets are usually executed 
+    before and after some main targets. They are: 
+
+      -pre-chrome:             called before copy chrome files
+      -post-chrome:             called after copy chrome files
+      -pre-jar:             called before create chrome jar
+      -post-jar:             called after create chrome jar
+      -pre-dist:                  called before xpi building
+      -post-dist:                 called after xpi building
+
+    (Targets beginning with '-' are not intended to be called on their own.)
+
+    Example of inserting an obfuscator after compilation could look like this:
+
+        <target name="-post-chrome">
+            <echo message="hello world"/>
+        </target>
+
+    For list of available properties check the imported 
+    nbproject/build-moz-impl.xml file. 
+
+    -->
+
+</project>

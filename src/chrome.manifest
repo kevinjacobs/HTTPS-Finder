@@ -1,0 +1,9 @@
+content {appname} 		              content/
+skin	{appname}	classic/1.0           skin/
+
+locale	{appname}	en-US		      locale/en-US/
+locale	{appname}	de		      locale/de/
+
+
+
+overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/browserOverlay.xul

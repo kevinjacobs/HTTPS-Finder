@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://www.w3.org/1999/02/22-rdf-syntax-ns#?fetch=false&amp;&amp;sync=true" uri="www.w3.org/1999/02/22-rdf-syntax-ns.xml"/>
+    <system systemId="http://home.netscape.com/NC-rdf#?fetch=false&amp;&amp;sync=true" uri="netscape.aol.com"/>
+</catalog>

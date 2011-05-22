@@ -1,0 +1,8 @@
+content debughelper 					 content/
+skin	debughelper	classic/1.0                  skin/
+locale	debughelper	en-US		      locale/en-US/
+
+style	chrome://global/content/customizeToolbar.xul	 chrome://debughelper/skin/overlay.css
+overlay	chrome://venkman/content/venkman.xul	 chrome://debughelper/content/overlay.xul
+
+

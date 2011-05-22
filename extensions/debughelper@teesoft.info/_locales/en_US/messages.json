@@ -1,0 +1,20 @@
+{
+"Continue_Confirm":{
+"message":"Welcome to debughelper! Click OK to continue."
+},
+"close_label":{
+"message":"Close"
+},
+"debughelper":{
+"message":"debughelper"
+},
+"extensions_debughelper_teesoft_info_description":{
+"message":"debughelper is a plugin to venkman to helper debug."
+},
+"separate_label":{
+"message":"This is a A Mozilla/Firefox/Thunderbird Addon example!"
+},
+"title_label":{
+"message":"debughelper"
+}
+}

@@ -1,0 +1,308 @@
+<?xml version="1.0" ?>
+
+<project name="foxbeans-impl" default="dist" basedir="..">
+    <property name="impl-version" value="19" />
+    <property file="nbproject/private/project-moz.properties"/>
+    <property file="nbproject/project-moz.properties"/>
+
+    <condition property="uri" value="" >
+        <not>
+            <isset property="uri"/>
+        </not>
+    </condition>
+    <condition property="with-default-ffexec" value="true" >
+        <not>
+            <isset property="runwith-ffexec"/>
+        </not>
+    </condition>
+    <condition property="with-runwith-ffexec" value="true" >
+        <isset property="runwith-ffexec"/>
+    </condition>
+
+    <property name="src.dir" value="src" />
+    <property name="build.dir" value="build" />
+    <property name="build.chrome.dir" value="${build.dir}/chrome" />
+    <property name="dist.dir" value="dist" />
+    <path id="xpi-files-id">
+        <fileset dir="${src.dir}/components/">
+            <include name="*.idl" />
+        </fileset>
+    </path>
+    <available property="with-components-dir" file="${src.dir}/components/">
+    </available>
+
+
+    <!-- pathconvert property="xpi-files" id="xpi-files-id"/ -->
+
+    <condition property="should-build-xpt" value="true" >
+        <and>
+            <isset property="sdk-dir"/>
+            <istrue value="${with-components-dir}"/>
+            <isset property="xpidl"/>
+        </and>
+    </condition>
+
+    <taskdef name="convertproperties" classname="com.teesoft.foxbeans.ant.Ascii2NativeTask"  classpath="nbproject/foxbeanstask.jar"/>
+    <taskdef name="convertnative2ascii" classname="com.teesoft.foxbeans.ant.Native2AsciiTask"  classpath="nbproject/foxbeanstask.jar"/>
+    <taskdef name="convertChromeMessage" classname="com.teesoft.foxbeans.ant.ChromeMessage"  classpath="nbproject/foxbeanstask.jar"/>
+
+    <target name="-post-chrome" depends="-pre-chrome,-do-chrome"/>
+    <target name="chrome" depends="-pre-chrome,-do-chrome,autoreg,build-xpt,-post-chrome"/>
+    <target name="-pre-chrome"/>
+
+
+    <target name="autoreg" if="with-xpi-files">
+        <echo  message="" file="${build.chrome.dir}/.autoreg"/>
+    </target>
+
+    <target name="build-xpt" if="should-build-xpt">
+        <property name="xpi-files" refid="xpi-files-id">
+        </property>
+
+        <exec executable="${xpidl}">
+            <arg value="-m"/>
+            <arg value="typelib"/>
+            <arg value="-w"/>
+            <arg value="-v"/>
+            <arg value="-I"/>
+            <arg value="${sdk-dir}/idl"/>
+            <arg value="-e"/>
+            <arg value="${src.dir}/components/${appname}.xpt"/>
+            <arg value="${xpi-files}"/>
+        </exec>
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.chrome.dir}" />
+
+    </target>
+
+    <target name="-do-chrome">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${build.chrome.dir}" />
+
+        <copy todir="${build.chrome.dir}" overwrite="true">
+            <fileset dir="${src.dir}">
+                <include name="content/**" />
+                <include name="locale/**" />
+                <include name="skin/**" />
+                <include name="components/**" />
+                <include name="chrome/**" />
+                <include name="*" />
+                <exclude name="skin/**/*.css" />
+                <exclude name="**/*.manifest" />
+                <exclude name="**/*.properties" />
+                <exclude name="**/*.js" />
+                <exclude name="**/*.rdf" />
+                <exclude name="**/*.dtd" />
+                <exclude name="**/*.xul" />
+                <exclude name="**/.*" />
+                <exclude name="**/CVS/**" />
+                <exclude name="**/Thumbs.db" />
+            </fileset>
+        </copy>
+
+        <copy todir="${build.chrome.dir}" overwrite="true"  encoding="UTF-8">
+            <fileset dir="${src.dir}">
+                <include name="content/**/*.manifest" />
+                <include name="content/**/*.properties" />
+                <include name="content/**/*.js" />
+                <include name="content/**/*.rdf" />
+                <include name="content/**/*.xul" />
+                <include name="content/**/*.dtd" />
+                <include name="chrome/**/*.js" />
+                <include name="components/**/*.manifest" />
+                <include name="components/**/*.properties" />
+                <include name="components/**/*.js" />
+                <include name="components/**/*.rdf" />
+                <include name="components/**/*.xul" />
+                <include name="components/**/*.dtd" />
+                <include name="locale/**/*.rdf" />
+                <include name="locale/**/*.properties" />
+                <include name="locale/**/*.dtd" />
+                <include name="skin/**/*.css" />
+                <include name="skin/**/*.rdf" />
+                <include name="skin/**/*.dtd" />
+                <include name="defaults/**/*.js" />
+                <include name="*.manifest" />
+                <include name="*.json" />
+                <include name="*.html" />
+                <include name="*.properties" />
+                <include name="*.js" />
+                <include name="*.rdf" />
+                <include name="*.ini" />
+                <include name="*.xul" />
+                <exclude name=".*" />
+                <exclude name="**/CVS/**" />
+                <exclude name="**/Thumbs.db" />
+            </fileset>
+            <filterchain>
+
+
+                <replacetokens begintoken="{" endtoken="}">
+                    <token  key="appname" value="${appname}"/>
+                    <token  key="appid" value="${appid}"/>
+                    <token  key="appversion" value="${appversion}"/>
+                    <token  key="auther" value="${auther}"/>
+                    <token  key="appdisplayname" value="${appdisplayname}"/>
+                    <token  key="appdescription" value="${appdescription}"/>
+                    <token  key="targetApplications" value="${targetApplications}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+
+        <convertChromeMessage manifest="${build.chrome.dir}/chrome.manifest" targetFolder="${build.chrome.dir}/_locales"/>
+        <convertproperties folder="${build.chrome.dir}"/>
+        <mkdir dir="${dist.dir}" />
+
+        <zip destfile="${dist.dir}/${appname}.jar" compress="0">
+            <fileset dir="${build.chrome.dir}">
+                <include name="content/**" />
+                <include name="locale/**" />
+                <include name="skin/**" />
+                <exclude name="**/.*" />
+                <exclude name="**/CVS/**" />
+                <exclude name="**/Thumbs.db" />
+            </fileset>
+        </zip>
+    </target>
+    <target name="-post-jar" depends="-pre-jar,-do-jar"/>
+    <target name="jar" depends="chrome,-pre-jar,-do-jar,-post-jar"/>
+    <target name="-pre-jar"/>
+
+    <target name="-do-jar">
+        <zip destfile="${dist.dir}/${appname}.jar" compress="0">
+            <fileset dir="${build.chrome.dir}">
+                <include name="content/**" />
+                <include name="locale/**" />
+                <include name="skin/**" />
+                <exclude name="**/.*" />
+                <exclude name="**/CVS/**" />
+                <exclude name="**/Thumbs.db" />
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="convert2ascii">
+        <convertnative2ascii folder="${src.dir}"/>
+    </target>
+    <target name="test" depends="dist,init-test">
+        <delete file="${test.dir}/foxbeans.js" failonerror="false">
+        </delete>
+        <exec executable="${ffexec-path}">
+            <arg value="-no-remote"/>
+            <arg value="-P"/>
+            <arg value="${appname}test"/>
+            <arg value="--chrome"/>
+            <arg value="${uri}"/>
+        </exec>
+    </target>
+    <target name="debug" depends="dist,init-test">
+        <copy file="nbproject/private/foxbeans.js" tofile="${test.dir}/foxbeans.js" overwrite="true"  failonerror="false">
+        </copy>
+
+        <exec executable="${ffexec-path}">
+            <arg value="-no-remote"/>
+            <arg value="-venkman"/>
+            <arg value="-P"/>
+            <arg value="${appname}test"/>
+            <arg value="--chrome"/>
+            <arg value="${uri}"/>
+        </exec>
+    </target>
+    <target name="defaultFF" if="with-default-ffexec">
+        <property name="ffexec-path" value="${ffexec}" />
+        <property name="test.dir" value="${build.dir}/test${mozInstallationName}" />
+
+    </target>
+    <target name="runwithFF" if="with-runwith-ffexec">
+        <property name="ffexec-path" value="${runwith-ffexec}" />
+        <property name="test.dir" value="${build.dir}/test${runwith-mozInstallationName}" />
+    </target>
+
+    <target name="init-test" depends="dist,defaultFF,runwithFF">
+        <mkdir dir="${test.dir}" />
+        <mkdir dir="${test.dir}/extensions" />
+        <path id="test.dir.id">
+            <pathelement location="${test.dir}"/>
+        </path>
+        <pathconvert property="test.dir.full" refid="test.dir.id"/>
+        <path id="chrome.dir.id">
+            <pathelement location="${build.dir}/chrome"/>
+        </path>
+        <pathconvert property="chrome.dir.full" refid="chrome.dir.id"/>
+
+
+        <exec executable="${ffexec-path}">
+            <arg value="-no-remote"/>
+            <arg value="-createprofile"/>
+            <arg value="${appname}test ${test.dir.full}"/>
+        </exec>
+        <!-- <echo message="${chrome.dir.full}" file="${test.dir}/extensions/${appid}"/> -->
+
+        <copy todir="${test.dir}/extensions/${appid}/">
+            <fileset dir="${build.dir}/chrome"/>
+        </copy>
+        <!-- make it if not exist -->
+        <mkdir dir="extensions/" />
+        <copy todir="${test.dir}/extensions/">
+            <fileset dir="extensions/"/>
+        </copy>
+    </target>
+    <target name="Profile" depends="defaultFF,runwithFF">
+
+        <exec executable="${ffexec-path}">
+            <arg value="-no-remote"/>
+            <arg value="-profilemanager"/>
+        </exec>
+    </target>
+
+
+    <target name="-post-dist" depends="-pre-dist,-do-dist"/>
+    <target name="dist" depends="jar,-pre-dist,-do-dist,-post-dist"/>
+    <target name="-pre-dist"/>
+
+    <target name="-do-dist" depends="jar,-pre-dist">
+        <delete file="${dist.dir}/chrome.manifest" quiet="true"/>
+    
+        <copy file="${build.dir}/chrome/chrome.manifest" tofile="${dist.dir}/chrome.manifest" overwrite="true">
+            <filterchain>
+                <tabstospaces/>
+
+                <replacetokens begintoken=" " endtoken="/" >
+                    <token  key="content" value=" jar:chrome/${appname}.jar!/content/"/>
+                    <token  key="locale" value=" jar:chrome/${appname}.jar!/locale/"/>
+                    <token  key="skin" value=" jar:chrome/${appname}.jar!/skin/"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+
+        <zip destfile="${dist.dir}/${appname}.xpi">
+            <zipfileset file="${dist.dir}/${appname}.jar" prefix="chrome"/>
+            <fileset dir="${dist.dir}">
+                <include name="chrome.manifest" />
+                <exclude name="**/.*" />
+                <exclude name="**/CVS/**" />
+                <exclude name="**/Thumbs.db" />
+            </fileset>
+            <fileset dir="${build.dir}/chrome">
+                <include name=".autoreg" />
+            </fileset>
+            <fileset dir="${build.dir}/chrome">
+                <include name="components/**" />
+                <include name="install.rdf" />
+                <include name="install.js" />
+                <include name="defaults/**" />
+                <exclude name="**/.*" />
+                <exclude name="**/CVS/**" />
+                <exclude name="**/Thumbs.db" />
+            </fileset>
+        </zip>
+       <!-- <copy file="${dist.dir}/${appname}.xpi" tofile="${dist.dir}/${appname}_${appversion}.xpi" overwrite="true"/>-->
+    </target>
+
+    <target name="clean">
+        <delete dir="${dist.dir}" />
+        <delete dir="${build.dir}" />
+    </target>
+
+
+</project>
