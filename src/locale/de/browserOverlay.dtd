@@ -5,10 +5,10 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "480">
 <!--End prefWindow sizing-->
 
+<!--Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember. Format: 23. Mai 2011-->
 
-
-<!ENTITY httpsfinder.version "0.65">
-<!ENTITY httpsfinder.buildDate "21 May 2011">
+<!ENTITY httpsfinder.version "0.67">
+<!ENTITY httpsfinder.buildDate "23. Mai 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build-Datum:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -17,7 +17,7 @@
 <!ENTITY httpsfinder.preference.title "HTTPS Finder Einstellungen">
 <!ENTITY httpsfinder.preference.titleKey "H">
 <!ENTITY httpsfinder.preference.translations "Die Übersetzungen wurden von den folgenden Personen bereitgestellt:">
-<!ENTITY httpsfinder.preference.supportTitle "E-Mail Kontakt:">
+<!ENTITY httpsfinder.preference.supportTitle "E-mail-Kontakt:">
 <!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
 <!ENTITY httpsfinder.preference.enable "HTTPS Finder aktivieren">
 <!ENTITY httpsfinder.preference.noRulePrompt "Nicht auffordern, HTTPS-Regel zu speichern (Regel wird nicht automatisch gespeichert)">
@@ -32,7 +32,7 @@
 <!ENTITY httpsfinder.preference.learnLinkName "hier">
 <!ENTITY httpsfinder.preference.whitelistAddTextbox "Hostname (domain.tld, sub.domain.tld, *.domain.tld)">
 <!ENTITY httpsfinder.preference.whitelistUrlColumn "Hostname">
-<!ENTITY httpsfinder.preference.headFirst "Zuerst HEAD-Erkennung verwenden (Fallback auf GET, wenn diese vom Server nicht unterstütz wird)">
+<!ENTITY httpsfinder.preference.headFirst "Zuerst HEAD-Erkennung verwenden (Fallback auf GET, wenn diese vom Server nicht unterstützt wird)">
 <!ENTITY httpsfinder.preference.generalTab "Allgemein">
 <!ENTITY httpsfinder.preference.advancedTab "Erweitert">
 <!ENTITY httpsfinder.preference.aboutTab "Über">
@@ -40,6 +40,7 @@
 <!ENTITY httpsfinder.preference.showpreview "Vor dem Speichern der Regeln Regelvorschau zeigen (erlaubt Bearbeitung)">
 <!ENTITY httpsfinder.preference.detectionDescLONG "HEAD erfordert die Verwendung einer geringeren Bandbreite als GET, aber manche Server unterstützen das möglicherweise nicht. Falls das geschieht, wird HTTPS Finder eine GET-Abfrage versuchen.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Empfohlene Einstellung: Wenn Sie eine schnelle Verbindung haben, deaktivieren Sie, um nur GET zu verwenden. Bei langsameren Verbindungen ist HEAD möglicherweise bei den meisten Sites merklich schneller.">
+<!ENTITY httpsfinder.preference.debug "Fehlersuche ausführlich protokollieren">
 <!ENTITY httpsfinder.rulePreview.top "Regelvorschau:">
 <!ENTITY httpsfinder.rulePreview.tip1 "Alle von Ihnen vorgenommenen Änderungen spiegeln sich in der gespeicherten Regel wider.">
 <!ENTITY httpsfinder.rulePreview.tip2 "Klicken Sie OK, um die Regel zu speichern oder Abbrechen, um ohne Speicherung zurückzukehren">
@@ -56,3 +57,6 @@
 <!ENTITY httpsfinder.menu.rateKey "b">
 <!ENTITY httpsfinder.menu.help "Hilfe">
 <!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.overlay.whitelistReset "httpsfinder.browserOverlay.importWhitelist();
+                        httpsfinder.browserOverlay.popupNotify('HTTPS Finder', 'Positivliste und Erkennungsergebnisse der Sitzung gelöscht');">
+<!ENTITY httpsfinder.translation.german "- Deutsch (Michael Wolf &amp; Daniel Helmert)">

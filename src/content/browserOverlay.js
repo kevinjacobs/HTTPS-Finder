@@ -1,10 +1,10 @@
 /*
  * Developer : Kevin Jacobs (httpsfinder@gmail.com), www.kevinajacobs.com
- * Date : 06/21/2011
+ * Date : 06/23/2011
  * All code (c)2011 all rights reserved
  */
 
-if (!httpsfinder) var httpsfinder = {    
+if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
     strings: null, //Strings object for httpsfinder strings
     debug: null, //verbose logging on/off
@@ -27,7 +27,7 @@ httpsfinder.detect = {
             request.QueryInterface(Components.interfaces.nsIHttpChannel);
             if(!httpsfinder.prefs.getBoolPref("enable"))
                 return;
-            
+
             if((request.responseStatus == 200 || request.responseStatus == 301
                 || request.responseStatus == 304) && request.URI.scheme == "http")
                 var loadFlags = httpsfinder.detect.getStringArrayOfLoadFlags(request.loadFlags);
@@ -40,7 +40,7 @@ httpsfinder.detect = {
                         Application.console.log("Canceling detection on " + request.URI.host.toLowerCase() + ". Host is whitelisted");
                     return;
                 }
-                
+
                 var browser = httpsfinder.detect.getBrowserFromChannel(request);
                 if (browser == null){
                     if(httpsfinder.debug)
@@ -58,11 +58,11 @@ httpsfinder.detect = {
                         return;
                     }
                 }catch(e){
-                    e.name == 'NS_ERROR_FAILURE'
-                    Application.console.log("https finder cannot match URI to browser request.");
+                    if(e.name == 'NS_ERROR_FAILURE')
+                        Application.console.log("https finder cannot match URI to browser request.");
                 }
-                
-                //Safety catch for detction loops (on 301/302 redirect codes)
+
+                //Push to whitelist so we don't spam with multiple detection requests - may be removed later depending on result
                 if(!httpsfinder.browserOverlay.isWhitelisted(host))
                     httpsfinder.whitelist.push(host);
                 if(httpsfinder.debug)
@@ -74,7 +74,7 @@ httpsfinder.detect = {
             }
         }
     },
-    
+
     register: function() {
         var observerService = Components.classes["@mozilla.org/observer-service;1"]
         .getService(Components.interfaces.nsIObserverService);
@@ -86,7 +86,7 @@ httpsfinder.detect = {
         .getService(Components.interfaces.nsIObserverService);
         observerService.removeObserver(httpsfinder.detect, "http-on-examine-response");
     },
-    
+
     hostsMatch: function(host1, host2){
         //check domain name of page location and detected host. Slicing after first . to ignore subdomains (redirect to subdomain OK)
         //- e.g. google.com forwards to encrypted.google.com
@@ -141,6 +141,7 @@ httpsfinder.detect = {
 
     },
 
+    //Get load flags for HTTP observer. We use these to filter normal http requests from page load requests
     getStringArrayOfLoadFlags : function(flags) {
         var flagsArr = [];
         if (flags & Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE) {
@@ -210,15 +211,12 @@ httpsfinder.detect = {
             return gBrowser.getBrowserForDocument(domWin.top.document);
         }
         catch (e) {
-            dump(e);
             return null;
         }
     },
 
     handleCachedSSL: function(aBrowser, request){
         //Session whitelist host and return if cert is bad or status is not OK.
-        var host = request.URI.host.toLowerCase();
-        var requestURL = request.URI.asciiSpec.replace("http://", "https://");
         if(request.responseStatus != 200 && request.responseStatus != 301 && request.responseStatus != 302)
             return;
 
@@ -263,14 +261,14 @@ httpsfinder.detect = {
                 Application.console.log("httpsfinder leaving " + host + " in whitelist (bad SSL certificate)");
             return;
         }
-        else  
+        else
             for(var i=0; i<httpsfinder.whitelist.length; i++)
                 if(httpsfinder.whitelist[i] == host){
                     httpsfinder.whitelist.splice(i,1);
                     if(httpsfinder.debug)
                         Application.console.log("httpsfinder unblocking detection on " + host);
                 }
-            
+
         var nb = gBrowser.getNotificationBox(aBrowser);
         var sslFoundButtons = [{
             label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
@@ -290,7 +288,6 @@ httpsfinder.detect = {
         }];
 
         if(!httpsfinder.browserOverlay.isCachedSSL(host)){
-
             if(httpsfinder.debug)
                 Application.console.log("Pushing " + host + " to good SSL list");
             if(httpsfinder.browserOverlay.isWhitelisted(host)){
@@ -321,7 +318,6 @@ httpsfinder.detect = {
                     nb.PRIORITY_INFO_LOW, sslFoundButtons);
                 httpsfinder.browserOverlay.removeFromWhitelist(aBrowser.contentDocument, null);
             }
-
             else{
                 if(httpsfinder.debug)
                     Application.console.log("Host mismatch, alert blocked (Document: " +
@@ -329,7 +325,6 @@ httpsfinder.detect = {
             }
         }
     },
-
 
     //Certificate testing done before alerting user of https presence
     testCertificate: function(channel) {
@@ -341,7 +336,7 @@ httpsfinder.detect = {
                     Application.console.log("httpsfinder testCertificate: Invalid channel object");
                 return false;
             }
-                
+
             var secInfo = channel.securityInfo;
             if (secInfo instanceof Ci.nsITransportSecurityInfo) {
                 secInfo.QueryInterface(Ci.nsITransportSecurityInfo);
@@ -424,12 +419,11 @@ httpsfinder.detect = {
 };
 
 httpsfinder.browserOverlay = {
-    redirectedTab: [[]], //Tab info for pre-redirect URLs
+    redirectedTab: [[]], //Tab info for pre-redirect URLs.
     recent: [[]], //Recent auto-redirects used for detecting http->https->http redirect loops. Second subscript holds the tabIndex of the redirect
     lastRecentReset: null,
 
     init: function(){
-
         var prefs = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefBranch);
         httpsfinder.prefs =  prefs.getBranch("extensions.httpsfinder.");
@@ -437,12 +431,12 @@ httpsfinder.browserOverlay = {
         //pref change observer (for enabling/disabling and updating whitelist)
         httpsfinder.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
         httpsfinder.prefs.addObserver("", this, false);
-       
+
         //This listener is used for displaying alerts after a page is loaded
         var appcontent = document.getElementById("appcontent");
         if(appcontent)
             appcontent.addEventListener("load", httpsfinder.browserOverlay.onPageLoad, true);
-        
+
         httpsfinder.detect.register();
 
         httpsfinder.strings = document.getElementById("httpsfinderStrings");
@@ -456,7 +450,7 @@ httpsfinder.browserOverlay = {
             var installedVersion = httpsfinder.prefs.getCharPref("version");
             var firstrun = httpsfinder.prefs.getBoolPref("firstrun");
             httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
-            
+
             //Create whitelist database
             var file = Components.classes["@mozilla.org/file/directory_service;1"]
             .getService(Components.interfaces.nsIProperties)
@@ -468,7 +462,7 @@ httpsfinder.browserOverlay = {
             mDBConn.createTable("whitelist", "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, rule STRING NOT NULL UNIQUE");
 
         }catch(e){
-            //NS_ERROR_FAILURE is thrown when we try to recreate a table (Too generic though...)
+            //NS_ERROR_FAILURE is thrown when we try to recreate a table (May be too generic though...)
             //We try to recreate every start in case the user manually deleted the file
             if(e.name != 'NS_ERROR_FAILURE')
                 Application.console.log("httpsfinder initialize error " + e);
@@ -528,11 +522,10 @@ httpsfinder.browserOverlay = {
     },
 
     importWhitelist: function(){
-        //This shouldn't be needed. But for some reason in Linux just setting length=0 doesn't seem to work for reinitializing this.
         for(var i=0; i <  httpsfinder.whitelist.length; i++)
             httpsfinder.whitelist[i] = "";
         httpsfinder.whitelist.length = 0;
-        
+
         for(i=0; i <  httpsfinder.goodSSL.length; i++)
             httpsfinder.goodSSL[i] = "";
         httpsfinder.goodSSL.length = 0;
@@ -607,7 +600,7 @@ httpsfinder.browserOverlay = {
         }
         else if(typeof(hostIn) == "string")
             hostname = hostIn;
-        
+
         try{
             var file = Components.classes["@mozilla.org/file/directory_service;1"]
             .getService(Components.interfaces.nsIProperties)
@@ -642,7 +635,7 @@ httpsfinder.browserOverlay = {
         }
     },
 
-    alertSSLEnforced: function(aDocument){            
+    alertSSLEnforced: function(aDocument){
         if(!httpsfinder.prefs.getBoolPref("noruleprompt") && gBrowser.currentURI.host != ""){
 
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
@@ -663,7 +656,6 @@ httpsfinder.browserOverlay = {
                 callback: httpsfinder.browserOverlay.writeRule
             }];
 
-            //Alert text changes depending on whether or not user was auto-forwarded to HTTPS.
             if(httpsfinder.prefs.getBoolPref("autoforward"))
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.autoForwardRulePrompt"),
                     'popup-blocked', 'chrome://httpsfinder/skin/httpsAvailable.png',
@@ -675,6 +667,7 @@ httpsfinder.browserOverlay = {
         }
     },
 
+    //Check if host is whitelisted. Will include permanent (database) whitelist items and session items.
     isWhitelisted: function(host){
         whitelisted = false;
         for(var i=0; i < httpsfinder.whitelist.length; i++){
@@ -691,18 +684,18 @@ httpsfinder.browserOverlay = {
         return whitelisted;
     },
 
+
+    //Check if good SSL has already been discovered this session
     isCachedSSL: function(host){
         good = false;
-        //Check stored whitelist
         for(var i=0; i < httpsfinder.goodSSL.length; i++){
             if(httpsfinder.goodSSL[i] == host)
-                good = true;            
+                good = true;
         }
         return good;
     },
 
     writeRule: function(){
-        //Have to check a previously stored var - there's a delay in actually checking so it just returns default (false)
         if(!httpsfinder.browserOverlay.httpseverywhereInstalled)
             httpsfinder.browserOverlay.httpsEverywhereInstalled(gBrowser.contentDocument);
 
@@ -730,15 +723,13 @@ httpsfinder.browserOverlay = {
 
         var tldLength = topLevel.length - 1;
 
-        //Parse URL for domain name (Formatted for rule name (presentation)
         if(hostname.indexOf("www.") != -1)
             title = hostname.slice(hostname.indexOf(".",0) + 1,hostname.lastIndexOf(".",0) - tldLength);
         else
             title = hostname.slice(0, hostname.lastIndexOf(".", 0) - tldLength);
-        title = title.charAt(0).toUpperCase() + title.slice(1); 
+        title = title.charAt(0).toUpperCase() + title.slice(1);
 
         var rule;
-        //Special case-
         if(hostname == "localhost"){
             title = "Localhost";
             rule = "<ruleset name=\""+ title + "\">" + "\n"
@@ -771,7 +762,7 @@ httpsfinder.browserOverlay = {
                     "\\" + topLevel +"/\"" +" to=\"https://" + title.toLowerCase() +
                     topLevel + "/\"/>" + "\n" + "</ruleset>";
                 }
-                //If hostname includes non-www subdomain, we don't include www in our rule. (it would direct to the wrong domain).
+                //If hostname includes non-www subdomain, we don't include www in our rule.
                 else
                     rule = rule + "\t" + "<rule from=\"^http://(www\\.)?" +
                     title.toLowerCase() + "\\" + topLevel +"/\"" +" to=\"https://"
@@ -849,7 +840,7 @@ httpsfinder.browserOverlay = {
             callback: httpsfinder.browserOverlay.getHttpsEverywhere
         }];
         var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
-        
+
         //Firefox 4+ uses AddonManager, below version 4.0 uses extensions.has - check version and use appropriate method
         if(Application.version.charAt(0) >= 4){
             Components.utils.import("resource://gre/modules/AddonManager.jsm");
@@ -883,8 +874,8 @@ httpsfinder.browserOverlay = {
         return currURL.toString().substring((currURL.toString().indexOf("://", 0) + 3));
     },
 
+    //Add to session whitlelist (not database)
     redirectNotNow: function() {
-        //Add to session whitlelist (not database)
         var hostname = "";
         if(typeof httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)] != "undefined" &&
             typeof httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)][1] != "undefined" )
@@ -909,6 +900,7 @@ httpsfinder.browserOverlay = {
             httpsfinder.whitelist.push(hostname);
     },
 
+    //Auto-redirect to https
     redirectAuto: function(aBrowser, request){
         var sinceLastReset = Date.now() - httpsfinder.browserOverlay.lastRecentReset;
         var index = gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
@@ -933,7 +925,7 @@ httpsfinder.browserOverlay = {
             aBrowser.loadURIWithFlags(requestURL, nsIWebNavigation.LOAD_FLAGS_REPLACE_HISTORY);
             httpsfinder.browserOverlay.redirectedTab[index] = new Array();
             httpsfinder.browserOverlay.redirectedTab[index][0] = true;
-            httpsfinder.browserOverlay.redirectedTab[index][1] = aBrowser.currentURI;         
+            httpsfinder.browserOverlay.redirectedTab[index][1] = aBrowser.currentURI;
 
             httpsfinder.browserOverlay.removeFromWhitelist(aBrowser.contentDocument, request.URI.host.toLowerCase());
         }
@@ -945,9 +937,10 @@ httpsfinder.browserOverlay = {
         }
 
         httpsfinder.browserOverlay.recent.push([host,index]);
-        httpsfinder.browserOverlay.lastRecentReset = Date.now();      
+        httpsfinder.browserOverlay.lastRecentReset = Date.now();
     },
 
+    //Manual redirect (user click)
     redirect: function() {
         var aDocument = gBrowser.contentDocument;
         httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(aDocument)] = new Array();
@@ -962,9 +955,10 @@ httpsfinder.browserOverlay = {
 
     removeFromWhitelist: function(aDocument, host){
         if(!aDocument && host){
-            for(let i=0; i<httpsfinder.whitelist.length; i++)
-            if(httpsfinder.whitelist[i] == host)
-                httpsfinder.whitelist.splice(i,1);
+            for(let i=0; i<httpsfinder.whitelist.length; i++){
+                if(httpsfinder.whitelist[i] == host)
+                    httpsfinder.whitelist.splice(i,1);
+            }
         }
         else if(!host){
             var preRedirectHost = gBrowser.getBrowserForDocument(aDocument).currentURI.host;
@@ -973,17 +967,17 @@ httpsfinder.browserOverlay = {
                     if(httpsfinder.debug)
                         Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist");
                     httpsfinder.whitelist.splice(i,1);
-                }          
+                }
             }
         }
         else{
-            for(var i=0; i<httpsfinder.whitelist.length; i++){
+            for(var i=0; i<httpsfinder.whitelist.length; i++)
                 if(httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
                     if(httpsfinder.debug)
                         Application.console.log("httpsfinder unblocking detection on " + host);
                     httpsfinder.whitelist.splice(i,1);
-                }            
-            }
+                }
+
         }
     },
 
@@ -1034,7 +1028,6 @@ httpsfinder.browserOverlay = {
             case "debugLogging":
                 httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
                 break;
-
         }
     },
 
@@ -1043,23 +1036,33 @@ httpsfinder.browserOverlay = {
             httpsfinder.prefs.removeObserver("", this);
             httpsfinder.detect.unregister();
         }
-        catch(e) {/*do nothing - it is already removed if the extension was disabled*/}
+        catch(e){
+            /*do nothing - it is already removed if the extension was disabled*/
+        }
+
+        try{
+            var appcontent = document.getElementById("appcontent");
+            if(appcontent)
+                appcontent.removeEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
+        }
+        catch(e){
+            //appcontent may be null
+        }
+
+        window.removeEventListener("unload", function(){
+            httpsfinder.browserOverlay.shutdown();
+        }, false);
+
+        window.removeEventListener("load", function(){
+            httpsfinder.browserOverlay.init();
+        }, false);
     }
 };
 
-
-window.addEventListener("load", function() {
+window.addEventListener("load", function(){
     httpsfinder.browserOverlay.init();
 }, false);
 
-window.removeEventListener("load", function() {
-    httpsfinder.browserOverlay.init();
-}, false);
-
-window.addEventListener("unload", function(e) {
+window.addEventListener("unload", function(){
     httpsfinder.browserOverlay.shutdown();
-}, false);
-
-window.removeEventListener("unload", function() {
-    httpsfinder.browserOverlay.init();
 }, false);

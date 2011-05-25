@@ -6,8 +6,8 @@
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     xmlns:html="http://www.w3.org/1999/xhtml"
     buttons="accept,cancel"
-    onload="httpsfinderLoadRulePreview(document)"
-    ondialogaccept="return httpsfinderOkRulePreview();">
+    onload="httpsfinder.rulePreview.httpsfinderLoadRulePreview(document)"
+    ondialogaccept="return httpsfinder.rulePreview.httpsfinderOkRulePreview();">
     <script type="application/x-javascript" src="rulePreview.js"/>
     <grid>
         <columns>
@@ -33,7 +33,7 @@
                                          style="color: blue; text-decoration:underline;"
                                          onmouseover="event.target.style.cursor='pointer'"
                                          onmouseout="event.target.style.cursor='default'"
-                                        onclick="window.open('&httpsfinder.rulePreview.link;')"/>                        
+                                        onclick="window.open('&httpsfinder.rulePreview.link;')"/>
                             </row>
                         </vbox>
                         <row>

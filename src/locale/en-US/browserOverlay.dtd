@@ -5,9 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-
-<!ENTITY httpsfinder.version "0.65">
-<!ENTITY httpsfinder.buildDate "21 May 2011">
+<!ENTITY httpsfinder.version "0.67">
+<!ENTITY httpsfinder.buildDate "23 May 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
@@ -39,6 +38,7 @@
 <!ENTITY httpsfinder.preference.showpreview "Show rule preview (allows editing) before saving rules">
 <!ENTITY httpsfinder.preference.detectionDescLONG "HEAD requests use less bandwidth than GET, but some servers may not support them. If this happens, HTTPS Finder will attempt to fall back to a GET request.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Recommended setting: If you have a fast connection, uncheck to use GET only.  On slower connections, HEAD first may be noticeably faster on most sites.">
+<!ENTITY httpsfinder.preference.debug "Enable debug (verbose) logging">
 <!ENTITY httpsfinder.rulePreview.top "Rule Preview:">
 <!ENTITY httpsfinder.rulePreview.tip1 "Any changes you make will be reflected in the saved rule.">
 <!ENTITY httpsfinder.rulePreview.tip2 "Click OK to save the rule, or Cancel to go back without saving">
@@ -55,3 +55,6 @@
 <!ENTITY httpsfinder.menu.rateKey "R">
 <!ENTITY httpsfinder.menu.help "Help">
 <!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.overlay.whitelistReset "httpsfinder.browserOverlay.importWhitelist();
+                        httpsfinder.browserOverlay.popupNotify('HTTPS Finder', 'Whitelist and session detection results cleared');">
+<!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">

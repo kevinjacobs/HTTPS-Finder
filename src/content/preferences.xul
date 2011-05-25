@@ -131,7 +131,7 @@
                                      <vbox>
                                         <row>
                                             <checkbox id="debug" preference="httpsfinder-debugLogging"/>
-                                            <label control="debugLabel" value="Enable debug (verbose) logging"/>
+                                            <label control="debugLabel" value="&httpsfinder.preference.debug;"/>
                                         </row>
                                     </vbox>
                                 </rows>
@@ -169,7 +169,7 @@
                                 <groupbox width = "&httpsfinder.prefSize.detectDescWidth;">
                                     <caption label="&httpsfinder.preference.translations;"/>
                                     <row>
-                                        <label value="- German (Michael Wolf &amp; Daniel Helmert)"/>
+                                        <label value="&httpsfinder.translation.german;"/>
                                     </row>
                                 </groupbox>
                             </row>

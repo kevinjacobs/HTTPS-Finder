@@ -30,8 +30,7 @@
                     id="httpsfinderReloadWhitelist"
                     image="chrome://httpsfinder/skin/refresh.png"
                     label="&httpsfinder.menu.refresh;" accesskey="&httpsfinder.menu.refreshKey;"
-                    oncommand="httpsfinder.browserOverlay.importWhitelist();
-                        httpsfinder.browserOverlay.popupNotify('HTTPS Finder', 'Whitelist and session detection results cleared');" />
+                    oncommand="&httpsfinder.overlay.whitelistReset;" />
                 <menuseparator/>
                 <menuitem class="menuitem-iconic" id="httpsfinderHomepageItem"
                     image="chrome://httpsfinder/skin/iconSmall.png"

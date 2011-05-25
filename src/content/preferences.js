@@ -187,8 +187,8 @@ httpsfinder.preferences = {
         var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
     },
-    
-    
+
+
       //Generic notifier method
     popupNotify: function(title,body){
         try{
