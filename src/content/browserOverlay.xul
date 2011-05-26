@@ -30,7 +30,7 @@
                     id="httpsfinderReloadWhitelist"
                     image="chrome://httpsfinder/skin/refresh.png"
                     label="&httpsfinder.menu.refresh;" accesskey="&httpsfinder.menu.refreshKey;"
-                    oncommand="&httpsfinder.overlay.whitelistReset;" />
+                    oncommand="httpsfinder.browserOverlay.resetWhitelist();" />
                 <menuseparator/>
                 <menuitem class="menuitem-iconic" id="httpsfinderHomepageItem"
                     image="chrome://httpsfinder/skin/iconSmall.png"

@@ -183,9 +183,11 @@ httpsfinder.preferences = {
         }
     },
 
-    httpsfinderClearTempWhitelist: function(){
+    resetWhitelist: function(){
         var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
+        var strings = document.getElementById("httpsfinderStrings");
+        httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
     },
 
 

@@ -57,9 +57,5 @@
 <!ENTITY httpsfinder.menu.rateKey "B">
 <!ENTITY httpsfinder.menu.help "Help">
 <!ENTITY httpsfinder.menu.helpKey "H">
-<!ENTITY httpsfinder.overlay.whitelistReset "httpsfinder.browserOverlay.importWhitelist();
-                        httpsfinder.browserOverlay.popupNotify('HTTPS Finder', 'Witte lijst en tijdelijke detectieregels zijn verwijderd');">
-<!ENTITY httpsfinder.overlay.whitelistResetFromPrefs "httpsfinder.preferences.httpsfinderClearTempWhitelist(document);
-                                        httpsfinder.preferences.popupNotify('HTTPS Finder', 'Witte lijst en tijdelijke detectieregels zijn verwijderd');">
 <!ENTITY httpsfinder.translation.german "- Duits (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Nederlands (Donné Brok)">

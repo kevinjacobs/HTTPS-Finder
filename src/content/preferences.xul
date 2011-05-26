@@ -8,6 +8,12 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     buttons="accept,cancel">
     <script type="application/x-javascript" src="chrome://httpsfinder/content/preferences.js"/>
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="httpsfinderStrings"
+      src="chrome://httpsfinder/locale/browserOverlay.properties" />
+    </stringbundleset>
+
     <prefpane label="&httpsfinder.preference.title;"
         onpaneload="httpsfinder.preferences.httpsfinderLoadWhitelist(document)">
 
@@ -69,7 +75,7 @@
                                 <row>
                                     <button id="modifyRule" label="&httpsfinder.preference.whitelistModify;" oncommand="httpsfinder.preferences.httpsfinderModifyWhitelistRule(document)" disabled="true"/>
                                     <button id="removeRule" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.httpsfinderRemoveWhitelistRule(document)" disabled="true"/>
-                                    <button id="resetWhitelist" label="&httpsfinder.menu.refresh;" oncommand="&httpsfinder.overlay.whitelistResetFromPrefs;"/>
+                                    <button id="resetWhitelist" label="&httpsfinder.menu.refresh;" oncommand="httpsfinder.preferences.resetWhitelist();"/>
                                 </row>
                             </groupbox>
                             <separator class="thin"/>
@@ -127,7 +133,7 @@
                                             <label control="rulepreview" value="&httpsfinder.preference.showpreview;"/>
                                         </row>
                                     </vbox>
-                                     <vbox>
+                                    <vbox>
                                         <row>
                                             <checkbox id="debug" preference="httpsfinder-debugLogging"/>
                                             <label control="debugLabel" value="&httpsfinder.preference.debug;"/>

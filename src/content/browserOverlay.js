@@ -992,6 +992,11 @@ httpsfinder.browserOverlay = {
         catch(e){ /*Do nothing*/ }
     },
 
+    resetWhitelist: function(){
+        httpsfinder.browserOverlay.popupNotify("HTTPS Finder", httpsfinder.strings.getString("httpsfinder.overlay.whitelistReset"));
+        httpsfinder.prefs.setBoolPref("whitelistChanged", true); //Fires re-import of whitelist through observer
+    },
+
     observe: function(subject, topic, data){
         if (topic != "nsPref:changed")
             return;
