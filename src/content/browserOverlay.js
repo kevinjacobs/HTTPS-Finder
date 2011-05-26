@@ -1,6 +1,6 @@
 /*
  * Developer : Kevin Jacobs (httpsfinder@gmail.com), www.kevinajacobs.com
- * Date : 06/23/2011
+ * Date : 06/25/2011
  * All code (c)2011 all rights reserved
  */
 
@@ -13,6 +13,10 @@ if (!httpsfinder) var httpsfinder = {
 };
 
 httpsfinder.detect = {
+    //Not a great solution, but this is for problematic domains.
+    //Google image search over ssl  counts as one, so we won't cache results there.
+    enforceExempt: ["www.google.com"],
+
     QueryInterface: function(aIID){
         if (aIID.equals(Components.interfaces.nsIObserver) ||
             aIID.equals(Components.interfaces.nsISupports))
@@ -51,7 +55,7 @@ httpsfinder.detect = {
                 var host = request.URI.host.toLowerCase();
                 try{
                     if(httpsfinder.detect.hostsMatch(browser.contentDocument.baseURIObject.host.toLowerCase(),host) &&
-                        httpsfinder.browserOverlay.isCachedSSL(request.URI.host.toLowerCase())){
+                        httpsfinder.goodSSL.indexOf(request.URI.host.toLowerCase()) != -1){
                         if(httpsfinder.debug)
                             Application.console.log("Canceling detection on " + request.URI.host.toLowerCase() + ". Good SSL already cached for host.");
                         httpsfinder.detect.handleCachedSSL(browser, request);
@@ -66,7 +70,7 @@ httpsfinder.detect = {
                 if(!httpsfinder.browserOverlay.isWhitelisted(host))
                     httpsfinder.whitelist.push(host);
                 if(httpsfinder.debug)
-                    Application.console.log("Blocking detection on " + request.URI.host + " until OK response received");
+                    Application.console.log("httpsfinder Blocking detection on " + request.URI.host + " until OK response received");
 
                 if(httpsfinder.debug)
                     Application.console.log("httpsfinder Starting HTTPS detection for " + request.URI.asciiSpec);
@@ -138,7 +142,6 @@ httpsfinder.detect = {
             };
             headReq.send(null);
         }
-
     },
 
     //Get load flags for HTTP observer. We use these to filter normal http requests from page load requests
@@ -251,12 +254,19 @@ httpsfinder.detect = {
         //Session whitelist host and return if cert is bad or status is not OK.
         var host = sslTest.channel.URI.host.toLowerCase();
         var request = sslTest.channel;
-        if(sslTest.status != 200 && sslTest.status != 301 && sslTest.status != 302 && !httpsfinder.browserOverlay.isCachedSSL(host)){
+
+        if(httpsfinder.detect.enforceExempt.indexOf(host) != -1){
+            if(httpsfinder.debug)
+                Application.console.log("httpsfinder removing " + host + " from whitelist (exempt from saving results on this host)");
+            httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
+        }
+
+        if(sslTest.status != 200 && sslTest.status != 301 && sslTest.status != 302 && httpsfinder.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
                 Application.console.log("httpsfinder leaving " + host + " in whitelist (return status code " + sslTest.status + ")");
             return;
         }
-        else if(!httpsfinder.detect.testCertificate(sslTest.channel) && !httpsfinder.browserOverlay.isCachedSSL(host)){
+        else if(!httpsfinder.detect.testCertificate(sslTest.channel) && httpsfinder.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
                 Application.console.log("httpsfinder leaving " + host + " in whitelist (bad SSL certificate)");
             return;
@@ -287,7 +297,7 @@ httpsfinder.detect = {
             callback: httpsfinder.browserOverlay.redirect
         }];
 
-        if(!httpsfinder.browserOverlay.isCachedSSL(host)){
+        if(httpsfinder.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
                 Application.console.log("Pushing " + host + " to good SSL list");
             if(httpsfinder.browserOverlay.isWhitelisted(host)){
@@ -297,8 +307,8 @@ httpsfinder.detect = {
             else
                 httpsfinder.goodSSL.push(host);
         }
-        if(!httpsfinder.browserOverlay.isCachedSSL(aBrowser.contentDocument.baseURIObject.host.toLowerCase())){
-
+        
+        if(!httpsfinder.goodSSL.indexOf(aBrowser.contentDocument.baseURIObject.host.toLowerCase()) == -1){
             if(httpsfinder.debug)
                 Application.console.log("Pushing " + aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " to good SSL list");
             if(httpsfinder.browserOverlay.isWhitelisted(aBrowser.contentDocument.baseURIObject.host.toLowerCase())){
@@ -428,6 +438,7 @@ httpsfinder.browserOverlay = {
         .getService(Components.interfaces.nsIPrefBranch);
         httpsfinder.prefs =  prefs.getBranch("extensions.httpsfinder.");
 
+
         //pref change observer (for enabling/disabling and updating whitelist)
         httpsfinder.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
         httpsfinder.prefs.addObserver("", this, false);
@@ -440,7 +451,6 @@ httpsfinder.browserOverlay = {
         httpsfinder.detect.register();
 
         httpsfinder.strings = document.getElementById("httpsfinderStrings");
-
         if(httpsfinder.prefs == null || httpsfinder.strings == null){
             Application.console.log("httpsfinder cannot load preferences or strings - init() failed");
             return;
@@ -482,7 +492,6 @@ httpsfinder.browserOverlay = {
             else if(!firstrun)
                 httpsfinder.browserOverlay.importWhitelist();
         }
-
     },
 
     onPageLoad: function(aEvent) {
@@ -522,6 +531,9 @@ httpsfinder.browserOverlay = {
     },
 
     importWhitelist: function(){
+        if(!httpsfinder.prefs.getBoolPref("whitelistChanged"))
+            return;
+
         for(var i=0; i <  httpsfinder.whitelist.length; i++)
             httpsfinder.whitelist[i] = "";
         httpsfinder.whitelist.length = 0;
@@ -553,8 +565,8 @@ httpsfinder.browserOverlay = {
                 handleCompletion: function(aReason){
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         Application.console.log("httpsfinder database error " + aReason.message);
-                    else
-                        httpsfinder.prefs.setBoolPref("whitelistChanged", false)
+                    else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))
+                        httpsfinder.prefs.setBoolPref("whitelistChanged", false);
                 }
             });
         }
@@ -682,17 +694,6 @@ httpsfinder.browserOverlay = {
                     whitelisted = true;
         }
         return whitelisted;
-    },
-
-
-    //Check if good SSL has already been discovered this session
-    isCachedSSL: function(host){
-        good = false;
-        for(var i=0; i < httpsfinder.goodSSL.length; i++){
-            if(httpsfinder.goodSSL[i] == host)
-                good = true;
-        }
-        return good;
     },
 
     writeRule: function(){
@@ -977,7 +978,6 @@ httpsfinder.browserOverlay = {
                         Application.console.log("httpsfinder unblocking detection on " + host);
                     httpsfinder.whitelist.splice(i,1);
                 }
-
         }
     },
 
@@ -989,9 +989,7 @@ httpsfinder.browserOverlay = {
             alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
                 title, body, false, "", null);
         }
-        catch(e){
-        //Do nothing
-        }
+        catch(e){ /*Do nothing*/ }
     },
 
     observe: function(subject, topic, data){
@@ -1003,7 +1001,7 @@ httpsfinder.browserOverlay = {
             case "whitelistChanged":
                 httpsfinder.browserOverlay.importWhitelist();
                 break;
-
+            
             //Remove/add window listener if httpsfinder is enabled or disabled
             case "enable":
                 var appcontent = document.getElementById("appcontent");
@@ -1036,18 +1034,14 @@ httpsfinder.browserOverlay = {
             httpsfinder.prefs.removeObserver("", this);
             httpsfinder.detect.unregister();
         }
-        catch(e){
-            /*do nothing - it is already removed if the extension was disabled*/
-        }
+        catch(e){ /*do nothing - it is already removed if the extension was disabled*/ }
 
         try{
             var appcontent = document.getElementById("appcontent");
             if(appcontent)
                 appcontent.removeEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
         }
-        catch(e){
-            //appcontent may be null
-        }
+        catch(e){ /*appcontent may be null*/ }
 
         window.removeEventListener("unload", function(){
             httpsfinder.browserOverlay.shutdown();
