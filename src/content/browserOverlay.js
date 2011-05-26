@@ -15,7 +15,7 @@ if (!httpsfinder) var httpsfinder = {
 httpsfinder.detect = {
     //Not a great solution, but this is for problematic domains.
     //Google image search over ssl  counts as one, so we won't cache results there.
-    enforceExempt: ["www.google.com"],
+    enforceExempt: ["www.google.com", "translate.google.com"],
 
     QueryInterface: function(aIID){
         if (aIID.equals(Components.interfaces.nsIObserver) ||

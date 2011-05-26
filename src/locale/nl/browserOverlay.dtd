@@ -1,0 +1,65 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "475">
+<!ENTITY httpsfinder.prefSize.windowHeight "560">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "485">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "460">
+<!--End prefWindow sizing-->
+
+<!--januari, februari, mart, april, mei, juni, juli, augustus, september, october, november, december. Format: 23. mei 2011-->
+
+<!ENTITY httpsfinder.version "0.68">
+<!ENTITY httpsfinder.buildDate "26. mei 2011">
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "Datum van uitgave:">
+<!ENTITY httpsfinder.authorTitle "Auteur:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "HTTPS Finder Einstellungen">
+<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.translations "Vertaald door:">
+<!ENTITY httpsfinder.preference.supportTitle "E-mail voor ondersteuning:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "HTTPS Finder inschakelen">
+<!ENTITY httpsfinder.preference.noRulePrompt "Niet vragen om regels op te slaan (Voor gebruik zonder HTTPS Everywhere)">
+<!ENTITY httpsfinder.preference.autoForward "Automatisch HTTPS gebruiken indien mogelijk">
+<!ENTITY httpsfinder.preference.whitelistLabel "Witte lijst (Niet naar HTTPS zoeken voor deze domeinnamen)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "Toevoegen aan witte lijst">
+<!ENTITY httpsfinder.preference.whitelistModify "Wijzigen">
+<!ENTITY httpsfinder.preference.whitelistRemove "Verwijderen">
+<!ENTITY httpsfinder.preference.savedRulesTip "Opgeslagen regels kunnen worden uitgezet in de voorkeuren van HTTPS Everywhere">
+<!ENTITY httpsfinder.preference.ruleTip "Voor de witte lijst geldt: www.domein.com is een subdomein van domein.com">
+<!ENTITY httpsfinder.preference.learnMoreTip "Meer informatie over HTTPS Finder">
+<!ENTITY httpsfinder.preference.learnLinkName "hier">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "Hostnaam (domein.com, sub.domein.com, *.domein.com)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "Hostnaam">
+<!ENTITY httpsfinder.preference.headFirst "Gebruik eerst HEAD detectie (indien deze niet wordt ondersteund, wordt GET gebruikt)">
+<!ENTITY httpsfinder.preference.generalTab "Algemeen">
+<!ENTITY httpsfinder.preference.advancedTab "Geavanceerd">
+<!ENTITY httpsfinder.preference.aboutTab "Over">
+<!ENTITY httpsfinder.preference.detectionLabel "Detectie-methode">
+<!ENTITY httpsfinder.preference.showpreview "Laat regels zien voor ze worden opgeslagen. Dit maakt het mogelijk regels te bewerken.">
+<!ENTITY httpsfinder.preference.detectionDescLONG "HEAD gebruikt minder bandbreedte dan GET, maar deze methode wordt niet door alle servers ondersteund. In dat geval zal HTTPS Finder proberen om GET te gebruiken.">
+<!ENTITY httpsfinder.preference.detectionDescRec "Aanbevolen instelling: Zet deze optie uit indien u over een snelle verbinding beschikt, zodat alleen GET wordt gebruikt. Bij langzame verbindingen zal HEAD (en daarna eventueel GET) aanmerkelijk sneller zijn.">
+<!ENTITY httpsfinder.preference.debug "Schakel foutopsporing in">
+<!ENTITY httpsfinder.rulePreview.top "Voorbeeldweergave van de regel:">
+<!ENTITY httpsfinder.rulePreview.tip1 "Alle wijzigingen die u maakt worden opgeslagen in de regel.">
+<!ENTITY httpsfinder.rulePreview.tip2 "Klik op OK om de regel op te slaan of op Annuleren om terug te keren zonder op te slaan">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "hier">
+<!ENTITY httpsfinder.rulePreview.learnmore "Meer informatie over het maken van regels">
+<!ENTITY httpsfinder.menu.settings "Voorkeuren">
+<!ENTITY httpsfinder.menu.settingsKey "V">
+<!ENTITY httpsfinder.menu.refresh "Wis tijdelijke witte lijst">
+<!ENTITY httpsfinder.menu.refreshKey "W">
+<!ENTITY httpsfinder.menu.homepage "Website HTTPS Finder">
+<!ENTITY httpsfinder.menu.homepageKey "F">
+<!ENTITY httpsfinder.menu.rate "Beoordeel HTTPS Finder">
+<!ENTITY httpsfinder.menu.rateKey "B">
+<!ENTITY httpsfinder.menu.help "Help">
+<!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.overlay.whitelistReset "httpsfinder.browserOverlay.importWhitelist();
+                        httpsfinder.browserOverlay.popupNotify('HTTPS Finder', 'Witte lijst en tijdelijke detectieregels zijn verwijderd');">
+<!ENTITY httpsfinder.overlay.whitelistResetFromPrefs "httpsfinder.preferences.httpsfinderClearTempWhitelist(document);
+                                        httpsfinder.preferences.popupNotify('HTTPS Finder', 'Witte lijst en tijdelijke detectieregels zijn verwijderd');">
+<!ENTITY httpsfinder.translation.german "- Duits (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Nederlands (Donné Brok)">

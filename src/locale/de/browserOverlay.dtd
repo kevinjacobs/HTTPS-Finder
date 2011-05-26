@@ -7,8 +7,8 @@
 
 <!--Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember. Format: 23. Mai 2011-->
 
-<!ENTITY httpsfinder.version "0.67">
-<!ENTITY httpsfinder.buildDate "25. Mai 2011">
+<!ENTITY httpsfinder.version "0.68">
+<!ENTITY httpsfinder.buildDate "26. Mai 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build-Datum:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -59,4 +59,7 @@
 <!ENTITY httpsfinder.menu.helpKey "H">
 <!ENTITY httpsfinder.overlay.whitelistReset "httpsfinder.browserOverlay.importWhitelist();
                         httpsfinder.browserOverlay.popupNotify('HTTPS Finder', 'Positivliste und Erkennungsergebnisse der Sitzung gelöscht');">
+<!ENTITY httpsfinder.overlay.whitelistResetFromPrefs "httpsfinder.preferences.httpsfinderClearTempWhitelist(document);
+                                        httpsfinder.preferences.popupNotify('HTTPS Finder', 'Positivliste und Erkennungsergebnisse der Sitzung gelöscht');">
 <!ENTITY httpsfinder.translation.german "- Deutsch (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Niederländisch (Donné Brok)">

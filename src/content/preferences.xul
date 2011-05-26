@@ -69,8 +69,7 @@
                                 <row>
                                     <button id="modifyRule" label="&httpsfinder.preference.whitelistModify;" oncommand="httpsfinder.preferences.httpsfinderModifyWhitelistRule(document)" disabled="true"/>
                                     <button id="removeRule" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.httpsfinderRemoveWhitelistRule(document)" disabled="true"/>
-                                    <button id="resetWhitelist" label="&httpsfinder.menu.refresh;" oncommand="httpsfinder.preferences.httpsfinderClearTempWhitelist(document);
-                                        httpsfinder.preferences.popupNotify('HTTPS Finder', 'Whitelist and session detection results cleared');"/>
+                                    <button id="resetWhitelist" label="&httpsfinder.menu.refresh;" oncommand="&httpsfinder.overlay.whitelistResetFromPrefs;"/>
                                 </row>
                             </groupbox>
                             <separator class="thin"/>
@@ -170,6 +169,9 @@
                                     <caption label="&httpsfinder.preference.translations;"/>
                                     <row>
                                         <label value="&httpsfinder.translation.german;"/>
+                                    </row>
+                                    <row>
+                                        <label value="&httpsfinder.translation.dutch;"/>
                                     </row>
                                 </groupbox>
                             </row>
