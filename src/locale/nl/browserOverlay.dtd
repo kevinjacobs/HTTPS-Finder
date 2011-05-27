@@ -8,13 +8,13 @@
 <!--januari, februari, mart, april, mei, juni, juli, augustus, september, october, november, december. Format: 23. mei 2011-->
 
 <!ENTITY httpsfinder.version "0.68">
-<!ENTITY httpsfinder.buildDate "26. mei 2011">
+<!ENTITY httpsfinder.buildDate "26 mei 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Datum van uitgave:">
 <!ENTITY httpsfinder.authorTitle "Auteur:">
 <!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
 <!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
-<!ENTITY httpsfinder.preference.title "HTTPS Finder Einstellungen">
+<!ENTITY httpsfinder.preference.title "HTTPS Finder voorkeuren">
 <!ENTITY httpsfinder.preference.titleKey "H">
 <!ENTITY httpsfinder.preference.translations "Vertaald door:">
 <!ENTITY httpsfinder.preference.supportTitle "E-mail voor ondersteuning:">

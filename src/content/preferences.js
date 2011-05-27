@@ -100,7 +100,7 @@ httpsfinder.preferences = {
         if(!theList.selectedItem.firstChild.getAttribute("label"))
             return;
         document.getElementById('whitelistURL').value = theList.selectedItem.firstChild.getAttribute("label");
-        httpsfinder.preferences.httpsfinderRemoveWhitelistRule(doc);
+        httpsfinder.preferences.httpsfinderRemoveWhitelistRule();
     },
 
 
