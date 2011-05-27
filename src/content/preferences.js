@@ -190,8 +190,7 @@ httpsfinder.preferences = {
         httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
     },
 
-
-      //Generic notifier method
+    //Generic notifier method
     popupNotify: function(title,body){
         try{
             var alertsService = Components.classes["@mozilla.org/alerts-service;1"]

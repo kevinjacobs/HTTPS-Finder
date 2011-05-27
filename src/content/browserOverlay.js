@@ -8,6 +8,7 @@ if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
     strings: null, //Strings object for httpsfinder strings
     debug: null, //verbose logging on/off
+    tempNoAlerts: [], //If user saves a rule, push host and stop prompting to save rule
     whitelist: [], //Session whitelist (read in from sqlite, temp items added for session)
     goodSSL: []
 };
@@ -244,7 +245,7 @@ httpsfinder.detect = {
 
         if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
-        else
+        else if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1)
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
                 'popup-blocked','chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, sslFoundButtons);
@@ -321,7 +322,7 @@ httpsfinder.detect = {
 
         if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
-        else{
+        else  if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1){
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
                     'popup-blocked','chrome://httpsfinder/skin/httpsAvailable.png',
@@ -542,6 +543,10 @@ httpsfinder.browserOverlay = {
             httpsfinder.goodSSL[i] = "";
         httpsfinder.goodSSL.length = 0;
 
+         for(i=0; i <  httpsfinder.tempNoAlerts.length; i++)
+            httpsfinder.tempNoAlerts[i] = "";
+        httpsfinder.tempNoAlerts.length = 0;
+
         try{
             var file = Components.classes["@mozilla.org/file/directory_service;1"]
             .getService(Components.interfaces.nsIProperties)
@@ -648,7 +653,11 @@ httpsfinder.browserOverlay = {
     },
 
     alertSSLEnforced: function(aDocument){
-        if(!httpsfinder.prefs.getBoolPref("noruleprompt") && gBrowser.currentURI.host != ""){
+        var browser = gBrowser.getBrowserForDocument(aDocument);
+
+        if(httpsfinder.tempNoAlerts.indexOf(browser.currentURI.host) != -1)
+            return;
+        else if(!httpsfinder.prefs.getBoolPref("noruleprompt") && gBrowser.currentURI.host != ""){
 
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
             var saveRuleButtons = [{
@@ -812,6 +821,9 @@ httpsfinder.browserOverlay = {
         converter.init(foStream, "UTF-8", 0, 0);
         converter.writeString(rule);
         converter.close();
+
+        if(httpsfinder.tempNoAlerts.indexOf(hostname) == -1)
+            httpsfinder.tempNoAlerts.push(hostname);
 
         //Check if HTTPSEverywhere is installed.  If not, prompt user.
         //We still save the rule, it will be enforced after HTTPS Everywhere is installed.
