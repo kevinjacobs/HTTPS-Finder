@@ -1,6 +1,6 @@
 /*
  * Developer : Kevin Jacobs (httpsfinder@gmail.com), www.kevinajacobs.com
- * Date : 06/25/2011
+ * Date : 06/29/2011
  * All code (c)2011 all rights reserved
  */
 
@@ -247,7 +247,7 @@ httpsfinder.detect = {
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
         else if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1)
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-                'popup-blocked','chrome://httpsfinder/skin/httpsAvailable.png',
+                'httpsfinder-https-found','chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, sslFoundButtons);
     },
 
@@ -325,7 +325,7 @@ httpsfinder.detect = {
         else  if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1){
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-                    'popup-blocked','chrome://httpsfinder/skin/httpsAvailable.png',
+                    'httpsfinder-https-found','chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, sslFoundButtons);
                 httpsfinder.browserOverlay.removeFromWhitelist(aBrowser.contentDocument, null);
             }
@@ -532,9 +532,6 @@ httpsfinder.browserOverlay = {
     },
 
     importWhitelist: function(){
-        if(!httpsfinder.prefs.getBoolPref("whitelistChanged"))
-            return;
-
         for(var i=0; i <  httpsfinder.whitelist.length; i++)
             httpsfinder.whitelist[i] = "";
         httpsfinder.whitelist.length = 0;
@@ -543,7 +540,7 @@ httpsfinder.browserOverlay = {
             httpsfinder.goodSSL[i] = "";
         httpsfinder.goodSSL.length = 0;
 
-         for(i=0; i <  httpsfinder.tempNoAlerts.length; i++)
+        for(i=0; i <  httpsfinder.tempNoAlerts.length; i++)
             httpsfinder.tempNoAlerts[i] = "";
         httpsfinder.tempNoAlerts.length = 0;
 
@@ -595,6 +592,10 @@ httpsfinder.browserOverlay = {
     },
 
     whitelistDomain: function(hostIn){
+        //Manually remove notification - in Ubuntu it stays up (no error is thrown)
+        httpsfinder.browserOverlay.RemoveNotification('httpsfinder-https-found');
+        httpsfinder.browserOverlay.RemoveNotification('httpsfinder-ssl-enforced');
+
         if(typeof(hostIn) != "string"){
             var hostname;
             if(typeof httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)] != "undefined" &&
@@ -679,11 +680,11 @@ httpsfinder.browserOverlay = {
 
             if(httpsfinder.prefs.getBoolPref("autoforward"))
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.autoForwardRulePrompt"),
-                    'popup-blocked', 'chrome://httpsfinder/skin/httpsAvailable.png',
+                    'httpsfinder-ssl-enforced', 'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, saveRuleButtons);
             else
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.saveRulePrompt"),
-                    'popup-blocked', 'chrome://httpsfinder/skin/httpsAvailable.png',
+                    'httpsfinder-ssl-enforced', 'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, saveRuleButtons);
         }
     },
@@ -836,8 +837,9 @@ httpsfinder.browserOverlay = {
                 callback: httpsfinder.browserOverlay.restartNow
             }];
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.restartPrompt"),
-                'popup-blocked','chrome://httpsfinder/skin/httpsAvailable.png',
+                'httpsfinder-restart','chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, restartButtons);
+                setTimeout(function(){httpsfinder.browserOverlay.RemoveNotification('httpsfinder-restart')},4000, 'httpsfinder-restart');
         }
     },
 
@@ -861,7 +863,7 @@ httpsfinder.browserOverlay = {
                 //Addon is null if not installed
                 if(addon == null)
                     nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
-                        'popup-blocked','chrome://httpsfinder/skin/httpsAvailable.png',
+                        'httpsfinder-getHE','chrome://httpsfinder/skin/httpsAvailable.png',
                         nb.PRIORITY_INFO_LOW, installButtons);
                 else if(addon != null)
                     httpsfinder.browserOverlay.httpseverywhereInstalled = true;
@@ -871,7 +873,7 @@ httpsfinder.browserOverlay = {
         else{
             if(!Application.extensions.has("https-everywhere@eff.org"))
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
-                    'popup-blocked','chrome://httpsfinder/skin/httpsAvailable.png',
+                    'httpsfinder-getHE','chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, installButtons);
             else
                 httpsfinder.browserOverlay.httpseverywhereInstalled = true;
@@ -885,6 +887,12 @@ httpsfinder.browserOverlay = {
     getFullURL: function(aBrowser) {
         var currURL = aBrowser.currentURI.prePath + aBrowsercurrentURI.path;
         return currURL.toString().substring((currURL.toString().indexOf("://", 0) + 3));
+    },
+
+    RemoveNotification: function(value)
+    {
+        if((item = window.getBrowser().getNotificationBox().getNotificationWithValue(value)))
+            window.getBrowser().getNotificationBox().removeNotification(item);
     },
 
     //Add to session whitlelist (not database)
