@@ -196,10 +196,24 @@ httpsfinder.preferences = {
             var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
             .getService(Components.interfaces.nsIAlertsService);
             alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
-                title, body, false, "", null);
+            title, body, false, "", null);
         }
         catch(e){
-        //Do nothing
+            //Do nothing
+        }
+    },
+
+      openPage: function(addr){
+        var window = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+        var recent = window.getMostRecentWindow("navigator:browser");
+        if(recent){
+            recent.getBrowser().selectedTab = recent.getBrowser().addTab(addr);
+            recent.focus();
+        }
+        else{
+            recent = window.open(addr);
+            recent.focus();
         }
     }
+
 };

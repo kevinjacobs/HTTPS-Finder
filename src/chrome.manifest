@@ -4,6 +4,7 @@ skin	{appname}	classic/1.0           skin/
 locale	{appname}	en-US		      locale/en-US/
 locale	{appname}	de		      locale/de/
 locale	{appname}	nl		      locale/nl/
+locale	{appname}	pl		      locale/pl/
 
 
 

@@ -24,6 +24,8 @@
             <preference id="httpsfinder-headfirst" name="extensions.httpsfinder.headfirst" type="bool"/>
             <preference id="httpsfinder-showrulepreview" name="extensions.httpsfinder.showrulepreview" type="bool"/>
             <preference id="httpsfinder-debugLogging" name="extensions.httpsfinder.debugLogging" type="bool"/>
+            <preference id="httpsfinder-autoDismiss" name="extensions.httpsfinder.dismissAlerts" type="bool"/>
+            <preference id="httpsfinder-dismissTime" name="extensions.httpsfinder.alertDismissTime" type="int"/>
         </preferences>
 
         <tabbox id="httpsfindertabs" selectedIndex="0">
@@ -93,7 +95,7 @@
                                          style="color: blue; text-decoration:underline;"
                                          onmouseover="event.target.style.cursor='pointer'"
                                          onmouseout="event.target.style.cursor='default'"
-                                        onclick="window.open('&httpsfinder.googleCodeURL;')"/>
+                                        onclick="httpsfinder.preferences.openPage('https://code.google.com/p/https-finder/');"/>
                                 </row>
                             </vbox>
                         </column>
@@ -139,6 +141,14 @@
                                             <label control="debugLabel" value="&httpsfinder.preference.debug;"/>
                                         </row>
                                     </vbox>
+                                    <separator class="thin"/>
+                                    <vbox>
+                                        <row>
+                                            <checkbox id="autoDismiss" preference="httpsfinder-autoDismiss"/>
+                                            <label control="ADText" value="Auto-dismiss alerts after (seconds)"/>
+                                            <textbox id="dismissTime" type="number" min="0" max="60" preference="httpsfinder-dismissTime" maxlength="2" tooltiptext="Duration (seconds)" style="width: 50px;"/>
+                                        </row>
+                                    </vbox>
                                 </rows>
                             </grid>
                         </column>
@@ -161,7 +171,7 @@
                                 <description>&httpsfinder.buildDate;</description>
                                 <description value="&httpsfinder.authorTitle;" class="title"/>
                                 <description>Kevin Jacobs</description>
-                                <description onclick="window.open('&httpsfinder.mySite;')" class="url">&httpsfinder.mySite;</description>
+                                <description onclick="httpsfinder.preferences.openPage('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>
                                 <description value="&httpsfinder.preference.supportTitle;" class="title"/>
                                 <description onclick="location.href='mailto:&httpsfinder.preference.supportEmail;'" class="url">&httpsfinder.preference.supportEmail;</description>
                             </vbox>
@@ -178,6 +188,9 @@
                                     </row>
                                     <row>
                                         <label value="&httpsfinder.translation.dutch;"/>
+                                    </row>
+                                    <row>
+                                        <label value="&httpsfinder.translation.polish;"/>
                                     </row>
                                 </groupbox>
                             </row>
