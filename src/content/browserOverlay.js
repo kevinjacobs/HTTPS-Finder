@@ -1,6 +1,6 @@
 /*
  * Developer : Kevin Jacobs (httpsfinder@gmail.com), www.kevinajacobs.com
- * Date : 06/05/2011
+ * Date : 06/09/2011
  * All code (c)2011 all rights reserved
  */
 
@@ -246,13 +246,16 @@ httpsfinder.detect = {
         if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
         else if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1){
+            var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
+
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-                'httpsfinder-https-found','chrome://httpsfinder/skin/httpsAvailable.png',
+                key,'chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, sslFoundButtons);
+
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.RemoveNotification('httpsfinder-https-found')
+                    httpsfinder.browserOverlay.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-https-found');
         }
     },
@@ -324,14 +327,17 @@ httpsfinder.detect = {
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
         else  if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1){
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
+
+                var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
+
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-                    'httpsfinder-https-found','chrome://httpsfinder/skin/httpsAvailable.png',
+                    key,'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, sslFoundButtons);
                 httpsfinder.browserOverlay.removeFromWhitelist(aBrowser.contentDocument, null);
 
                 if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                     setTimeout(function(){
-                        httpsfinder.browserOverlay.RemoveNotification('httpsfinder-https-found')
+                        httpsfinder.browserOverlay.removeNotification(key)
                     },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-https-found');
             }
             else{
@@ -438,6 +444,7 @@ httpsfinder.browserOverlay = {
     redirectedTab: [[]], //Tab info for pre-redirect URLs.
     recent: [[]], //Recent auto-redirects used for detecting http->https->http redirect loops. Second subscript holds the tabIndex of the redirect
     lastRecentReset: null,
+    whitelistLength: 0,
     httpseverywhereInstalled: false,
 
     init: function(){
@@ -571,6 +578,7 @@ httpsfinder.browserOverlay = {
                 },
 
                 handleCompletion: function(aReason){
+                    httpsfinder.browserOverlay.whitelistLength = httpsfinder.whitelist.length //differentiate between permanent and temp whitelist items
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         Application.console.log("httpsfinder database error " + aReason.message);
                     else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))
@@ -599,8 +607,8 @@ httpsfinder.browserOverlay = {
 
     whitelistDomain: function(hostIn){
         //Manually remove notification - in Ubuntu it stays up (no error is thrown)
-        httpsfinder.browserOverlay.RemoveNotification('httpsfinder-https-found');
-        httpsfinder.browserOverlay.RemoveNotification('httpsfinder-ssl-enforced');
+        httpsfinder.browserOverlay.removeNotification('httpsfinder-https-found');
+        httpsfinder.browserOverlay.removeNotification('httpsfinder-ssl-enforced');
 
         if(typeof(hostIn) != "string"){
             var hostname;
@@ -684,18 +692,20 @@ httpsfinder.browserOverlay = {
                 callback: httpsfinder.browserOverlay.writeRule
             }];
 
+            var key = "httpsfinder-ssl-enforced" + gBrowser.getBrowserIndexForDocument(aDocument);
+
             if(httpsfinder.prefs.getBoolPref("autoforward"))
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.autoForwardRulePrompt"),
-                    'httpsfinder-ssl-enforced', 'chrome://httpsfinder/skin/httpsAvailable.png',
+                    key, 'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, saveRuleButtons);
             else
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.saveRulePrompt"),
-                    'httpsfinder-ssl-enforced', 'chrome://httpsfinder/skin/httpsAvailable.png',
+                    key, 'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, saveRuleButtons);
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.RemoveNotification('httpsfinder-ssl-enforced')
+                    httpsfinder.browserOverlay.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-ssl-enforced');
         }
     },
@@ -807,7 +817,7 @@ httpsfinder.browserOverlay = {
             window.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
                 "chrome, dialog, modal,centerscreen, resizable=yes", params).focus();
             if (!params.out){
-                httpsfinder.browserOverlay.RemoveNotification('httpsfinder-getHE');
+                httpsfinder.browserOverlay.removeNotification('httpsfinder-getHE');
                 return; //user canceled rule
             }
             else
@@ -850,12 +860,16 @@ httpsfinder.browserOverlay = {
                 popup: null,
                 callback: httpsfinder.browserOverlay.restartNow
             }];
+
+            var key = "httpsfinder-restart" + gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument);
+
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.restartPrompt"),
-                'httpsfinder-restart','chrome://httpsfinder/skin/httpsAvailable.png',
+                key,'chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, restartButtons);
+
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.RemoveNotification('httpsfinder-restart')
+                    httpsfinder.browserOverlay.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-restart');
         }
     },
@@ -906,10 +920,12 @@ httpsfinder.browserOverlay = {
         return currURL.toString().substring((currURL.toString().indexOf("://", 0) + 3));
     },
 
-    RemoveNotification: function(value)
+    removeNotification: function(value)
     {
-        if((item = window.getBrowser().getNotificationBox().getNotificationWithValue(value)))
-            window.getBrowser().getNotificationBox().removeNotification(item);
+        var browsers = gBrowser.browsers;
+        for (var i = 0; i < browsers.length; i++)
+            if (item = window.getBrowser().getNotificationBox(browsers[i]).getNotificationWithValue(value))
+                window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);
     },
 
     //Add to session whitlelist (not database)
@@ -1000,7 +1016,7 @@ httpsfinder.browserOverlay = {
                         Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist");
                 }
             }        
-        else if(!host){
+        else if(aDocument && !host){
             var preRedirectHost = gBrowser.getBrowserForDocument(aDocument).currentURI.host;
             for(let i=0; i<httpsfinder.whitelist.length; i++){
                 if(httpsfinder.whitelist[i] == preRedirectHost.slice((preRedirectHost.length - httpsfinder.whitelist[i].length),preRedirectHost.length)){
@@ -1012,11 +1028,12 @@ httpsfinder.browserOverlay = {
         }
         else
             for(var i=0; i<httpsfinder.whitelist.length; i++)
-                if(httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
+                if(i > httpsfinder.browserOverlay.whitelistLength - 1 &&
+                    httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
                     if(httpsfinder.debug)
                         Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist..");
                     httpsfinder.whitelist.splice(i,1);
-                }        
+                }
     },
 
     //Generic notifier method
