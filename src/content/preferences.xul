@@ -125,7 +125,6 @@
                                                 <checkbox id="headfirst" preference="httpsfinder-headfirst"/>
                                                 <description control="headfirst" width="&httpsfinder.prefSize.detectChkDescWidth;">&httpsfinder.preference.headFirst;</description>
                                             </row>
-                                            <separator class="thin"/>
                                         </groupbox>
                                     </row>
                                     <separator class="thin"/>
@@ -135,6 +134,7 @@
                                             <label control="rulepreview" value="&httpsfinder.preference.showpreview;"/>
                                         </row>
                                     </vbox>
+                                    <separator class="thin"/>
                                     <vbox>
                                         <row>
                                             <checkbox id="debug" preference="httpsfinder-debugLogging"/>

@@ -1,29 +1,29 @@
 /*
  * Developer : Kevin Jacobs (httpsfinder@gmail.com), www.kevinajacobs.com
- * Date : 06/09/2011
+ * Date : 06/16/2011
  * All code (c)2011 all rights reserved
  */
 
 if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
     strings: null, //Strings object for httpsfinder strings
-    debug: null, //verbose logging on/off
+    debug: null, //verbose logging bool
     tempNoAlerts: [], //If user saves a rule, push host and stop prompting to save rule
     whitelist: [], //Session whitelist (read in from sqlite, temp items added for session)
-    goodSSL: []
+    goodSSL: [] //save known good-ssl pages for the duration of the session (cleared with temp whitelist)
 };
 
+
+//detect handles background detection and http observation
 httpsfinder.detect = {
     //Not a great solution, but this is for problematic domains.
-    //Google image search over ssl  counts as one, so we won't cache results there.
-    enforceExempt: ["www.google.com", "translate.google.com"],
+    //Google image search over ssl is one, so we won't cache results there.
+    cacheExempt: ["www.google.com", "translate.google.com"],
 
     QueryInterface: function(aIID){
-        if (aIID.equals(Components.interfaces.nsIObserver) ||
-            aIID.equals(Components.interfaces.nsISupports))
-            {
+        if (aIID.equals(Components.interfaces.nsIObserver) 
+            || aIID.equals(Components.interfaces.nsISupports))
             return this;
-        }
         throw Components.results.NS_NOINTERFACE;
     },
 
@@ -220,7 +220,6 @@ httpsfinder.detect = {
     },
 
     handleCachedSSL: function(aBrowser, request){
-        //Session whitelist host and return if cert is bad or status is not OK.
         if(request.responseStatus != 200 && request.responseStatus != 301 && request.responseStatus != 302)
             return;
 
@@ -265,7 +264,7 @@ httpsfinder.detect = {
         var host = sslTest.channel.URI.host.toLowerCase();
         var request = sslTest.channel;
 
-        if(httpsfinder.detect.enforceExempt.indexOf(host) != -1){
+        if(httpsfinder.detect.cacheExempt.indexOf(host) != -1){
             if(httpsfinder.debug)
                 Application.console.log("httpsfinder removing " + host + " from whitelist (exempt from saving results on this host)");
             httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
@@ -432,7 +431,8 @@ httpsfinder.detect = {
                         break;
                 }
             }
-        } catch(err){
+        }
+        catch(err){
             secure = false;
             Application.console.log("httpsfinder testCertificate error: " + err.toString());
         }
@@ -440,12 +440,13 @@ httpsfinder.detect = {
     }
 };
 
+//browserOverlay handles most browser code (alerts except those generated from detection, importing whitelist, startup/shutdown, etc)
 httpsfinder.browserOverlay = {
     redirectedTab: [[]], //Tab info for pre-redirect URLs.
     recent: [[]], //Recent auto-redirects used for detecting http->https->http redirect loops. Second subscript holds the tabIndex of the redirect
-    lastRecentReset: null,
-    whitelistLength: 0,
-    httpseverywhereInstalled: false,
+    lastRecentReset: null, //time counter for detecting redirect loops
+    permWhitelistLength: 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
+    // httpseverywhereInstalled : false,
 
     init: function(){
         var prefs = Components.classes["@mozilla.org/preferences-service;1"]
@@ -537,6 +538,7 @@ httpsfinder.browserOverlay = {
         }
     },
 
+    //return host without subdomain (e.g. input: code.google.com, outpout: google.com)
     getHostWithoutSub: function(fullHost){
         if(typeof fullHost != 'string')
             return "";
@@ -545,6 +547,7 @@ httpsfinder.browserOverlay = {
     },
 
     importWhitelist: function(){
+        //Can we get rid of these loops and just reset length? Test in Ubuntu**(wasn't working before without loops)
         for(var i=0; i <  httpsfinder.whitelist.length; i++)
             httpsfinder.whitelist[i] = "";
         httpsfinder.whitelist.length = 0;
@@ -578,7 +581,7 @@ httpsfinder.browserOverlay = {
                 },
 
                 handleCompletion: function(aReason){
-                    httpsfinder.browserOverlay.whitelistLength = httpsfinder.whitelist.length //differentiate between permanent and temp whitelist items
+                    httpsfinder.browserOverlay.permWhitelistLength = httpsfinder.whitelist.length //differentiate between permanent and temp whitelist items
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         Application.console.log("httpsfinder database error " + aReason.message);
                     else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))
@@ -610,6 +613,7 @@ httpsfinder.browserOverlay = {
         httpsfinder.browserOverlay.removeNotification('httpsfinder-https-found');
         httpsfinder.browserOverlay.removeNotification('httpsfinder-ssl-enforced');
 
+        //If no host was passed, get it manually from stored values.
         if(typeof(hostIn) != "string"){
             var hostname;
             if(typeof httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)] != "undefined" &&
@@ -728,9 +732,6 @@ httpsfinder.browserOverlay = {
     },
 
     writeRule: function(){
-        if(!httpsfinder.browserOverlay.httpseverywhereInstalled)
-            httpsfinder.browserOverlay.httpsEverywhereInstalled(gBrowser.contentDocument);
-
         var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
         .getService(Components.interfaces.nsIEffectiveTLDService);
         try{
@@ -780,7 +781,7 @@ httpsfinder.browserOverlay = {
             //One will be "domain.com" and the other will be "www.domain.com"
             var targetHost2 = "";
             if(hostname.indexOf("www.") != -1){
-                targetHost2 = httpsfinder.browserOverlay.getHostWithoutSub(hostname); //hostname.slice(hostname.indexOf(".",0) + 1, hostname.length);
+                targetHost2 = httpsfinder.browserOverlay.getHostWithoutSub(hostname); 
                 rule = rule + "\t" + "<target host=\"" + targetHost2 +"\" />" + "\n" +
                 "\t" + "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
                 "\\" + topLevel +"/\"" +" to=\"https://www." + title.toLowerCase() +
@@ -849,11 +850,54 @@ httpsfinder.browserOverlay = {
 
         if(httpsfinder.tempNoAlerts.indexOf(hostname) == -1)
             httpsfinder.tempNoAlerts.push(hostname);
+        
+        httpsfinder.browserOverlay.alertRuleFinished(gBrowser.contentDocument);
+    },
 
-        //Check if HTTPSEverywhere is installed.  If not, prompt user.
-        //We still save the rule, it will be enforced after HTTPS Everywhere is installed.
-        if(httpsfinder.browserOverlay.httpseverywhereInstalled){
-            var nb = gBrowser.getNotificationBox();
+    restartNow: function(){
+        Application.restart();
+    },
+
+    alertRuleFinished: function(aDocument){
+        //Check firefox version and use appropriate method
+        if(Application.version.charAt(0) >= 4){
+            Components.utils.import("resource://gre/modules/AddonManager.jsm");
+            AddonManager.getAddonByID("https-everywhere@eff.org", function(addon) {
+                //Addon is null if not installed
+                if(addon == null)
+                    getHTTPSEverywhere();
+                else if(addon != null)
+                    promptForRestart();
+            });
+        }
+        else{  //Firefox versions below 4.0
+            if(!Application.extensions.has("https-everywhere@eff.org"))
+                getHTTPSEverywhere();
+            else
+                promptForRestart();
+        }
+
+        //Alert user to install HTTPS Everywhere for rule enforcement
+        var getHTTPSEverywhere = function() {
+            var installButtons = [{
+                label: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhere"),
+                accessKey: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhereKey"),
+                popup: null,
+                callback: openEFFPage
+            }];
+            var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
+            nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
+                'httpsfinder-getHE','chrome://httpsfinder/skin/httpsAvailable.png',
+                nb.PRIORITY_INFO_LOW, installButtons);
+        }
+
+        var openEFFPage = function() {
+            gBrowser.selectedTab = gBrowser.addTab("http://www.eff.org/https-everywhere/");
+        }
+
+        //HTTPS Everywhere is installed. Prompt for restart
+        var promptForRestart = function() {
+            var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
             var restartButtons = [{
                 label: httpsfinder.strings.getString("httpsfinder.main.restartYes"),
                 accessKey: httpsfinder.strings.getString("httpsfinder.main.restartYesKey"),
@@ -874,57 +918,12 @@ httpsfinder.browserOverlay = {
         }
     },
 
-    restartNow: function(){
-        Application.restart();
-    },
-
-    httpsEverywhereInstalled: function(aDocument){
-        //Check firefox version and use appropriate method
-        if(Application.version.charAt(0) >= 4){
-            Components.utils.import("resource://gre/modules/AddonManager.jsm");
-            AddonManager.getAddonByID("https-everywhere@eff.org", function(addon) {
-                //Addon is null if not installed
-                if(addon == null)
-                    alertCallback();
-                else if(addon != null)
-                    httpsfinder.browserOverlay.httpseverywhereInstalled = true;
-            });
-        }
-        else{  //Firefox versions below 4.0
-            if(!Application.extensions.has("https-everywhere@eff.org"))
-                alertCallback();
-            else
-                httpsfinder.browserOverlay.httpseverywhereInstalled = true;
-        }
-
-        var alertCallback = function() {
-            var installButtons = [{
-                label: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhere"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhereKey"),
-                popup: null,
-                callback: httpsfinder.browserOverlay.getHttpsEverywhere
-            }];
-            var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
-            nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
-                'httpsfinder-getHE','chrome://httpsfinder/skin/httpsAvailable.png',
-                nb.PRIORITY_INFO_LOW, installButtons);
-        }
-    },
-
-    getHttpsEverywhere: function(){
-        gBrowser.selectedTab = gBrowser.addTab("http://www.eff.org/https-everywhere/");
-    },
-
-    getFullURL: function(aBrowser) {
-        var currURL = aBrowser.currentURI.prePath + aBrowsercurrentURI.path;
-        return currURL.toString().substring((currURL.toString().indexOf("://", 0) + 3));
-    },
-
-    removeNotification: function(value)
+    removeNotification: function(key)
     {
+        //key is a formatted as alert type (e.g. "httpsfinder-restart"), with the tab index concatinated to the end, httpsfinder-restart2).
         var browsers = gBrowser.browsers;
         for (var i = 0; i < browsers.length; i++)
-            if (item = window.getBrowser().getNotificationBox(browsers[i]).getNotificationWithValue(value))
+            if (item = window.getBrowser().getNotificationBox(browsers[i]).getNotificationWithValue(key))
                 window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);
     },
 
@@ -999,10 +998,13 @@ httpsfinder.browserOverlay = {
         var aDocument = gBrowser.contentDocument;
         httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(aDocument)] = new Array();
         httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(aDocument)][0] = true;
+
         var ioService = Components.classes["@mozilla.org/network/io-service;1"]
         .getService(Components.interfaces.nsIIOService);
+
         var uri = gBrowser.getBrowserForDocument(aDocument).currentURI.asciiSpec;
-        uri = "https://" + uri.substring((uri.toString().indexOf("://", 0) + 3));
+        uri = uri.replace("http://", "https://");
+
         httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(aDocument)][1] = ioService.newURI(uri, null, null);
         window.content.wrappedJSObject.location = uri;
     },
@@ -1015,7 +1017,7 @@ httpsfinder.browserOverlay = {
                     if(httpsfinder.debug)
                         Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist");
                 }
-            }        
+            }
         else if(aDocument && !host){
             var preRedirectHost = gBrowser.getBrowserForDocument(aDocument).currentURI.host;
             for(let i=0; i<httpsfinder.whitelist.length; i++){
@@ -1028,7 +1030,7 @@ httpsfinder.browserOverlay = {
         }
         else
             for(var i=0; i<httpsfinder.whitelist.length; i++)
-                if(i > httpsfinder.browserOverlay.whitelistLength - 1 &&
+                if(i > httpsfinder.browserOverlay.permWhitelistLength - 1 &&
                     httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
                     if(httpsfinder.debug)
                         Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist..");

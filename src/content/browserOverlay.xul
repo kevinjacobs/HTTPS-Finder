@@ -44,17 +44,13 @@
                     image="chrome://httpsfinder/skin/help.png"
                     label="&httpsfinder.menu.help;" accesskey="&httpsfinder.menu.helpKey;"
                     oncommand="gBrowser.selectedTab = gBrowser.addTab('https://code.google.com/p/https-finder/wiki/Help');" />
-                    <!-- TESTING -->
+                    <!-- TESTING 
                 <menuitem class="menuitem-iconic" id="viewWL"
                     label="View Whitelist" accesskey="W"
                     oncommand="alert(httpsfinder.whitelist);" />
                 <menuitem class="menuitem-iconic" id="viewGL"
                     label="View cached SSL" accesskey="S"
-                    oncommand="alert(httpsfinder.goodSSL);" />
-
-                <menuitem class="menuitem-iconic" id="test"
-                    label="test" accesskey="S"
-                    oncommand="alert(httpsfinder.browserOverlay.isWhitelisted('www.google.com'));" />
+                    oncommand="alert(httpsfinder.goodSSL);" />-->
             </menupopup>
         </menu>
     </menupopup>

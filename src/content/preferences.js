@@ -1,6 +1,7 @@
 if (!httpsfinder) var httpsfinder = {};
 
 httpsfinder.preferences = {
+    //Import whitelist and populate listbox with rules
     httpsfinderLoadWhitelist: function(){
         var theList = document.getElementById('whitelist');
         try{
@@ -44,6 +45,7 @@ httpsfinder.preferences = {
         }
     },
 
+    //Push user specified rule to sqlite db
     httpsfinderAddToWhitelist: function(){
         var url = document.getElementById('whitelistURL').value.toLowerCase();
         if(url.length == 0){
@@ -93,8 +95,8 @@ httpsfinder.preferences = {
 
     },
 
+    //Remove rule, place back in textbox for editing (not the best solution but it works)
     httpsfinderModifyWhitelistRule: function(){
-        //Remove the rule but paste the text of it back in the textbox for modification
         var theList = document.getElementById('whitelist');
         theList.ensureIndexIsVisible(theList.selectedIndex);
         if(!theList.selectedItem.firstChild.getAttribute("label"))
@@ -103,7 +105,7 @@ httpsfinder.preferences = {
         httpsfinder.preferences.httpsfinderRemoveWhitelistRule();
     },
 
-
+    //Delete selected rule(s) from whitelist
     httpsfinderRemoveWhitelistRule: function(){
         var theList = document.getElementById('whitelist');
         theList.ensureIndexIsVisible(theList.selectedIndex);
@@ -141,7 +143,6 @@ httpsfinder.preferences = {
                     Application.console.log("httpsfinder whitelist rule delete error " + anError.message);
                 },
                 handleCompletion: function(aReason){
-                    //Append new rule to list if it was added without error.
                     if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED){
                         //Remove any selected/removed items
                         for(let i=0; i < selectedItems.length; i++){
@@ -150,7 +151,6 @@ httpsfinder.preferences = {
                                     theList.removeChild(selectedItems[i]);
                             }
                         }
-
 
                         if(theList.getRowCount() == 0){
                             document.getElementById('modifyRule').disabled = true;
@@ -171,6 +171,7 @@ httpsfinder.preferences = {
         }
     },
 
+    //Enable and disable modify/remove buttons
     httpsfinderWhitelistSelect: function(){
         var theList = document.getElementById('whitelist');
         if(theList.selectedCount == 1){
@@ -183,6 +184,7 @@ httpsfinder.preferences = {
         }
     },
 
+    //User clicked "Clear temporary whitelist". Clear whitelist array and reimport
     resetWhitelist: function(){
         var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
@@ -196,24 +198,18 @@ httpsfinder.preferences = {
             var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
             .getService(Components.interfaces.nsIAlertsService);
             alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
-            title, body, false, "", null);
+                title, body, false, "", null);
         }
-        catch(e){
-            //Do nothing
-        }
+        catch(e){ /*Do nothing*/ }
     },
 
-      openPage: function(addr){
+    //User clicked link within prefwindow. Open in new tab
+    openPage: function(addr){
         var window = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-        var recent = window.getMostRecentWindow("navigator:browser");
-        if(recent){
-            recent.getBrowser().selectedTab = recent.getBrowser().addTab(addr);
-            recent.focus();
-        }
-        else{
-            recent = window.open(addr);
-            recent.focus();
-        }
+        var browserWindow = window.getMostRecentWindow("navigator:browser").getBrowser();
+
+        var newTab = browserWindow.addTab(addr, null, null);
+        browserWindow.selectedTab = newTab;
     }
 
 };

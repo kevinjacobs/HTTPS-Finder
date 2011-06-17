@@ -7,8 +7,8 @@
 
 <!--Styczeń, Luty, Marzec, Kwiecień, Maj, Czerwiec, Lipiec, Sierpień, Wrzesień, Październik, Listopad, Grudzień-->
 
-<!ENTITY httpsfinder.version "0.71d1">
-<!ENTITY httpsfinder.buildDate "9 Czerwiec 2011">
+<!ENTITY httpsfinder.version "0.71d3">
+<!ENTITY httpsfinder.buildDate "16 Czerwiec 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Data wydania:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -48,15 +48,15 @@
 <!ENTITY httpsfinder.rulePreview.clickhere "tutaj">
 <!ENTITY httpsfinder.rulePreview.learnmore "Dowiedz się więcej o zasadach formatowania">
 <!ENTITY httpsfinder.menu.settings "Ustawienia">
-<!ENTITY httpsfinder.menu.settingsKey "P">
+<!ENTITY httpsfinder.menu.settingsKey "U">
 <!ENTITY httpsfinder.menu.refresh "Usuń tymczasową białą liste">
-<!ENTITY httpsfinder.menu.refreshKey "C">
+<!ENTITY httpsfinder.menu.refreshKey "t">
 <!ENTITY httpsfinder.menu.homepage "Strona projektu">
-<!ENTITY httpsfinder.menu.homepageKey "P">
+<!ENTITY httpsfinder.menu.homepageKey "S">
 <!ENTITY httpsfinder.menu.rate "Oceń HTTPS Finder">
-<!ENTITY httpsfinder.menu.rateKey "R">
+<!ENTITY httpsfinder.menu.rateKey "O">
 <!ENTITY httpsfinder.menu.help "Pomoc">
-<!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.menu.helpKey "P">
 <!ENTITY httpsfinder.translation.german "- Niemiecki (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Holenderski (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polska (PcP)">
