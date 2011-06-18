@@ -117,7 +117,7 @@ httpsfinder.detect = {
                 }
             };
             getReq.send(null);
-        }        
+        }
         else{ //Otherwise, try HEAD and fall back to GET if necessary (default bahavior)
             var headReq = new XMLHttpRequest();
             headReq.mozBackgroundRequest = true;
@@ -312,8 +312,8 @@ httpsfinder.detect = {
             if(httpsfinder.debug)
                 Application.console.log("Pushing " + host + " to good SSL list");
             if(httpsfinder.browserOverlay.isWhitelisted(host))
-                httpsfinder.browserOverlay.removeFromWhitelist(null, host);  
-        }        
+                httpsfinder.browserOverlay.removeFromWhitelist(null, host);
+        }
         else if(!httpsfinder.goodSSL.indexOf(aBrowser.contentDocument.baseURIObject.host.toLowerCase()) == -1){
             httpsfinder.goodSSL.push(aBrowser.contentDocument.baseURIObject.host.toLowerCase());
             if(httpsfinder.debug) Application.console.log("Pushing " + aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " to good SSL list.");
@@ -781,7 +781,7 @@ httpsfinder.browserOverlay = {
             //One will be "domain.com" and the other will be "www.domain.com"
             var targetHost2 = "";
             if(hostname.indexOf("www.") != -1){
-                targetHost2 = httpsfinder.browserOverlay.getHostWithoutSub(hostname); 
+                targetHost2 = httpsfinder.browserOverlay.getHostWithoutSub(hostname);
                 rule = rule + "\t" + "<target host=\"" + targetHost2 +"\" />" + "\n" +
                 "\t" + "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
                 "\\" + topLevel +"/\"" +" to=\"https://www." + title.toLowerCase() +
@@ -883,7 +883,7 @@ httpsfinder.browserOverlay = {
                 label: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhere"),
                 accessKey: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhereKey"),
                 popup: null,
-                callback: openEFFPage
+                callback: httpsfinder.browserOverlay.openWebsiteInTab("http://www.eff.org/https-everywhere/")
             }];
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
@@ -891,13 +891,15 @@ httpsfinder.browserOverlay = {
                 nb.PRIORITY_INFO_LOW, installButtons);
         }
 
-        var openEFFPage = function() {
-            gBrowser.selectedTab = gBrowser.addTab("http://www.eff.org/https-everywhere/");
-        }
 
         //HTTPS Everywhere is installed. Prompt for restart
         var promptForRestart = function() {
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
+            var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
+            .getService(Components.interfaces.nsIPrivateBrowsingService);
+            
+            var key = "httpsfinder-restart" + gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument);
+
             var restartButtons = [{
                 label: httpsfinder.strings.getString("httpsfinder.main.restartYes"),
                 accessKey: httpsfinder.strings.getString("httpsfinder.main.restartYesKey"),
@@ -905,17 +907,32 @@ httpsfinder.browserOverlay = {
                 callback: httpsfinder.browserOverlay.restartNow
             }];
 
-            var key = "httpsfinder-restart" + gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument);
-
-            nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.restartPrompt"),
-                key,'chrome://httpsfinder/skin/httpsAvailable.png',
-                nb.PRIORITY_INFO_LOW, restartButtons);
+            if (!pbs.privateBrowsingEnabled)
+                nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.restartPrompt"),
+                    key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                    nb.PRIORITY_INFO_LOW, restartButtons);
+            else
+                nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.restartPromptPrivate"),
+                    key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                    nb.PRIORITY_INFO_LOW, restartButtons);
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
                     httpsfinder.browserOverlay.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-restart');
         }
+    },
+
+    openWebsiteInTab: function(addr) {
+        if(typeof gBrowser == "undefined"){
+            var window = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+            var browserWindow = window.getMostRecentWindow("navigator:browser").getBrowser();
+            var newTab = browserWindow.addTab(addr, null, null);
+            browserWindow.selectedTab = newTab;
+
+        }
+        else
+            gBrowser.selectedTab = gBrowser.addTab(addr);
     },
 
     removeNotification: function(key)
@@ -966,7 +983,7 @@ httpsfinder.browserOverlay = {
             for(var i=0; i<httpsfinder.browserOverlay.recent.length; i++){
                 if(httpsfinder.browserOverlay.recent[i][0] == host && httpsfinder.browserOverlay.recent[i][1] == index){
                     if(!httpsfinder.browserOverlay.isWhitelisted(host))
-                        httpsfinder.whitelist.push(host); //mouse clicks trigger this.
+                        httpsfinder.whitelist.push(host); //mouse clicks trigger this (bug)
                     Application.console.log("httpsfinder redirect loop detected on host " + host + ". Host temporarily whitelisted. Reload time: " + sinceLastReset + "ms");
                     redirectLoop = true;
                 }

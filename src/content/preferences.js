@@ -189,27 +189,7 @@ httpsfinder.preferences = {
         var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
         var strings = document.getElementById("httpsfinderStrings");
-        httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
-    },
-
-    //Generic notifier method
-    popupNotify: function(title,body){
-        try{
-            var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
-            .getService(Components.interfaces.nsIAlertsService);
-            alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
-                title, body, false, "", null);
-        }
-        catch(e){ /*Do nothing*/ }
-    },
-
-    //User clicked link within prefwindow. Open in new tab
-    openPage: function(addr){
-        var window = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-        var browserWindow = window.getMostRecentWindow("navigator:browser").getBrowser();
-
-        var newTab = browserWindow.addTab(addr, null, null);
-        browserWindow.selectedTab = newTab;
+        httpsfinder.browserOverlay.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
+       // httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
     }
-
 };

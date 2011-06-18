@@ -8,6 +8,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     buttons="accept,cancel">
     <script type="application/x-javascript" src="chrome://httpsfinder/content/preferences.js"/>
+    <script type="application/x-javascript" src="chrome://httpsfinder/content/browserOverlay.js" />
 
     <stringbundleset id="stringbundleset">
         <stringbundle id="httpsfinderStrings"
@@ -95,7 +96,7 @@
                                          style="color: blue; text-decoration:underline;"
                                          onmouseover="event.target.style.cursor='pointer'"
                                          onmouseout="event.target.style.cursor='default'"
-                                        onclick="httpsfinder.preferences.openPage('https://code.google.com/p/https-finder/');"/>
+                                        onclick="httpsfinder.browserOverlay.openWebsiteInTab('http://www.eff.org/https-everywhere/');"/>
                                 </row>
                             </vbox>
                         </column>
@@ -171,7 +172,8 @@
                                 <description>&httpsfinder.buildDate;</description>
                                 <description value="&httpsfinder.authorTitle;" class="title"/>
                                 <description>Kevin Jacobs</description>
-                                <description onclick="httpsfinder.preferences.openPage('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>
+
+                                <description onclick="httpsfinder.browserOverlay.openWebsiteInTab('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>
                                 <description value="&httpsfinder.preference.supportTitle;" class="title"/>
                                 <description onclick="location.href='mailto:&httpsfinder.preference.supportEmail;'" class="url">&httpsfinder.preference.supportEmail;</description>
                             </vbox>

@@ -28,7 +28,7 @@
         <em:name>HTTPS Finder</em:name>
         <em:description>Automatically detect and alert when SSL is available on a web page. Automated rule creation for HTTPS Everywhere</em:description>
         <em:optionsURL>chrome://httpsfinder/content/preferences.xul</em:optionsURL>
-        <em:version>0.71d3</em:version>
+        <em:version>0.72d1</em:version>
         <em:creator>Kevin Jacobs</em:creator>
         <em:iconURL>chrome://httpsfinder/skin/iconLarge.png</em:iconURL>
         <em:icon64URL>chrome://httpsfinder/skin/icon64.png</em:icon64URL>

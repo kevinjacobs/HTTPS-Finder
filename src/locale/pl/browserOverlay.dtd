@@ -1,8 +1,8 @@
 <!--Pref window sizing for different translated string lengths-->
 <!ENTITY httpsfinder.prefSize.windowWidth "515">
-<!ENTITY httpsfinder.prefSize.windowHeight "570">
-<!ENTITY httpsfinder.prefSize.detectDescWidth "450">
-<!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
+<!ENTITY httpsfinder.prefSize.windowHeight "560">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "525">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "480">
 <!--End prefWindow sizing-->
 
 <!--Styczeń, Luty, Marzec, Kwiecień, Maj, Czerwiec, Lipiec, Sierpień, Wrzesień, Październik, Listopad, Grudzień-->
