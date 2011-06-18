@@ -23,6 +23,12 @@
                 <em:description>Automatycznie wykrywaj i ostrzegaj, gdy SSL jest dostepne na stronie internetowej. Automatyczne twórz reguly dla HTTPS Everywhere</em:description>
                 <em:translator>PcP</em:translator>
             </Description>
+            <Description>
+                <em:locale>sv-SE</em:locale>
+                <em:description>Identifierar automatiskt om SSL Ã¤r tillgÃ¤ngligt pÃ¥ en webbsida och meddelar dig om det. Automatiserat regelskapande fÃ¶r HTTPS Everywhere</em:description>
+                <em:translator>Mikael Hiort af OrnÃ¤s</em:translator>
+            </Description>
+
         </em:localized>
 
         <em:name>HTTPS Finder</em:name>

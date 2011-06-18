@@ -6,7 +6,7 @@
 <!--End prefWindow sizing-->
 
 <!ENTITY httpsfinder.version "0.72d1">
-<!ENTITY httpsfinder.buildDate "17 Jun 2011">
+<!ENTITY httpsfinder.buildDate "18 Jun 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
@@ -58,3 +58,4 @@
 <!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
+<!ENTITY httpsfinder.translation.polish "- Swedish (Mikael Hiort)">

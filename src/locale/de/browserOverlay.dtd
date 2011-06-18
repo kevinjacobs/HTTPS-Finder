@@ -7,8 +7,8 @@
 
 <!--Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember. Format: 23. Mai 2011-->
 
-<!ENTITY httpsfinder.version "0.71d3">
-<!ENTITY httpsfinder.buildDate "16. Juni 2011">
+<!ENTITY httpsfinder.version "0.72d1">
+<!ENTITY httpsfinder.buildDate "18. Juni 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build-Datum:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -60,3 +60,4 @@
 <!ENTITY httpsfinder.translation.german "- Deutsch (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Niederländisch (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Politur (PcP)">
+<!ENTITY httpsfinder.translation.polish "- Zweeds (Mikael Hiort)">

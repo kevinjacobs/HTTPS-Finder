@@ -1,0 +1,63 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "515">
+<!ENTITY httpsfinder.prefSize.windowHeight "570">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "450">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
+<!--End prefWindow sizing-->
+
+<!--januari februari mars april maj juni juli augusti september oktober november december  -->
+
+<!ENTITY httpsfinder.version "0.72d1">
+<!ENTITY httpsfinder.buildDate "den 18 juni 2011">
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "Versionsdatum:">
+<!ENTITY httpsfinder.authorTitle "Skapat av:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "Inställningar för HTTPS Finder">
+<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.translations "Översättningar har gjorts av följande personer:">
+<!ENTITY httpsfinder.preference.supportTitle "E-postadress till support:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "Aktivera HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "Visa ingen uppmaning att spara HTTPS-regel (för användning utan HTTPS Everywhere)">
+<!ENTITY httpsfinder.preference.autoForward "Tvinga automatiskt HTTPS om tillgängligt">
+<!ENTITY httpsfinder.preference.whitelistLabel "Betrodda domäner (identifiera inte HTTPS på dessa domäner)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "Lägg till">
+<!ENTITY httpsfinder.preference.whitelistModify "Ändra">
+<!ENTITY httpsfinder.preference.whitelistRemove "Ta bort">
+<!ENTITY httpsfinder.preference.savedRulesTip "Sparade regler kan inaktiveras i HTTPS Everywheres inställningar.">
+<!ENTITY httpsfinder.preference.ruleTip "För betrodda domäner: Notera att www.domän.se är en underdomän av domän.se.">
+<!ENTITY httpsfinder.preference.learnMoreTip "Läs mer om HTTPS Finder">
+<!ENTITY httpsfinder.preference.learnLinkName "här">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "Värdnamn (domän.tld, udomän.domän.tld, *.domän.tld)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "Värdnamn">
+<!ENTITY httpsfinder.preference.headFirst "Använd HEAD-identifiering först (använd GET istället om servern inte stödjer HEAD)">
+<!ENTITY httpsfinder.preference.generalTab "Allmänt">
+<!ENTITY httpsfinder.preference.advancedTab "Avancerat">
+<!ENTITY httpsfinder.preference.aboutTab "Om">
+<!ENTITY httpsfinder.preference.detectionLabel "Identifieringsmetod">
+<!ENTITY httpsfinder.preference.showpreview "Visa förhandsgranskning (medger redigering) innan regler sparas">
+<!ENTITY httpsfinder.preference.detectionDescLONG "HEAD-begäranden använder mindre bandbredd än GET, men vissa servrar stödjer dem inte. Om det händer försöker HTTPS Finder istället använda en GET-begäran.">
+<!ENTITY httpsfinder.preference.detectionDescRec "Rekommenderad inställning: Om du har en snabb anslutning, avmarkera för att endast använda GET.  För långsammare anslutningar kan HEAD vara märkbart snabbare på de flesta webbplatser.">
+<!ENTITY httpsfinder.preference.debug "Aktivera felsökningsloggning (utförlig)">
+<!ENTITY httpsfinder.rulePreview.top "Förhandsgranskning:">
+<!ENTITY httpsfinder.rulePreview.tip1 "Alla ändringar du gör kommer att återspeglas i den sparade regeln.">
+<!ENTITY httpsfinder.rulePreview.tip2 "Klicka på OK för att spara regeln eller Avbryt för att gå tillbaka utan att spara">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "här">
+<!ENTITY httpsfinder.rulePreview.learnmore "Läs mer om regelformatering">
+<!ENTITY httpsfinder.menu.settings "Inställningar">
+<!ENTITY httpsfinder.menu.settingsKey "I">
+<!ENTITY httpsfinder.menu.refresh "Rensa temporär lista">
+<!ENTITY httpsfinder.menu.refreshKey "R">
+<!ENTITY httpsfinder.menu.homepage "Projektets webbplats">
+<!ENTITY httpsfinder.menu.homepageKey "P">
+<!ENTITY httpsfinder.menu.rate "Betygsätt HTTPS Finder">
+<!ENTITY httpsfinder.menu.rateKey "B">
+<!ENTITY httpsfinder.menu.help "Hjälp">
+<!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.translation.german "- Tyska (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Nederländska (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
+<!ENTITY httpsfinder.translation.polish "- Svenska (Mikael Hiort af OrnÃ¤s)">
