@@ -7,8 +7,8 @@
 
 <!--januari februari mars april maj juni juli augusti september oktober november december  -->
 
-<!ENTITY httpsfinder.version "0.72d1">
-<!ENTITY httpsfinder.buildDate "den 18 juni 2011">
+<!ENTITY httpsfinder.version "0.72d2">
+<!ENTITY httpsfinder.buildDate "den 22 juni 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Versionsdatum:">
 <!ENTITY httpsfinder.authorTitle "Skapat av:">

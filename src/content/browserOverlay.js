@@ -328,7 +328,7 @@ httpsfinder.detect = {
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
 
                 var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
-
+                
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
                     key,'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, sslFoundButtons);
@@ -506,6 +506,26 @@ httpsfinder.browserOverlay = {
             }
             else if(!firstrun)
                 httpsfinder.browserOverlay.importWhitelist();
+        }
+
+        var container = gBrowser.tabContainer;
+        container.addEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
+
+
+    },
+
+    tabChanged: function(event){
+        var browser = gBrowser.selectedBrowser;
+        var alerts = ["httpsfinder-restart", "httpsfinder-ssl-enforced", "httpsfinder-https-found"];
+        
+        for(var i=0; i < alerts.length; i++){
+            var key = alerts[i] + gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument);
+            if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key)){
+                setTimeout(function(){
+                    httpsfinder.browserOverlay.removeNotification(key)
+                },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000);
+                return;
+            }
         }
     },
 
@@ -883,7 +903,7 @@ httpsfinder.browserOverlay = {
                 label: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhere"),
                 accessKey: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhereKey"),
                 popup: null,
-                callback: httpsfinder.browserOverlay.openWebsiteInTab("http://www.eff.org/https-everywhere/")
+                callback: getHE  //Why is this needed? Setting the callback directly automatically calls when there is a parameter
             }];
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
@@ -891,6 +911,10 @@ httpsfinder.browserOverlay = {
                 nb.PRIORITY_INFO_LOW, installButtons);
         }
 
+        //See previous comment (in installButtons)
+        var getHE = function(){
+            httpsfinder.browserOverlay.openWebsiteInTab("http://www.eff.org/https-everywhere/");
+        }
 
         //HTTPS Everywhere is installed. Prompt for restart
         var promptForRestart = function() {
@@ -941,7 +965,8 @@ httpsfinder.browserOverlay = {
         var browsers = gBrowser.browsers;
         for (var i = 0; i < browsers.length; i++)
             if (item = window.getBrowser().getNotificationBox(browsers[i]).getNotificationWithValue(key))
-                window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);
+                if(i == gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument))
+                    window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);                
     },
 
     //Add to session whitlelist (not database)
@@ -1129,6 +1154,9 @@ httpsfinder.browserOverlay = {
         window.removeEventListener("load", function(){
             httpsfinder.browserOverlay.init();
         }, false);
+
+        var container = gBrowser.tabContainer;
+        container.removeEventListener("TabSelect", exampleTabSelected, false);
     }
 };
 
