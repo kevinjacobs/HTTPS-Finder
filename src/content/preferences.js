@@ -1,6 +1,34 @@
 if (!httpsfinder) var httpsfinder = {};
 
 httpsfinder.preferences = {
+
+    loadWindowObjects: function(){
+        var enable = document.getElementById('enable');
+        if(enable.checked){
+            document.getElementById('noruleprompt').disabled = false;
+            document.getElementById('promptLabel').disabled = false;
+            document.getElementById('autoforward').disabled = false;
+            document.getElementById('autoforwardLabel').disabled = false;
+            document.getElementById('whitelistURL').disabled = false;
+            document.getElementById('whitelistURLLabel').disabled = false;
+            document.getElementById('resetWhitelist').disabled = false;
+            document.getElementById('whitelist').disabled = false;
+        }
+        else{
+            document.getElementById('noruleprompt').disabled = true;
+            document.getElementById('promptLabel').disabled = true;
+            document.getElementById('autoforward').disabled = true;
+            document.getElementById('autoforwardLabel').disabled = true;
+            document.getElementById('whitelistURL').disabled = true;
+            document.getElementById('whitelistURLLabel').disabled = true;
+            document.getElementById('resetWhitelist').disabled = true;
+            document.getElementById('modifyRule').disabled = true;
+            document.getElementById('removeRule').disabled = true;
+            document.getElementById('whitelist').disabled = true;
+        }
+        httpsfinder.preferences.httpsfinderLoadWhitelist();
+    },
+
     //Import whitelist and populate listbox with rules
     httpsfinderLoadWhitelist: function(){
         var theList = document.getElementById('whitelist');
@@ -171,6 +199,39 @@ httpsfinder.preferences = {
         }
     },
 
+    httpsfinderEnableChecked: function(){
+        var enable = document.getElementById('enable');
+        if(enable.checked){
+            document.getElementById('noruleprompt').disabled = true;
+            document.getElementById('promptLabel').disabled = true;
+            document.getElementById('autoforward').disabled = true;
+            document.getElementById('autoforwardLabel').disabled = true;
+            document.getElementById('whitelistURL').disabled = true;
+            document.getElementById('whitelistURLLabel').disabled = true;
+            document.getElementById('resetWhitelist').disabled = true;
+            document.getElementById('modifyRule').disabled = true;
+            document.getElementById('removeRule').disabled = true;
+            document.getElementById('whitelist').disabled = true;
+        }
+        else{
+            document.getElementById('noruleprompt').disabled = false;
+            document.getElementById('promptLabel').disabled = false;
+            document.getElementById('autoforward').disabled = false;
+            document.getElementById('autoforwardLabel').disabled = false;
+            document.getElementById('whitelistURL').disabled = false;
+            document.getElementById('whitelistURLLabel').disabled = false;
+            document.getElementById('resetWhitelist').disabled = false;
+            document.getElementById('whitelist').disabled = false;
+            var theList = document.getElementById('whitelist');
+            if(theList.selectedCount == 1){
+                document.getElementById('modifyRule').disabled = false;
+                document.getElementById('removeRule').disabled = false;
+            }
+
+        }
+    },
+
+
     //Enable and disable modify/remove buttons
     httpsfinderWhitelistSelect: function(){
         var theList = document.getElementById('whitelist');
@@ -190,6 +251,6 @@ httpsfinder.preferences = {
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
         var strings = document.getElementById("httpsfinderStrings");
         httpsfinder.browserOverlay.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
-       // httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
+    // httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
     }
 };

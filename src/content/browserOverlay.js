@@ -446,13 +446,14 @@ httpsfinder.browserOverlay = {
     recent: [[]], //Recent auto-redirects used for detecting http->https->http redirect loops. Second subscript holds the tabIndex of the redirect
     lastRecentReset: null, //time counter for detecting redirect loops
     permWhitelistLength: 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
-    // httpseverywhereInstalled : false,
 
     init: function(){
         var prefs = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefBranch);
         httpsfinder.prefs =  prefs.getBranch("extensions.httpsfinder.");
-
+        
+       if(!httpsfinder.prefs.getBoolPref("enable"))
+            return;
 
         //pref change observer (for enabling/disabling and updating whitelist)
         httpsfinder.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
@@ -464,6 +465,11 @@ httpsfinder.browserOverlay = {
             appcontent.addEventListener("load", httpsfinder.browserOverlay.onPageLoad, true);
 
         httpsfinder.detect.register();
+
+        if(httpsfinder.prefs.getBoolPref("dismissAlerts")){
+            var container = gBrowser.tabContainer;
+            container.addEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
+        }
 
         httpsfinder.strings = document.getElementById("httpsfinderStrings");
         if(httpsfinder.prefs == null || httpsfinder.strings == null){
@@ -507,11 +513,6 @@ httpsfinder.browserOverlay = {
             else if(!firstrun)
                 httpsfinder.browserOverlay.importWhitelist();
         }
-
-        var container = gBrowser.tabContainer;
-        container.addEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
-
-
     },
 
     tabChanged: function(event){
@@ -1118,17 +1119,26 @@ httpsfinder.browserOverlay = {
                         appcontent.removeEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
                 }
                 else if(httpsfinder.prefs.getBoolPref("enable")){
-                    window.addEventListener("load", function() {
-                        httpsfinder.browserOverlay.init();
-                    }, false);
-                    httpsfinder.detect.register();
-                    if(appcontent)
-                        appcontent.addEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
+//                    window.addEventListener("load", function() {
+//                        httpsfinder.browserOverlay.init();
+//                    }, false);
+//                    httpsfinder.detect.register();
+//                    if(appcontent)
+//                        appcontent.addEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
                     httpsfinder.browserOverlay.init();
                 }
                 break;
             case "debugLogging":
                 httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
+                break;
+
+            case "dismissAlerts":
+                var container = gBrowser.tabContainer;
+
+                if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
+                    container.addEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
+                else
+                    container.removeEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
                 break;
         }
     },
@@ -1156,7 +1166,7 @@ httpsfinder.browserOverlay = {
         }, false);
 
         var container = gBrowser.tabContainer;
-        container.removeEventListener("TabSelect", exampleTabSelected, false);
+        container.removeEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
     }
 };
 
