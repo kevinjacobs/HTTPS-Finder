@@ -5,7 +5,7 @@ locale        httpsfinder        en-US                      jar:chrome/httpsfind
 locale        httpsfinder        de                      jar:chrome/httpsfinder.jar!/locale/de/
 locale        httpsfinder        nl                      jar:chrome/httpsfinder.jar!/locale/nl/
 locale        httpsfinder        pl                      jar:chrome/httpsfinder.jar!/locale/pl/
+locale        httpsfinder        sv-SE                      jar:chrome/httpsfinder.jar!/locale/sv-SE/
 
-
-
+resource hfShared /../modules/
 overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/browserOverlay.xul

@@ -84,6 +84,7 @@
                 <include name="content/**" />
                 <include name="locale/**" />
                 <include name="skin/**" />
+                <include name="modules/**" />
                 <include name="components/**" />
                 <include name="chrome/**" />
                 <include name="*" />
@@ -121,6 +122,8 @@
                 <include name="skin/**/*.css" />
                 <include name="skin/**/*.rdf" />
                 <include name="skin/**/*.dtd" />
+                <include name="modules/**/*.jsm" />
+                <include name="modules/**/*.js" />
                 <include name="defaults/**/*.js" />
                 <include name="*.manifest" />
                 <include name="*.json" />
@@ -270,6 +273,7 @@
                 <replacetokens begintoken=" " endtoken="/" >
                     <token  key="content" value=" jar:chrome/${appname}.jar!/content/"/>
                     <token  key="locale" value=" jar:chrome/${appname}.jar!/locale/"/>
+                    <token  key="modules" value=" jar:chrome/${appname}.jar!/modules/"/>
                     <token  key="skin" value=" jar:chrome/${appname}.jar!/skin/"/>
                 </replacetokens>
             </filterchain>
@@ -291,6 +295,7 @@
                 <include name="install.rdf" />
                 <include name="install.js" />
                 <include name="defaults/**" />
+                <include name="modules/**" />
                 <exclude name="**/.*" />
                 <exclude name="**/CVS/**" />
                 <exclude name="**/Thumbs.db" />

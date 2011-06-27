@@ -3,7 +3,9 @@ if (!httpsfinder) var httpsfinder = {};
 httpsfinder.preferences = {
 
     loadWindowObjects: function(){
-        var enable = document.getElementById('enable');
+        Components.utils.import("resource://hfShared/browserOverlay.jsm", httpsfinder.preferences);
+        alert(httpsfinder.preferences.whitelist.list); //Testing
+
         if(enable.checked){
             document.getElementById('noruleprompt').disabled = false;
             document.getElementById('promptLabel').disabled = false;

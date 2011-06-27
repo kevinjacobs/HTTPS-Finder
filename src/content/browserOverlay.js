@@ -4,6 +4,9 @@
  * All code (c)2011 all rights reserved
  */
 
+//var EXPORTED_SYMBOLS = ['httpsfinder.whitelist', 'httpsfinder.browserOverlay.permWhitelistLength'];
+
+
 if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
     strings: null, //Strings object for httpsfinder strings
@@ -448,11 +451,14 @@ httpsfinder.browserOverlay = {
     permWhitelistLength: 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
 
     init: function(){
+        Components.utils.import("resource://hfShared/browserOverlay.jsm", httpsfinder);
+        httpsfinder.whitelist.list.push("Hello from jsm!"); //Testing
+       
         var prefs = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefBranch);
         httpsfinder.prefs =  prefs.getBranch("extensions.httpsfinder.");
         
-       if(!httpsfinder.prefs.getBoolPref("enable"))
+        if(!httpsfinder.prefs.getBoolPref("enable"))
             return;
 
         //pref change observer (for enabling/disabling and updating whitelist)
@@ -1119,12 +1125,12 @@ httpsfinder.browserOverlay = {
                         appcontent.removeEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
                 }
                 else if(httpsfinder.prefs.getBoolPref("enable")){
-//                    window.addEventListener("load", function() {
-//                        httpsfinder.browserOverlay.init();
-//                    }, false);
-//                    httpsfinder.detect.register();
-//                    if(appcontent)
-//                        appcontent.addEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
+                    //                    window.addEventListener("load", function() {
+                    //                        httpsfinder.browserOverlay.init();
+                    //                    }, false);
+                    //                    httpsfinder.detect.register();
+                    //                    if(appcontent)
+                    //                        appcontent.addEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
                     httpsfinder.browserOverlay.init();
                 }
                 break;
