@@ -6,6 +6,7 @@ locale	{appname}	de		      locale/de/
 locale	{appname}	nl		      locale/nl/
 locale	{appname}	pl		      locale/pl/
 locale	{appname}	sv-SE		      locale/sv-SE/
+locale	{appname}	es-ES		      locale/es-ES/
 
 resource hfShared /../modules/
 overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/browserOverlay.xul

@@ -8,7 +8,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     buttons="accept,cancel">
     <script type="application/x-javascript" src="chrome://httpsfinder/content/preferences.js"/>
-    <script type="application/x-javascript" src="chrome://httpsfinder/content/browserOverlay.js" />
+   <!-- <script type="application/x-javascript" src="chrome://httpsfinder/content/browserOverlay.js" /> -->
 
     <stringbundleset id="stringbundleset">
         <stringbundle id="httpsfinderStrings"
@@ -208,7 +208,9 @@
                                     <row>
                                         <label value="&httpsfinder.translation.swedish;"/>
                                     </row>
-
+                                    <row>
+                                        <label value="&httpsfinder.translation.spanish;"/>
+                                    </row>
                                 </groupbox>
                             </row>
                             <separator class="thin"/>

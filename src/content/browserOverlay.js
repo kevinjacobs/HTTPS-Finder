@@ -1,19 +1,13 @@
 /*
  * Developer : Kevin Jacobs (httpsfinder@gmail.com), www.kevinajacobs.com
- * Date : 06/16/2011
+ * Date : 06/28/2011
  * All code (c)2011 all rights reserved
  */
-
-//var EXPORTED_SYMBOLS = ['httpsfinder.whitelist', 'httpsfinder.browserOverlay.permWhitelistLength'];
-
 
 if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
     strings: null, //Strings object for httpsfinder strings
-    debug: null, //verbose logging bool
-    tempNoAlerts: [], //If user saves a rule, push host and stop prompting to save rule
-    whitelist: [], //Session whitelist (read in from sqlite, temp items added for session)
-    goodSSL: [] //save known good-ssl pages for the duration of the session (cleared with temp whitelist)
+    debug: null //verbose logging bool
 };
 
 
@@ -59,7 +53,7 @@ httpsfinder.detect = {
                 var host = request.URI.host.toLowerCase();
                 try{
                     if(httpsfinder.detect.hostsMatch(browser.contentDocument.baseURIObject.host.toLowerCase(),host) &&
-                        httpsfinder.goodSSL.indexOf(request.URI.host.toLowerCase()) != -1){
+                        httpsfinder.results.goodSSL.indexOf(request.URI.host.toLowerCase()) != -1){
                         if(httpsfinder.debug)
                             Application.console.log("Canceling detection on " + request.URI.host.toLowerCase() + ". Good SSL already cached for host.");
                         httpsfinder.detect.handleCachedSSL(browser, request);
@@ -72,7 +66,7 @@ httpsfinder.detect = {
 
                 //Push to whitelist so we don't spam with multiple detection requests - may be removed later depending on result
                 if(!httpsfinder.browserOverlay.isWhitelisted(host)){
-                    httpsfinder.whitelist.push(host);
+                    httpsfinder.results.whitelist.push(host);
                     if(httpsfinder.debug){
                         Application.console.log("httpsfinder Blocking detection on " + request.URI.host + " until OK response received");
                         Application.console.log("httpsfinder Starting HTTPS detection for " + request.URI.asciiSpec);
@@ -247,7 +241,7 @@ httpsfinder.detect = {
 
         if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
-        else if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1){
+        else if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1){
             var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
 
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
@@ -273,20 +267,20 @@ httpsfinder.detect = {
             httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
         }
 
-        if(sslTest.status != 200 && sslTest.status != 301 && sslTest.status != 302 && httpsfinder.goodSSL.indexOf(host) == -1){
+        if(sslTest.status != 200 && sslTest.status != 301 && sslTest.status != 302 && httpsfinder.results.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
                 Application.console.log("httpsfinder leaving " + host + " in whitelist (return status code " + sslTest.status + ")");
             return;
         }
-        else if(!httpsfinder.detect.testCertificate(sslTest.channel) && httpsfinder.goodSSL.indexOf(host) == -1){
+        else if(!httpsfinder.detect.testCertificate(sslTest.channel) && httpsfinder.results.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
                 Application.console.log("httpsfinder leaving " + host + " in whitelist (bad SSL certificate)");
             return;
         }
         else
-            for(var i=0; i<httpsfinder.whitelist.length; i++)
-                if(httpsfinder.whitelist[i] == host){
-                    httpsfinder.whitelist.splice(i,1);
+            for(var i=0; i<httpsfinder.results.whitelist.length; i++)
+                if(httpsfinder.results.whitelist[i] == host){
+                    httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
                         Application.console.log("httpsfinder unblocking detection on " + host);
                 }
@@ -310,16 +304,19 @@ httpsfinder.detect = {
         }];
 
 
-        if(httpsfinder.goodSSL.indexOf(host) == -1){
-            httpsfinder.goodSSL.push(host);
+        if(httpsfinder.results.goodSSL.indexOf(host) == -1){
+            httpsfinder.browserOverlay.removeFromWhitelist(null,host);
+            httpsfinder.results.goodSSL.push(host);
             if(httpsfinder.debug)
                 Application.console.log("Pushing " + host + " to good SSL list");
             if(httpsfinder.browserOverlay.isWhitelisted(host))
                 httpsfinder.browserOverlay.removeFromWhitelist(null, host);
         }
-        else if(!httpsfinder.goodSSL.indexOf(aBrowser.contentDocument.baseURIObject.host.toLowerCase()) == -1){
-            httpsfinder.goodSSL.push(aBrowser.contentDocument.baseURIObject.host.toLowerCase());
-            if(httpsfinder.debug) Application.console.log("Pushing " + aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " to good SSL list.");
+        else if(!httpsfinder.results.goodSSL.indexOf(aBrowser.contentDocument.baseURIObject.host.toLowerCase()) == -1){
+            let host = aBrowser.contentDocument.baseURIObject.host.toLowerCase();
+            httpsfinder.browserOverlay.removeFromWhitelist(null,host);
+            httpsfinder.results.goodSSL.push(host);
+            if(httpsfinder.debug) Application.console.log("Pushing " + host + " to good SSL list.");
 
             if(httpsfinder.browserOverlay.isWhitelisted(aBrowser.contentDocument.baseURIObject.host.toLowerCase()))
                 httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
@@ -327,7 +324,7 @@ httpsfinder.detect = {
 
         if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
-        else  if(httpsfinder.tempNoAlerts.indexOf(request.URI.host) == -1){
+        else  if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1){
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
 
                 var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
@@ -452,7 +449,7 @@ httpsfinder.browserOverlay = {
 
     init: function(){
         Components.utils.import("resource://hfShared/browserOverlay.jsm", httpsfinder);
-        httpsfinder.whitelist.list.push("Hello from jsm!"); //Testing
+        // httpsfinder.results.whitelist.push("Hello from browserOverlay!"); //Testing
        
         var prefs = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefBranch);
@@ -575,17 +572,17 @@ httpsfinder.browserOverlay = {
 
     importWhitelist: function(){
         //Can we get rid of these loops and just reset length? Test in Ubuntu**(wasn't working before without loops)
-        for(var i=0; i <  httpsfinder.whitelist.length; i++)
-            httpsfinder.whitelist[i] = "";
-        httpsfinder.whitelist.length = 0;
+        for(var i=0; i <  httpsfinder.results.whitelist.length; i++)
+            httpsfinder.results.whitelist[i] = "";
+        httpsfinder.results.whitelist.length = 0;
 
-        for(i=0; i <  httpsfinder.goodSSL.length; i++)
-            httpsfinder.goodSSL[i] = "";
-        httpsfinder.goodSSL.length = 0;
+        for(i=0; i <  httpsfinder.results.goodSSL.length; i++)
+            httpsfinder.results.goodSSL[i] = "";
+        httpsfinder.results.goodSSL.length = 0;
 
-        for(i=0; i <  httpsfinder.tempNoAlerts.length; i++)
-            httpsfinder.tempNoAlerts[i] = "";
-        httpsfinder.tempNoAlerts.length = 0;
+        for(i=0; i <  httpsfinder.results.tempNoAlerts.length; i++)
+            httpsfinder.results.tempNoAlerts[i] = "";
+        httpsfinder.results.tempNoAlerts.length = 0;
 
         try{
             var file = Components.classes["@mozilla.org/file/directory_service;1"]
@@ -599,8 +596,9 @@ httpsfinder.browserOverlay = {
 
             statement.executeAsync({
                 handleResult: function(aResultSet){
-                    for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow())
-                    httpsfinder.whitelist.push(row.getResultByName("rule"));
+                    for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow()){
+                        httpsfinder.results.whitelist.push(row.getResultByName("rule"));
+                    }
                 },
 
                 handleError: function(anError){
@@ -608,7 +606,7 @@ httpsfinder.browserOverlay = {
                 },
 
                 handleCompletion: function(aReason){
-                    httpsfinder.browserOverlay.permWhitelistLength = httpsfinder.whitelist.length //differentiate between permanent and temp whitelist items
+                    httpsfinder.browserOverlay.permWhitelistLength = httpsfinder.results.whitelist.length //differentiate between permanent and temp whitelist items
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         Application.console.log("httpsfinder database error " + aReason.message);
                     else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))
@@ -684,8 +682,9 @@ httpsfinder.browserOverlay = {
                 },
                 handleCompletion: function(aReason){
                     if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
-                        if(!httpsfinder.browserOverlay.isWhitelisted(hostname))
-                            httpsfinder.whitelist.push(hostname);
+                        if(!httpsfinder.browserOverlay.isWhitelisted(hostname)){
+                            httpsfinder.results.whitelist.push(hostname);
+                        }
                 }
             });
         }
@@ -701,7 +700,7 @@ httpsfinder.browserOverlay = {
     alertSSLEnforced: function(aDocument){
         var browser = gBrowser.getBrowserForDocument(aDocument);
 
-        if(httpsfinder.tempNoAlerts.indexOf(browser.currentURI.host) != -1)
+        if(httpsfinder.results.tempNoAlerts.indexOf(browser.currentURI.host) != -1)
             return;
         else if(!httpsfinder.prefs.getBoolPref("noruleprompt") && gBrowser.currentURI.host != ""){
 
@@ -743,8 +742,8 @@ httpsfinder.browserOverlay = {
 
     //Check if host is whitelisted. Will include permanent (database) whitelist items and session items.
     isWhitelisted: function(host){
-        for(var i=0; i < httpsfinder.whitelist.length; i++){
-            var whitelistItem = httpsfinder.whitelist[i];
+        for(var i=0; i < httpsfinder.results.whitelist.length; i++){
+            var whitelistItem = httpsfinder.results.whitelist[i];
             if(whitelistItem == host)
                 return true;
 
@@ -875,8 +874,8 @@ httpsfinder.browserOverlay = {
         converter.writeString(rule);
         converter.close();
 
-        if(httpsfinder.tempNoAlerts.indexOf(hostname) == -1)
-            httpsfinder.tempNoAlerts.push(hostname);
+        if(httpsfinder.results.tempNoAlerts.indexOf(hostname) == -1)
+            httpsfinder.results.tempNoAlerts.push(hostname);
         
         httpsfinder.browserOverlay.alertRuleFinished(gBrowser.contentDocument);
     },
@@ -999,7 +998,7 @@ httpsfinder.browserOverlay = {
                 hostname = gBrowser.currentURI.host.toLowerCase();
         }
         if(!httpsfinder.browserOverlay.isWhitelisted(hostname))
-            httpsfinder.whitelist.push(hostname);
+            httpsfinder.results.whitelist.push(hostname);
     },
 
     //Auto-redirect to https
@@ -1015,7 +1014,8 @@ httpsfinder.browserOverlay = {
             for(var i=0; i<httpsfinder.browserOverlay.recent.length; i++){
                 if(httpsfinder.browserOverlay.recent[i][0] == host && httpsfinder.browserOverlay.recent[i][1] == index){
                     if(!httpsfinder.browserOverlay.isWhitelisted(host))
-                        httpsfinder.whitelist.push(host); //mouse clicks trigger this (bug)
+                        httpsfinder.results.whitelist.push(host);
+                        
                     Application.console.log("httpsfinder redirect loop detected on host " + host + ". Host temporarily whitelisted. Reload time: " + sinceLastReset + "ms");
                     redirectLoop = true;
                 }
@@ -1060,30 +1060,31 @@ httpsfinder.browserOverlay = {
 
     removeFromWhitelist: function(aDocument, host){
         if(!aDocument && host)
-            for(let i=0; i<httpsfinder.whitelist.length; i++){
-                if(httpsfinder.whitelist[i] == host){
-                    httpsfinder.whitelist.splice(i,1);
+            for(let i=0; i<httpsfinder.results.whitelist.length; i++){
+                if(httpsfinder.results.whitelist[i] == host){
+                    httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist");
+                        Application.console.log("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist");
                 }
             }
         else if(aDocument && !host){
             var preRedirectHost = gBrowser.getBrowserForDocument(aDocument).currentURI.host;
-            for(let i=0; i<httpsfinder.whitelist.length; i++){
-                if(httpsfinder.whitelist[i] == preRedirectHost.slice((preRedirectHost.length - httpsfinder.whitelist[i].length),preRedirectHost.length)){
+            for(let i=0; i<httpsfinder.results.whitelist.length; i++){
+                if(httpsfinder.results.whitelist[i] == preRedirectHost.slice((preRedirectHost.length - httpsfinder.results.whitelist[i].length),preRedirectHost.length)){
+                    httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist.");
-                    httpsfinder.whitelist.splice(i,1);
+                        Application.console.log("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist.");
+                   
                 }
             }
         }
         else
-            for(var i=0; i<httpsfinder.whitelist.length; i++)
+            for(var i=0; i<httpsfinder.results.whitelist.length; i++)
                 if(i > httpsfinder.browserOverlay.permWhitelistLength - 1 &&
-                    httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
+                    httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.results.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
+                    httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder removing " + httpsfinder.whitelist[i] + " from whitelist..");
-                    httpsfinder.whitelist.splice(i,1);
+                        Application.console.log("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist..");
                 }
     },
 
@@ -1101,6 +1102,12 @@ httpsfinder.browserOverlay = {
     resetWhitelist: function(){
         httpsfinder.browserOverlay.popupNotify("HTTPS Finder", httpsfinder.strings.getString("httpsfinder.overlay.whitelistReset"));
         httpsfinder.prefs.setBoolPref("whitelistChanged", true); //Fires re-import of whitelist through observer
+
+        httpsfinder.results.goodSSL.length = 0;
+        httpsfinder.results.goodSSL = [];
+        httpsfinder.results.whitelist.length = 0;
+        httpsfinder.results.whitelist = [];
+        httpsfinder.results.permWhitelistLength = 0;
     },
 
     observe: function(subject, topic, data){

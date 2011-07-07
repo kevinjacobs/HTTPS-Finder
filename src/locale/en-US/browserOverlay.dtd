@@ -5,8 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.72d3">
-<!ENTITY httpsfinder.buildDate "24 Jun 2011">
+<!ENTITY httpsfinder.version "0.72d4">
+<!ENTITY httpsfinder.buildDate "28 Jun 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
@@ -59,3 +59,4 @@
 <!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
 <!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">

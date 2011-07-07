@@ -1,11 +1,15 @@
+//Need to fix function names - they're wrapped now so the extra 'httpsfinder' can be removed.
+
 if (!httpsfinder) var httpsfinder = {};
 
 httpsfinder.preferences = {
 
     loadWindowObjects: function(){
         Components.utils.import("resource://hfShared/browserOverlay.jsm", httpsfinder.preferences);
-        alert(httpsfinder.preferences.whitelist.list); //Testing
+        //alert("white": httpsfinder.preferences.results.whitelist); //Testing
+        //alert("good": httpsfinder.preferences.results.goodSSL); //Testing
 
+        var enable = document.getElementById('enable');
         if(enable.checked){
             document.getElementById('noruleprompt').disabled = false;
             document.getElementById('promptLabel').disabled = false;
@@ -29,6 +33,49 @@ httpsfinder.preferences = {
             document.getElementById('whitelist').disabled = true;
         }
         httpsfinder.preferences.httpsfinderLoadWhitelist();
+        httpsfinder.preferences.loadResults();
+    },
+
+    loadResults: function(){
+        var theList = document.getElementById('cacheList');
+
+        for (var i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++)
+        {
+            var row = document.createElement('listitem');
+            var cell = document.createElement('listcell');
+            cell.setAttribute('label', httpsfinder.preferences.results.goodSSL[i]);
+            row.appendChild(cell);
+
+            cell = document.createElement('listcell');
+            cell.setAttribute('label',  "Good" );
+            row.appendChild(cell);
+
+            theList.appendChild(row);
+        }
+
+
+        for(var j = httpsfinder.preferences.results.permWhitelistLength;
+            j < httpsfinder.preferences.results.whitelist.length; j++){
+            var row2 = document.createElement('listitem');
+            var cell2 = document.createElement('listcell');
+            cell2.setAttribute('label', httpsfinder.preferences.results.whitelist[j]);
+            row2.appendChild(cell2);
+
+            cell2 = document.createElement('listcell');
+            cell2.setAttribute('label',  "Bad" );
+            row2.appendChild(cell2);
+
+            theList.appendChild(row2);
+        }
+
+
+    //        for (let row = aResultSet.getNextRow();   row; row = aResultSet.getNextRow()){
+    //            var row2 = document.createElement('listitem');
+    //            var cell = document.createElement('listcell');
+    //            cell.setAttribute('label', row.getResultByName("rule"));
+    //            row2.appendChild(cell);
+    //            theList.appendChild(row2);
+    //        }
     },
 
     //Import whitelist and populate listbox with rules
@@ -252,7 +299,20 @@ httpsfinder.preferences = {
         var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
         var strings = document.getElementById("httpsfinderStrings");
-        httpsfinder.browserOverlay.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
-    // httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
+        // httpsfinder.browserOverlay.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
+        httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
+        //Move popup Nofity into shared JSM - importing browserOverlay then opening a prefwindow fires init again
+    
+        httpsfinder.preferences.results.goodSSL.length = 0;
+        httpsfinder.preferences.results.goodSSL = [];
+        httpsfinder.preferences.results.whitelist.length = 0;
+        httpsfinder.preferences.results.whitelist = [];
+        httpsfinder.preferences.results.permWhitelistLength = 0;
+
+        var theList = document.getElementById('cacheList');
+        while(theList.itemCount > 0)
+            for(var i=0; i < theList.itemCount; i++)
+                theList.removeItemAt(i);
+        httpsfinder.preferences.loadResults();
     }
 };

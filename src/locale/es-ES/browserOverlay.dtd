@@ -1,0 +1,66 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "515">
+<!ENTITY httpsfinder.prefSize.windowHeight "570">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "450">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
+<!--End prefWindow sizing-->
+
+<!--enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre. Format: 23 may 2011-->
+
+<!ENTITY httpsfinder.version "0.72d4">
+<!ENTITY httpsfinder.buildDate "24 may 2011">
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "Fecha de creación:">
+<!ENTITY httpsfinder.authorTitle "Autor:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "Preferencias de HTTPS Finder">
+<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.translations "Traducciones realizadas por las siguientes personas:">
+<!ENTITY httpsfinder.preference.supportTitle "Email de Soporte:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "Activar HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "No sugerir guardar regla HTTPS (Para usar sin HTTPS Everywhere)">
+<!ENTITY httpsfinder.preference.autoForward "Aplicar HTTPS automáticamente cuando esté disponible">
+<!ENTITY httpsfinder.preference.whitelistLabel "Lista Blanca de Dominios (No detectar HTTPS en estos dominios)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "Anadir a la Lista Blanca">
+<!ENTITY httpsfinder.preference.whitelistModify "Modificar">
+<!ENTITY httpsfinder.preference.whitelistRemove "Borrar">
+<!ENTITY httpsfinder.preference.savedRulesTip "Las reglas guardadas pueden deshabilitarse en la configuración de HTTPS Everywhere.">
+<!ENTITY httpsfinder.preference.ruleTip "Para las reglas de la lista blanca, observe que www.dominio.com es un subdominio de dominio.com">
+<!ENTITY httpsfinder.preference.learnMoreTip "Aprende más acerca de HTTPS Finder">
+<!ENTITY httpsfinder.preference.learnLinkName "aquí">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "Host (dominio.tld, sub.dominio.tld, *.dominio.tld)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "Host">
+<!ENTITY httpsfinder.preference.headFirst "Usar detección HEAD primero (Volver a GET si no esta soportada por el servidor)">
+<!ENTITY httpsfinder.preference.generalTab "General">
+<!ENTITY httpsfinder.preference.advancedTab "Avanzadas">
+<!ENTITY httpsfinder.preference.aboutTab "Acerca de">
+<!ENTITY httpsfinder.preference.detectionLabel "Método de Detección">
+<!ENTITY httpsfinder.preference.showpreview "Mostrar previsualización de la regla (permite edición) antes de guardar las reglas">
+<!ENTITY httpsfinder.preference.detectionDescLONG "Las peticiones HEAD usan menos ancho de banda que las GET, pero algunos servidores podrían no soportarlas. Si esto sucede, HTTPS Finder intentará volver a las peticiones GET.">
+<!ENTITY httpsfinder.preference.detectionDescRec "Configuración recomendada: Si tiene una conexión rápida, deseleccione para usar sólo GET. En conexiones lentas, usar HEAD primero podría ser notoriamente más rápido en la mayoría de los sitios.">
+<!ENTITY httpsfinder.preference.debug "Activar registro de depuración (debug logging, detallado)">
+<!ENTITY httpsfinder.rulePreview.top "Previsualización de Regla:">
+<!ENTITY httpsfinder.rulePreview.tip1 "Cualquier cambio que haga se reflejará en la regla guardada.">
+<!ENTITY httpsfinder.rulePreview.tip2 "Haga click en Aceptar para guardar la regla, o en Cancelar para volver atras sin guardar">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "aquí">
+<!ENTITY httpsfinder.rulePreview.learnmore "Aprenda más acercar del formato de las reglas">
+<!ENTITY httpsfinder.menu.settings "Preferencias">
+<!ENTITY httpsfinder.menu.settingsKey "P">
+<!ENTITY httpsfinder.menu.refresh "Borrar la lista blanca temporal">
+<!ENTITY httpsfinder.menu.refreshKey "C">
+<!ENTITY httpsfinder.menu.homepage "Página Web del Proyecto">
+<!ENTITY httpsfinder.menu.homepageKey "P">
+<!ENTITY httpsfinder.menu.rate "Valore HTTPS Finder">
+<!ENTITY httpsfinder.menu.rateKey "R">
+<!ENTITY httpsfinder.menu.help "Ayuda">
+<!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.translation.german "- Alemán (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Holandés (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polaco (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Sueco (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Español (strel)">
+
+

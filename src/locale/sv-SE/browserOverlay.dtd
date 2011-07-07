@@ -7,7 +7,7 @@
 
 <!--januari februari mars april maj juni juli augusti september oktober november december  -->
 
-<!ENTITY httpsfinder.version "0.72d2">
+<!ENTITY httpsfinder.version "0.72d4">
 <!ENTITY httpsfinder.buildDate "den 22 juni 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Versionsdatum:">
@@ -61,3 +61,4 @@
 <!ENTITY httpsfinder.translation.dutch "- Nederländska (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
 <!ENTITY httpsfinder.translation.swedish "- Svenska (Mikael Hiort af OrnÃ¤s)">
+<!ENTITY httpsfinder.translation.spanish "- Spanska (strel)">
