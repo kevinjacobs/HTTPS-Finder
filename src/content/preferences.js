@@ -1,13 +1,14 @@
 //Need to fix function names - they're wrapped now so the extra 'httpsfinder' can be removed.
+//'use strict';
+
 
 if (!httpsfinder) var httpsfinder = {};
 
 httpsfinder.preferences = {
+    viewMode: "good",
 
     loadWindowObjects: function(){
         Components.utils.import("resource://hfShared/browserOverlay.jsm", httpsfinder.preferences);
-        //alert("white": httpsfinder.preferences.results.whitelist); //Testing
-        //alert("good": httpsfinder.preferences.results.goodSSL); //Testing
 
         var enable = document.getElementById('enable');
         if(enable.checked){
@@ -32,7 +33,7 @@ httpsfinder.preferences = {
             document.getElementById('removeRule').disabled = true;
             document.getElementById('whitelist').disabled = true;
         }
-        httpsfinder.preferences.httpsfinderLoadWhitelist();
+        httpsfinder.preferences.LoadWhitelist();
         httpsfinder.preferences.loadResults();
     },
 
@@ -52,34 +53,53 @@ httpsfinder.preferences = {
 
             theList.appendChild(row);
         }
-
-
-        for(var j = httpsfinder.preferences.results.permWhitelistLength;
-            j < httpsfinder.preferences.results.whitelist.length; j++){
-            var row2 = document.createElement('listitem');
-            var cell2 = document.createElement('listcell');
-            cell2.setAttribute('label', httpsfinder.preferences.results.whitelist[j]);
-            row2.appendChild(cell2);
-
-            cell2 = document.createElement('listcell');
-            cell2.setAttribute('label',  "Bad" );
-            row2.appendChild(cell2);
-
-            theList.appendChild(row2);
-        }
-
-
-    //        for (let row = aResultSet.getNextRow();   row; row = aResultSet.getNextRow()){
-    //            var row2 = document.createElement('listitem');
-    //            var cell = document.createElement('listcell');
-    //            cell.setAttribute('label', row.getResultByName("rule"));
-    //            row2.appendChild(cell);
-    //            theList.appendChild(row2);
-    //        }
     },
 
+    cycleResultListView: function(){
+        var theList = document.getElementById('cacheList');
+        while(theList.itemCount > 0)
+            for(var i=0; i < theList.itemCount; i++)
+                theList.removeItemAt(i);
+        
+        if(httpsfinder.preferences.viewMode == "good"){
+            for(var j = httpsfinder.preferences.results.permWhitelistLength;
+                j < httpsfinder.preferences.results.whitelist.length; j++){
+                var row2 = document.createElement('listitem');
+                var cell2 = document.createElement('listcell');
+                cell2.setAttribute('label', httpsfinder.preferences.results.whitelist[j]);
+                row2.appendChild(cell2);
+
+                cell2 = document.createElement('listcell');
+                cell2.setAttribute('label',  "Bad" );
+                row2.appendChild(cell2);
+
+                theList.appendChild(row2);
+            }
+            httpsfinder.preferences.viewMode = "bad";
+            document.getElementById('cycleResultView').label = "See Good Results"
+        }
+        else if(httpsfinder.preferences.viewMode == "bad"){
+            for (var i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++)
+            {
+                var row = document.createElement('listitem');
+                var cell = document.createElement('listcell');
+                cell.setAttribute('label', httpsfinder.preferences.results.goodSSL[i]);
+                row.appendChild(cell);
+
+                cell = document.createElement('listcell');
+                cell.setAttribute('label',  "Good" );
+                row.appendChild(cell);
+
+                theList.appendChild(row);
+            }
+            httpsfinder.preferences.viewMode = "good";
+            document.getElementById('cycleResultView').label = "See Bad Results"
+        }
+    },
+
+
     //Import whitelist and populate listbox with rules
-    httpsfinderLoadWhitelist: function(){
+    LoadWhitelist: function(){
         var theList = document.getElementById('whitelist');
         try{
             var file = Components.classes["@mozilla.org/file/directory_service;1"]
@@ -123,7 +143,7 @@ httpsfinder.preferences = {
     },
 
     //Push user specified rule to sqlite db
-    httpsfinderAddToWhitelist: function(){
+    AddToWhitelist: function(){
         var url = document.getElementById('whitelistURL').value.toLowerCase();
         if(url.length == 0){
             alert("No rule specified");
@@ -173,17 +193,46 @@ httpsfinder.preferences = {
     },
 
     //Remove rule, place back in textbox for editing (not the best solution but it works)
-    httpsfinderModifyWhitelistRule: function(){
+    ModifyWhitelistRule: function(){
         var theList = document.getElementById('whitelist');
         theList.ensureIndexIsVisible(theList.selectedIndex);
         if(!theList.selectedItem.firstChild.getAttribute("label"))
             return;
         document.getElementById('whitelistURL').value = theList.selectedItem.firstChild.getAttribute("label");
-        httpsfinder.preferences.httpsfinderRemoveWhitelistRule();
+        httpsfinder.preferences.RemoveWhitelistRule();
+    },
+
+    removeCacheItem: function(){
+        var theList = document.getElementById('cacheList');
+        theList.ensureIndexIsVisible(theList.selectedIndex);
+        
+        var selectedItems = theList.selectedItems;
+
+        if(httpsfinder.preferences.viewMode == "good"){
+            for(let i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++){
+                if(httpsfinder.preferences.results.goodSSL[i] == selectedItems[0].firstChild.getAttribute("label"))
+                    httpsfinder.preferences.results.goodSSL.splice(i,1);
+            }
+        }
+        else if(httpsfinder.preferences.viewMode == "bad"){
+            for(let i = 0; i < httpsfinder.preferences.results.whitelist.length; i++){
+                if(httpsfinder.preferences.results.whitelist[i] == selectedItems[0].firstChild.getAttribute("label"))
+                    httpsfinder.preferences.results.whitelist.splice(i,1);           
+
+            }
+        }
+
+        while(theList.itemCount > 0)
+            for(var i=0; i < theList.itemCount; i++)
+                theList.removeItemAt(i);
+
+
+        httpsfinder.preferences.loadResults();
+
     },
 
     //Delete selected rule(s) from whitelist
-    httpsfinderRemoveWhitelistRule: function(){
+    RemoveWhitelistRule: function(){
         var theList = document.getElementById('whitelist');
         theList.ensureIndexIsVisible(theList.selectedIndex);
         var selectedItems = theList.selectedItems;
@@ -206,11 +255,13 @@ httpsfinder.preferences = {
 
             var statement = mDBConn.createStatement("DELETE FROM whitelist where rule = (:value)");
             let params = statement.newBindingParamsArray();
+
             for (let i = 0; i < urls.length; i++){
                 let bp = params.newBindingParams();
                 bp.bindByName("value", urls[i]);
                 params.addParams(bp);
             }
+
             statement.bindParameters(params);
 
             statement.executeAsync({
@@ -233,6 +284,7 @@ httpsfinder.preferences = {
                             document.getElementById('modifyRule').disabled = true;
                             document.getElementById('removeRule').disabled = true;
                         }
+
                         var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
                         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
                     }
@@ -248,8 +300,22 @@ httpsfinder.preferences = {
         }
     },
 
-    httpsfinderEnableChecked: function(){
+    autoForwardToggle: function(){
+        var autoforward = document.getElementById('autoforward');
+
+        if(autoforward.checked){
+            document.getElementById('httpsfoundprompt').disabled = false;
+            document.getElementById('httpsfoundpromptLbl').disabled = false;
+        }
+        else{
+            document.getElementById('httpsfoundprompt').disabled = true;
+            document.getElementById('httpsfoundpromptLbl').disabled = true;
+        }
+    },
+
+    EnableChecked: function(){
         var enable = document.getElementById('enable');
+
         if(enable.checked){
             document.getElementById('noruleprompt').disabled = true;
             document.getElementById('promptLabel').disabled = true;
@@ -271,7 +337,9 @@ httpsfinder.preferences = {
             document.getElementById('whitelistURLLabel').disabled = false;
             document.getElementById('resetWhitelist').disabled = false;
             document.getElementById('whitelist').disabled = false;
+
             var theList = document.getElementById('whitelist');
+
             if(theList.selectedCount == 1){
                 document.getElementById('modifyRule').disabled = false;
                 document.getElementById('removeRule').disabled = false;
@@ -280,10 +348,25 @@ httpsfinder.preferences = {
         }
     },
 
+    //Enable and disable modify/remove buttons
+    ResultSelect: function(){
+        var theList = document.getElementById('cacheList');
+
+        if(theList.selectedCount == 1){
+            document.getElementById('removeFromCache').disabled = false;
+            document.getElementById('writeRule').disabled = false;
+        }
+        else{
+            document.getElementById('removeFromCache').disabled = true;
+            document.getElementById('writeRule').disabled = false;
+        }
+    },
+
 
     //Enable and disable modify/remove buttons
-    httpsfinderWhitelistSelect: function(){
+    WhitelistSelect: function(){
         var theList = document.getElementById('whitelist');
+
         if(theList.selectedCount == 1){
             document.getElementById('modifyRule').disabled = false;
             document.getElementById('removeRule').disabled = false;
@@ -298,10 +381,9 @@ httpsfinder.preferences = {
     resetWhitelist: function(){
         var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
+
         var strings = document.getElementById("httpsfinderStrings");
-        // httpsfinder.browserOverlay.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
         httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
-        //Move popup Nofity into shared JSM - importing browserOverlay then opening a prefwindow fires init again
     
         httpsfinder.preferences.results.goodSSL.length = 0;
         httpsfinder.preferences.results.goodSSL = [];
@@ -309,10 +391,15 @@ httpsfinder.preferences = {
         httpsfinder.preferences.results.whitelist = [];
         httpsfinder.preferences.results.permWhitelistLength = 0;
 
+
         var theList = document.getElementById('cacheList');
         while(theList.itemCount > 0)
             for(var i=0; i < theList.itemCount; i++)
                 theList.removeItemAt(i);
+
+        httpsfinder.preferences.viewMode = "good";
+        document.getElementById('cycleResultView').label = "See Bad Results"
+        
         httpsfinder.preferences.loadResults();
     }
 };

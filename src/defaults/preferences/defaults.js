@@ -8,4 +8,5 @@ pref("extensions.httpsfinder.showrulepreview", true);
 pref("extensions.httpsfinder.debugLogging", false);
 pref("extensions.httpsfinder.version", "0.0");
 pref("extensions.httpsfinder.dismissAlerts", false);
+pref("extensions.httpsfinder.httpsfoundalert", true);
 pref("extensions.httpsfinder.alertDismissTime", 3);

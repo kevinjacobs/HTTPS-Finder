@@ -1,8 +1,10 @@
 /*
  * Developer : Kevin Jacobs (httpsfinder@gmail.com), www.kevinajacobs.com
- * Date : 06/28/2011
+ * Date : 07/06/2011
  * All code (c)2011 all rights reserved
  */
+
+//'use strict';
 
 if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
@@ -217,7 +219,8 @@ httpsfinder.detect = {
     },
 
     handleCachedSSL: function(aBrowser, request){
-        if(request.responseStatus != 200 && request.responseStatus != 301 && request.responseStatus != 302)
+        if(request.responseStatus != 200 && request.responseStatus != 301 && request.responseStatus != 302
+            || !httpsfinder.prefs.getBoolPref("httpsfoundalert"))
             return;
 
         var nb = gBrowser.getNotificationBox(aBrowser);
@@ -285,25 +288,6 @@ httpsfinder.detect = {
                         Application.console.log("httpsfinder unblocking detection on " + host);
                 }
 
-        var nb = gBrowser.getNotificationBox(aBrowser);
-        var sslFoundButtons = [{
-            label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
-            accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
-            popup: null,
-            callback: httpsfinder.browserOverlay.whitelistDomain
-        },{
-            label: httpsfinder.strings.getString("httpsfinder.main.noRedirect"),
-            accessKey: httpsfinder.strings.getString("httpsfinder.main.noRedirectKey"),
-            popup: null,
-            callback: httpsfinder.browserOverlay.redirectNotNow
-        },{
-            label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
-            accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
-            popup: null,
-            callback: httpsfinder.browserOverlay.redirect
-        }];
-
-
         if(httpsfinder.results.goodSSL.indexOf(host) == -1){
             httpsfinder.browserOverlay.removeFromWhitelist(null,host);
             httpsfinder.results.goodSSL.push(host);
@@ -322,11 +306,30 @@ httpsfinder.detect = {
                 httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
         }
 
-        if(httpsfinder.prefs.getBoolPref("autoforward"))
+        if(!httpsfinder.prefs.getBoolPref("httpsfoundalert"))
+            return;
+        else if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
         else  if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1){
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
 
+                var nb = gBrowser.getNotificationBox(aBrowser);
+                var sslFoundButtons = [{
+                    label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
+                    popup: null,
+                    callback: httpsfinder.browserOverlay.whitelistDomain
+                },{
+                    label: httpsfinder.strings.getString("httpsfinder.main.noRedirect"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.noRedirectKey"),
+                    popup: null,
+                    callback: httpsfinder.browserOverlay.redirectNotNow
+                },{
+                    label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
+                    popup: null,
+                    callback: httpsfinder.browserOverlay.redirect
+                }];
                 var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
                 
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
@@ -606,7 +609,8 @@ httpsfinder.browserOverlay = {
                 },
 
                 handleCompletion: function(aReason){
-                    httpsfinder.browserOverlay.permWhitelistLength = httpsfinder.results.whitelist.length //differentiate between permanent and temp whitelist items
+                    httpsfinder.results.permWhitelistLength = httpsfinder.results.whitelist.length; //differentiate between permanent and temp whitelist items
+                    
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         Application.console.log("httpsfinder database error " + aReason.message);
                     else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))

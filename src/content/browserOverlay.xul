@@ -43,14 +43,7 @@
                 <menuitem class="menuitem-iconic" id="httpsfinderHelpItem"
                     image="chrome://httpsfinder/skin/help.png"
                     label="&httpsfinder.menu.help;" accesskey="&httpsfinder.menu.helpKey;"
-                    oncommand="gBrowser.selectedTab = gBrowser.addTab('https://code.google.com/p/https-finder/wiki/Help');" />
-                    <!-- TESTING -->
-                <menuitem class="menuitem-iconic" id="viewWL"
-                    label="View Whitelist" accesskey="W"
-                    oncommand="alert(httpsfinder.whitelist);" />
-                <menuitem class="menuitem-iconic" id="viewGL"
-                    label="View cached SSL" accesskey="S"
-                    oncommand="alert(httpsfinder.goodSSL);" />
+                    oncommand="gBrowser.selectedTab = gBrowser.addTab('https://code.google.com/p/https-finder/wiki/Help');" />                
             </menupopup>
         </menu>
     </menupopup>

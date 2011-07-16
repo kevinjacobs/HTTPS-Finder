@@ -8,7 +8,6 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     buttons="accept,cancel">
     <script type="application/x-javascript" src="chrome://httpsfinder/content/preferences.js"/>
-   <!-- <script type="application/x-javascript" src="chrome://httpsfinder/content/browserOverlay.js" /> -->
 
     <stringbundleset id="stringbundleset">
         <stringbundle id="httpsfinderStrings"
@@ -27,6 +26,7 @@
             <preference id="httpsfinder-debugLogging" name="extensions.httpsfinder.debugLogging" type="bool"/>
             <preference id="httpsfinder-autoDismiss" name="extensions.httpsfinder.dismissAlerts" type="bool"/>
             <preference id="httpsfinder-dismissTime" name="extensions.httpsfinder.alertDismissTime" type="int"/>
+            <preference id="httpsfinder-HTTPSFoundAlerts" name="extensions.httpsfinder.httpsfoundalert" type="bool"/>
         </preferences>
 
         <tabbox id="httpsfindertabs" selectedIndex="0">
@@ -45,15 +45,27 @@
                             <grid>
                                 <rows>
                                     <row>
-                                        <checkbox id="enable" preference="httpsfinder-enable" onclick="httpsfinder.preferences.httpsfinderEnableChecked(document)"/>
+                                        <checkbox id="enable" preference="httpsfinder-enable" onclick="httpsfinder.preferences.EnableChecked(document)"/>
                                         <label  control="enable" value="&httpsfinder.preference.enable;" />
                                     </row>
                                     <row>
                                         <checkbox id="noruleprompt" preference="httpsfinder-noruleprompt"/>
                                         <label id="promptLabel" control="noruleprompt" value="&httpsfinder.preference.noRulePrompt;"/>
                                     </row>
+
+
+                                    <tooltip id="silentModeTip" orient="vertical" style="background-color: #33DD00;">
+                                        <label value="Uncheck for silent detection only. View results and create rules from the Advanced tab"/>
+                                    </tooltip>
                                     <row>
-                                        <checkbox id="autoforward" preference="httpsfinder-autoforward"/>
+                                        <checkbox id="httpsfoundprompt" preference="httpsfinder-HTTPSFoundAlerts" onclick="" tooltip="silentModeTip"/>
+                                        <label tooltip="silentModeTip" id="httpsfoundpromptLbl" control="httpsfoundprompt"
+                                        value="Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)" />
+                                    </row>
+
+
+                                    <row>
+                                        <checkbox id="autoforward" preference="httpsfinder-autoforward" onclick="httpsfinder.preferences.autoForwardToggle(document)"/>
                                         <label id="autoforwardLabel" control="autoforward" value="&httpsfinder.preference.autoForward;"/>
                                     </row>
                                     <separator class="thin"/>
@@ -63,10 +75,10 @@
                                 <caption label="&httpsfinder.preference.whitelistLabel;"/>
                                 <row>
                                     <textbox id="whitelistURL" emptytext="&httpsfinder.preference.whitelistAddTextbox;" size="48"/>
-                                    <button id="whitelistURLLabel" label="&httpsfinder.preference.whitelistAddButton;" oncommand="httpsfinder.preferences.httpsfinderAddToWhitelist(document)"/>
+                                    <button id="whitelistURLLabel" label="&httpsfinder.preference.whitelistAddButton;" oncommand="httpsfinder.preferences.AddToWhitelist(document)"/>
                                 </row>
                                 <row>
-                                    <listbox seltype="multiple" flex="2" id="whitelist" onselect="httpsfinder.preferences.httpsfinderWhitelistSelect(document)">
+                                    <listbox seltype="multiple" flex="2" id="whitelist" onselect="httpsfinder.preferences.WhitelistSelect(document)">
                                         <listhead>
                                             <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="240"/>
                                         </listhead>
@@ -76,8 +88,8 @@
                                     </listbox>
                                 </row>
                                 <row>
-                                    <button id="modifyRule" label="&httpsfinder.preference.whitelistModify;" oncommand="httpsfinder.preferences.httpsfinderModifyWhitelistRule(document)" disabled="true"/>
-                                    <button id="removeRule" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.httpsfinderRemoveWhitelistRule(document)" disabled="true"/>
+                                    <button id="modifyRule" label="&httpsfinder.preference.whitelistModify;" oncommand="httpsfinder.preferences.ModifyWhitelistRule(document)" disabled="true"/>
+                                    <button id="removeRule" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.RemoveWhitelistRule(document)" disabled="true"/>
                                     <button id="resetWhitelist" label="&httpsfinder.menu.refresh;" oncommand="httpsfinder.preferences.resetWhitelist();"/>
                                 </row>
                             </groupbox>
@@ -133,17 +145,18 @@
                                         <row>
                                             <checkbox id="autoDismiss" preference="httpsfinder-autoDismiss"/>
                                             <label control="ADText" value="Auto-dismiss alerts after (seconds)"/>
-                                            <textbox id="dismissTime" type="number" min="0" max="60" preference="httpsfinder-dismissTime" maxlength="2" tooltiptext="Duration (seconds)" style="width: 50px;"/>
+                                            <textbox id="dismissTime" type="number" min="0" max="60" preference="httpsfinder-dismissTime"
+                                                            maxlength="2" tooltiptext="Duration (seconds)" style="width: 50px;"/>
                                         </row>
                                     </vbox>
                                     <separator class="thin"/>
                                     <vbox>
                                         <row>
                                             <groupbox>
-                                                <caption label="Session Discovery Results"/>
+                                                <caption label="Session discovery results"/>
                                                 <row>
                                                     <listbox seltype="single" flex="2" id="cacheList" width="445"
-                                                            onselect="httpsfinder.preferences.httpsfinderWhitelistSelect(document)">
+                                                            onselect="httpsfinder.preferences.ResultSelect(document)">
                                                         <listhead>
                                                             <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="240"/>
                                                             <listheader label="HTTPS Result" width="100"/>
@@ -154,9 +167,10 @@
                                                     </listbox>
                                                 </row>
                                                 <row>
-                                                    <button id="writeRule" label="Create HTTPS Everywhere Rule" oncommand="httpsfinder.preferences.httpsfinderModifyWhitelistRule(document)" disabled="true"/>
-                                                    <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.httpsfinderRemoveWhitelistRule(document)" disabled="true"/>
-                                                    <button id="resetCache" label="Clear Session Cache" oncommand="httpsfinder.preferences.resetWhitelist();"/>
+                                                    <button id="writeRule" label="Create Rule" oncommand="httpsfinder.preferencesModifyWhitelistRule(document)" disabled="true"/>
+                                                    <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.removeCacheItem(document)" disabled="true"/>
+                                                    <button id="resetCache" label="Clear Results" oncommand="httpsfinder.preferences.resetWhitelist();"/>
+                                                    <button id="cycleResultView" label="Show Bad Results" oncommand="httpsfinder.preferences.cycleResultListView()"/>
                                                 </row>
                                             </groupbox>
                                         </row>
