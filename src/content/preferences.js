@@ -8,7 +8,7 @@ httpsfinder.preferences = {
     viewMode: "good",
 
     loadWindowObjects: function(){
-        Components.utils.import("resource://hfShared/browserOverlay.jsm", httpsfinder.preferences);
+        Components.utils.import("resource://hfShared/hfShared.js", httpsfinder.preferences);
 
         var enable = document.getElementById('enable');
         if(enable.checked){
@@ -125,16 +125,16 @@ httpsfinder.preferences = {
                 },
                 handleError: function(anError){
                     alert("Error loading rules: " + anError.message);
-                    Application.console.log("httpsfinder database error " + anError.message);
+                    dump("httpsfinder database error " + anError.message);
                 },
                 handleCompletion: function(aReason){
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
-                        Application.console.log("httpsfinder database error " + aReason.message);
+                        dump("httpsfinder database error " + aReason.message);
                 }
             });
         }
         catch(e){
-            Application.console.log("httpsfinder loadWhitelist " + e);
+            Components.utils.reportError("httpsfinder loadWhitelist " + e);
         }
         finally{
             statement.reset();
@@ -165,7 +165,7 @@ httpsfinder.preferences = {
                 handleResult: function(aResultSet){},
                 handleError: function(anError){
                     alert("Error adding rule: " + anError.message);
-                    Application.console.log("httpsfinder whitelist rule add error " + anError.message);
+                    dump("httpsfinder whitelist rule add error " + anError.message);
                 },
                 handleCompletion: function(aReason){
                     //Append new rule to list if it was added without error.
@@ -183,7 +183,7 @@ httpsfinder.preferences = {
             });
         }
         catch(e){
-            Application.console.log("httpsfinder addToWhitelist " + e);
+            Components.utils.reportError("httpsfinder addToWhitelist " + e);
         }
         finally{
             statement.reset();
@@ -268,7 +268,7 @@ httpsfinder.preferences = {
                 handleResult: function(aResultSet){},
                 handleError: function(anError){
                     alert("Error deleting rule: " + anError.message);
-                    Application.console.log("httpsfinder whitelist rule delete error " + anError.message);
+                    dump("httpsfinder whitelist rule delete error " + anError.message);
                 },
                 handleCompletion: function(aReason){
                     if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED){
@@ -292,7 +292,7 @@ httpsfinder.preferences = {
             });
         }
         catch(e){
-            Application.console.log("httpsfinder removeFromWhitelist " + e);
+            Components.utils.reportError("httpsfinder removeFromWhitelist " + e);
         }
         finally{
             statement.reset();
@@ -327,8 +327,12 @@ httpsfinder.preferences = {
             document.getElementById('modifyRule').disabled = true;
             document.getElementById('removeRule').disabled = true;
             document.getElementById('whitelist').disabled = true;
+            document.getElementById('httpsfoundprompt').disabled = true;
+            document.getElementById('httpsfoundpromptLbl').disabled = true;
         }
         else{
+            document.getElementById('httpsfoundprompt').disabled = false;
+            document.getElementById('httpsfoundpromptLbl').disabled = false;
             document.getElementById('noruleprompt').disabled = false;
             document.getElementById('promptLabel').disabled = false;
             document.getElementById('autoforward').disabled = false;

@@ -41,14 +41,14 @@ httpsfinder.detect = {
             if(loadFlags.indexOf("LOAD_DOCUMENT_URI") != -1 && loadFlags.indexOf("LOAD_INITIAL_DOCUMENT_URI") != -1){
                 if(httpsfinder.browserOverlay.isWhitelisted(request.URI.host.toLowerCase())){
                     if(httpsfinder.debug)
-                        Application.console.log("Canceling detection on " + request.URI.host.toLowerCase() + ". Host is whitelisted");
+                        dump("Canceling detection on " + request.URI.host.toLowerCase() + ". Host is whitelisted\n");
                     return;
                 }
 
                 var browser = httpsfinder.detect.getBrowserFromChannel(request);
                 if (browser == null){
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder browser cannot be found for channel");
+                        dump("httpsfinder browser cannot be found for channel\n");
                     return;
                 }
 
@@ -57,21 +57,21 @@ httpsfinder.detect = {
                     if(httpsfinder.detect.hostsMatch(browser.contentDocument.baseURIObject.host.toLowerCase(),host) &&
                         httpsfinder.results.goodSSL.indexOf(request.URI.host.toLowerCase()) != -1){
                         if(httpsfinder.debug)
-                            Application.console.log("Canceling detection on " + request.URI.host.toLowerCase() + ". Good SSL already cached for host.");
+                            dump("Canceling detection on " + request.URI.host.toLowerCase() + ". Good SSL already cached for host.\n");
                         httpsfinder.detect.handleCachedSSL(browser, request);
                         return;
                     }
                 }catch(e){
                     if(e.name == 'NS_ERROR_FAILURE')
-                        Application.console.log("https finder cannot match URI to browser request.");
+                        Components.utils.reportError("https finder cannot match URI to browser request.\n");
                 }
 
                 //Push to whitelist so we don't spam with multiple detection requests - may be removed later depending on result
                 if(!httpsfinder.browserOverlay.isWhitelisted(host)){
                     httpsfinder.results.whitelist.push(host);
                     if(httpsfinder.debug){
-                        Application.console.log("httpsfinder Blocking detection on " + request.URI.host + " until OK response received");
-                        Application.console.log("httpsfinder Starting HTTPS detection for " + request.URI.asciiSpec);
+                        dump("httpsfinder Blocking detection on " + request.URI.host + " until OK response received\n");
+                        dump("httpsfinder Starting HTTPS detection for " + request.URI.asciiSpec + "\n");
                     }
                 }
 
@@ -127,7 +127,7 @@ httpsfinder.detect = {
                     if(headReq.status == 200 || (headReq.status != 405 && headReq.status != 403))
                         httpsfinder.detect.handleObserverResponse(aBrowser,headReq, requestURL);
                     else if(headReq.status == 405 || headReq.status == 403){
-                        Application.console.log("httpsfinder detection falling back to GET for " + requestURL);
+                        dump("httpsfinder detection falling back to GET for " + requestURL + "\n");
                         var getReq = new XMLHttpRequest();
                         getReq.mozBackgroundRequest = true;
                         getReq.open('GET', requestURL, true);
@@ -147,61 +147,13 @@ httpsfinder.detect = {
     //Get load flags for HTTP observer. We use these to filter normal http requests from page load requests
     getStringArrayOfLoadFlags : function(flags) {
         var flagsArr = [];
-        if (flags & Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE) {
-            flagsArr.push("LOAD_BYPASS_CACHE");
-        }
-        if (flags & Components.interfaces.nsIRequest.LOAD_BACKGROUND) {
-            flagsArr.push("LOAD_BACKGROUND");
-        }
-        if (flags & Components.interfaces.nsIRequest.INHIBIT_CACHING) {
-            flagsArr.push("INHIBIT_CACHING");
-        }
-        if (flags & Components.interfaces.nsIRequest.INHIBIT_PERSISTENT_CACHING) {
-            flagsArr.push("INHIBIT_PERSISTENT_CACHING");
-        }
-        if (flags & Components.interfaces.nsICachingChannel.LOAD_BYPASS_LOCAL_CACHE) {
-            flagsArr.push("LOAD_BYPASS_LOCAL_CACHE");
-        }
-        if (flags & Components.interfaces.nsICachingChannel.LOAD_ONLY_FROM_CACHE) {
-            flagsArr.push("LOAD_ONLY_FROM_CACHE");
-        }
-        if (flags & Components.interfaces.nsICachingChannel.LOAD_ONLY_IF_MODIFIED) {
-            flagsArr.push("LOAD_ONLY_IF_MODIFIED");
-        }
-        if (flags & Components.interfaces.nsIRequest.LOAD_FROM_CACHE) {
-            flagsArr.push("LOAD_FROM_CACHE");
-        }
-        if (flags & Components.interfaces.nsIRequest.VALIDATE_ALWAYS) {
-            flagsArr.push("VALIDATE_ALWAYS");
-        }
-        if (flags & Components.interfaces.nsIRequest.VALIDATE_NEVER) {
-            flagsArr.push("VALIDATE_NEVER");
-        }
-        if (flags & Components.interfaces.nsIRequest.VALIDATE_ONCE_PER_SESSION) {
-            flagsArr.push("VALIDATE_ONCE_PER_SESSION");
-        }
-        if (flags & Components.interfaces.nsIChannel.LOAD_DOCUMENT_URI) {
-            flagsArr.push("LOAD_DOCUMENT_URI");
-        }
-        if (flags & Components.interfaces.nsIChannel.LOAD_RETARGETED_DOCUMENT_URI) {
-            flagsArr.push("LOAD_RETARGETED_DOCUMENT_URI");
-        }
-        if (flags & Components.interfaces.nsIChannel.LOAD_REPLACE) {
-            flagsArr.push("LOAD_REPLACE");
-        }
-        if (flags & Components.interfaces.nsIChannel.LOAD_INITIAL_DOCUMENT_URI) {
+
+        //Look for the two load flags that indicate a page load (ignore others)
+        if (flags & Components.interfaces.nsIChannel.LOAD_DOCUMENT_URI) 
+            flagsArr.push("LOAD_DOCUMENT_URI");        
+        if (flags & Components.interfaces.nsIChannel.LOAD_INITIAL_DOCUMENT_URI) 
             flagsArr.push("LOAD_INITIAL_DOCUMENT_URI");
-        }
-        if (flags & Components.interfaces.nsIChannel.LOAD_TARGETED) {
-            flagsArr.push("LOAD_TARGETED");
-        }
-        if ((Components.interfaces.nsICachingChannel.LOAD_BYPASS_LOCAL_CACHE_IF_BUSY) &&
-            (flags & Components.interfaces.nsICachingChannel.LOAD_BYPASS_LOCAL_CACHE_IF_BUSY)) {
-            flagsArr.push("LOAD_BYPASS_LOCAL_CACHE_IF_BUSY");
-        }
-        if (!flags.length) {
-            flagsArr.push("LOAD_NORMAL");
-        }
+        
         return flagsArr;
     },
 
@@ -266,18 +218,18 @@ httpsfinder.detect = {
 
         if(httpsfinder.detect.cacheExempt.indexOf(host) != -1){
             if(httpsfinder.debug)
-                Application.console.log("httpsfinder removing " + host + " from whitelist (exempt from saving results on this host)");
+                dump("httpsfinder removing " + host + " from whitelist (exempt from saving results on this host)\n");
             httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
         }
 
         if(sslTest.status != 200 && sslTest.status != 301 && sslTest.status != 302 && httpsfinder.results.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
-                Application.console.log("httpsfinder leaving " + host + " in whitelist (return status code " + sslTest.status + ")");
+                dump("httpsfinder leaving " + host + " in whitelist (return status code " + sslTest.status + ")\n");
             return;
         }
         else if(!httpsfinder.detect.testCertificate(sslTest.channel) && httpsfinder.results.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
-                Application.console.log("httpsfinder leaving " + host + " in whitelist (bad SSL certificate)");
+                dump("httpsfinder leaving " + host + " in whitelist (bad SSL certificate)\n");
             return;
         }
         else
@@ -285,14 +237,14 @@ httpsfinder.detect = {
                 if(httpsfinder.results.whitelist[i] == host){
                     httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder unblocking detection on " + host);
+                        dump("httpsfinder unblocking detection on " + host + "\n");
                 }
 
         if(httpsfinder.results.goodSSL.indexOf(host) == -1){
             httpsfinder.browserOverlay.removeFromWhitelist(null,host);
             httpsfinder.results.goodSSL.push(host);
             if(httpsfinder.debug)
-                Application.console.log("Pushing " + host + " to good SSL list");
+                dump("Pushing " + host + " to good SSL list\n");
             if(httpsfinder.browserOverlay.isWhitelisted(host))
                 httpsfinder.browserOverlay.removeFromWhitelist(null, host);
         }
@@ -300,7 +252,7 @@ httpsfinder.detect = {
             let host = aBrowser.contentDocument.baseURIObject.host.toLowerCase();
             httpsfinder.browserOverlay.removeFromWhitelist(null,host);
             httpsfinder.results.goodSSL.push(host);
-            if(httpsfinder.debug) Application.console.log("Pushing " + host + " to good SSL list.");
+            if(httpsfinder.debug) dump("Pushing " + host + " to good SSL list.\n");
 
             if(httpsfinder.browserOverlay.isWhitelisted(aBrowser.contentDocument.baseURIObject.host.toLowerCase()))
                 httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
@@ -344,8 +296,8 @@ httpsfinder.detect = {
             }
             else{
                 if(httpsfinder.debug)
-                    Application.console.log("Host mismatch, alert blocked (Document: " +
-                        aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " , Detection host: " + host);
+                    dump("Host mismatch, alert blocked (Document: " +
+                        aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " , Detection host: " + host + "\n");
             }
         }
     },
@@ -357,7 +309,7 @@ httpsfinder.detect = {
             const Ci = Components.interfaces;
             if (! channel instanceof  Ci.nsIChannel){
                 if(httpsfinder.debug)
-                    Application.console.log("httpsfinder testCertificate: Invalid channel object");
+                    dump("httpsfinder testCertificate: Invalid channel object\n");
                 return false;
             }
 
@@ -378,57 +330,9 @@ httpsfinder.detect = {
                     case Ci.nsIX509Cert.VERIFIED_OK:
                         secure = true;
                         if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: Cert OK (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        break;
-                    case Ci.nsIX509Cert.NOT_VERIFIED_UNKNOWN:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: NOT_VERIFIED_UNKNOWN (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
-                    case Ci.nsIX509Cert.CERT_REVOKED:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: CERT_REVOKED (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
-                    case Ci.nsIX509Cert.CERT_EXPIRED:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: CERT_EXPIRED (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
-                    case Ci.nsIX509Cert.CERT_NOT_TRUSTED:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: CERT_NOT_TRUSTED (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
-                    case Ci.nsIX509Cert.ISSUER_NOT_TRUSTED:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: ISSUER_NOT_TRUSTED (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
-                    case Ci.nsIX509Cert.ISSUER_UNKNOWN:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: ISSUER_UNKNOWN (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
-                    case Ci.nsIX509Cert.INVALID_CA:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: INVALID_CA (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
-                    case Ci.nsIX509Cert.USAGE_NOT_ALLOWED:
-                        if(httpsfinder.debug)
-                            Application.console.log("httpsfinder testCertificate: USAGE_NOT_ALLOWED (on "+
-                                channel.URI.host.toLowerCase()+ ")");
-                        secure = false;
-                        break;
+                            dump("httpsfinder testCertificate: Cert OK (on "+
+                                channel.URI.host.toLowerCase()+ ")\n");
+                        break;                  
                     default:
                         secure = false;
                         break;
@@ -437,7 +341,7 @@ httpsfinder.detect = {
         }
         catch(err){
             secure = false;
-            Application.console.log("httpsfinder testCertificate error: " + err.toString());
+            Components.utils.reportError("httpsfinder testCertificate error: " + err.toString() + "\n");
         }
         return secure;
     }
@@ -451,8 +355,7 @@ httpsfinder.browserOverlay = {
     permWhitelistLength: 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
 
     init: function(){
-        Components.utils.import("resource://hfShared/browserOverlay.jsm", httpsfinder);
-        // httpsfinder.results.whitelist.push("Hello from browserOverlay!"); //Testing
+        Components.utils.import("resource://hfShared/hfShared.js", httpsfinder);
        
         var prefs = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefBranch);
@@ -479,7 +382,7 @@ httpsfinder.browserOverlay = {
 
         httpsfinder.strings = document.getElementById("httpsfinderStrings");
         if(httpsfinder.prefs == null || httpsfinder.strings == null){
-            Application.console.log("httpsfinder cannot load preferences or strings - init() failed");
+            dump("httpsfinder cannot load preferences or strings - init() failed\n");
             return;
         }
 
@@ -502,7 +405,7 @@ httpsfinder.browserOverlay = {
             //NS_ERROR_FAILURE is thrown when we try to recreate a table (May be too generic though...)
             //We try to recreate every start in case the user manually deleted the file
             if(e.name != 'NS_ERROR_FAILURE')
-                Application.console.log("httpsfinder initialize error " + e);
+                Components.utils.reportError("httpsfinder initialize error " + e + "\n");
         }
         finally{
             mDBConn.close();
@@ -551,7 +454,7 @@ httpsfinder.browserOverlay = {
             //Alert was for a previous tab and was not dismissed (page change timed just right before alert was cleared
             httpsfinder.browserOverlay.redirectedTab[index] = new Array();
             if(httpsfinder.debug)
-                Application.console.log("httpsfinder resetting alert for tab - host mismatch on " + tabHost  +  " and "  + storedHost);
+                dump("httpsfinder resetting alert for tab - host mismatch on " + tabHost  +  " and "  + storedHost + "\n");
             return;
         }
 
@@ -605,21 +508,21 @@ httpsfinder.browserOverlay = {
                 },
 
                 handleError: function(anError){
-                    Application.console.log("httpsfinder whitelist database error " + anError.message);
+                    dump("httpsfinder whitelist database error " + anError.message + "\n");
                 },
 
                 handleCompletion: function(aReason){
                     httpsfinder.results.permWhitelistLength = httpsfinder.results.whitelist.length; //differentiate between permanent and temp whitelist items
                     
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
-                        Application.console.log("httpsfinder database error " + aReason.message);
+                        dump("httpsfinder database error " + aReason.message + "\n");
                     else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))
                         httpsfinder.prefs.setBoolPref("whitelistChanged", false);
                 }
             });
         }
         catch(e){
-            Application.console.log("httpsfinder load whitelist " + e.name);
+            Components.utils.reportError("httpsfinder load whitelist " + e.name + "\n");
         }
         finally{
             statement.reset();
@@ -682,7 +585,7 @@ httpsfinder.browserOverlay = {
 
                 handleError: function(anError){
                     alert("Error adding rule: " + anError.message);
-                    Application.console.log("httpsfinder whitelist rule add error " + anError.message);
+                    dump("httpsfinder whitelist rule add error " + anError.message + "\n");
                 },
                 handleCompletion: function(aReason){
                     if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
@@ -693,7 +596,7 @@ httpsfinder.browserOverlay = {
             });
         }
         catch(e){
-            Application.console.log("httpsfinder addToWhitelist " + e.name);
+            Components.utils.reportError("httpsfinder addToWhitelist " + e.name + "\n");
         }
         finally{
             statement.reset();
@@ -919,12 +822,12 @@ httpsfinder.browserOverlay = {
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
                 'httpsfinder-getHE','chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, installButtons);
-        }
+        };
 
         //See previous comment (in installButtons)
         var getHE = function(){
             httpsfinder.browserOverlay.openWebsiteInTab("http://www.eff.org/https-everywhere/");
-        }
+        };
 
         //HTTPS Everywhere is installed. Prompt for restart
         var promptForRestart = function() {
@@ -954,7 +857,7 @@ httpsfinder.browserOverlay = {
                 setTimeout(function(){
                     httpsfinder.browserOverlay.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-restart');
-        }
+        };
     },
 
     openWebsiteInTab: function(addr) {
@@ -1020,7 +923,7 @@ httpsfinder.browserOverlay = {
                     if(!httpsfinder.browserOverlay.isWhitelisted(host))
                         httpsfinder.results.whitelist.push(host);
                         
-                    Application.console.log("httpsfinder redirect loop detected on host " + host + ". Host temporarily whitelisted. Reload time: " + sinceLastReset + "ms");
+                    dump("httpsfinder redirect loop detected on host " + host + ". Host temporarily whitelisted. Reload time: " + sinceLastReset + "ms\n");
                     redirectLoop = true;
                 }
             }
@@ -1037,9 +940,9 @@ httpsfinder.browserOverlay = {
         }
         else{
             if(httpsfinder.debug && !redirectLoop)
-                Application.console.log("Host mismatch, forward blocked (Document: " +
+                dump("Host mismatch, forward blocked (Document: " +
                     aBrowser.contentDocument.baseURIObject.host.toLowerCase() +
-                    " , Detection host: " + host);
+                    " , Detection host: " + host + "\n");
         }
 
         httpsfinder.browserOverlay.recent.push([host,index]);
@@ -1068,7 +971,7 @@ httpsfinder.browserOverlay = {
                 if(httpsfinder.results.whitelist[i] == host){
                     httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist");
+                        dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
                 }
             }
         else if(aDocument && !host){
@@ -1077,7 +980,7 @@ httpsfinder.browserOverlay = {
                 if(httpsfinder.results.whitelist[i] == preRedirectHost.slice((preRedirectHost.length - httpsfinder.results.whitelist[i].length),preRedirectHost.length)){
                     httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist.");
+                        dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist.\n");
                    
                 }
             }
@@ -1088,23 +991,12 @@ httpsfinder.browserOverlay = {
                     httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.results.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
                     httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        Application.console.log("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist..");
+                        dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist..\n");
                 }
     },
 
-    //Generic notifier method
-    popupNotify: function(title,body){
-        try{
-            var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
-            .getService(Components.interfaces.nsIAlertsService);
-            alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
-                title, body, false, "", null);
-        }
-        catch(e){ /*Do nothing*/ }
-    },
-
     resetWhitelist: function(){
-        httpsfinder.browserOverlay.popupNotify("HTTPS Finder", httpsfinder.strings.getString("httpsfinder.overlay.whitelistReset"));
+        httpsfinder.popupNotify("HTTPS Finder", httpsfinder.strings.getString("httpsfinder.overlay.whitelistReset"));
         httpsfinder.prefs.setBoolPref("whitelistChanged", true); //Fires re-import of whitelist through observer
 
         httpsfinder.results.goodSSL.length = 0;
@@ -1135,16 +1027,10 @@ httpsfinder.browserOverlay = {
                     if(appcontent)
                         appcontent.removeEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
                 }
-                else if(httpsfinder.prefs.getBoolPref("enable")){
-                    //                    window.addEventListener("load", function() {
-                    //                        httpsfinder.browserOverlay.init();
-                    //                    }, false);
-                    //                    httpsfinder.detect.register();
-                    //                    if(appcontent)
-                    //                        appcontent.addEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
-                    httpsfinder.browserOverlay.init();
-                }
+                else if(httpsfinder.prefs.getBoolPref("enable"))
+                    httpsfinder.browserOverlay.init();                
                 break;
+
             case "debugLogging":
                 httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
                 break;
