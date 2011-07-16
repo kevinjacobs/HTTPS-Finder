@@ -357,10 +357,12 @@ httpsfinder.preferences = {
         var theList = document.getElementById('cacheList');
 
         if(theList.selectedCount == 1){
+            document.getElementById('viewReport').disabled = false;
             document.getElementById('removeFromCache').disabled = false;
             document.getElementById('writeRule').disabled = false;
         }
         else{
+            document.getElementById('viewReport').disabled = true;
             document.getElementById('removeFromCache').disabled = true;
             document.getElementById('writeRule').disabled = false;
         }
@@ -405,5 +407,17 @@ httpsfinder.preferences = {
         document.getElementById('cycleResultView').label = "See Bad Results"
         
         httpsfinder.preferences.loadResults();
+    },
+
+    sslReport: function(){
+        var theList = document.getElementById('cacheList');
+        theList.ensureIndexIsVisible(theList.selectedIndex);
+        var selectedItems = theList.selectedItems;
+        
+        var reportUrl = "https://www.ssllabs.com/ssldb/analyze.html?d=";
+        reportUrl += selectedItems[0].firstChild.getAttribute("label");
+        reportUrl += "&hideResults=on";
+
+        httpsfinder.preferences.openWebsiteInTab(reportUrl);
     }
 };

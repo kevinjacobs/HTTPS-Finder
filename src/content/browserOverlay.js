@@ -826,7 +826,7 @@ httpsfinder.browserOverlay = {
 
         //See previous comment (in installButtons)
         var getHE = function(){
-            httpsfinder.browserOverlay.openWebsiteInTab("http://www.eff.org/https-everywhere/");
+            httpsfinder.openWebsiteInTab("http://www.eff.org/https-everywhere/");
         };
 
         //HTTPS Everywhere is installed. Prompt for restart
@@ -858,18 +858,6 @@ httpsfinder.browserOverlay = {
                     httpsfinder.browserOverlay.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-restart');
         };
-    },
-
-    openWebsiteInTab: function(addr) {
-        if(typeof gBrowser == "undefined"){
-            var window = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-            var browserWindow = window.getMostRecentWindow("navigator:browser").getBrowser();
-            var newTab = browserWindow.addTab(addr, null, null);
-            browserWindow.selectedTab = newTab;
-
-        }
-        else
-            gBrowser.selectedTab = gBrowser.addTab(addr);
     },
 
     removeNotification: function(key)

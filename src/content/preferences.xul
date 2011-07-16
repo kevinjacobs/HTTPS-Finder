@@ -108,7 +108,7 @@
                                          style="color: blue; text-decoration:underline;"
                                          onmouseover="event.target.style.cursor='pointer'"
                                          onmouseout="event.target.style.cursor='default'"
-                                        onclick="httpsfinder.browserOverlay.openWebsiteInTab('http://www.eff.org/https-everywhere/');"/>
+                                        onclick="httpsfinder.preferences.openWebsiteInTab('https://code.google.com/p/https-finder/');"/>
                                 </row>
                             </vbox>
                         </column>
@@ -169,8 +169,9 @@
                                                 <row>
                                                     <button id="writeRule" label="Create Rule" oncommand="httpsfinder.preferencesModifyWhitelistRule(document)" disabled="true"/>
                                                     <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.removeCacheItem(document)" disabled="true"/>
-                                                    <button id="resetCache" label="Clear Results" oncommand="httpsfinder.preferences.resetWhitelist();"/>
-                                                    <button id="cycleResultView" label="Show Bad Results" oncommand="httpsfinder.preferences.cycleResultListView()"/>
+                                                    <button id="viewReport" label="Generate SSL Report" oncommand="httpsfinder.preferences.sslReport();" disabled="true"/>
+                                                    <button id="resetCache" label="Clear All Results" oncommand="httpsfinder.preferences.resetWhitelist();"/>
+                                                    <!-- <button id="cycleResultView" label="Show Bad Results" oncommand="httpsfinder.preferences.cycleResultListView()"/> -->
                                                 </row>
                                             </groupbox>
                                         </row>
@@ -198,7 +199,7 @@
                                 <description value="&httpsfinder.authorTitle;" class="title"/>
                                 <description>Kevin Jacobs</description>
 
-                                <description onclick="httpsfinder.browserOverlay.openWebsiteInTab('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>
+                                <description onclick="httpsfinder.preferences.openWebsiteInTab('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>
                                 <description value="&httpsfinder.preference.supportTitle;" class="title"/>
                                 <description onclick="location.href='mailto:&httpsfinder.preference.supportEmail;'" class="url">&httpsfinder.preference.supportEmail;</description>
                             </vbox>

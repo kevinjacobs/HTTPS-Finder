@@ -23,7 +23,7 @@
 <!ENTITY httpsfinder.preference.whitelistLabel "Domain Whitelist (Do not detect HTTPS on these domains)">
 <!ENTITY httpsfinder.preference.whitelistAddButton "Add to Whitelist">
 <!ENTITY httpsfinder.preference.whitelistModify "Modify">
-<!ENTITY httpsfinder.preference.whitelistRemove "Remove">
+<!ENTITY httpsfinder.preference.whitelistRemove "Remove Item">
 <!ENTITY httpsfinder.preference.savedRulesTip "Saved rules can be disabled in HTTPS Everywhere settings.">
 <!ENTITY httpsfinder.preference.ruleTip "For whitelist rules, note that www.domain.com is a subdomain of domain.com.">
 <!ENTITY httpsfinder.preference.learnMoreTip "Learn more about HTTPS Finder">
