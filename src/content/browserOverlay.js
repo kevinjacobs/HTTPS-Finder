@@ -26,6 +26,7 @@ httpsfinder.detect = {
         throw Components.results.NS_NOINTERFACE;
     },
 
+    //Watches HTTP responses, filters and calls detection if needed
     observe: function(request,aTopic, aData){
         if (aTopic == "http-on-examine-response") {
             request.QueryInterface(Components.interfaces.nsIHttpChannel);
@@ -93,14 +94,14 @@ httpsfinder.detect = {
     },
 
     hostsMatch: function(host1, host2){
-        //check domain name of page location and detected host. Slicing after first . to ignore subdomains (redirect to subdomain OK)
-        //- e.g. google.com forwards to encrypted.google.com
+        //check domain name of page location and detected host. Slice after first . to ignore subdomains
         if(host1.slice(host1.indexOf(".",0) + 1,host1.length) == host2.slice(host2.indexOf(".",0) + 1,host2.length))
             return true;
         else
             return false;
     },
 
+    //HTTPS detection function - does HEAD falling back to GET, or just GET depending on user settings
     detectSSL: function(aBrowser, request){
         var requestURL = request.URI.asciiSpec.replace("http://", "https://");
 
@@ -112,7 +113,7 @@ httpsfinder.detect = {
             getReq.channel.loadFlags |= Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE;
             getReq.onreadystatechange = function (aEvt) {
                 if (getReq.readyState == 4){
-                    httpsfinder.detect.handleObserverResponse(aBrowser, getReq, requestURL);
+                    httpsfinder.detect.handleDetectionResponse(aBrowser, getReq, requestURL);
                 }
             };
             getReq.send(null);
@@ -125,7 +126,7 @@ httpsfinder.detect = {
             headReq.onreadystatechange = function (aEvt) {
                 if (headReq.readyState == 4){
                     if(headReq.status == 200 || (headReq.status != 405 && headReq.status != 403))
-                        httpsfinder.detect.handleObserverResponse(aBrowser,headReq, requestURL);
+                        httpsfinder.detect.handleDetectionResponse(aBrowser,headReq, requestURL);
                     else if(headReq.status == 405 || headReq.status == 403){
                         dump("httpsfinder detection falling back to GET for " + requestURL + "\n");
                         var getReq = new XMLHttpRequest();
@@ -134,7 +135,7 @@ httpsfinder.detect = {
                         getReq.channel.loadFlags |= Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE;
                         getReq.onreadystatechange = function (aEvt) {
                             if (getReq.readyState == 4)
-                                httpsfinder.detect.handleObserverResponse(aBrowser, getReq, requestURL);
+                                httpsfinder.detect.handleDetectionResponse(aBrowser, getReq, requestURL);
                         };
                         getReq.send(null);
                     }
@@ -157,6 +158,7 @@ httpsfinder.detect = {
         return flagsArr;
     },
 
+    //Used by HTTP observer to match requests to tabs
     getBrowserFromChannel: function (aChannel) {
         try {
             var notificationCallbacks = aChannel.notificationCallbacks ? aChannel.notificationCallbacks : aChannel.loadGroup.notificationCallbacks;
@@ -170,9 +172,9 @@ httpsfinder.detect = {
         }
     },
 
+    //If good SSL has alread been found during this session, skip new detection and use this function
     handleCachedSSL: function(aBrowser, request){
-        if(request.responseStatus != 200 && request.responseStatus != 301 && request.responseStatus != 302
-            || !httpsfinder.prefs.getBoolPref("httpsfoundalert"))
+        if(request.responseStatus != 200 && request.responseStatus != 301 && request.responseStatus != 302)
             return;
 
         var nb = gBrowser.getNotificationBox(aBrowser);
@@ -196,7 +198,8 @@ httpsfinder.detect = {
 
         if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
-        else if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1){
+        else if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1 &&
+            !httpsfinder.prefs.getBoolPref("httpsfoundalert")){
             var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
 
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
@@ -211,7 +214,8 @@ httpsfinder.detect = {
         }
     },
 
-    handleObserverResponse: function(aBrowser, sslTest){
+    //Callback function for our HTTPS detection request
+    handleDetectionResponse: function(aBrowser, sslTest){
         //Session whitelist host and return if cert is bad or status is not OK.
         var host = sslTest.channel.URI.host.toLowerCase();
         var request = sslTest.channel;
@@ -240,6 +244,9 @@ httpsfinder.detect = {
                         dump("httpsfinder unblocking detection on " + host + "\n");
                 }
 
+        //If the code gets to this point, the HTTPS is good.
+
+        //Push host to good SSL list (remember result and skip repeat detection)
         if(httpsfinder.results.goodSSL.indexOf(host) == -1){
             httpsfinder.browserOverlay.removeFromWhitelist(null,host);
             httpsfinder.results.goodSSL.push(host);
@@ -258,11 +265,14 @@ httpsfinder.detect = {
                 httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
         }
 
-        if(!httpsfinder.prefs.getBoolPref("httpsfoundalert"))
-            return;
-        else if(httpsfinder.prefs.getBoolPref("autoforward"))
+        //Check setting and automatically enforce HTTPS
+        if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
-        else  if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1){
+
+        //If auto-enforce is disabled, if host is not in tempNoAlerts (rule already saved)
+        //and HTTPS Found alerts are enabled, alert user of good HTTPS
+        else  if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1 &&
+            !httpsfinder.prefs.getBoolPref("httpsfoundalert")){
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
 
                 var nb = gBrowser.getNotificationBox(aBrowser);
@@ -295,6 +305,7 @@ httpsfinder.detect = {
                     },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-https-found');
             }
             else{
+                //Catches certain browser location changes and page content that had load flags to fire detection
                 if(httpsfinder.debug)
                     dump("Host mismatch, alert blocked (Document: " +
                         aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " , Detection host: " + host + "\n");
@@ -347,13 +358,14 @@ httpsfinder.detect = {
     }
 };
 
-//browserOverlay handles most browser code (alerts except those generated from detection, importing whitelist, startup/shutdown, etc)
+//browserOverlay handles most 'browser' code (including alerts except those generated from detection, importing whitelist, startup/shutdown, etc)
 httpsfinder.browserOverlay = {
     redirectedTab: [[]], //Tab info for pre-redirect URLs.
     recent: [[]], //Recent auto-redirects used for detecting http->https->http redirect loops. Second subscript holds the tabIndex of the redirect
     lastRecentReset: null, //time counter for detecting redirect loops
     permWhitelistLength: 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
 
+    //Window start up - set listeners, read in whitelist, etc
     init: function(){
         Components.utils.import("resource://hfShared/hfShared.js", httpsfinder);
        
@@ -364,17 +376,19 @@ httpsfinder.browserOverlay = {
         if(!httpsfinder.prefs.getBoolPref("enable"))
             return;
 
-        //pref change observer (for enabling/disabling and updating whitelist)
+        //pref change observer
         httpsfinder.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
         httpsfinder.prefs.addObserver("", this, false);
 
-        //This listener is used for displaying alerts after a page is loaded
+        //Listener is used for displaying HTTPS alerts after a page is loaded
         var appcontent = document.getElementById("appcontent");
         if(appcontent)
             appcontent.addEventListener("load", httpsfinder.browserOverlay.onPageLoad, true);
 
+        //Register HTTP observer for HTTPS detection
         httpsfinder.detect.register();
 
+        //Used for auto-dismissing alerts (auto-dismiss timer is started when user clicks on a tab, so they don't miss background alerts)
         if(httpsfinder.prefs.getBoolPref("dismissAlerts")){
             var container = gBrowser.tabContainer;
             container.addEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
@@ -386,6 +400,9 @@ httpsfinder.browserOverlay = {
             return;
         }
 
+        /*Try/catch/finally checks version numbers and runs upgrade code if needed.
+         * Attempts to recreate db table (in case it has been deleted). Doesn't overwrite though
+         */
         try{
             var installedVersion = httpsfinder.prefs.getCharPref("version");
             var firstrun = httpsfinder.prefs.getBoolPref("firstrun");
@@ -403,7 +420,7 @@ httpsfinder.browserOverlay = {
 
         }catch(e){
             //NS_ERROR_FAILURE is thrown when we try to recreate a table (May be too generic though...)
-            //We try to recreate every start in case the user manually deleted the file
+            //--Need to change sql command to 'If not exists' to avoid this.
             if(e.name != 'NS_ERROR_FAILURE')
                 Components.utils.reportError("httpsfinder initialize error " + e + "\n");
         }
@@ -411,25 +428,31 @@ httpsfinder.browserOverlay = {
             mDBConn.close();
             var currentVersion = httpsfinder.strings.getString("httpsfinder.version");
             if (firstrun){
+                //First run code
                 httpsfinder.prefs.setBoolPref("firstrun",false);
                 httpsfinder.prefs.setCharPref("version", currentVersion);
             }
-            else if (installedVersion!=currentVersion && !firstrun){
-                //(Upgrade code)
+            else if (installedVersion != currentVersion && !firstrun){
+                //Upgrade code
                 httpsfinder.prefs.setCharPref("version",currentVersion);
                 httpsfinder.browserOverlay.importWhitelist();
             }
-            else if(!firstrun)
+            else //All other startup
                 httpsfinder.browserOverlay.importWhitelist();
         }
     },
 
+    //Auto-dismiss alert timers are started after the user clicks over to the given tab, so the
+    //user doesn't miss background alerts that are dismissed before they switch to the tab.
     tabChanged: function(event){
         var browser = gBrowser.selectedBrowser;
         var alerts = ["httpsfinder-restart", "httpsfinder-ssl-enforced", "httpsfinder-https-found"];
         
         for(var i=0; i < alerts.length; i++){
+            //Form 3 keys, one of each type for the given tab index (post-tab change index)
             var key = alerts[i] + gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument);
+
+            //If the tab contains that alert, set a timeout and removeNotification() for the auto-dismiss time.
             if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key)){
                 setTimeout(function(){
                     httpsfinder.browserOverlay.removeNotification(key)
@@ -439,6 +462,11 @@ httpsfinder.browserOverlay = {
         }
     },
 
+    /*
+    onPageLoad checks for any HTTPS redirect/detection activity for the tab. If there is something that the user needs to be alerted of,
+    The notification is added. We can't add the notification directly from the detection callback, because page content still being loaded
+    causes the notifications to be automatically dismissed from time to time. This is basically a method to slow down alerts until the page is ready.
+     */
     onPageLoad: function(aEvent) {
         var brow = gBrowser.getBrowserForDocument(aEvent.originalTarget);
         var index = gBrowser.getBrowserIndexForDocument(aEvent.originalTarget);
@@ -468,7 +496,7 @@ httpsfinder.browserOverlay = {
         }
     },
 
-    //return host without subdomain (e.g. input: code.google.com, outpout: google.com)
+    //Return host without subdomain (e.g. input: code.google.com, outpout: google.com)
     getHostWithoutSub: function(fullHost){
         if(typeof fullHost != 'string')
             return "";
@@ -512,7 +540,9 @@ httpsfinder.browserOverlay = {
                 },
 
                 handleCompletion: function(aReason){
-                    httpsfinder.results.permWhitelistLength = httpsfinder.results.whitelist.length; //differentiate between permanent and temp whitelist items
+                    //differentiate between permanent and temp whitelist items - permanent items are the first
+                    // 'x' entries in the whitelist array. Temp items are added later as x+1....x+n
+                    httpsfinder.results.permWhitelistLength = httpsfinder.results.whitelist.length; 
                     
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         dump("httpsfinder database error " + aReason.message + "\n");
@@ -530,16 +560,7 @@ httpsfinder.browserOverlay = {
         }
     },
 
-    isTopLevelDocument:  function (aDocument){
-        if(typeof aDocument == "undefined")
-            return false;
-        var browsers = gBrowser.browsers;
-        for (var i = 0; i < browsers.length; i++)
-            if (aDocument == browsers[i].contentDocument)
-                return true;
-        return false;
-    },
-
+    //User clicked "Add to whitelist" from a drop down notification. Save to sqlite and whitelist array.
     whitelistDomain: function(hostIn){
         //Manually remove notification - in Ubuntu it stays up (no error is thrown)
         httpsfinder.browserOverlay.removeNotification('httpsfinder-https-found');
@@ -604,11 +625,15 @@ httpsfinder.browserOverlay = {
         }
     },
 
+    //Alert after HTTPS was auto-enforced on a page
     alertSSLEnforced: function(aDocument){
         var browser = gBrowser.getBrowserForDocument(aDocument);
 
+        //Return if a rule has already been saved this session (we just silently enforce)
         if(httpsfinder.results.tempNoAlerts.indexOf(browser.currentURI.host) != -1)
             return;
+
+        //Append alert if 'noruleeprompt' pref is not enabled, and host is not "". (addon manager, blank page, etc)
         else if(!httpsfinder.prefs.getBoolPref("noruleprompt") && gBrowser.currentURI.host != ""){
 
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
@@ -629,6 +654,7 @@ httpsfinder.browserOverlay = {
                 callback: httpsfinder.browserOverlay.writeRule
             }];
 
+            //Key used for alert timeouts - format is "keytype" + tabIndex (e.g. "httpsfinder-ssl-enforced2")
             var key = "httpsfinder-ssl-enforced" + gBrowser.getBrowserIndexForDocument(aDocument);
 
             if(httpsfinder.prefs.getBoolPref("autoforward"))
@@ -647,7 +673,7 @@ httpsfinder.browserOverlay = {
         }
     },
 
-    //Check if host is whitelisted. Will include permanent (database) whitelist items and session items.
+    //Check if host is whitelisted. Checks permanently whitelisted items and session items.
     isWhitelisted: function(host){
         for(var i=0; i < httpsfinder.results.whitelist.length; i++){
             var whitelistItem = httpsfinder.results.whitelist[i];
@@ -664,6 +690,7 @@ httpsfinder.browserOverlay = {
         return false;
     },
 
+    //Save rule for HTTPS Everywhere. Working on moving this to JSM.
     writeRule: function(){
         var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
         .getService(Components.interfaces.nsIEffectiveTLDService);
@@ -791,6 +818,7 @@ httpsfinder.browserOverlay = {
         Application.restart();
     },
 
+    //Callback after rule file is saved
     alertRuleFinished: function(aDocument){
         //Check firefox version and use appropriate method
         if(Application.version.charAt(0) >= 4){
@@ -810,7 +838,7 @@ httpsfinder.browserOverlay = {
                 promptForRestart();
         }
 
-        //Alert user to install HTTPS Everywhere for rule enforcement
+        //Callback - alert user to install HTTPS Everywhere for rule enforcement
         var getHTTPSEverywhere = function() {
             var installButtons = [{
                 label: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhere"),
@@ -824,12 +852,12 @@ httpsfinder.browserOverlay = {
                 nb.PRIORITY_INFO_LOW, installButtons);
         };
 
-        //See previous comment (in installButtons)
+        //See previous comment (in installButtons - callback: getHE)
         var getHE = function(){
             httpsfinder.openWebsiteInTab("http://www.eff.org/https-everywhere/");
         };
 
-        //HTTPS Everywhere is installed. Prompt for restart
+        //Callback - HTTPS Everywhere is installed. Prompt for restart
         var promptForRestart = function() {
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
             var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
@@ -860,6 +888,7 @@ httpsfinder.browserOverlay = {
         };
     },
 
+    //Remove notification called from setTimeout(). Looks through each tab for an alert with mataching key. Removes it, if exists.
     removeNotification: function(key)
     {
         //key is a formatted as alert type (e.g. "httpsfinder-restart"), with the tab index concatinated to the end, httpsfinder-restart2).
@@ -870,7 +899,7 @@ httpsfinder.browserOverlay = {
                     window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);                
     },
 
-    //Add to session whitlelist (not database)
+    //Adds to session whitlelist (not database)
     redirectNotNow: function() {
         var hostname = "";
         if(typeof httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)] != "undefined" &&
@@ -937,7 +966,7 @@ httpsfinder.browserOverlay = {
         httpsfinder.browserOverlay.lastRecentReset = Date.now();
     },
 
-    //Manual redirect (user click)
+    //Manual redirect (user clicked "Yes, go HTTPS")
     redirect: function() {
         var aDocument = gBrowser.contentDocument;
         httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(aDocument)] = new Array();
@@ -953,7 +982,10 @@ httpsfinder.browserOverlay = {
         window.content.wrappedJSObject.location = uri;
     },
 
+    // Removes item from the session whitelist array. This is messy and needs to be fixed.
+    // Runes three ways and is called from multiple functions.
     removeFromWhitelist: function(aDocument, host){
+        // Check for passed in hostname (if calling function called removeFromWhitelist(null, "xxxxxx.com")
         if(!aDocument && host)
             for(let i=0; i<httpsfinder.results.whitelist.length; i++){
                 if(httpsfinder.results.whitelist[i] == host){
@@ -962,6 +994,8 @@ httpsfinder.browserOverlay = {
                         dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
                 }
             }
+
+        // Else, if called as removeFromWhitelist(tab.contentDocument, null) - get the host and remove that from the whitelist
         else if(aDocument && !host){
             var preRedirectHost = gBrowser.getBrowserForDocument(aDocument).currentURI.host;
             for(let i=0; i<httpsfinder.results.whitelist.length; i++){
@@ -973,6 +1007,8 @@ httpsfinder.browserOverlay = {
                 }
             }
         }
+
+        // Catch for any thing that slipped through... Why is this needed? Maybe if "gBrowser.getBrowserForDocument(aDocument).currentURI.host" (above) fails?
         else
             for(var i=0; i<httpsfinder.results.whitelist.length; i++)
                 if(i > httpsfinder.browserOverlay.permWhitelistLength - 1 &&
@@ -983,9 +1019,12 @@ httpsfinder.browserOverlay = {
                 }
     },
 
+    //User clicked "Clear Session Whitelist" - Reset good and bad cached results, as well as user temporary whitelist.
     resetWhitelist: function(){
         httpsfinder.popupNotify("HTTPS Finder", httpsfinder.strings.getString("httpsfinder.overlay.whitelistReset"));
-        httpsfinder.prefs.setBoolPref("whitelistChanged", true); //Fires re-import of whitelist through observer
+
+        //Fires re-import of whitelist through observer - Need to remove this since the whitelist is now in JSM (can call directly)
+        httpsfinder.prefs.setBoolPref("whitelistChanged", true);
 
         httpsfinder.results.goodSSL.length = 0;
         httpsfinder.results.goodSSL = [];
@@ -994,6 +1033,7 @@ httpsfinder.browserOverlay = {
         httpsfinder.results.permWhitelistLength = 0;
     },
 
+    //Preference observer
     observe: function(subject, topic, data){
         if (topic != "nsPref:changed")
             return;
@@ -1016,7 +1056,7 @@ httpsfinder.browserOverlay = {
                         appcontent.removeEventListener("DOMContentLoaded", httpsfinder.browserOverlay.onPageLoad, true);
                 }
                 else if(httpsfinder.prefs.getBoolPref("enable"))
-                    httpsfinder.browserOverlay.init();                
+                    httpsfinder.browserOverlay.init();
                 break;
 
             case "debugLogging":
@@ -1034,6 +1074,7 @@ httpsfinder.browserOverlay = {
         }
     },
 
+    //Window is shutting down - remove listeners/observers
     shutdown: function(){
         try{
             httpsfinder.prefs.removeObserver("", this);

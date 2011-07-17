@@ -33,6 +33,17 @@ httpsfinder.preferences = {
             document.getElementById('removeRule').disabled = true;
             document.getElementById('whitelist').disabled = true;
         }
+
+        var autoforward = document.getElementById('autoforward');
+        if(autoforward.checked){
+            document.getElementById('httpsfoundprompt').disabled = true;
+            document.getElementById('httpsfoundpromptLbl').disabled = true;
+        }
+        else{
+            document.getElementById('httpsfoundprompt').disabled = false;
+            document.getElementById('httpsfoundpromptLbl').disabled = false;
+        }
+           
         httpsfinder.preferences.LoadWhitelist();
         httpsfinder.preferences.loadResults();
     },
