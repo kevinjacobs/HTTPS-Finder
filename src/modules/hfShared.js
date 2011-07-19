@@ -1,4 +1,10 @@
-var EXPORTED_SYMBOLS = ['results', 'popupNotify', 'openWebsiteInTab'];
+var EXPORTED_SYMBOLS = ['results',
+'popupNotify',
+'openWebsiteInTab',
+'sharedWriteRule',
+'getHostWithoutSub',
+'restartNow',
+'alertRuleFinished'];
 
 var results = {
     goodSSL : [],
@@ -16,7 +22,7 @@ function popupNotify(title,body){
         var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
         .getService(Components.interfaces.nsIAlertsService);
         alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
-        title, body, false, "", null);
+            title, body, false, "", null);
     }
     catch(e){ /*Do nothing*/ }
 };
@@ -40,31 +46,31 @@ function openWebsiteInTab(addr) {
 
 
 //Passed in uri variable is an asciispec uri from pre-redirect. (i.e. full http://www.domain.com)
-function writeRule(uri){
-    var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
-    .getService(Components.interfaces.nsIEffectiveTLDService);
-    try{
-        var topLevel = "." + eTLDService.getPublicSuffix(uri);
-        var hostname = uri.host.toLowerCase();
-    }
-    catch(e){
-        hostname = gBrowser.currentURI.host.toLowerCase();
-        topLevel =  "." + eTLDService.getPublicSuffixFromHost(hostname);
-    }
+function sharedWriteRule(hostname, topLevel){   
+    //    var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
+    //    .getService(Components.interfaces.nsIEffectiveTLDService);
+    //    try{
+    //        var topLevel = "." + eTLDService.getPublicSuffix(uri);
+    //        var hostname = uri.host.toLowerCase();
+    //    }
+    //    catch(e){
+    //        hostname = gBrowser.currentURI.host.toLowerCase();
+    //        topLevel =  "." + eTLDService.getPublicSuffixFromHost(hostname);
+    //    }
     var title = "";
 
-
-    /////WHAT DO HERE?
-    for(var i=0; i<httpsfinder.browserOverlay.redirectedTab.length; i++){
-        if(typeof httpsfinder.browserOverlay.redirectedTab[i] == "undefined" ||
-            typeof httpsfinder.browserOverlay.redirectedTab[i][1] == "undefined"){
-            // return;do nothing
-        }
-        else if(httpsfinder.browserOverlay.redirectedTab[i][1].host.toLowerCase() ==
-            gBrowser.currentURI.host.toLowerCase())
-            hostname = gBrowser.currentURI.host.toLowerCase();
-        topLevel =  "." + eTLDService.getPublicSuffixFromHost(hostname);
-    }
+    //
+    //    /////WHAT DO HERE?
+    //    for(var i=0; i<httpsfinder.browserOverlay.redirectedTab.length; i++){
+    //        if(typeof httpsfinder.browserOverlay.redirectedTab[i] == "undefined" ||
+    //            typeof httpsfinder.browserOverlay.redirectedTab[i][1] == "undefined"){
+    //            // return;do nothing
+    //        }
+    //        else if(httpsfinder.browserOverlay.redirectedTab[i][1].host.toLowerCase() ==
+    //            gBrowser.currentURI.host.toLowerCase())
+    //            hostname = gBrowser.currentURI.host.toLowerCase();
+    //        topLevel =  "." + eTLDService.getPublicSuffixFromHost(hostname);
+    //    }
 
     var tldLength = topLevel.length - 1;
 
@@ -78,34 +84,34 @@ function writeRule(uri){
     if(hostname == "localhost"){
         title = "Localhost";
         rule = "<ruleset name=\""+ title + "\">" + "\n" +
-            "<target host=\"" + hostname + "\" />" +
-            "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
-            "\\" +"/\"" +" to=\"https://" + title.toLowerCase() +
-            "/\"/>" + "\n" + "</ruleset>";
+        "<target host=\"" + hostname + "\" />" +
+        "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
+        "\\" +"/\"" +" to=\"https://" + title.toLowerCase() +
+        "/\"/>" + "\n" + "</ruleset>";
     }
 
     else{
         rule = "<ruleset name=\""+ title + "\">" + "\n"
-            + "\t" + "<target host=\"" + hostname + "\" />" + "\n";
+        + "\t" + "<target host=\"" + hostname + "\" />" + "\n";
 
         //Check hostname for "www.".
         //One will be "domain.com" and the other will be "www.domain.com"
         var targetHost2 = "";
         if(hostname.indexOf("www.") != -1){
-            targetHost2 = httpsfinder.browserOverlay.getHostWithoutSub(hostname);
+            targetHost2 = this.getHostWithoutSub(hostname);
             rule = rule + "\t" + "<target host=\"" + targetHost2 +"\" />" + "\n" +
-                "\t" + "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
-                "\\" + topLevel +"/\"" +" to=\"https://www." + title.toLowerCase() +
-                topLevel + "/\"/>" + "\n" + "</ruleset>";
+            "\t" + "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
+            "\\" + topLevel +"/\"" +" to=\"https://www." + title.toLowerCase() +
+            topLevel + "/\"/>" + "\n" + "</ruleset>";
         }
         else{
-            domains = hostname.split(".");
+            var domains = hostname.split(".");
             if(domains.length == 2){
                 targetHost2 = "www." + hostname;
                 rule = rule + "\t" + "<target host=\"" + targetHost2 +"\" />" +
-                    "\n" + "\t" + "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
-                    "\\" + topLevel +"/\"" +" to=\"https://" + title.toLowerCase() +
-                    topLevel + "/\"/>" + "\n" + "</ruleset>";
+                "\n" + "\t" + "<rule from=\"^http://(www\\.)?" + title.toLowerCase() +
+                "\\" + topLevel +"/\"" +" to=\"https://" + title.toLowerCase() +
+                topLevel + "/\"/>" + "\n" + "</ruleset>";
             }
             //If hostname includes non-www subdomain, we don't include www in our rule.
             else
@@ -116,20 +122,25 @@ function writeRule(uri){
     }
 
     rule = rule + "\n" + "<!-- Rule generated by HTTPS Finder " +
-        httpsfinder.strings.getString("httpsfinder.version") +
-        " -->"
+    this.strings.getString("httpsfinder.version") +
+    " -->"
 
-    if(httpsfinder.prefs.getBoolPref("showrulepreview")){
+    if(this.prefs.getBoolPref("showrulepreview")){
         var params = {
             inn:{
                 rule:rule
             },
             out:null
         };
-        window.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
-        "chrome, dialog, modal,centerscreen, resizable=yes", params).focus();
+        var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+        .getService(Components.interfaces.nsIWindowMediator);
+
+        var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
+
+        currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
+            "chrome, dialog, modal,centerscreen, resizable=yes", params).focus();
         if (!params.out){
-            httpsfinder.browserOverlay.removeNotification('httpsfinder-getHE');
+            this.browserOverlay.removeNotification('httpsfinder-getHE');
             return; //user canceled rule
         }
         else
@@ -138,11 +149,11 @@ function writeRule(uri){
 
     //Synchronous for FF3.5
     var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-        createInstance(Components.interfaces.nsIFileOutputStream);
+    createInstance(Components.interfaces.nsIFileOutputStream);
 
     var file = Components.classes["@mozilla.org/file/directory_service;1"].
-        getService(Components.interfaces.nsIProperties).
-        get("ProfD", Components.interfaces.nsIFile);
+    getService(Components.interfaces.nsIProperties).
+    get("ProfD", Components.interfaces.nsIFile);
     file.append("HTTPSEverywhereUserRules")
     file.append(title + ".xml");
     try{
@@ -154,15 +165,15 @@ function writeRule(uri){
     }
     foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0);
     var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].
-        createInstance(Components.interfaces.nsIConverterOutputStream);
+    createInstance(Components.interfaces.nsIConverterOutputStream);
     converter.init(foStream, "UTF-8", 0, 0);
     converter.writeString(rule);
     converter.close();
 
-    if(httpsfinder.results.tempNoAlerts.indexOf(hostname) == -1)
-        httpsfinder.results.tempNoAlerts.push(hostname);
+    if(this.results.tempNoAlerts.indexOf(hostname) == -1)
+        this.results.tempNoAlerts.push(hostname);
 
-    httpsfinder.browserOverlay.alertRuleFinished(gBrowser.contentDocument);
+    alertRuleFinished(currentWindow.gBrowser.contentDocument);
 };
 
 //return host without subdomain (e.g. input: code.google.com, outpout: google.com)
@@ -173,13 +184,23 @@ function getHostWithoutSub(fullHost){
         return fullHost.slice(fullHost.indexOf(".") + 1, fullHost.length);
 };
 
-
 function restartNow(){
+    var Application = Components.classes["@mozilla.org/fuel/application;1"].getService(Components.interfaces.fuelIApplication);
     Application.restart();
 };
 
-function alertRuleFinished(aDocument){
+function alertRuleFinished(aDocument){ 
     //Check firefox version and use appropriate method
+    var Application = Components.classes["@mozilla.org/fuel/application;1"].getService(Components.interfaces.fuelIApplication);
+
+    var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+    .getService(Components.interfaces.nsIWindowMediator);
+
+    var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
+
+    var strings = currentWindow.document.getElementById("httpsfinderStrings");
+
+
     if(Application.version.charAt(0) >= 4){
         Components.utils.import("resource://gre/modules/AddonManager.jsm");
         AddonManager.getAddonByID("https-everywhere@eff.org", function(addon) {
@@ -198,51 +219,67 @@ function alertRuleFinished(aDocument){
     }
 
     //Alert user to install HTTPS Everywhere for rule enforcement
-    var getHTTPSEverywhere = function() {
+    var getHTTPSEverywhere = function() {     
         var installButtons = [{
-                label: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhere"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.getHttpsEverywhereKey"),
-                popup: null,
-                callback: getHE  //Why is this needed? Setting the callback directly automatically calls when there is a parameter
-            }];
-        var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
-        nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.NoHttpsEverywhere"),
-        'httpsfinder-getHE','chrome://httpsfinder/skin/httpsAvailable.png',
-        nb.PRIORITY_INFO_LOW, installButtons);
+            label: strings.getString("httpsfinder.main.getHttpsEverywhere"),
+            accessKey: strings.getString("httpsfinder.main.getHttpsEverywhereKey"),
+            popup: null,
+            callback: getHE  //Why is this needed? Setting the callback directly automatically calls when there is a parameter
+        }];
+       
+        var nb = currentWindow.gBrowser.getNotificationBox(currentWindow.gBrowser.getBrowserForDocument(aDocument));
+        nb.appendNotification(strings.getString("httpsfinder.main.NoHttpsEverywhere"),
+            'httpsfinder-getHE','chrome://httpsfinder/skin/httpsAvailable.png',
+            nb.PRIORITY_INFO_LOW, installButtons);
     };
 
     //See previous comment (in installButtons)
     var getHE = function(){
-        httpsfinder.browserOverlay.openWebsiteInTab("http://www.eff.org/https-everywhere/");
+        this.openWebsiteInTab("http://www.eff.org/https-everywhere/");
     };
 
     //HTTPS Everywhere is installed. Prompt for restart
     var promptForRestart = function() {
-        var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
+        var nb = currentWindow.gBrowser.getNotificationBox(currentWindow.gBrowser.getBrowserForDocument(aDocument));
         var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
         .getService(Components.interfaces.nsIPrivateBrowsingService);
 
-        var key = "httpsfinder-restart" + gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument);
+        var key = "httpsfinder-restart" + currentWindow.gBrowser.getBrowserIndexForDocument(currentWindow.gBrowser.contentDocument);
 
         var restartButtons = [{
-                label: httpsfinder.strings.getString("httpsfinder.main.restartYes"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.restartYesKey"),
-                popup: null,
-                callback: httpsfinder.browserOverlay.restartNow
-            }];
+            label: strings.getString("httpsfinder.main.restartYes"),
+            accessKey: strings.getString("httpsfinder.main.restartYesKey"),
+            popup: null,
+            callback: restartNow
+        }];
 
         if (!pbs.privateBrowsingEnabled)
-            nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.restartPrompt"),
-        key,'chrome://httpsfinder/skin/httpsAvailable.png',
-        nb.PRIORITY_INFO_LOW, restartButtons);
+            nb.appendNotification(strings.getString("httpsfinder.main.restartPrompt"),
+                key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                nb.PRIORITY_INFO_LOW, restartButtons);
         else
-            nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.restartPromptPrivate"),
-        key,'chrome://httpsfinder/skin/httpsAvailable.png',
-        nb.PRIORITY_INFO_LOW, restartButtons);
+            nb.appendNotification(strings.getString("httpsfinder.main.restartPromptPrivate"),
+                key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                nb.PRIORITY_INFO_LOW, restartButtons);
 
-        if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
+        if(this.prefs.getBoolPref("dismissAlerts"))
             setTimeout(function(){
-                httpsfinder.browserOverlay.removeNotification(key)
-            },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-restart');
+                removeNotification(key)
+            },this.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-restart');
+    };
+
+    //Remove notification called from setTimeout(). Looks through each tab for an alert with mataching key. Removes it, if exists.
+    function removeNotification(key)
+    {
+        var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+        .getService(Components.interfaces.nsIWindowMediator);
+
+        var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
+        //key is a formatted as alert type (e.g. "httpsfinder-restart"), with the tab index concatinated to the end, httpsfinder-restart2).
+        var browsers = currentWindow.gBrowser.browsers;
+        for (var i = 0; i < browsers.length; i++)
+            if (item = currentWindow.window.getBrowser().getNotificationBox(browsers[i]).getNotificationWithValue(key))
+                if(i == currentWindow.gBrowser.getBrowserIndexForDocument(currentWindow.gBrowser.contentDocument))
+                    currentWindow.window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);
     };
 };

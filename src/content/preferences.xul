@@ -62,8 +62,6 @@
                                         <label tooltip="silentModeTip" id="httpsfoundpromptLbl" control="httpsfoundprompt"
                                         value="Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)" />
                                     </row>
-
-
                                     <row>
                                         <checkbox id="autoforward" preference="httpsfinder-autoforward" onclick="httpsfinder.preferences.autoForwardToggle(document)"/>
                                         <label id="autoforwardLabel" control="autoforward" value="&httpsfinder.preference.autoForward;"/>
@@ -90,7 +88,7 @@
                                 <row>
                                     <button id="modifyRule" label="&httpsfinder.preference.whitelistModify;" oncommand="httpsfinder.preferences.ModifyWhitelistRule(document)" disabled="true"/>
                                     <button id="removeRule" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.RemoveWhitelistRule(document)" disabled="true"/>
-                                    <button id="resetWhitelist" label="&httpsfinder.menu.refresh;" oncommand="httpsfinder.preferences.resetWhitelist();"/>
+                                    <!-- <button id="resetWhitelist" label="&httpsfinder.menu.refresh;" oncommand="httpsfinder.preferences.resetWhitelist();"/> -->
                                 </row>
                             </groupbox>
                             <separator class="thin"/>

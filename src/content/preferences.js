@@ -18,7 +18,6 @@ httpsfinder.preferences = {
             document.getElementById('autoforwardLabel').disabled = false;
             document.getElementById('whitelistURL').disabled = false;
             document.getElementById('whitelistURLLabel').disabled = false;
-            document.getElementById('resetWhitelist').disabled = false;
             document.getElementById('whitelist').disabled = false;
         }
         else{
@@ -28,18 +27,15 @@ httpsfinder.preferences = {
             document.getElementById('autoforwardLabel').disabled = true;
             document.getElementById('whitelistURL').disabled = true;
             document.getElementById('whitelistURLLabel').disabled = true;
-            document.getElementById('resetWhitelist').disabled = true;
-            document.getElementById('modifyRule').disabled = true;
-            document.getElementById('removeRule').disabled = true;
             document.getElementById('whitelist').disabled = true;
         }
 
         var autoforward = document.getElementById('autoforward');
-        if(autoforward.checked){
+        if(autoforward.checked || !enable.checked){
             document.getElementById('httpsfoundprompt').disabled = true;
             document.getElementById('httpsfoundpromptLbl').disabled = true;
         }
-        else{
+        else if(!autoforward.checked && enable.checked){
             document.getElementById('httpsfoundprompt').disabled = false;
             document.getElementById('httpsfoundpromptLbl').disabled = false;
         }
@@ -334,24 +330,32 @@ httpsfinder.preferences = {
             document.getElementById('autoforwardLabel').disabled = true;
             document.getElementById('whitelistURL').disabled = true;
             document.getElementById('whitelistURLLabel').disabled = true;
-            document.getElementById('resetWhitelist').disabled = true;
             document.getElementById('modifyRule').disabled = true;
             document.getElementById('removeRule').disabled = true;
             document.getElementById('whitelist').disabled = true;
-            document.getElementById('httpsfoundprompt').disabled = true;
-            document.getElementById('httpsfoundpromptLbl').disabled = true;
+
+            if(autoforward.checked){
+                document.getElementById('httpsfoundprompt').disabled = true;
+                document.getElementById('httpsfoundpromptLbl').disabled = true;
+            }
+            else{
+                document.getElementById('httpsfoundprompt').disabled = false;
+                document.getElementById('httpsfoundpromptLbl').disabled = false;
+            }
         }
         else{
-            document.getElementById('httpsfoundprompt').disabled = false;
-            document.getElementById('httpsfoundpromptLbl').disabled = false;
             document.getElementById('noruleprompt').disabled = false;
             document.getElementById('promptLabel').disabled = false;
             document.getElementById('autoforward').disabled = false;
             document.getElementById('autoforwardLabel').disabled = false;
             document.getElementById('whitelistURL').disabled = false;
             document.getElementById('whitelistURLLabel').disabled = false;
-            document.getElementById('resetWhitelist').disabled = false;
             document.getElementById('whitelist').disabled = false;
+            
+            if(!autoforward.checked){
+                document.getElementById('httpsfoundprompt').disabled = false;
+                document.getElementById('httpsfoundpromptLbl').disabled = false;
+            }
 
             var theList = document.getElementById('whitelist');
 
