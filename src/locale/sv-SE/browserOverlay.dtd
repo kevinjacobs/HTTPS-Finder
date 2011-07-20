@@ -62,3 +62,14 @@
 <!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
 <!ENTITY httpsfinder.translation.swedish "- Svenska (Mikael Hiort af OrnÃ¤s)">
 <!ENTITY httpsfinder.translation.spanish "- Spanska (strel)">
+
+<!-- New in 0.73 - Will need to be translated -->
+<!ENTITY httpsfinder.preference.createRule "Create Rule">
+<!ENTITY httpsfinder.preference.sslReport "Generate SSL Report">
+<!ENTITY httpsfinder.preference.clearResults "Clear All Results">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS Result">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Session discovery results">
+<!ENTITY httpsfinder.preference.autoDismissTitle "Auto-dismiss alerts after (seconds)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "Duration (seconds)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)">

@@ -71,6 +71,3 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Duration (seconds)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)">
-
-
-
