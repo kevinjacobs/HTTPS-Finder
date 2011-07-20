@@ -199,7 +199,7 @@ httpsfinder.detect = {
         if(httpsfinder.prefs.getBoolPref("autoforward"))
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
         else if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1 &&
-            !httpsfinder.prefs.getBoolPref("httpsfoundalert")){
+            httpsfinder.prefs.getBoolPref("httpsfoundalert")){
             var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
 
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
@@ -272,7 +272,7 @@ httpsfinder.detect = {
         //If auto-enforce is disabled, if host is not in tempNoAlerts (rule already saved)
         //and HTTPS Found alerts are enabled, alert user of good HTTPS
         else  if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1 &&
-            !httpsfinder.prefs.getBoolPref("httpsfoundalert")){
+            httpsfinder.prefs.getBoolPref("httpsfoundalert")){
             if(httpsfinder.detect.hostsMatch(aBrowser.contentDocument.baseURIObject.host.toLowerCase(),host)){
 
                 var nb = gBrowser.getNotificationBox(aBrowser);
@@ -694,15 +694,17 @@ httpsfinder.browserOverlay = {
     writeRule: function(){
         var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
         .getService(Components.interfaces.nsIEffectiveTLDService);
+
         try{
+            //Try retrieving the pre-redirect host from the redirected array
             var topLevel = "." + eTLDService.getPublicSuffix(httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)][1]);
             var hostname = httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)][1].host.toLowerCase();
         }
         catch(e){
+            //If that fails (It shouldn't), grab the currentURI
             hostname = gBrowser.currentURI.host.toLowerCase();
             topLevel =  "." + eTLDService.getPublicSuffixFromHost(hostname);
         }
-        var title = "";
 
         httpsfinder.sharedWriteRule(hostname, topLevel);
     },

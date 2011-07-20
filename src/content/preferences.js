@@ -322,6 +322,7 @@ httpsfinder.preferences = {
 
     EnableChecked: function(){
         var enable = document.getElementById('enable');
+        var autoforward = document.getElementById('autoforward');
 
         if(enable.checked){
             document.getElementById('noruleprompt').disabled = true;
@@ -434,5 +435,22 @@ httpsfinder.preferences = {
         reportUrl += "&hideResults=on";
 
         httpsfinder.preferences.openWebsiteInTab(reportUrl);
+    },
+
+
+    writeRule: function(){
+        var theList = document.getElementById('cacheList');
+        theList.ensureIndexIsVisible(theList.selectedIndex);
+        var selectedItems = theList.selectedItems;
+
+        var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
+        .getService(Components.interfaces.nsIEffectiveTLDService);
+
+
+        var hostname = selectedItems[0].firstChild.getAttribute("label");
+        var topLevel = "." + eTLDService.getPublicSuffixFromHost(hostname);
+
+        httpsfinder.preferences.sharedWriteRule(hostname, topLevel);
     }
+
 };
