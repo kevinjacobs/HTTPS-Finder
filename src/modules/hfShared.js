@@ -20,7 +20,7 @@ var redirectedTab =  [[]]; //Tab info for pre-redirect URLs.
 function popupNotify(title,body){
     try{
         var alertsService = Components.classes["@mozilla.org/alerts-service;1"]
-            .getService(Components.interfaces.nsIAlertsService);
+        .getService(Components.interfaces.nsIAlertsService);
         alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
             title, body, false, "", null);
     }
@@ -42,15 +42,13 @@ function openWebsiteInTab(addr){
 //Remove notification called from setTimeout(). Looks through each tab for an alert with mataching key. Removes it, if exists.
 function removeNotification(key){
     var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-    .getService(Components.interfaces.nsIWindowMediator);
+        .getService(Components.interfaces.nsIWindowMediator);
 
-    var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
-    //key is a formatted as alert type (e.g. "httpsfinder-restart"), with the tab index concatinated to the end, httpsfinder-restart2).
-    var browsers = currentWindow.gBrowser.browsers;
-    for (var i = 0; i < browsers.length; i++)
-        if (item = currentWindow.window.getBrowser().getNotificationBox(browsers[i]).getNotificationWithValue(key))
-            if(i == currentWindow.gBrowser.getBrowserIndexForDocument(currentWindow.gBrowser.contentDocument))
-                currentWindow.window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);
+    var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");    
+
+    var browser = currentWindow.gBrowser.selectedBrowser;
+    if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key))
+        window.getBrowser().getNotificationBox(browser).removeNotification(item);
 };
 
 /*
@@ -198,11 +196,11 @@ function restartNow(){
 function alertRuleFinished(aDocument){ 
     //Check firefox version and use appropriate method
     var Application = Components.classes["@mozilla.org/fuel/application;1"]
-        .getService(Components.interfaces.fuelIApplication);
+    .getService(Components.interfaces.fuelIApplication);
     var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-        .getService(Components.interfaces.nsIWindowMediator);
+    .getService(Components.interfaces.nsIWindowMediator);
     var prefService = Components.classes["@mozilla.org/preferences-service;1"]
-        .getService(Components.interfaces.nsIPrefService);
+    .getService(Components.interfaces.nsIPrefService);
 
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
     var strings = currentWindow.document.getElementById("httpsfinderStrings");
@@ -254,8 +252,6 @@ function alertRuleFinished(aDocument){
         var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
         .getService(Components.interfaces.nsIPrivateBrowsingService);
 
-        var key = "httpsfinder-restart" + currentWindow.gBrowser.getBrowserIndexForDocument(currentWindow.gBrowser.contentDocument);
-
         var restartButtons = [{
             label: strings.getString("httpsfinder.main.restartYes"),
             accessKey: strings.getString("httpsfinder.main.restartYesKey"),
@@ -265,16 +261,16 @@ function alertRuleFinished(aDocument){
 
         if (pbs.privateBrowsingEnabled)
             nb.appendNotification(strings.getString("httpsfinder.main.restartPromptPrivate"),
-                key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                "httpsfinder-restart",'chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, restartButtons);
         else
             nb.appendNotification(strings.getString("httpsfinder.main.restartPrompt"),
-                key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                "httpsfinder-restart",'chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, restartButtons);
 
         if(prefs.getBoolPref("dismissAlerts"))
             currentWindow.setTimeout(function(){
-                removeNotification(key)
+                removeNotification("httpsfinder-restart")
             },prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-restart');
     };   
 };

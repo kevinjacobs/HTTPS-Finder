@@ -200,16 +200,14 @@ httpsfinder.detect = {
             httpsfinder.browserOverlay.redirectAuto(aBrowser, request);
         else if(httpsfinder.results.tempNoAlerts.indexOf(request.URI.host) == -1 &&
             httpsfinder.prefs.getBoolPref("httpsfoundalert")){
-            var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
 
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-                key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_LOW, sslFoundButtons);
-
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.removeNotification(key)
+                    httpsfinder.browserOverlay.removeNotification("httpsfinder-https-found")
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-https-found');
         }
     },
@@ -292,16 +290,15 @@ httpsfinder.detect = {
                     popup: null,
                     callback: httpsfinder.browserOverlay.redirect
                 }];
-                var key = "httpsfinder-https-found" + gBrowser.getBrowserIndexForDocument(aBrowser.contentDocument);
-                
+
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-                    key,'chrome://httpsfinder/skin/httpsAvailable.png',
+                    "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, sslFoundButtons);
                 httpsfinder.browserOverlay.removeFromWhitelist(aBrowser.contentDocument, null);
 
                 if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                     setTimeout(function(){
-                        httpsfinder.browserOverlay.removeNotification(key)
+                        httpsfinder.browserOverlay.removeNotification("httpsfinder-https-found")
                     },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-https-found');
             }
             else{
@@ -449,9 +446,7 @@ httpsfinder.browserOverlay = {
         var alerts = ["httpsfinder-restart", "httpsfinder-ssl-enforced", "httpsfinder-https-found"];
         
         for(var i=0; i < alerts.length; i++){
-            //Form 3 keys, one of each type for the given tab index (post-tab change index)
-            var key = alerts[i] + gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument);
-
+            var key = alerts[i];
             //If the tab contains that alert, set a timeout and removeNotification() for the auto-dismiss time.
             if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key)){
                 setTimeout(function(){
@@ -654,21 +649,18 @@ httpsfinder.browserOverlay = {
                 callback: httpsfinder.browserOverlay.writeRule
             }];
 
-            //Key used for alert timeouts - format is "keytype" + tabIndex (e.g. "httpsfinder-ssl-enforced2")
-            var key = "httpsfinder-ssl-enforced" + gBrowser.getBrowserIndexForDocument(aDocument);
-
             if(httpsfinder.prefs.getBoolPref("autoforward"))
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.autoForwardRulePrompt"),
-                    key, 'chrome://httpsfinder/skin/httpsAvailable.png',
+                    "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, saveRuleButtons);
             else
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.saveRulePrompt"),
-                    key, 'chrome://httpsfinder/skin/httpsAvailable.png',
+                    "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
                     nb.PRIORITY_INFO_LOW, saveRuleButtons);
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.removeNotification(key)
+                    httpsfinder.browserOverlay.removeNotification("httpsfinder-ssl-enforced")
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-ssl-enforced');
         }
     },
@@ -709,15 +701,12 @@ httpsfinder.browserOverlay = {
         httpsfinder.sharedWriteRule(hostname, topLevel);
     },
 
-    //Remove notification called from setTimeout(). Looks through each tab for an alert with mataching key. Removes it, if exists.
+    //Remove notification called from setTimeout(). 
     removeNotification: function(key)
     {
-        //key is a formatted as alert type (e.g. "httpsfinder-restart"), with the tab index concatinated to the end, httpsfinder-restart2).
-        var browsers = gBrowser.browsers;
-        for (var i = 0; i < browsers.length; i++)
-            if (item = window.getBrowser().getNotificationBox(browsers[i]).getNotificationWithValue(key))
-                if(i == gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument))
-                    window.getBrowser().getNotificationBox(browsers[i]).removeNotification(item);                
+        var browser = gBrowser.selectedBrowser;
+        if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key))
+                window.getBrowser().getNotificationBox(browser).removeNotification(item);
     },
 
     //Adds to session whitlelist (not database)
