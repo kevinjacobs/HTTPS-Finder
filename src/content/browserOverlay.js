@@ -218,7 +218,9 @@ httpsfinder.detect = {
         var host = sslTest.channel.URI.host.toLowerCase();
         var request = sslTest.channel;
 
-        if(httpsfinder.detect.cacheExempt.indexOf(host) != -1){
+        var cacheExempt = (httpsfinder.detect.cacheExempt.indexOf(host) != -1) ? true : false;
+
+        if(cacheExempt){
             if(httpsfinder.debug)
                 dump("httpsfinder removing " + host + " from whitelist (exempt from saving results on this host)\n");
             httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
@@ -246,21 +248,19 @@ httpsfinder.detect = {
 
         //Push host to good SSL list (remember result and skip repeat detection)
         if(httpsfinder.results.goodSSL.indexOf(host) == -1){
-            httpsfinder.browserOverlay.removeFromWhitelist(null,host);
-            httpsfinder.results.goodSSL.push(host);
-            if(httpsfinder.debug)
-                dump("Pushing " + host + " to good SSL list\n");
-            if(httpsfinder.browserOverlay.isWhitelisted(host))
-                httpsfinder.browserOverlay.removeFromWhitelist(null, host);
+            if(httpsfinder.debug) dump("Pushing " + host + " to good SSL list\n");
+
+            httpsfinder.browserOverlay.removeFromWhitelist(null,host);  
+            if(!cacheExempt)
+                httpsfinder.results.goodSSL.push(host);
         }
         else if(!httpsfinder.results.goodSSL.indexOf(aBrowser.contentDocument.baseURIObject.host.toLowerCase()) == -1){
-            let host = aBrowser.contentDocument.baseURIObject.host.toLowerCase();
-            httpsfinder.browserOverlay.removeFromWhitelist(null,host);
-            httpsfinder.results.goodSSL.push(host);
-            if(httpsfinder.debug) dump("Pushing " + host + " to good SSL list.\n");
+            var altHost = aBrowser.contentDocument.baseURIObject.host.toLowerCase();
+            if(httpsfinder.debug) dump("Pushing " + altHost + " to good SSL list.\n");
 
-            if(httpsfinder.browserOverlay.isWhitelisted(aBrowser.contentDocument.baseURIObject.host.toLowerCase()))
-                httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
+            httpsfinder.browserOverlay.removeFromWhitelist(null,altHost);
+            if(!cacheExempt)
+                httpsfinder.results.goodSSL.push(altHost);
         }
 
         //Check setting and automatically enforce HTTPS
@@ -706,7 +706,7 @@ httpsfinder.browserOverlay = {
     {
         var browser = gBrowser.selectedBrowser;
         if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key))
-                window.getBrowser().getNotificationBox(browser).removeNotification(item);
+            window.getBrowser().getNotificationBox(browser).removeNotification(item);
     },
 
     //Adds to session whitlelist (not database)

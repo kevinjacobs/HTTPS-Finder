@@ -6,7 +6,7 @@
 <!--End prefWindow sizing-->
 
 <!ENTITY httpsfinder.version "0.73d2">
-<!ENTITY httpsfinder.buildDate "25 Jul 2011">
+<!ENTITY httpsfinder.buildDate "26 Jul 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
