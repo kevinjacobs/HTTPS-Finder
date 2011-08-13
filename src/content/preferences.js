@@ -5,7 +5,6 @@
 if (!httpsfinder) var httpsfinder = {};
 
 httpsfinder.preferences = {
-    viewMode: "good",
 
     loadWindowObjects: function(){
         Components.utils.import("resource://hfShared/hfShared.js", httpsfinder.preferences);
@@ -39,7 +38,7 @@ httpsfinder.preferences = {
             document.getElementById('httpsfoundprompt').disabled = false;
             document.getElementById('httpsfoundpromptLbl').disabled = false;
         }
-           
+
         httpsfinder.preferences.LoadWhitelist();
         httpsfinder.preferences.loadResults();
     },
@@ -47,63 +46,40 @@ httpsfinder.preferences = {
     loadResults: function(){
         var theList = document.getElementById('cacheList');
 
+        var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
+        .getService(Components.interfaces.nsIPrivateBrowsingService);
+
+        if(pbs.privateBrowsingEnabled){
+            let row = document.createElement('listitem');
+            let cell = document.createElement('listcell');
+            var strings = document.getElementById("httpsfinderStrings");
+            cell.setAttribute('label', strings.getString("httpsfinder.preference.noResultsPB"));
+            row.appendChild(cell);
+            theList.appendChild(row);
+            theList.disabled = true;
+            return;
+        }
+
         for (var i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++)
         {
+            //Add domain name to row
             var row = document.createElement('listitem');
             var cell = document.createElement('listcell');
             cell.setAttribute('label', httpsfinder.preferences.results.goodSSL[i]);
             row.appendChild(cell);
 
-            cell = document.createElement('listcell');
-            cell.setAttribute('label',  "Good" );
-            row.appendChild(cell);
+            //Add check mark to row
+            var checkIcon = document.createElement('image');
+            checkIcon.setAttribute('src', 'chrome://httpsfinder/skin/goodSSL.png');
+            var hbox = document.createElement('hbox');
+            hbox.appendChild(checkIcon);
+            hbox.setAttribute('pack', 'center');
+            row.appendChild(hbox);
 
+            //Add row to groupbox
             theList.appendChild(row);
         }
     },
-
-    cycleResultListView: function(){
-        var theList = document.getElementById('cacheList');
-        while(theList.itemCount > 0)
-            for(var i=0; i < theList.itemCount; i++)
-                theList.removeItemAt(i);
-        
-        if(httpsfinder.preferences.viewMode == "good"){
-            for(var j = httpsfinder.preferences.results.permWhitelistLength;
-                j < httpsfinder.preferences.results.whitelist.length; j++){
-                var row2 = document.createElement('listitem');
-                var cell2 = document.createElement('listcell');
-                cell2.setAttribute('label', httpsfinder.preferences.results.whitelist[j]);
-                row2.appendChild(cell2);
-
-                cell2 = document.createElement('listcell');
-                cell2.setAttribute('label',  "Bad" );
-                row2.appendChild(cell2);
-
-                theList.appendChild(row2);
-            }
-            httpsfinder.preferences.viewMode = "bad";
-            document.getElementById('cycleResultView').label = "See Good Results"
-        }
-        else if(httpsfinder.preferences.viewMode == "bad"){
-            for (var i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++)
-            {
-                var row = document.createElement('listitem');
-                var cell = document.createElement('listcell');
-                cell.setAttribute('label', httpsfinder.preferences.results.goodSSL[i]);
-                row.appendChild(cell);
-
-                cell = document.createElement('listcell');
-                cell.setAttribute('label',  "Good" );
-                row.appendChild(cell);
-
-                theList.appendChild(row);
-            }
-            httpsfinder.preferences.viewMode = "good";
-            document.getElementById('cycleResultView').label = "See Bad Results"
-        }
-    },
-
 
     //Import whitelist and populate listbox with rules
     LoadWhitelist: function(){
@@ -212,21 +188,12 @@ httpsfinder.preferences = {
     removeCacheItem: function(){
         var theList = document.getElementById('cacheList');
         theList.ensureIndexIsVisible(theList.selectedIndex);
-        
+
         var selectedItems = theList.selectedItems;
 
-        if(httpsfinder.preferences.viewMode == "good"){
-            for(let i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++){
-                if(httpsfinder.preferences.results.goodSSL[i] == selectedItems[0].firstChild.getAttribute("label"))
-                    httpsfinder.preferences.results.goodSSL.splice(i,1);
-            }
-        }
-        else if(httpsfinder.preferences.viewMode == "bad"){
-            for(let i = 0; i < httpsfinder.preferences.results.whitelist.length; i++){
-                if(httpsfinder.preferences.results.whitelist[i] == selectedItems[0].firstChild.getAttribute("label"))
-                    httpsfinder.preferences.results.whitelist.splice(i,1);           
-
-            }
+        for(let i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++){
+            if(httpsfinder.preferences.results.goodSSL[i] == selectedItems[0].firstChild.getAttribute("label"))
+                httpsfinder.preferences.results.goodSSL.splice(i,1);
         }
 
         while(theList.itemCount > 0)
@@ -352,7 +319,7 @@ httpsfinder.preferences = {
             document.getElementById('whitelistURL').disabled = false;
             document.getElementById('whitelistURLLabel').disabled = false;
             document.getElementById('whitelist').disabled = false;
-            
+
             if(!autoforward.checked){
                 document.getElementById('httpsfoundprompt').disabled = false;
                 document.getElementById('httpsfoundpromptLbl').disabled = false;
@@ -405,8 +372,9 @@ httpsfinder.preferences = {
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
 
         var strings = document.getElementById("httpsfinderStrings");
+        httpsfinder.preference.noResultsPB
         httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
-    
+
         httpsfinder.preferences.results.goodSSL.length = 0;
         httpsfinder.preferences.results.goodSSL = [];
         httpsfinder.preferences.results.whitelist.length = 0;
@@ -419,9 +387,6 @@ httpsfinder.preferences = {
             for(var i=0; i < theList.itemCount; i++)
                 theList.removeItemAt(i);
 
-        httpsfinder.preferences.viewMode = "good";
-        document.getElementById('cycleResultView').label = "See Bad Results"
-        
         httpsfinder.preferences.loadResults();
     },
 
@@ -429,7 +394,7 @@ httpsfinder.preferences = {
         var theList = document.getElementById('cacheList');
         theList.ensureIndexIsVisible(theList.selectedIndex);
         var selectedItems = theList.selectedItems;
-        
+
         var reportUrl = "https://www.ssllabs.com/ssldb/analyze.html?d=";
         reportUrl += selectedItems[0].firstChild.getAttribute("label");
         reportUrl += "&hideResults=on";

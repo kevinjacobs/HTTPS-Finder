@@ -153,8 +153,8 @@
                                                     <listbox seltype="single" flex="2" id="cacheList" width="445"
                                                             onselect="httpsfinder.preferences.ResultSelect(document)">
                                                         <listhead>
-                                                            <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="240"/>
-                                                            <listheader label="&httpsfinder.preference.listHeaderHTTPS;" width="100"/>
+                                                            <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="210"/>
+                                                            <listheader label="&httpsfinder.preference.listHeaderHTTPS;"  style="padding: 4"/>
                                                         </listhead>
                                                         <listcols>
                                                             <listcol flex="1"/>

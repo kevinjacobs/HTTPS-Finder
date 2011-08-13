@@ -9,7 +9,8 @@
 if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
     strings: null, //Strings object for httpsfinder strings
-    debug: null //verbose logging bool
+    debug: null, //verbose logging bool
+    pbs: null//check private browsing status before saving detection results
 };
 
 
@@ -20,7 +21,7 @@ httpsfinder.detect = {
     cacheExempt: ["www.google.com", "translate.google.com"],
 
     QueryInterface: function(aIID){
-        if (aIID.equals(Components.interfaces.nsIObserver) 
+        if (aIID.equals(Components.interfaces.nsIObserver)
             || aIID.equals(Components.interfaces.nsISupports))
             return this;
         throw Components.results.NS_NOINTERFACE;
@@ -64,11 +65,12 @@ httpsfinder.detect = {
                     }
                 }catch(e){
                     if(e.name == 'NS_ERROR_FAILURE')
-                        Components.utils.reportError("https finder cannot match URI to browser request.\n");
+                        Components.utils.reportError("HTTPS Finder: cannot match URI to browser request.\n");
                 }
 
                 //Push to whitelist so we don't spam with multiple detection requests - may be removed later depending on result
-                if(!httpsfinder.browserOverlay.isWhitelisted(host)){
+                if(!httpsfinder.browserOverlay.isWhitelisted(host) &&
+                    !httpsfinder.pbs.privateBrowsingEnabled){
                     httpsfinder.results.whitelist.push(host);
                     if(httpsfinder.debug){
                         dump("httpsfinder Blocking detection on " + request.URI.host + " until OK response received\n");
@@ -150,11 +152,11 @@ httpsfinder.detect = {
         var flagsArr = [];
 
         //Look for the two load flags that indicate a page load (ignore others)
-        if (flags & Components.interfaces.nsIChannel.LOAD_DOCUMENT_URI) 
-            flagsArr.push("LOAD_DOCUMENT_URI");        
-        if (flags & Components.interfaces.nsIChannel.LOAD_INITIAL_DOCUMENT_URI) 
+        if (flags & Components.interfaces.nsIChannel.LOAD_DOCUMENT_URI)
+            flagsArr.push("LOAD_DOCUMENT_URI");
+        if (flags & Components.interfaces.nsIChannel.LOAD_INITIAL_DOCUMENT_URI)
             flagsArr.push("LOAD_INITIAL_DOCUMENT_URI");
-        
+
         return flagsArr;
     },
 
@@ -247,14 +249,15 @@ httpsfinder.detect = {
         //If the code gets to this point, the HTTPS is good.
 
         //Push host to good SSL list (remember result and skip repeat detection)
-        if(httpsfinder.results.goodSSL.indexOf(host) == -1){
+        if(httpsfinder.results.goodSSL.indexOf(host) == -1 && !httpsfinder.pbs.privateBrowsingEnabled){
             if(httpsfinder.debug) dump("Pushing " + host + " to good SSL list\n");
 
-            httpsfinder.browserOverlay.removeFromWhitelist(null,host);  
+            httpsfinder.browserOverlay.removeFromWhitelist(null,host);
             if(!cacheExempt)
                 httpsfinder.results.goodSSL.push(host);
         }
-        else if(!httpsfinder.results.goodSSL.indexOf(aBrowser.contentDocument.baseURIObject.host.toLowerCase()) == -1){
+        else if(!httpsfinder.results.goodSSL.indexOf(aBrowser.contentDocument.baseURIObject.host.toLowerCase()) == -1
+            && !httpsfinder.pbs.privateBrowsingEnabled){
             var altHost = aBrowser.contentDocument.baseURIObject.host.toLowerCase();
             if(httpsfinder.debug) dump("Pushing " + altHost + " to good SSL list.\n");
 
@@ -340,7 +343,7 @@ httpsfinder.detect = {
                         if(httpsfinder.debug)
                             dump("httpsfinder testCertificate: Cert OK (on "+
                                 channel.URI.host.toLowerCase()+ ")\n");
-                        break;                  
+                        break;
                     default:
                         secure = false;
                         break;
@@ -349,7 +352,7 @@ httpsfinder.detect = {
         }
         catch(err){
             secure = false;
-            Components.utils.reportError("httpsfinder testCertificate error: " + err.toString() + "\n");
+            Components.utils.reportError("HTTPS Finder: testCertificate error: " + err.toString() + "\n");
         }
         return secure;
     }
@@ -365,31 +368,69 @@ httpsfinder.browserOverlay = {
     //Window start up - set listeners, read in whitelist, etc
     init: function(){
         Components.utils.import("resource://hfShared/hfShared.js", httpsfinder);
-       
+
         var prefs = Components.classes["@mozilla.org/preferences-service;1"]
         .getService(Components.interfaces.nsIPrefBranch);
         httpsfinder.prefs =  prefs.getBranch("extensions.httpsfinder.");
-        
+
         if(!httpsfinder.prefs.getBoolPref("enable"))
             return;
 
         //pref change observer
         httpsfinder.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
         httpsfinder.prefs.addObserver("", this, false);
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /*
+         *IN PROGRESS - ADDING HISTORY LISTENER
+         */
+
+//        var hs = Components.classes["@mozilla.org/browser/nav-history-service;1"].
+//        getService(Ci.nsINavHistoryService);
+//
+//        var historyObserver = {
+//            onBeginUpdateBatch: function() {},
+//            onEndUpdateBatch: function() {
+//                alert("batch operation completed");
+//            }, //Clear recent
+//            onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
+//            onTitleChanged: function(aURI, aPageTitle) {},
+//            onBeforeDeleteURI: function(aURI) {},
+//            onDeleteURI: function(aURI) {
+//                alert("Deleted " + aURI.asciiSpec);
+//            }, //Deleted specific (warning: Called for each uri in batch operations too!)
+//            onClearHistory: function() {
+//                httpsfinder.browserOverlay.resetWhitelist();
+//            }, //Clear all
+//            onPageChanged: function(aURI, aWhat, aValue) {},
+//            onDeleteVisits: function() {},
+//            QueryInterface: XPCOMUtils.generateQI([Ci.nsINavHistoryObserver])
+//        };
+//
+//        hs.addObserver(historyObserver, false);
+
+
+
+
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Used for auto-dismissing alerts (auto-dismiss timer is started when user clicks on a tab, so they don't miss background alerts)
+        var container = gBrowser.tabContainer;
+        container.addEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
 
         //Listener is used for displaying HTTPS alerts after a page is loaded
         var appcontent = document.getElementById("appcontent");
         if(appcontent)
             appcontent.addEventListener("load", httpsfinder.browserOverlay.onPageLoad, true);
 
+        //Used to check private browsing status before caching detection results
+        httpsfinder.pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
+        .getService(Components.interfaces.nsIPrivateBrowsingService);
+
         //Register HTTP observer for HTTPS detection
         httpsfinder.detect.register();
-
-        //Used for auto-dismissing alerts (auto-dismiss timer is started when user clicks on a tab, so they don't miss background alerts)
-        if(httpsfinder.prefs.getBoolPref("dismissAlerts")){
-            var container = gBrowser.tabContainer;
-            container.addEventListener("TabSelect", httpsfinder.browserOverlay.tabChanged, false);
-        }
 
         httpsfinder.strings = document.getElementById("httpsfinderStrings");
         if(httpsfinder.prefs == null || httpsfinder.strings == null){
@@ -419,7 +460,7 @@ httpsfinder.browserOverlay = {
             //NS_ERROR_FAILURE is thrown when we try to recreate a table (May be too generic though...)
             //--Need to change sql command to 'If not exists' to avoid this.
             if(e.name != 'NS_ERROR_FAILURE')
-                Components.utils.reportError("httpsfinder initialize error " + e + "\n");
+                Components.utils.reportError("HTTPS Finder: initialize error " + e + "\n");
         }
         finally{
             mDBConn.close();
@@ -439,12 +480,19 @@ httpsfinder.browserOverlay = {
         }
     },
 
+    onHistoryPurge: function(event){
+        alert("history purged");
+    },
+
     //Auto-dismiss alert timers are started after the user clicks over to the given tab, so the
     //user doesn't miss background alerts that are dismissed before they switch to the tab.
     tabChanged: function(event){
+        if(!httpsfinder.prefs.getBoolPref("dismissAlerts"))
+            return;
+
         var browser = gBrowser.selectedBrowser;
         var alerts = ["httpsfinder-restart", "httpsfinder-ssl-enforced", "httpsfinder-https-found"];
-        
+
         for(var i=0; i < alerts.length; i++){
             var key = alerts[i];
             //If the tab contains that alert, set a timeout and removeNotification() for the auto-dismiss time.
@@ -537,8 +585,8 @@ httpsfinder.browserOverlay = {
                 handleCompletion: function(aReason){
                     //differentiate between permanent and temp whitelist items - permanent items are the first
                     // 'x' entries in the whitelist array. Temp items are added later as x+1....x+n
-                    httpsfinder.results.permWhitelistLength = httpsfinder.results.whitelist.length; 
-                    
+                    httpsfinder.results.permWhitelistLength = httpsfinder.results.whitelist.length;
+
                     if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         dump("httpsfinder database error " + aReason.message + "\n");
                     else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))
@@ -547,7 +595,7 @@ httpsfinder.browserOverlay = {
             });
         }
         catch(e){
-            Components.utils.reportError("httpsfinder load whitelist " + e.name + "\n");
+            Components.utils.reportError("HTTPS Finder: load whitelist " + e.name + "\n");
         }
         finally{
             statement.reset();
@@ -605,14 +653,15 @@ httpsfinder.browserOverlay = {
                 },
                 handleCompletion: function(aReason){
                     if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
-                        if(!httpsfinder.browserOverlay.isWhitelisted(hostname)){
+                        if(!httpsfinder.browserOverlay.isWhitelisted(hostname) &&
+                            !httpsfinder.pbs.privateBrowsingEnabled){
                             httpsfinder.results.whitelist.push(hostname);
                         }
                 }
             });
         }
         catch(e){
-            Components.utils.reportError("httpsfinder addToWhitelist " + e.name + "\n");
+            Components.utils.reportError("HTTPS Finder: addToWhitelist " + e.name + "\n");
         }
         finally{
             statement.reset();
@@ -701,7 +750,7 @@ httpsfinder.browserOverlay = {
         httpsfinder.sharedWriteRule(hostname, topLevel);
     },
 
-    //Remove notification called from setTimeout(). 
+    //Remove notification called from setTimeout().
     removeNotification: function(key)
     {
         var browser = gBrowser.selectedBrowser;
@@ -731,7 +780,7 @@ httpsfinder.browserOverlay = {
                 gBrowser.currentURI.host.toLowerCase())
                 hostname = gBrowser.currentURI.host.toLowerCase();
         }
-        if(!httpsfinder.browserOverlay.isWhitelisted(hostname))
+        if(!httpsfinder.browserOverlay.isWhitelisted(hostname) && !httpsfinder.pbs.privateBrowsingEnabled)
             httpsfinder.results.whitelist.push(hostname);
     },
 
@@ -747,9 +796,10 @@ httpsfinder.browserOverlay = {
         if(sinceLastReset < 2500 && sinceLastReset > 200){
             for(var i=0; i<httpsfinder.browserOverlay.recent.length; i++){
                 if(httpsfinder.browserOverlay.recent[i][0] == host && httpsfinder.browserOverlay.recent[i][1] == index){
-                    if(!httpsfinder.browserOverlay.isWhitelisted(host))
+                    if(!httpsfinder.browserOverlay.isWhitelisted(host) &&
+                        !httpsfinder.pbs.privateBrowsingEnabled)
                         httpsfinder.results.whitelist.push(host);
-                        
+
                     dump("httpsfinder redirect loop detected on host " + host + ". Host temporarily whitelisted. Reload time: " + sinceLastReset + "ms\n");
                     redirectLoop = true;
                 }
@@ -813,7 +863,7 @@ httpsfinder.browserOverlay = {
                     httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
                         dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist.\n");
-                   
+
                 }
             }
         }
@@ -853,7 +903,7 @@ httpsfinder.browserOverlay = {
             case "whitelistChanged":
                 httpsfinder.browserOverlay.importWhitelist();
                 break;
-            
+
             //Remove/add window listener if httpsfinder is enabled or disabled
             case "enable":
                 var appcontent = document.getElementById("appcontent");
