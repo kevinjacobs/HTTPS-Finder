@@ -372,7 +372,6 @@ httpsfinder.preferences = {
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
 
         var strings = document.getElementById("httpsfinderStrings");
-        httpsfinder.preference.noResultsPB
         httpsfinder.preferences.popupNotify("HTTPS Finder", strings.getString("httpsfinder.overlay.whitelistReset"));
 
         httpsfinder.preferences.results.goodSSL.length = 0;
