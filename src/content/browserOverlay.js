@@ -385,48 +385,48 @@ httpsfinder.browserOverlay = {
         var hs = Components.classes["@mozilla.org/browser/nav-history-service;1"].
         getService(Components.interfaces.nsINavHistoryService);
         ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////
-        httpsfinder.history = {
-            onBeginUpdateBatch: function() {},
-            onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
-            onTitleChanged: function(aURI, aPageTitle) {},
-            onBeforeDeleteURI: function(aURI) {},
-            onPageChanged: function(aURI, aWhat, aValue) {},
-            onDeleteVisits: function(aURI, aVisitTime, aGUID) {},
 
-            /*
+        httpsfinder.history = {
+                onBeginUpdateBatch: function() {},
+                onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
+                onTitleChanged: function(aURI, aPageTitle) {},
+                onBeforeDeleteURI: function(aURI) {},
+                onPageChanged: function(aURI, aWhat, aValue) {},
+                onDeleteVisits: function(aURI, aVisitTime, aGUID) {},
+
+                /*
          *Called when user deletes all instances of a specific URI
          *(warning: Called for each URI in batch operations too, )
          */
-            onDeleteURI: function(aURI){
-                let host = aURI.host;
+                onDeleteURI: function(aURI){
+                    let host = aURI.host;
 
-                if(httpsfinder.results.goodSSL.indexOf(host) != -1)
-                    for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
-                        if(httpsfinder.results.goodSSL[i] == host){
-                            httpsfinder.results.goodSSL.splice(i,1);
-                            return;
+                    if(httpsfinder.results.goodSSL.indexOf(host) != -1)
+                        for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
+                            if(httpsfinder.results.goodSSL[i] == host){
+                                httpsfinder.results.goodSSL.splice(i,1);
+                                return;
+                            }
                         }
-                    }
 
-                else if(httpsfinder.browserOverlay.isWhitelisted(host))
-                    httpsfinder.browserOverlay.removeFromWhitelist(null, host);
-            },
+                    else if(httpsfinder.browserOverlay.isWhitelisted(host))
+                        httpsfinder.browserOverlay.removeFromWhitelist(null, host);
+                },
 
-            //Called when user completes a batch operation such as Clear last 2 hours
-            //We just reset the session results instead of going through each history item.
-            onEndUpdateBatch: function() {
-                httpsfinder.browserOverlay.resetWhitelist();
-            },
+                //Called when user completes a batch operation such as Clear last 2 hours
+                //We just reset the session results instead of going through each history item.
+                onEndUpdateBatch: function() {
+                    httpsfinder.browserOverlay.resetWhitelist();
+                },
 
-            //Called when all history is cleared.
-            onClearHistory: function() {
-                httpsfinder.browserOverlay.resetWhitelist();
-            },
+                //Called when all history is cleared.
+                onClearHistory: function() {
+                    httpsfinder.browserOverlay.resetWhitelist();
+                },
 
-            QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsINavHistoryObserver])
-        };
+                QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsINavHistoryObserver])
+            };        
 
-        ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////
         hs.addObserver(httpsfinder.history, false);
 
         //Used for auto-dismissing alerts (auto-dismiss timer is started when user clicks on a tab, so they don't miss background alerts)
@@ -513,49 +513,7 @@ httpsfinder.browserOverlay = {
             }
         }
     },
-
-    //    historyObserver: function(aURI){
-    //        alert(aURI);
-    //        var onBeginUpdateBatch = function() {};
-    //        var onVisit = function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {};
-    //        var onTitleChanged = function(aURI, aPageTitle) {};
-    //        var onBeforeDeleteURI = function(aURI) {};
-    //        var onPageChanged = function(aURI, aWhat, aValue) {};
-    //        var onDeleteVisits = function(aURI, aVisitTime, aGUID) {};
-    //
-    //        /*
-    //         *Called when user deletes all instances of a specific URI
-    //         *(warning: Called for each URI in batch operations too, )
-    //         */
-    //        var onDeleteURI = function(aURI){
-    //            let host = aURI.host;
-    //
-    //            if(httpsfinder.results.goodSSL.indexOf(host) != -1)
-    //                for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
-    //                    if(httpsfinder.results.goodSSL[i] == host){
-    //                        httpsfinder.results.goodSSL.splice(i,1);
-    //                        return;
-    //                    }
-    //                }
-    //
-    //            else if(httpsfinder.browserOverlay.isWhitelisted(host))
-    //                httpsfinder.browserOverlay.removeFromWhitelist(null, host);
-    //        };
-    //
-    //        //Called when user completes a batch operation such as Clear last 2 hours
-    //        //We just reset the session results instead of going through each history item.
-    //        var onEndUpdateBatch = function() {
-    //            httpsfinder.browserOverlay.resetWhitelist();
-    //        };
-    //
-    //        //Called when all history is cleared.
-    //        var onClearHistory = function() {
-    //            httpsfinder.browserOverlay.resetWhitelist();
-    //        };
-    //
-    //            QueryInterface: XPCOMUtils.generateQI([Ci.nsINavHistoryObserver]);
-    //    },
-
+    
     /*
     * onPageLoadListener checks for any HTTPS redirect/detection activity for the tab. If there is something that the user needs to be alerted of,
     * The notification is added. We can't add the notification directly from the detection callback, because page content still being loaded
