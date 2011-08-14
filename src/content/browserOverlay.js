@@ -388,6 +388,7 @@ httpsfinder.browserOverlay = {
 
         httpsfinder.history = {
                 onBeginUpdateBatch: function() {},
+                onEndUpdateBatch: function() {},
                 onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
                 onTitleChanged: function(aURI, aPageTitle) {},
                 onBeforeDeleteURI: function(aURI) {},
@@ -395,9 +396,9 @@ httpsfinder.browserOverlay = {
                 onDeleteVisits: function(aURI, aVisitTime, aGUID) {},
 
                 /*
-         *Called when user deletes all instances of a specific URI
-         *(warning: Called for each URI in batch operations too, )
-         */
+                *Called when user deletes all instances of a specific URI
+                *(warning: Called for each URI in batch operations too)
+                */
                 onDeleteURI: function(aURI){
                     let host = aURI.host;
 
@@ -411,12 +412,6 @@ httpsfinder.browserOverlay = {
 
                     else if(httpsfinder.browserOverlay.isWhitelisted(host))
                         httpsfinder.browserOverlay.removeFromWhitelist(null, host);
-                },
-
-                //Called when user completes a batch operation such as Clear last 2 hours
-                //We just reset the session results instead of going through each history item.
-                onEndUpdateBatch: function() {
-                    httpsfinder.browserOverlay.resetWhitelist();
                 },
 
                 //Called when all history is cleared.
