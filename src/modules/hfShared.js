@@ -47,6 +47,7 @@ function removeNotification(key){
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");    
 
     var browser = currentWindow.gBrowser.selectedBrowser;
+    var item = null;
     if (item = currentWindow.getBrowser().getNotificationBox(browser).getNotificationWithValue(key))
         currentWindow.getBrowser().getNotificationBox(browser).removeNotification(item);
 };

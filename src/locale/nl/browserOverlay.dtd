@@ -63,6 +63,7 @@
 <!ENTITY httpsfinder.translation.swedish "- Svensk (Mikael Hiort)">
 <!ENTITY httpsfinder.translation.spanish "- Spaans (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portugees (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Fins (Jorma Karvonen)">
 
 <!-- New in 0.73 - Will need to be translated -->
 <!ENTITY httpsfinder.preference.createRule "Create Rule">

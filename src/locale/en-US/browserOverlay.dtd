@@ -6,7 +6,7 @@
 <!--End prefWindow sizing-->
 
 <!ENTITY httpsfinder.version "0.73d3">
-<!ENTITY httpsfinder.buildDate "13 Aug 2011">
+<!ENTITY httpsfinder.buildDate "14 Aug 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
@@ -61,6 +61,7 @@
 <!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
 <!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">
 
 <!-- New in 0.73 - Will need to be translated -->
 <!ENTITY httpsfinder.preference.createRule "Create Rule">

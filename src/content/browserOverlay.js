@@ -19,7 +19,7 @@ if (!httpsfinder) var httpsfinder = {
 httpsfinder.detect = {
     //Not a great solution, but this is for problematic domains.
     //Google image search over ssl is one, so we won't cache results there.
-    cacheExempt: ["www.google.com", "translate.google.com"],
+    cacheExempt: ["www.google.com", "translate.google.com", "encrypted.google.com"],
 
     QueryInterface: function(aIID){
         if (aIID.equals(Components.interfaces.nsIObserver)
@@ -740,9 +740,10 @@ httpsfinder.browserOverlay = {
         var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
         .getService(Components.interfaces.nsIEffectiveTLDService);
 
+        var topLevel = null;
         try{
             //Try retrieving the pre-redirect host from the redirected array
-            var topLevel = "." + eTLDService.getPublicSuffix(httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)][1]);
+            topLevel = "." + eTLDService.getPublicSuffix(httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)][1]);
             var hostname = httpsfinder.browserOverlay.redirectedTab[gBrowser.getBrowserIndexForDocument(gBrowser.contentDocument)][1].host.toLowerCase();
         }
         catch(e){
@@ -758,6 +759,7 @@ httpsfinder.browserOverlay = {
     removeNotification: function(key)
     {
         var browser = gBrowser.selectedBrowser;
+        var item = null;
         if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key))
             window.getBrowser().getNotificationBox(browser).removeNotification(item);
     },

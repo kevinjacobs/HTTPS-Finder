@@ -38,6 +38,11 @@
                 <em:description>Automaticamente detecta e alerta quando SSL (protocólo de segurança) está disponível numa página da web. Automatiza a criação de uma regra para uso do aditivo HTTPS Everywhere.</em:description>
                 <em:translator>Megahertz</em:translator>
             </Description>
+            <Description>
+                <em:locale>fi</em:locale>
+                <em:description>Havaitsee ja hÃ¤lyttÃ¤Ã¤ automaattisesti kun SSL on kÃ¤ytettÃ¤vissÃ¤ webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sÃ¤Ã¤ntÃ¶luominen</em:description>
+                <em:translator>Jorma Karvonen</em:translator>
+            </Description>
         </em:localized>
 
         <em:name>HTTPS Finder</em:name>

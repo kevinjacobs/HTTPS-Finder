@@ -212,6 +212,9 @@
                                 <row>
                                     <label value="&httpsfinder.translation.portuguese;"/>
                                 </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.finnish;"/>
+                                </row>
                             </groupbox>
                         </row>
                         <separator class="thin"/>

@@ -1,0 +1,76 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "515">
+<!ENTITY httpsfinder.prefSize.windowHeight "570">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "450">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
+<!--End prefWindow sizing-->
+
+<!ENTITY httpsfinder.version "0.73d3">
+<!ENTITY httpsfinder.buildDate "14 Aug 2011">
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "Rakentamispäivämäärä:">
+<!ENTITY httpsfinder.authorTitle "Tekijä:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "HTTPS Finder -asetukset">
+<!ENTITY httpsfinder.preference.titleKey "P">
+<!ENTITY httpsfinder.preference.translations "Kotoistamiset ovat tarjonneet seuraavat henkilöt:">
+<!ENTITY httpsfinder.preference.supportTitle "Tukisähköpostiosoite:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "Ota käyttöön HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "Älä kysy HTTPS-säännön tallentamista (silloin kun HTTPS Everywhere -ohjelmistoa ei käytetä)">
+<!ENTITY httpsfinder.preference.autoForward "Pakota HTTPS automaattisesti silloin kun se on käytettävissä">
+<!ENTITY httpsfinder.preference.whitelistLabel "Verkkoalueiden valkoinen lista (älä tutki HTTPS-yhteyskäytännön olemassaoloa näillä verkkoalueilla)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "Lisää valkoiselle listalle">
+<!ENTITY httpsfinder.preference.whitelistModify "Muokkaa">
+<!ENTITY httpsfinder.preference.whitelistRemove "Poista rivi">
+<!ENTITY httpsfinder.preference.savedRulesTip "Tallenna säännöt, jotka voidaan ottaa pois käytöstä HTTPS Everywhere -ohjelmiston asetuksissa.">
+<!ENTITY httpsfinder.preference.ruleTip "Huomauta valkoisen listan sääntöjä varten, että www.domain.com on verkkoalueen domain.com aliverkkoalue.">
+<!ENTITY httpsfinder.preference.learnMoreTip "Opi lisää HTTPS Finder -ohjelmasta">
+<!ENTITY httpsfinder.preference.learnLinkName "tässä">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "Tietokonenimi (domain.tld, sub.domain.tld, *.domain.tld)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "Tietokonenimi">
+<!ENTITY httpsfinder.preference.headFirst "Käytä ensin HEAD-pyyntöjä (palaa GET-pyyntöihin, jos palvelin ei tue HEAD-pyyntöjä)">
+<!ENTITY httpsfinder.preference.generalTab "Yleiset asetukset">
+<!ENTITY httpsfinder.preference.advancedTab "Lisäasetukset">
+<!ENTITY httpsfinder.preference.aboutTab "Ohjelmasta">
+<!ENTITY httpsfinder.preference.detectionLabel "Havannointimenetelmä">
+<!ENTITY httpsfinder.preference.showpreview "Näytä säännön esikatselu (sallii muokkauksen) ennen säännön tallentamista">
+<!ENTITY httpsfinder.preference.detectionDescLONG "HEAD-pyynnöt käyttävät vähemmän kaistanleveyttä kuin GET-pyynnöt, mutta jotkut palvelimet eivät tue niitä. Jos näin tapahtuu, HTTPS Finder yrittää palata takaisin GET-pyyntöihin.">
+<!ENTITY httpsfinder.preference.detectionDescRec "Suositeltu asetus: Jos sinulla on nopea yhteys, poista valinta, joka käyttää vain GET-pyyntöjä. Hitaammilla yhteyksillä HEAD-pyynnöt ensin saattavat olla huomattavasti nopeampia useimmilla webbisivuilla.">
+<!ENTITY httpsfinder.preference.debug "Ota käyttöön vianjäljityksen (lavea) lokikirjaus">
+<!ENTITY httpsfinder.rulePreview.top "Säännön esikatselu:">
+<!ENTITY httpsfinder.rulePreview.tip1 "Kaikki tekemäsi muutokset heijastuvat tallennettuun sääntöön.">
+<!ENTITY httpsfinder.rulePreview.tip2 "Napsauta OK-painiketta säännön tallentamiseksi tai Cancel-painiketta paluuseen ilman tallentamista">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "tässä">
+<!ENTITY httpsfinder.rulePreview.learnmore "Opi lisää sääntöjen muotoilusta">
+<!ENTITY httpsfinder.menu.settings "Asetukset">
+<!ENTITY httpsfinder.menu.settingsKey "A">
+<!ENTITY httpsfinder.menu.refresh "Nollaa tilapäinen valkoinen lista">
+<!ENTITY httpsfinder.menu.refreshKey "N">
+<!ENTITY httpsfinder.menu.homepage "Hankkeen webbisivu">
+<!ENTITY httpsfinder.menu.homepageKey "H">
+<!ENTITY httpsfinder.menu.rate "Anna arvosana HTTPS Finder -ohjelmistolle">
+<!ENTITY httpsfinder.menu.rateKey "F">
+<!ENTITY httpsfinder.menu.help "Opaste">
+<!ENTITY httpsfinder.menu.helpKey "O">
+<!ENTITY httpsfinder.translation.german "- Saksa (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.finnish "- Suomi (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.dutch "- Hollanti (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Puola (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Ruotsi (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Espanja (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portugali (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Suomen (Jorma Karvonen)">
+
+<!-- New in 0.73 - Will need to be translated -->
+<!ENTITY httpsfinder.preference.createRule "Luo sääntö">
+<!ENTITY httpsfinder.preference.sslReport "Tuota SSL-ilmoitus">
+<!ENTITY httpsfinder.preference.clearResults "Nollaa kaikki tulokset">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS-tulos">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Istunnon havannointitulokset">
+<!ENTITY httpsfinder.preference.autoDismissTitle "Poista hälytykset automaattisesti seuraavana aikana (sekuntia)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "Kesto (sekuntia)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Poista valinta, joka käyttää vain hiljaista havannointia. Katsele tuloksia ja luo säännöt Lisäasetukset-välilehdestä">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Ota käyttöön HTTPS löytyi -hälytykset (jos HTTPS-yhteyskäytännön automaattinen käyttöönotto on otettu pois käytöstä)">
