@@ -62,6 +62,9 @@
 <!ENTITY httpsfinder.translation.polish "- Polaco (PcP)">
 <!ENTITY httpsfinder.translation.swedish "- Sueco (Mikael Hiort)">
 <!ENTITY httpsfinder.translation.spanish "- Español (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portugués (Megahertz)">
+
+
 
 <!-- New in 0.73 - Will need to be translated -->
 <!ENTITY httpsfinder.preference.createRule "Create Rule">

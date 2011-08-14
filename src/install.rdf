@@ -33,7 +33,11 @@
                 <em:description>Detectar automáticamente y alertar cuando SSL esté disponible en una página web.</em:description>
                 <em:translator>strel</em:translator>
             </Description>
-
+            <Description>
+                <em:locale>pt-PT</em:locale>
+                <em:description>Automaticamente detecta e alerta quando SSL (protocólo de segurança) está disponível numa página da web. Automatiza a criação de uma regra para uso do aditivo HTTPS Everywhere.</em:description>
+                <em:translator>Megahertz</em:translator>
+            </Description>
         </em:localized>
 
         <em:name>HTTPS Finder</em:name>
