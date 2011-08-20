@@ -1,5 +1,6 @@
 var EXPORTED_SYMBOLS = ['results',
 'popupNotify',
+'removeNotification',
 'openWebsiteInTab',
 'sharedWriteRule',
 'getHostWithoutSub',

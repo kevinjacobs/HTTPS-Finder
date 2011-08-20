@@ -64,7 +64,7 @@
 <!ENTITY httpsfinder.translation.portuguese "- Portugali (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Suomen (Jorma Karvonen)">
 
-<!-- New in 0.73 - Will need to be translated -->
+<!--.73-->
 <!ENTITY httpsfinder.preference.createRule "Luo sääntö">
 <!ENTITY httpsfinder.preference.sslReport "Tuota SSL-ilmoitus">
 <!ENTITY httpsfinder.preference.clearResults "Nollaa kaikki tulokset">

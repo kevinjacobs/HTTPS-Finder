@@ -65,17 +65,13 @@
 <!ENTITY httpsfinder.translation.portuguese "- Portugiesisch (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finnisch (Jorma Karvonen)">
 
-
-
-
-
-<!-- New in 0.73 - Will need to be translated -->
-<!ENTITY httpsfinder.preference.createRule "Create Rule">
-<!ENTITY httpsfinder.preference.sslReport "Generate SSL Report">
-<!ENTITY httpsfinder.preference.clearResults "Clear All Results">
-<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS Result">
-<!ENTITY httpsfinder.preference.listHeaderTitle "Session discovery results">
-<!ENTITY httpsfinder.preference.autoDismissTitle "Auto-dismiss alerts after (seconds)">
-<!ENTITY httpsfinder.preference.autoDismissToolTip "Duration (seconds)">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)">
+<!--.73-->
+<!ENTITY httpsfinder.preference.createRule "Regel erstellen">
+<!ENTITY httpsfinder.preference.sslReport "SSL-Bericht erzeugen">
+<!ENTITY httpsfinder.preference.clearResults "Alle Ergebnisse löschen">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS-Ergebnis">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Erkennungsergebnisse der Sitzung">
+<!ENTITY httpsfinder.preference.autoDismissTitle "Warnungen verwerfen nach (Sekunden)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "Dauer (Sekunden)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Nur für stillschweigende Erkennung. Anzeige der Ergebnisse und Erstellung der Regeln aus dem Tab Erweitert">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Gefundene HTTPS-Warnungen aktivieren (falls die automatische HTTPS-Erzwingung deaktiviert ist)">

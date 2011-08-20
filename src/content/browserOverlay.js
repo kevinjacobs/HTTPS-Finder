@@ -210,7 +210,7 @@ httpsfinder.detect = {
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.removeNotification("httpsfinder-https-found")
+                    httpsfinder.removeNotification("httpsfinder-https-found")
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-https-found');
         }
     },
@@ -302,7 +302,7 @@ httpsfinder.detect = {
 
                 if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                     setTimeout(function(){
-                        httpsfinder.browserOverlay.removeNotification("httpsfinder-https-found")
+                        httpsfinder.removeNotification("httpsfinder-https-found")
                     },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-https-found');
             }
             else{
@@ -502,7 +502,7 @@ httpsfinder.browserOverlay = {
             //If the tab contains that alert, set a timeout and removeNotification() for the auto-dismiss time.
             if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key)){
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.removeNotification(key)
+                    httpsfinder.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000);
                 return;
             }
@@ -610,8 +610,8 @@ httpsfinder.browserOverlay = {
     //User clicked "Add to whitelist" from a drop down notification. Save to sqlite and whitelist array.
     whitelistDomain: function(hostIn){
         //Manually remove notification - in Ubuntu it stays up (no error is thrown)
-        httpsfinder.browserOverlay.removeNotification('httpsfinder-https-found');
-        httpsfinder.browserOverlay.removeNotification('httpsfinder-ssl-enforced');
+        httpsfinder.removeNotification('httpsfinder-https-found');
+        httpsfinder.removeNotification('httpsfinder-ssl-enforced');
 
         //If no host was passed, get it manually from stored values.
         if(typeof(hostIn) != "string"){
@@ -713,7 +713,7 @@ httpsfinder.browserOverlay = {
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
-                    httpsfinder.browserOverlay.removeNotification("httpsfinder-ssl-enforced")
+                    httpsfinder.removeNotification("httpsfinder-ssl-enforced")
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-ssl-enforced');
         }
     },
@@ -735,7 +735,8 @@ httpsfinder.browserOverlay = {
         return false;
     },
 
-    //Save rule for HTTPS Everywhere. Working on moving this to JSM.
+    //Save rule for HTTPS Everywhere. We do a little work here, then pass
+    //to the function provided by hfShared (the preference window uses the same code)
     writeRule: function(){
         var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
         .getService(Components.interfaces.nsIEffectiveTLDService);
@@ -753,15 +754,6 @@ httpsfinder.browserOverlay = {
         }
 
         httpsfinder.sharedWriteRule(hostname, topLevel);
-    },
-
-    //Remove notification called from setTimeout().
-    removeNotification: function(key)
-    {
-        var browser = gBrowser.selectedBrowser;
-        var item = null;
-        if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key))
-            window.getBrowser().getNotificationBox(browser).removeNotification(item);
     },
 
     //Adds to session whitlelist (not database)
