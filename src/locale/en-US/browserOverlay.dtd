@@ -5,8 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.73d3">
-<!ENTITY httpsfinder.buildDate "14 Aug 2011">
+<!ENTITY httpsfinder.version "0.74RC1">
+<!ENTITY httpsfinder.buildDate "21 Aug 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
@@ -55,15 +55,6 @@
 <!ENTITY httpsfinder.menu.rateKey "R">
 <!ENTITY httpsfinder.menu.help "Help">
 <!ENTITY httpsfinder.menu.helpKey "H">
-<!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
-<!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
-<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
-<!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
-<!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
-<!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
-<!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">
-
-<!-- New in 0.73 - Will need to be translated -->
 <!ENTITY httpsfinder.preference.createRule "Create Rule">
 <!ENTITY httpsfinder.preference.sslReport "Generate SSL Report">
 <!ENTITY httpsfinder.preference.clearResults "Clear All Results">
@@ -73,3 +64,10 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Duration (seconds)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)">
+<!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">

@@ -206,7 +206,7 @@ httpsfinder.detect = {
 
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
                 "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
-                nb.PRIORITY_INFO_LOW, sslFoundButtons);
+                nb.PRIORITY_INFO_HIGH, sslFoundButtons);
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
@@ -297,7 +297,7 @@ httpsfinder.detect = {
 
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
                     "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
-                    nb.PRIORITY_INFO_LOW, sslFoundButtons);
+                    nb.PRIORITY_INFO_HIGH, sslFoundButtons);
                 httpsfinder.browserOverlay.removeFromWhitelist(aBrowser.contentDocument, null);
 
                 if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
@@ -705,11 +705,11 @@ httpsfinder.browserOverlay = {
             if(httpsfinder.prefs.getBoolPref("autoforward"))
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.autoForwardRulePrompt"),
                     "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
-                    nb.PRIORITY_INFO_LOW, saveRuleButtons);
+                    nb.PRIORITY_INFO_HIGH, saveRuleButtons);
             else
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.saveRulePrompt"),
                     "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
-                    nb.PRIORITY_INFO_LOW, saveRuleButtons);
+                    nb.PRIORITY_INFO_HIGH, saveRuleButtons);
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){

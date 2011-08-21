@@ -8,20 +8,20 @@
 <!--janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro -->
 
 
-<!ENTITY httpsfinder.version "0.73d3">
-<!ENTITY httpsfinder.buildDate "13/Agosto/2011">
-<!ENTITY httpsfinder.title "Buscador de HTTPS">
+<!ENTITY httpsfinder.version "0.74RC1">
+<!ENTITY httpsfinder.buildDate "21/Agosto/2011">
+<!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Data da revisão:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
 <!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
 <!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
-<!ENTITY httpsfinder.preference.title "Preferências do Buscador">
+<!ENTITY httpsfinder.preference.title "Preferências do HTTPS Finder">
 <!ENTITY httpsfinder.preference.titleKey "P">
 <!ENTITY httpsfinder.preference.translations "Traduções fornecidas com a colaboração de:">
 <!ENTITY httpsfinder.preference.supportTitle "Email para Suporte:">
 <!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
-<!ENTITY httpsfinder.preference.enable "Permitir buscador de  HTTPS">
-<!ENTITY httpsfinder.preference.noRulePrompt "Não pergunte para salvar regra do buscador (Para uso sem o aditivo HTTPS Everywhere)">
+<!ENTITY httpsfinder.preference.enable "Permitir HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "Não pergunte para salvar regra do HTTPS Finder (Para uso sem o aditivo HTTPS Everywhere)">
 <!ENTITY httpsfinder.preference.autoForward "Automaticamente force HTTPS quando possível">
 <!ENTITY httpsfinder.preference.whitelistLabel "Lista Branca de domínios (Não detecte HTTPS nestes domínios)">
 <!ENTITY httpsfinder.preference.whitelistAddButton "Adicione na Lista Branca">
@@ -29,7 +29,7 @@
 <!ENTITY httpsfinder.preference.whitelistRemove "Remover Item">
 <!ENTITY httpsfinder.preference.savedRulesTip "Regras salvas podem ser desabilitadas em Ajustes e Opções do aditivo HTTPS Everywhere.">
 <!ENTITY httpsfinder.preference.ruleTip "Para regras da Lista Branca, note que www.domain.com é um subdomínio de domain.com.">
-<!ENTITY httpsfinder.preference.learnMoreTip "Aprenda mais sobre o Buscador de HTTPS">
+<!ENTITY httpsfinder.preference.learnMoreTip "Aprenda mais sobre o HTTPS Finder">
 <!ENTITY httpsfinder.preference.learnLinkName "aqui">
 <!ENTITY httpsfinder.preference.whitelistAddTextbox "Hospedeiro (domain.tld, sub.domain.tld, *.domain.tld)">
 <!ENTITY httpsfinder.preference.whitelistUrlColumn "Hospedeiro">

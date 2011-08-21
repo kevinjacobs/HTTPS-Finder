@@ -11,7 +11,7 @@
 
     <stringbundleset id="stringbundleset">
         <stringbundle id="httpsfinderStrings"
-      src="chrome://httpsfinder/locale/browserOverlay.properties" />
+        src="chrome://httpsfinder/locale/browserOverlay.properties" />
     </stringbundleset>
 
     <prefpane label="&httpsfinder.preference.title;"
@@ -64,20 +64,17 @@
                                 <separator class="thin"/>
                             </rows>
                         </grid>
-                        <groupbox>
+                        <groupbox minwidth="465">
                             <caption label="&httpsfinder.preference.whitelistLabel;"/>
                             <row>
-                                <textbox id="whitelistURL" emptytext="&httpsfinder.preference.whitelistAddTextbox;" size="48"/>
+                                <textbox id="whitelistURL" emptytext="&httpsfinder.preference.whitelistAddTextbox;" size="49" />
                                 <button id="whitelistURLLabel" label="&httpsfinder.preference.whitelistAddButton;" oncommand="httpsfinder.preferences.AddToWhitelist(document)"/>
                             </row>
                             <row>
-                                <listbox seltype="multiple" flex="2" id="whitelist" onselect="httpsfinder.preferences.WhitelistSelect(document)">
+                                <listbox seltype="multiple" flex="2"  id="whitelist" onselect="httpsfinder.preferences.WhitelistSelect(document)">
                                     <listhead>
                                         <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="240"/>
                                     </listhead>
-                                    <listcols>
-                                        <listcol flex="1"/>
-                                    </listcols>
                                 </listbox>
                             </row>
                             <row>
@@ -111,60 +108,49 @@
                     <column>
                         <grid>
                             <rows>
-                                <vbox>
-                                    <row>
-                                        <checkbox id="headfirst" preference="httpsfinder-headfirst"/>
-                                        <description control="headfirst">&httpsfinder.preference.headFirst;</description>
-                                    </row>
-                                </vbox>
-                                <vbox>
-                                    <row>
-                                        <checkbox id="rulepreview" preference="httpsfinder-showrulepreview"/>
-                                        <label control="rulepreview" value="&httpsfinder.preference.showpreview;"/>
-                                    </row>
-                                </vbox>
-                                <vbox>
-                                    <row>
-                                        <checkbox id="debug" preference="httpsfinder-debugLogging"/>
-                                        <label control="debugLabel" value="&httpsfinder.preference.debug;"/>
-                                    </row>
-                                </vbox>
+                                <row>
+                                    <checkbox id="headfirst" preference="httpsfinder-headfirst"/>
+                                    <description control="headfirst">&httpsfinder.preference.headFirst;</description>
+                                </row>
+                                <row>
+                                    <checkbox id="rulepreview" preference="httpsfinder-showrulepreview"/>
+                                    <label control="rulepreview" value="&httpsfinder.preference.showpreview;"/>
+                                </row>
+                                <row>
+                                    <checkbox id="debug" preference="httpsfinder-debugLogging"/>
+                                    <label control="debugLabel" value="&httpsfinder.preference.debug;"/>
+                                </row>
                                 <vbox>
                                     <row>
                                         <checkbox id="autoDismiss" preference="httpsfinder-autoDismiss"/>
                                         <label control="ADText" value="&httpsfinder.preference.autoDismissTitle;"/>
                                         <textbox id="dismissTime" type="number" min="0" max="60" preference="httpsfinder-dismissTime"
-                                                            maxlength="2" tooltiptext="&httpsfinder.preference.autoDismissToolTip;" style="width: 50px;"/>
-                                    </row>
-                                </vbox>
-                                <separator class="thin"/>
-                                <vbox>
-                                    <row>
-                                        <groupbox>
-                                            <caption label="&httpsfinder.preference.listHeaderTitle;"/>
-                                            <row>
-                                                <listbox seltype="single" flex="2" id="cacheList" width="445"
-                                                            onselect="httpsfinder.preferences.ResultSelect(document)">
-                                                    <listhead>
-                                                        <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="210"/>
-                                                        <listheader label="&httpsfinder.preference.listHeaderHTTPS;"  style="padding: 4"/>
-                                                    </listhead>
-                                                    <listcols>
-                                                        <listcol flex="1"/>
-                                                    </listcols>
-                                                </listbox>
-                                            </row>
-                                            <row>
-                                                <button id="writeRule" label="&httpsfinder.preference.createRule;" oncommand="httpsfinder.preferences.writeRule();" disabled="true"/>
-                                                <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.removeCacheItem(document)" disabled="true"/>
-                                                <button id="viewReport" label="&httpsfinder.preference.sslReport;" oncommand="httpsfinder.preferences.sslReport();" disabled="true"/>
-                                                <button id="resetCache" label="&httpsfinder.preference.clearResults;" oncommand="httpsfinder.preferences.resetWhitelist();"/>
-                                            </row>
-                                        </groupbox>
+                                                   size="2" maxlength="2" tooltiptext="&httpsfinder.preference.autoDismissToolTip;" style="width: 50px;"/>
                                     </row>
                                 </vbox>
                             </rows>
                         </grid>
+                        <separator class="thin"/>
+                        <hbox>
+                            <groupbox flex="1" minwidth="465">
+                                <caption label="&httpsfinder.preference.listHeaderTitle;"/>
+                                <row>
+                                    <listbox seltype="single" flex="2" id="cacheList"
+                                             onselect="httpsfinder.preferences.ResultSelect(document)">
+                                        <listhead>
+                                            <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="210"/>
+                                            <listheader label="&httpsfinder.preference.listHeaderHTTPS;"  style="padding: 4"/>
+                                        </listhead>
+                                    </listbox>
+                                </row>
+                                <row>
+                                    <button id="writeRule" label="&httpsfinder.preference.createRule;" oncommand="httpsfinder.preferences.writeRule();" disabled="true"/>
+                                    <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.preferences.removeCacheItem(document)" disabled="true"/>
+                                    <button id="viewReport" label="&httpsfinder.preference.sslReport;" oncommand="httpsfinder.preferences.sslReport();" disabled="true"/>
+                                    <button id="resetCache" label="&httpsfinder.preference.clearResults;" oncommand="httpsfinder.preferences.resetWhitelist();"/>
+                                </row>
+                            </groupbox>
+                        </hbox>
                     </column>
                 </tabpanel>
 
