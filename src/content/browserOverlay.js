@@ -798,6 +798,13 @@ httpsfinder.browserOverlay = {
                         !httpsfinder.pbs.privateBrowsingEnabled)
                         httpsfinder.results.whitelist.push(host);
 
+                    for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
+                            if(httpsfinder.results.goodSSL[i] == host){
+                                httpsfinder.results.goodSSL.splice(i,1);
+                                return;
+                            }
+                        }
+
                     dump("httpsfinder redirect loop detected on host " + host + ". Host temporarily whitelisted. Reload time: " + sinceLastReset + "ms\n");
                     redirectLoop = true;
                 }
