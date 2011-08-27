@@ -8,8 +8,8 @@
 <!--janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro -->
 
 
-<!ENTITY httpsfinder.version "0.74RC1">
-<!ENTITY httpsfinder.buildDate "21/Agosto/2011">
+<!ENTITY httpsfinder.version "0.74RC2">
+<!ENTITY httpsfinder.buildDate "26/Agosto/2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Data da revisão:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -67,10 +67,6 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Duração (segundos)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Desmarque para detecção somente silenciosa. Veja resultados e crie regras na aba Avançado">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Permitir alertas de HTTPS descobertos (se auto-forçar HTTPS está desabilitado)">
-
-
-
-
 <!ENTITY httpsfinder.translation.german "- Alemão (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Holandês (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polonês (PcP)">

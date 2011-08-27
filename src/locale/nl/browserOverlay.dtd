@@ -7,8 +7,8 @@
 
 <!--januari, februari, mart, april, mei, juni, juli, augustus, september, october, november, december. Format: 23. mei 2011-->
 
-<!ENTITY httpsfinder.version "0.74RC1">
-<!ENTITY httpsfinder.buildDate "21 augustus 2011">
+<!ENTITY httpsfinder.version "0.74RC2">
+<!ENTITY httpsfinder.buildDate "26 augustus 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Datum van uitgave:">
 <!ENTITY httpsfinder.authorTitle "Auteur:">
@@ -57,6 +57,15 @@
 <!ENTITY httpsfinder.menu.rateKey "B">
 <!ENTITY httpsfinder.menu.help "Help">
 <!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.preference.createRule "Maak regel">
+<!ENTITY httpsfinder.preference.sslReport "Genereer SSL rapport">
+<!ENTITY httpsfinder.preference.clearResults "Wis alle resultaten">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS resultaten">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Ontdekte resultaten tijdens deze sessie">
+<!ENTITY httpsfinder.preference.autoDismissTitle "Automatische time-out van notificaties (seconden)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "Duur (seconden)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Zet deze optie uit om geen notificaties te ontvangen. Gebruik het tabblad 'geavanceerd' om regels te maken en bekijken">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Toon notificaties wanneer HTTPS is gevonden (indien automatisch HTTPS gebruiken is uitgeschakeld)">
 <!ENTITY httpsfinder.translation.german "- Duits (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Nederlands (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Poolse (PcP)">
@@ -64,14 +73,3 @@
 <!ENTITY httpsfinder.translation.spanish "- Spaans (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portugees (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Fins (Jorma Karvonen)">
-
-<!-- New in 0.73 - Will need to be translated -->
-<!ENTITY httpsfinder.preference.createRule "Create Rule">
-<!ENTITY httpsfinder.preference.sslReport "Generate SSL Report">
-<!ENTITY httpsfinder.preference.clearResults "Clear All Results">
-<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS Result">
-<!ENTITY httpsfinder.preference.listHeaderTitle "Session discovery results">
-<!ENTITY httpsfinder.preference.autoDismissTitle "Auto-dismiss alerts after (seconds)">
-<!ENTITY httpsfinder.preference.autoDismissToolTip "Duration (seconds)">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)">

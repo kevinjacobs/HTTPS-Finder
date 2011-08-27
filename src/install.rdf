@@ -40,7 +40,7 @@
             </Description>
             <Description>
                 <em:locale>fi</em:locale>
-                <em:description>Havaitsee ja hÃ¤lyttÃ¤Ã¤ automaattisesti kun SSL on kÃ¤ytettÃ¤vissÃ¤ webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sÃ¤Ã¤ntÃ¶luominen</em:description>
+                <em:description>Havaitsee ja hälyttää automaattisesti kun SSL on käytettävissä webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sääntöluominen</em:description>
                 <em:translator>Jorma Karvonen</em:translator>
             </Description>
         </em:localized>

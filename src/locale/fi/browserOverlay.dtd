@@ -5,8 +5,10 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.74RC1">
-<!ENTITY httpsfinder.buildDate "21 Aug 2011">
+<!--tammikuu, helmikuu, maaliskuu, huhtikuu, toukokuu, kesäkuu, heinäkuu, elokuu, syyskuu, lokakuu, marraskuu, joulukuu  -->
+
+<!ENTITY httpsfinder.version "0.74RC2">
+<!ENTITY httpsfinder.buildDate "26 elokuu 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Rakentamispäivämäärä:">
 <!ENTITY httpsfinder.authorTitle "Tekijä:">
@@ -27,7 +29,7 @@
 <!ENTITY httpsfinder.preference.savedRulesTip "Tallenna säännöt, jotka voidaan ottaa pois käytöstä HTTPS Everywhere -ohjelmiston asetuksissa.">
 <!ENTITY httpsfinder.preference.ruleTip "Huomauta valkoisen listan sääntöjä varten, että www.domain.com on verkkoalueen domain.com aliverkkoalue.">
 <!ENTITY httpsfinder.preference.learnMoreTip "Opi lisää HTTPS Finder -ohjelmasta">
-<!ENTITY httpsfinder.preference.learnLinkName "tässä">
+<!ENTITY httpsfinder.preference.learnLinkName "täällä">
 <!ENTITY httpsfinder.preference.whitelistAddTextbox "Tietokonenimi (domain.tld, sub.domain.tld, *.domain.tld)">
 <!ENTITY httpsfinder.preference.whitelistUrlColumn "Tietokonenimi">
 <!ENTITY httpsfinder.preference.headFirst "Käytä ensin HEAD-pyyntöjä (palaa GET-pyyntöihin, jos palvelin ei tue HEAD-pyyntöjä)">
@@ -41,9 +43,9 @@
 <!ENTITY httpsfinder.preference.debug "Ota käyttöön vianjäljityksen (lavea) lokikirjaus">
 <!ENTITY httpsfinder.rulePreview.top "Säännön esikatselu:">
 <!ENTITY httpsfinder.rulePreview.tip1 "Kaikki tekemäsi muutokset heijastuvat tallennettuun sääntöön.">
-<!ENTITY httpsfinder.rulePreview.tip2 "Napsauta OK-painiketta säännön tallentamiseksi tai Cancel-painiketta paluuseen ilman tallentamista">
+<!ENTITY httpsfinder.rulePreview.tip2 "Napsauta OK-painiketta säännön tallentamiseksi tai Peruuta-painiketta paluuseen ilman tallentamista">
 <!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
-<!ENTITY httpsfinder.rulePreview.clickhere "tässä">
+<!ENTITY httpsfinder.rulePreview.clickhere "täällä">
 <!ENTITY httpsfinder.rulePreview.learnmore "Opi lisää sääntöjen muotoilusta">
 <!ENTITY httpsfinder.menu.settings "Asetukset">
 <!ENTITY httpsfinder.menu.settingsKey "A">
@@ -55,16 +57,15 @@
 <!ENTITY httpsfinder.menu.rateKey "F">
 <!ENTITY httpsfinder.menu.help "Opaste">
 <!ENTITY httpsfinder.menu.helpKey "O">
-<!ENTITY httpsfinder.translation.german "- Saksa (Michael Wolf &amp; Daniel Helmert)">
-<!ENTITY httpsfinder.translation.finnish "- Suomi (Jorma Karvonen)">
-<!ENTITY httpsfinder.translation.dutch "- Hollanti (Donné Brok)">
-<!ENTITY httpsfinder.translation.polish "- Puola (PcP)">
-<!ENTITY httpsfinder.translation.swedish "- Ruotsi (Mikael Hiort)">
-<!ENTITY httpsfinder.translation.spanish "- Espanja (strel)">
-<!ENTITY httpsfinder.translation.portuguese "- Portugali (Megahertz)">
-<!ENTITY httpsfinder.translation.finnish "- Suomen (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.german "- saksa (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.finnish "- suomi (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.dutch "- hollanti (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- puola (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- ruotsi (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.portuguese "- portugali (Megahertz)">
+<!ENTITY httpsfinder.translation.spanish "- espanja (strel)">
 
-<!--.73-->
+<!-- New in 0.73 - Will need to be translated -->
 <!ENTITY httpsfinder.preference.createRule "Luo sääntö">
 <!ENTITY httpsfinder.preference.sslReport "Tuota SSL-ilmoitus">
 <!ENTITY httpsfinder.preference.clearResults "Nollaa kaikki tulokset">

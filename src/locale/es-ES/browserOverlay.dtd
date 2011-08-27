@@ -7,8 +7,8 @@
 
 <!--enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre. Format: 23 may 2011-->
 
-<!ENTITY httpsfinder.version "0.74RC1">
-<!ENTITY httpsfinder.buildDate "21 agosto 2011">
+<!ENTITY httpsfinder.version "0.74RC2">
+<!ENTITY httpsfinder.buildDate "26 agosto 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Fecha de creación:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -64,10 +64,6 @@
 <!ENTITY httpsfinder.translation.spanish "- Español (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portugués (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finlandés (Jorma Karvonen)">
-
-
-
-<!--.73-->
 <!ENTITY httpsfinder.preference.createRule "Crear Regla">
 <!ENTITY httpsfinder.preference.sslReport "Generar Informe de SSL">
 <!ENTITY httpsfinder.preference.clearResults "Limpiar Todos los Resultados">
@@ -75,5 +71,5 @@
 <!ENTITY httpsfinder.preference.listHeaderTitle "Resultados descubiertos durante la sesión">
 <!ENTITY httpsfinder.preference.autoDismissTitle "Auto-ocultar alertas después de (segundos)">
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Duración (seconds)">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Desmarcar para usar sólo detencción silenciosa. Para ver resultados y crear reglas, desde la pestaña Avanzadas">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Deshabilitar  para usar sólo detencción silenciosa. Para ver resultados y crear reglas, desde la pestaña Avanzadas">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Activar alertas de HTTPS Encontrado (si Aplicar HTTPS Automáticamente está desactivado)">
