@@ -433,7 +433,21 @@ httpsfinder.preferences = {
         var hostname = selectedItems[0].firstChild.getAttribute("label");
         var topLevel = "." + eTLDService.getPublicSuffixFromHost(hostname);
 
+
+        //For some reason, the dialog box does not work on Mac when it's set to non-modal.
+        //If it's modal, it won't display until the preference box closes (so writing rules from the alert works fine, but not from
+        //preferences. Adding some code here to close the pref window to write the rule, then corrosponding code to reopen it after the 
+        //rule window closes.
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+        .getService(Components.interfaces.nsIXULRuntime).OS;
+
         httpsfinder.preferences.sharedWriteRule(hostname, topLevel);
+        
+        if(osString == "Darwin"){
+            document.getElementById('prefWindow').cancelDialog();
+        }
+
+
     }
 
 };

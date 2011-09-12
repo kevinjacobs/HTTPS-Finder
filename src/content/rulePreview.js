@@ -31,8 +31,18 @@ httpsfinder.rulePreview = {
 
     //User clicked ok - return textbox contents as rule
     httpsfinderOkRulePreview: function(doc){
-        window.arguments[0].out = {
-            rule:document.getElementById("ruleBox").value
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+        .getService(Components.interfaces.nsIXULRuntime).OS;
+
+        if(osString == "Darwin"){
+            Components.utils.import("resource://hfShared/hfShared.js", httpsfinder.rulePreview);
+            /////FIX ME - Need to re-parse the argument here, pass to sharedWriteRule again.
+            //This is to work around a difference in the way OSX handles modal dialog windows.
+            httpsfinder.sharedWriteRule(hostname, topLevel);
+        }
+        else
+            window.arguments[0].out = {
+                rule:document.getElementById("ruleBox").value
             };
     }
 };

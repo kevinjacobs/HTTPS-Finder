@@ -398,7 +398,6 @@ httpsfinder.browserOverlay = {
         //History observer
         var hs = Components.classes["@mozilla.org/browser/nav-history-service;1"].
         getService(Components.interfaces.nsINavHistoryService);
-        ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////    ///////////
 
         httpsfinder.history = {
                 onBeginUpdateBatch: function() {},

@@ -3,6 +3,7 @@
 <?xml-stylesheet href="chrome://httpsfinder/content/about.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://httpsfinder/locale/browserOverlay.dtd">
 <prefwindow
+    id="prefWindow"
     title="&httpsfinder.preference.title;"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
     xmlns:html="http://www.w3.org/1999/xhtml"

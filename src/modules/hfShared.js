@@ -152,9 +152,10 @@ function sharedWriteRule(hostname, topLevel){
         var osString = Components.classes["@mozilla.org/xre/app-info;1"]
         .getService(Components.interfaces.nsIXULRuntime).OS;
 
-        if(osString == "Darwin")
+       if(osString == "Darwin")
+     //       currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "", "chrome, toolbar,centerscreen,dialog=yes, resizable=yes", params).focus();
             currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
-                "chrome, dialog, centerscreen, resizable=yes", params).focus();
+                "chrome, dialog, modal, centerscreen, resizable=yes", params).focus();
         else
             currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
                 "chrome, dialog, modal,centerscreen, resizable=yes", params).focus();
@@ -163,13 +164,15 @@ function sharedWriteRule(hostname, topLevel){
             return; //user canceled rule
         else
             rule = params.out.rule; //reassign rule value from the textbox
-
-          //Reconstruct E4X object from user input to insure it's valid XML
+ 
+        //Reconstruct E4X object from user input to insure it's valid XML
         rule =  new XML(rule);
 
         title = rule.@name; //Re-grab the title from XML for file name (user may have edited it)
     }
 
+
+    
     var ostream = Components.classes["@mozilla.org/network/file-output-stream;1"].
     createInstance(Components.interfaces.nsIFileOutputStream);
     var file = Components.classes["@mozilla.org/file/directory_service;1"].
