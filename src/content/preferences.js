@@ -441,13 +441,7 @@ httpsfinder.preferences = {
         var osString = Components.classes["@mozilla.org/xre/app-info;1"]
         .getService(Components.interfaces.nsIXULRuntime).OS;
 
-        httpsfinder.preferences.sharedWriteRule(hostname, topLevel);
-        
-        if(osString == "Darwin"){
-            document.getElementById('prefWindow').cancelDialog();
-        }
-
-
+        httpsfinder.preferences.sharedWriteRule(hostname, topLevel, "");
     }
 
 };

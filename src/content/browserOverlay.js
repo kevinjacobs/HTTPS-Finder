@@ -766,7 +766,7 @@ httpsfinder.browserOverlay = {
             topLevel =  "." + eTLDService.getPublicSuffixFromHost(hostname);
         }
 
-        httpsfinder.sharedWriteRule(hostname, topLevel);
+        httpsfinder.sharedWriteRule(hostname, topLevel, "");
     },
 
     //Adds to session whitlelist (not database)

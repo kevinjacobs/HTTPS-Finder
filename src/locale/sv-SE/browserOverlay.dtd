@@ -7,8 +7,8 @@
 
 <!--januari februari mars april maj juni juli augusti september oktober november december  -->
 
-<!ENTITY httpsfinder.version "0.75">
-<!ENTITY httpsfinder.buildDate "den 29 augusti 2011">
+<!ENTITY httpsfinder.version "0.76">
+<!ENTITY httpsfinder.buildDate "den 16 september 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Versionsdatum:">
 <!ENTITY httpsfinder.authorTitle "Skapat av:">
@@ -57,13 +57,6 @@
 <!ENTITY httpsfinder.menu.rateKey "B">
 <!ENTITY httpsfinder.menu.help "Hjälp">
 <!ENTITY httpsfinder.menu.helpKey "H">
-<!ENTITY httpsfinder.translation.german "- Tyska (Michael Wolf &amp; Daniel Helmert)">
-<!ENTITY httpsfinder.translation.dutch "- Nederländska (Donné Brok)">
-<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
-<!ENTITY httpsfinder.translation.swedish "- Svenska (Mikael Hiort)">
-<!ENTITY httpsfinder.translation.spanish "- Spanska (strel)">
-<!ENTITY httpsfinder.translation.portuguese "- Portugisiska (Megahertz)">
-<!ENTITY httpsfinder.translation.finnish "- Finska (Jorma Karvonen)">
 <!ENTITY httpsfinder.preference.createRule "Skapa regel">
 <!ENTITY httpsfinder.preference.sslReport "Generera SSL-rapport">
 <!ENTITY httpsfinder.preference.clearResults "Rensa alla resultat">
@@ -73,3 +66,14 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Varaktighet (sekunder)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Avmarkera för att endast köra tyst identifiering. Granska resultat och skapa regler under fliken Avancerat">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Aktivera meddelanden när HTTPS hittas (om &quot;Tvinga HTTPS automatiskt&quot; är inaktiverat)">
+
+
+
+<!ENTITY httpsfinder.translation.german "- Tyska (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Nederländska (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Svenska (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Spanska (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portugisiska (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Finska (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Kinesiska (Christopher Meng: http://about.me/cicku)">

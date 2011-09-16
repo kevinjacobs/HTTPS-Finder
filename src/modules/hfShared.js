@@ -80,7 +80,7 @@ function removeNotification(key){
  */
 
 //Passed in uri variable is an asciispec uri from pre-redirect. (i.e. full http://www.domain.com)
-function sharedWriteRule(hostname, topLevel){       
+function sharedWriteRule(hostname, topLevel, OSXRule){
     var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
 
@@ -112,67 +112,139 @@ function sharedWriteRule(hostname, topLevel){
         //Then the hostname is of the form "mysite.com". We add a "www." rule as well in this case.
         var wwwHost =  "www." + hostname;
         to = "https://" + hostname + "/";
-        rule = <{"ruleset"} name = {title}>
-        <{"target"} host={hostname}/>
-        <{"target"} host={wwwHost}/>
-        <{"rule"} from={from} to={to}/>
-        </{'ruleset'}>;
+        rule = <{
+        "ruleset"
+        }
+        name = {
+        title
+        }>
+        <{
+        "target"
+        }
+        host={
+        hostname
+        }/>
+        <{
+        "target"
+        }
+        host={
+        wwwHost
+        }/>
+        <{
+        "rule"
+        }
+        from={
+        from
+        }
+        to={
+        to
+        }/>
+        </{
+        'ruleset'
+        }>;
     }
     else if(domains.length == 3){
         //Then the hostname already contains subdomain info (www or non-www).
         //Don't touch it.
         to = "https://" + hostname + "/";
-        rule = <{"ruleset"} name = {title}>
-        <{"target"} host={hostname}/>
-        <{'rule'} from={from} to={to}/>
-        </{"ruleset"}>;
+        rule = <{
+        "ruleset"
+        }
+        name = {
+        title
+        }>
+        <{
+        "target"
+        }
+        host={
+        hostname
+        }/>
+        <{
+        'rule'
+        }
+        from={
+        from
+        }
+        to={
+        to
+        }/>
+        </{
+        "ruleset"
+        }>;
     }
     else
         //Catch all
-        rule = <{"ruleset"} name = {title}>
-        <{"target"} host={hostname}/>
-        <{"rule"} from={from} to={to}/>
-        </{"ruleset"}>;
+        rule = <{
+        "ruleset"
+        }
+        name = {
+        title
+        }>
+        <{
+        "target"
+        }
+        host={
+        hostname
+        }/>
+        <{
+        "rule"
+        }
+        from={
+        from
+        }
+        to={
+        to
+        }/>
+        </{
+        "ruleset"
+        }>;
 
     if(rule)
         rule = rule.toXMLString();
 
-    if(prefs.getBoolPref("showrulepreview")){
-        var params = {
-            inn:{
-                rule:rule
-            },
-            out:null
-        };
+    //OSX returns null parameters unless the rule preview dialog is modal.
+    //This mucks up the rule writing from preferences, since that dialog is also modal.
+    //We use OSXRule as a 'flag', and re-call this method from rulePreview if the OS type is Mac (Darwin)
+    //OSXRule contains the full contents of the rule preview dialog.
+    if(OSXRule == ""){
+        if(prefs.getBoolPref("showrulepreview")){
+            var params = {
+                inn:{
+                    rule:rule
+                },
+                out:null
+            };
 
-        //Workaround for how OS X handles modal dialog windows.. If launched from Preferences, it won't show
-        //the dialog until prefwindow closes. So we just make the rule preview non-modal here.
+
+            //Workaround for how OS X handles modal dialog windows.. If launched from Preferences, it won't show
+            //the dialog until prefwindow closes. So we just make the rule preview non-modal here.
         
-        // Returns "WINNT" on Windows,"Linux" on GNU/Linux. and "Darwin" on Mac OS X.
-        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
-        .getService(Components.interfaces.nsIXULRuntime).OS;
+            // Returns "WINNT" on Windows,"Linux" on GNU/Linux. and "Darwin" on Mac OS X.
+            var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+            .getService(Components.interfaces.nsIXULRuntime).OS;
 
-       if(osString == "Darwin")
-     //       currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "", "chrome, toolbar,centerscreen,dialog=yes, resizable=yes", params).focus();
-            currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
-                "chrome, dialog, modal, centerscreen, resizable=yes", params).focus();
-        else
-            currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
-                "chrome, dialog, modal,centerscreen, resizable=yes", params).focus();
+            if(osString == "Darwin")
+                currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
+                    "chrome, dialog, centerscreen, resizable=yes", params).focus();
+            else
+                currentWindow.openDialog("chrome://httpsfinder/content/rulePreview.xul", "",
+                    "chrome, dialog, modal,centerscreen, resizable=yes", params).focus();
 
-        if (!params.out)
-            return; //user canceled rule
-        else
-            rule = params.out.rule; //reassign rule value from the textbox
- 
+            if (!params.out)
+                return; //user canceled rule
+            else
+                rule = params.out.rule; //reassign rule value from the textbox
+        }
+
         //Reconstruct E4X object from user input to insure it's valid XML
         rule =  new XML(rule);
-
-        title = rule.@name; //Re-grab the title from XML for file name (user may have edited it)
     }
+    else
+        rule =  new XML(OSXRule); //Optional parameter used on only OSX to get around null parameter output on non-modal rule preview
+
+    title = rule.@name; //Re-grab the title from XML for file name (user may have edited it)
 
 
-    
     var ostream = Components.classes["@mozilla.org/network/file-output-stream;1"].
     createInstance(Components.interfaces.nsIFileOutputStream);
     var file = Components.classes["@mozilla.org/file/directory_service;1"].

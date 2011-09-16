@@ -7,8 +7,8 @@
 
 <!--Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember. Format: 23. Mai 2011-->
 
-<!ENTITY httpsfinder.version "0.75">
-<!ENTITY httpsfinder.buildDate "29. August 2011">
+<!ENTITY httpsfinder.version "0.76">
+<!ENTITY httpsfinder.buildDate "16. September 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build-Datum:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -57,13 +57,6 @@
 <!ENTITY httpsfinder.menu.rateKey "b">
 <!ENTITY httpsfinder.menu.help "Hilfe">
 <!ENTITY httpsfinder.menu.helpKey "H">
-<!ENTITY httpsfinder.translation.german "- Deutsch (Michael Wolf &amp; Daniel Helmert)">
-<!ENTITY httpsfinder.translation.dutch "- Niederländisch (Donné Brok)">
-<!ENTITY httpsfinder.translation.polish "- Politur (PcP)">
-<!ENTITY httpsfinder.translation.swedish "- Zweeds (Mikael Hiort)">
-<!ENTITY httpsfinder.translation.spanish "- Spanisch (strel)">
-<!ENTITY httpsfinder.translation.portuguese "- Portugiesisch (Megahertz)">
-<!ENTITY httpsfinder.translation.finnish "- Finnisch (Jorma Karvonen)">
 <!ENTITY httpsfinder.preference.createRule "Regel erstellen">
 <!ENTITY httpsfinder.preference.sslReport "SSL-Bericht erzeugen">
 <!ENTITY httpsfinder.preference.clearResults "Alle Ergebnisse löschen">
@@ -73,3 +66,14 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Dauer (Sekunden)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Nur für stillschweigende Erkennung. Anzeige der Ergebnisse und Erstellung der Regeln aus dem Tab Erweitert">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Gefundene HTTPS-Warnungen aktivieren (falls die automatische HTTPS-Erzwingung deaktiviert ist)">
+
+
+
+<!ENTITY httpsfinder.translation.german "- Deutsch (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Niederländisch (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Politur (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Zweeds (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Spanisch (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portugiesisch (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Finnisch (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng: http://about.me/cicku)">

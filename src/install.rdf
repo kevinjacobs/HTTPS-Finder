@@ -43,12 +43,17 @@
                 <em:description>Havaitsee ja hälyttää automaattisesti kun SSL on käytettävissä webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sääntöluominen</em:description>
                 <em:translator>Jorma Karvonen</em:translator>
             </Description>
+            <Description>
+                <em:locale>zh-CN</em:locale>
+                <em:description>µ±Ç°Ò³Ãæ¿ÉÓÃHTTPSÊ±£¬×Ô¶¯ÌáÊ¾²¢ÎªHTTPS Everywhere´´½¨¹æÔò¡£</em:description>
+                <em:translator>Christopher Meng</em:translator>
+            </Description>
         </em:localized>
 
         <em:name>HTTPS Finder</em:name>
         <em:description>Automatically detect and alert when SSL is available on a web page. Automated rule creation for HTTPS Everywhere</em:description>
         <em:optionsURL>chrome://httpsfinder/content/preferences.xul</em:optionsURL>
-        <em:version>0.75</em:version>
+        <em:version>0.76</em:version>
         <em:creator>Kevin Jacobs</em:creator>
         <em:iconURL>chrome://httpsfinder/skin/iconLarge.png</em:iconURL>
         <em:icon64URL>chrome://httpsfinder/skin/icon64.png</em:icon64URL>

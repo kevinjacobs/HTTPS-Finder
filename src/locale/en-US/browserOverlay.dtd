@@ -5,8 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.75">
-<!ENTITY httpsfinder.buildDate "29 Aug 2011">
+<!ENTITY httpsfinder.version "0.76">
+<!ENTITY httpsfinder.buildDate "16 Sep 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
@@ -71,3 +71,4 @@
 <!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng: http://about.me/cicku)">

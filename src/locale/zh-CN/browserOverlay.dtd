@@ -1,0 +1,74 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "515">
+<!ENTITY httpsfinder.prefSize.windowHeight "570">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "450">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
+<!--End prefWindow sizing-->
+
+<!ENTITY httpsfinder.version "0.76">
+<!ENTITY httpsfinder.buildDate "16 September 2011">
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "插件最后打包于:">
+<!ENTITY httpsfinder.authorTitle "作者:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "HTTPS Finder设置">
+<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.translations "中文语言包由以下人士提供:">
+<!ENTITY httpsfinder.preference.supportTitle "Email支持:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "开启HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "不要提示我保存HTTPS规则(针对不使用HTTPS Everywhere的用户)">
+<!ENTITY httpsfinder.preference.autoForward "HTTPS可用时自动强制使用">
+<!ENTITY httpsfinder.preference.whitelistLabel "域名白名单(这些域名不会被自动探测)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "加入白名单">
+<!ENTITY httpsfinder.preference.whitelistModify "变更">
+<!ENTITY httpsfinder.preference.whitelistRemove "移除">
+<!ENTITY httpsfinder.preference.savedRulesTip "已保存的规则可在HTTPS Everywhere中被禁用">
+<!ENTITY httpsfinder.preference.ruleTip "请注意对于白名单规则,  www.domain.com 是 domain.com 的二级域名">
+<!ENTITY httpsfinder.preference.learnMoreTip "了解更多有关HTTPS Finder的信息">
+<!ENTITY httpsfinder.preference.learnLinkName "单击此处">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "域名名称(例如domain.tld, sub.domain.tld, *.domain.tld)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "域名名称">
+<!ENTITY httpsfinder.preference.headFirst "优先检测报头 (如果服务器不支持则返回GET模式)">
+<!ENTITY httpsfinder.preference.generalTab "常规">
+<!ENTITY httpsfinder.preference.advancedTab "高级">
+<!ENTITY httpsfinder.preference.aboutTab "关于">
+<!ENTITY httpsfinder.preference.detectionLabel "检测方式">
+<!ENTITY httpsfinder.preference.showpreview "规则保存前进行预览(允许编辑)">
+<!ENTITY httpsfinder.preference.detectionDescLONG "HEAD请求比GET请求省流量，但是某些服务器并不支持这种方式。如果不支持，HTTPS Finder将尝试使用GET请求提交">
+<!ENTITY httpsfinder.preference.detectionDescRec "推荐设置:如果你网速很好,不要勾选仅使用 GET请求 选项. 在慢速网络上，HEAD请求对很多网站访问明显加快">
+<!ENTITY httpsfinder.preference.debug "开启调试模式记录(啰嗦)">
+<!ENTITY httpsfinder.rulePreview.top "规则预览:">
+<!ENTITY httpsfinder.rulePreview.tip1 "所有更改将会体现在已保存的规则中">
+<!ENTITY httpsfinder.rulePreview.tip2 "点击OK按钮保存规则,或者点击Cancel按钮不保存直接返回">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "单击此处">
+<!ENTITY httpsfinder.rulePreview.learnmore "学习更多有关规则格式的知识">
+<!ENTITY httpsfinder.menu.settings "设置">
+<!ENTITY httpsfinder.menu.settingsKey "P">
+<!ENTITY httpsfinder.menu.refresh "清除临时白名单">
+<!ENTITY httpsfinder.menu.refreshKey "C">
+<!ENTITY httpsfinder.menu.homepage "项目官网">
+<!ENTITY httpsfinder.menu.homepageKey "P">
+<!ENTITY httpsfinder.menu.rate "为HTTPS Finder打分">
+<!ENTITY httpsfinder.menu.rateKey "R">
+<!ENTITY httpsfinder.menu.help "帮助">
+<!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.preference.createRule "创建规则">
+<!ENTITY httpsfinder.preference.sslReport "生成SSL报告">
+<!ENTITY httpsfinder.preference.clearResults "清除所有结果">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS结果">
+<!ENTITY httpsfinder.preference.listHeaderTitle "已检测到可用HTTPS的网站列表">
+<!ENTITY httpsfinder.preference.autoDismissTitle "多久后自动忽略插件提示(秒)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "持续时间 (秒)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "去除勾选仅限于安静模式。请在高级选项卡查看检测记录和规则">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "开启HTTPS检测提示(如果自动强制使用HTTPS功能被禁用)">
+<!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng - http://about.me/cicku)">
+<!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">

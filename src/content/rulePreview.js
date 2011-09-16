@@ -36,9 +36,8 @@ httpsfinder.rulePreview = {
 
         if(osString == "Darwin"){
             Components.utils.import("resource://hfShared/hfShared.js", httpsfinder.rulePreview);
-            /////FIX ME - Need to re-parse the argument here, pass to sharedWriteRule again.
             //This is to work around a difference in the way OSX handles modal dialog windows.
-            httpsfinder.sharedWriteRule(hostname, topLevel);
+            httpsfinder.rulePreview.sharedWriteRule("","",document.getElementById("ruleBox").value);
         }
         else
             window.arguments[0].out = {

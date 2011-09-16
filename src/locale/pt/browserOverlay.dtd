@@ -8,8 +8,8 @@
 <!--janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro -->
 
 
-<!ENTITY httpsfinder.version "0.75">
-<!ENTITY httpsfinder.buildDate "29/Agosto/2011">
+<!ENTITY httpsfinder.version "0.76">
+<!ENTITY httpsfinder.buildDate "16/Setembro/2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Data da revisão:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -74,3 +74,4 @@
 <!ENTITY httpsfinder.translation.spanish "- Espanhol (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Português (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finlandês (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Chinês (Christopher Meng: http://about.me/cicku)">
