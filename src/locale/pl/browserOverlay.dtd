@@ -64,7 +64,7 @@
 <!ENTITY httpsfinder.translation.spanish "- Hiszpański (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portugalski (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Fiński (Jorma Karvonen)">
-<!ENTITY httpsfinder.translation.chinese "- Chiński (Christopher Meng: http://about.me/cicku)">
+<!ENTITY httpsfinder.translation.chinese "- Chiński (Christopher Meng)">
 
 <!-- New in 0.73 - Will need to be translated -->
 <!ENTITY httpsfinder.preference.createRule "Create Rule">

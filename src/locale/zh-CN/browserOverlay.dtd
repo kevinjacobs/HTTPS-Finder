@@ -65,7 +65,7 @@
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "去除勾选仅限于安静模式。请在高级选项卡查看检测记录和规则">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "开启HTTPS检测提示(如果自动强制使用HTTPS功能被禁用)">
 <!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
-<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng - http://about.me/cicku)">
+<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng)">
 <!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
 <!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
