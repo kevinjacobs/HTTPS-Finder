@@ -204,6 +204,7 @@ httpsfinder.preferences = {
         httpsfinder.preferences.RemoveWhitelistRule();
     },
 
+    //Called when user removess an item from the good SSL list in Preferences > Advanced
     removeCacheItem: function(){
         var theList = document.getElementById('cacheList');
         theList.ensureIndexIsVisible(theList.selectedIndex);
@@ -216,12 +217,9 @@ httpsfinder.preferences = {
         }
 
         while(theList.itemCount > 0)
-            for(var i=0; i < theList.itemCount; i++)
-                theList.removeItemAt(i);
-
+            theList.removeItemAt(0);
 
         httpsfinder.preferences.loadResults();
-
     },
 
     //Delete selected rule(s) from whitelist
@@ -399,11 +397,9 @@ httpsfinder.preferences = {
         httpsfinder.preferences.results.whitelist = [];
         httpsfinder.preferences.results.permWhitelistLength = 0;
 
-
         var theList = document.getElementById('cacheList');
         while(theList.itemCount > 0)
-            for(var i=0; i < theList.itemCount; i++)
-                theList.removeItemAt(i);
+            theList.removeItemAt(0);
 
         httpsfinder.preferences.loadResults();
     },

@@ -690,12 +690,18 @@ httpsfinder.browserOverlay = {
     alertSSLEnforced: function(aDocument){
         var browser = gBrowser.getBrowserForDocument(aDocument);
 
+        var host = null;
+        try{
+            host = gBrowser.currentURI.host;
+        }
+        catch(e){}
+
         //Return if a rule has already been saved this session (we just silently enforce)
         if(httpsfinder.results.tempNoAlerts.indexOf(browser.currentURI.host) != -1)
             return;
 
         //Append alert if 'noruleeprompt' pref is not enabled, and host is not "". (addon manager, blank page, etc)
-        else if(!httpsfinder.prefs.getBoolPref("noruleprompt") && gBrowser.currentURI.host != ""){
+        else if(!httpsfinder.prefs.getBoolPref("noruleprompt") && host != ""){
 
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
             var saveRuleButtons = [{

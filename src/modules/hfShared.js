@@ -99,7 +99,6 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
         title = hostname.slice(0, hostname.lastIndexOf(".", 0) - tldLength);
     title = title.charAt(0).toUpperCase() + title.slice(1);
 
-
     var from = "^http://(www\\.)?" + title.toLowerCase() + "\\"  + topLevel + "/";
     var to = "https://" + title.toLowerCase() + topLevel + "/";
     var rule;

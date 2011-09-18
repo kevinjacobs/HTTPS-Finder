@@ -24,7 +24,6 @@
             <preference id="httpsfinder-autoforward" name="extensions.httpsfinder.autoforward" type="bool"/>
             <preference id="httpsfinder-headfirst" name="extensions.httpsfinder.headfirst" type="bool"/>
             <preference id="httpsfinder-showrulepreview" name="extensions.httpsfinder.showrulepreview" type="bool"/>
-            <preference id="httpsfinder-debugLogging" name="extensions.httpsfinder.debugLogging" type="bool"/>
             <preference id="httpsfinder-autoDismiss" name="extensions.httpsfinder.dismissAlerts" type="bool"/>
             <preference id="httpsfinder-dismissTime" name="extensions.httpsfinder.alertDismissTime" type="int"/>
             <preference id="httpsfinder-HTTPSFoundAlerts" name="extensions.httpsfinder.httpsfoundalert" type="bool"/>
@@ -116,10 +115,6 @@
                                 <row>
                                     <checkbox id="rulepreview" preference="httpsfinder-showrulepreview"/>
                                     <label control="rulepreview" value="&httpsfinder.preference.showpreview;"/>
-                                </row>
-                                <row>
-                                    <checkbox id="debug" preference="httpsfinder-debugLogging"/>
-                                    <label control="debugLabel" value="&httpsfinder.preference.debug;"/>
                                 </row>
                                 <vbox>
                                     <row>
