@@ -400,40 +400,40 @@ httpsfinder.browserOverlay = {
         getService(Components.interfaces.nsINavHistoryService);
 
         httpsfinder.history = {
-                onBeginUpdateBatch: function() {},
-                onEndUpdateBatch: function() {},
-                onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
-                onTitleChanged: function(aURI, aPageTitle) {},
-                onBeforeDeleteURI: function(aURI) {},
-                onPageChanged: function(aURI, aWhat, aValue) {},
-                onDeleteVisits: function(aURI, aVisitTime, aGUID) {},
+            onBeginUpdateBatch: function() {},
+            onEndUpdateBatch: function() {},
+            onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
+            onTitleChanged: function(aURI, aPageTitle) {},
+            onBeforeDeleteURI: function(aURI) {},
+            onPageChanged: function(aURI, aWhat, aValue) {},
+            onDeleteVisits: function(aURI, aVisitTime, aGUID) {},
 
-                /*
+            /*
                 *Called when user deletes all instances of a specific URI
                 *(warning: Called for each URI in batch operations too)
                 */
-                onDeleteURI: function(aURI){
-                    let host = aURI.host;
+            onDeleteURI: function(aURI){
+                let host = aURI.host;
 
-                    if(httpsfinder.results.goodSSL.indexOf(host) != -1)
-                        for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
-                            if(httpsfinder.results.goodSSL[i] == host){
-                                httpsfinder.results.goodSSL.splice(i,1);
-                                return;
-                            }
+                if(httpsfinder.results.goodSSL.indexOf(host) != -1)
+                    for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
+                        if(httpsfinder.results.goodSSL[i] == host){
+                            httpsfinder.results.goodSSL.splice(i,1);
+                            return;
                         }
+                    }
 
-                    else if(httpsfinder.browserOverlay.isWhitelisted(host))
-                        httpsfinder.browserOverlay.removeFromWhitelist(null, host);
-                },
+                else if(httpsfinder.browserOverlay.isWhitelisted(host))
+                    httpsfinder.browserOverlay.removeFromWhitelist(null, host);
+            },
 
-                //Called when all history is cleared.
-                onClearHistory: function() {
-                    httpsfinder.browserOverlay.resetWhitelist();
-                },
+            //Called when all history is cleared.
+            onClearHistory: function() {
+                httpsfinder.browserOverlay.resetWhitelist();
+            },
 
-                QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsINavHistoryObserver])
-            };        
+            QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsINavHistoryObserver])
+        };        
 
         hs.addObserver(httpsfinder.history, false);
 
@@ -458,15 +458,13 @@ httpsfinder.browserOverlay = {
             dump("httpsfinder cannot load preferences or strings - init() failed\n");
             return;
         }
+         
+        var installedVersion = httpsfinder.prefs.getCharPref("version");
+        var firstrun = httpsfinder.prefs.getBoolPref("firstrun");
+        httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
 
-        /*Try/catch/finally checks version numbers and runs upgrade code if needed.
-         * Attempts to recreate db table (in case it has been deleted). Doesn't overwrite though
-         */
+        //Try/catch attempts to recreate db table (in case it has been deleted). Doesn't overwrite though
         try{
-            var installedVersion = httpsfinder.prefs.getCharPref("version");
-            var firstrun = httpsfinder.prefs.getBoolPref("firstrun");
-            httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
-
             //Create whitelist database
             var file = Components.classes["@mozilla.org/file/directory_service;1"]
             .getService(Components.interfaces.nsIProperties)
@@ -475,11 +473,10 @@ httpsfinder.browserOverlay = {
             var storageService = Components.classes["@mozilla.org/storage/service;1"]
             .getService(Components.interfaces.mozIStorageService);
             var mDBConn = storageService.openDatabase(file); //Creates db on first run.
-            mDBConn.createTable("whitelist", "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, rule STRING NOT NULL UNIQUE");
+            mDBConn.createTable("whitelist", "rule STRING NOT NULL UNIQUE");
 
         }catch(e){
-            //NS_ERROR_FAILURE is thrown when we try to recreate a table (May be too generic though...)
-            //--Need to change sql command to 'If not exists' to avoid this.
+            //NS_ERROR_FAILURE is thrown when we try to recreate a table (May be too generic though...))
             if(e.name != 'NS_ERROR_FAILURE')
                 Components.utils.reportError("HTTPS Finder: initialize error " + e + "\n");
         }
@@ -818,11 +815,11 @@ httpsfinder.browserOverlay = {
                         httpsfinder.results.whitelist.push(host);
 
                     for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
-                            if(httpsfinder.results.goodSSL[i] == host){
-                                httpsfinder.results.goodSSL.splice(i,1);
-                                return;
-                            }
+                        if(httpsfinder.results.goodSSL[i] == host){
+                            httpsfinder.results.goodSSL.splice(i,1);
+                            return;
                         }
+                    }
 
                     dump("httpsfinder redirect loop detected on host " + host + ". Host temporarily whitelisted. Reload time: " + sinceLastReset + "ms\n");
                     redirectLoop = true;

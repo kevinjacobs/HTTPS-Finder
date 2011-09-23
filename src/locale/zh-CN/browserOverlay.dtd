@@ -5,7 +5,7 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.76">
+<!ENTITY httpsfinder.version "0.77">
 <!ENTITY httpsfinder.buildDate "16 September 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "插件最后打包于:">
@@ -14,7 +14,7 @@
 <!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
 <!ENTITY httpsfinder.preference.title "HTTPS Finder设置">
 <!ENTITY httpsfinder.preference.titleKey "H">
-<!ENTITY httpsfinder.preference.translations "中文语言包由以下人士提供:">
+<!ENTITY httpsfinder.preference.translations "多国语言包由以下人士提供:">
 <!ENTITY httpsfinder.preference.supportTitle "Email支持:">
 <!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
 <!ENTITY httpsfinder.preference.enable "开启HTTPS Finder">
@@ -65,10 +65,10 @@
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "去除勾选仅限于安静模式。请在高级选项卡查看检测记录和规则">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "开启HTTPS检测提示(如果自动强制使用HTTPS功能被禁用)">
 <!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
-<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng)">
 <!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
 <!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
 <!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng)">
