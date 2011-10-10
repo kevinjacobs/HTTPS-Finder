@@ -127,6 +127,7 @@ httpsfinder.detect = {
             var getReq = new XMLHttpRequest();
             getReq.mozBackgroundRequest = true;
             getReq.open('GET', requestURL, true);
+            4
             getReq.channel.loadFlags |= Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE;
             getReq.onreadystatechange = function (aEvt) {
                 if (getReq.readyState == 4){
@@ -354,21 +355,21 @@ httpsfinder.detect = {
                 var verificationResult = cert.verifyForUsage(Ci.nsIX509Cert.CERT_USAGE_SSLServer);
                 switch (verificationResult) {
                     case Ci.nsIX509Cert.VERIFIED_OK:
-                        secure = true;
-                        if(httpsfinder.debug)
-                            dump("httpsfinder testCertificate: Cert OK (on "+
-                                channel.URI.host.toLowerCase()+ ")\n");
+                        secure = true;                       
                         break;
                     default:
                         secure = false;
                         break;
-                }
+                }       
             }
         }
         catch(err){
             secure = false;
             Components.utils.reportError("HTTPS Finder: testCertificate error: " + err.toString() + "\n");
-        }
+        } 
+        if(httpsfinder.debug && secure)
+            dump("httpsfinder testCertificate: cert OK (on "+
+                channel.URI.host.toLowerCase()+ ")\n");         
         return secure;
     }
 };
