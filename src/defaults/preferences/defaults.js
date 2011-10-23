@@ -10,3 +10,4 @@ pref("extensions.httpsfinder.version", "0.0");
 pref("extensions.httpsfinder.httpsfoundalert", true);
 pref("extensions.httpsfinder.dismissAlerts", false);
 pref("extensions.httpsfinder.alertDismissTime", 4);
+pref("extensions.httpsfinder.appendVersionTagToRules", true);

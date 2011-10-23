@@ -126,8 +126,7 @@ httpsfinder.detect = {
         if(!httpsfinder.prefs.getBoolPref("headfirst")){
             var getReq = new XMLHttpRequest();
             getReq.mozBackgroundRequest = true;
-            getReq.open('GET', requestURL, true);
-            4
+            getReq.open('GET', requestURL, true);            
             getReq.channel.loadFlags |= Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE;
             getReq.onreadystatechange = function (aEvt) {
                 if (getReq.readyState == 4){
