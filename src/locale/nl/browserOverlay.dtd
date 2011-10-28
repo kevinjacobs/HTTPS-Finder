@@ -7,8 +7,8 @@
 
 <!--januari, februari, mart, april, mei, juni, juli, augustus, september, october, november, december. Format: 23. mei 2011-->
 
-<!ENTITY httpsfinder.version "0.78">
-<!ENTITY httpsfinder.buildDate "23 october 2011">
+<!ENTITY httpsfinder.version "0.79">
+<!ENTITY httpsfinder.buildDate "28 october 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Datum van uitgave:">
 <!ENTITY httpsfinder.authorTitle "Auteur:">

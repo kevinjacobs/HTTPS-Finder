@@ -20,6 +20,8 @@
  *  ***** END LICENSE BLOCK *****
  */
 
+"use strict";
+
 if (!httpsfinder) var httpsfinder = {
     prefs: null, //prefs object for httpsfinder branch
     strings: null, //Strings object for httpsfinder strings
@@ -80,7 +82,7 @@ httpsfinder.detect = {
                     }
                 }catch(e){
                     if(e.name == 'NS_ERROR_FAILURE')
-                        Components.utils.reportError("HTTPS Finder: cannot match URI to browser request.\n");
+                        dump("HTTPS Finder: cannot match URI to browser request.\n");
                 }
 
                 //Push to whitelist so we don't spam with multiple detection requests - may be removed later depending on result
@@ -142,8 +144,9 @@ httpsfinder.detect = {
             headReq.channel.loadFlags |= Components.interfaces.nsIRequest.LOAD_BYPASS_CACHE;
             headReq.onreadystatechange = function (aEvt) {
                 if (headReq.readyState == 4){
-                    if(headReq.status == 200 || (headReq.status != 405 && headReq.status != 403))
-                        httpsfinder.detect.handleDetectionResponse(aBrowser,headReq, requestURL);
+                    if(headReq.status == 200 || headReq.status == 0 ||
+                        (headReq.status != 405 && headReq.status != 403))
+                        httpsfinder.detect.handleDetectionResponse(aBrowser, headReq, requestURL);
                     else if(headReq.status == 405 || headReq.status == 403){
                         dump("httpsfinder detection falling back to GET for " + requestURL + "\n");
                         var getReq = new XMLHttpRequest();
@@ -243,12 +246,19 @@ httpsfinder.detect = {
             httpsfinder.browserOverlay.removeFromWhitelist(null, aBrowser.contentDocument.baseURIObject.host.toLowerCase());
         }
 
-        if(sslTest.status != 200 && sslTest.status != 301 && sslTest.status != 302 && httpsfinder.results.goodSSL.indexOf(host) == -1){
+        var Codes = [200, 301, 302, 0];
+
+        if(Codes.indexOf(sslTest.status) == -1 && httpsfinder.results.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
                 dump("httpsfinder leaving " + host + " in whitelist (return status code " + sslTest.status + ")\n");
             return;
         }
-        else if(!httpsfinder.detect.testCertificate(sslTest.channel) && httpsfinder.results.goodSSL.indexOf(host) == -1){
+        else if(sslTest.status == 0 && !httpsfinder.detect.testCertificate(request,sslTest.status, aBrowser) && httpsfinder.results.goodSSL.indexOf(host) == -1){
+            if(httpsfinder.debug)
+                dump("httpsfinder leaving " + host + " in whitelist (bad SSL certificate)\n");
+            return;
+        }
+        else if(!httpsfinder.detect.testCertificate(request, null, null) && httpsfinder.results.goodSSL.indexOf(host) == -1){
             if(httpsfinder.debug)
                 dump("httpsfinder leaving " + host + " in whitelist (bad SSL certificate)\n");
             return;
@@ -329,7 +339,7 @@ httpsfinder.detect = {
     },
 
     //Certificate testing done before alerting user of https presence
-    testCertificate: function(channel) {
+    testCertificate: function(channel, status, aBrowser) {
         var secure = false;
         try {
             const Ci = Components.interfaces;
@@ -352,9 +362,56 @@ httpsfinder.detect = {
                 var cert = secInfo.QueryInterface(Ci.nsISSLStatusProvider).
                 SSLStatus.QueryInterface(Ci.nsISSLStatus).serverCert;
                 var verificationResult = cert.verifyForUsage(Ci.nsIX509Cert.CERT_USAGE_SSLServer);
+               
                 switch (verificationResult) {
                     case Ci.nsIX509Cert.VERIFIED_OK:
-                        secure = true;                       
+                        if(status != 0)
+                             secure = true;                       
+                        break;
+                    case Ci.nsIX509Cert.NOT_VERIFIED_UNKNOWN:
+                        secure = false;
+                        break;
+                    case Ci.nsIX509Cert.CERT_REVOKED:
+                        secure = false;
+                        break;
+                    case Ci.nsIX509Cert.CERT_EXPIRED:
+                        secure = false;
+                        break;
+                    case Ci.nsIX509Cert.CERT_NOT_TRUSTED:
+                        secure = false;
+                        break;
+                    case Ci.nsIX509Cert.ISSUER_NOT_TRUSTED:
+                        if(httpsfinder.prefs.getBoolPref("allowSelfSignedCerts")){
+                            
+                            var nb = gBrowser.getNotificationBox(aBrowser);
+                            
+                            var wlButton = [{
+                                label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
+                                accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
+                                popup: null,
+                                callback: httpsfinder.browserOverlay.whitelistDomain
+                            },{
+                                label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
+                                accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
+                                popup: null,
+                                callback: httpsfinder.browserOverlay.redirect
+                            }];
+
+                            nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.selfSignedAlert"),
+                                "httpsfinder-ssl-selfSigned", 'chrome://httpsfinder/skin/httpsAvailable.png',
+                                nb.PRIORITY_INFO_HIGH, wlButton);
+                            if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
+                                setTimeout(function(){
+                                    httpsfinder.removeNotification("httpsfinder-ssl-selfSigned")
+                                },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000, 'httpsfinder-ssl-selfSigned');
+                        }
+                        secure = false;                                
+                        break;
+                    case Ci.nsIX509Cert.ISSUER_UNKNOWN:
+                        secure = false;
+                        break;
+                    case Ci.nsIX509Cert.INVALID_CA:
+                        secure = false;
                         break;
                     default:
                         secure = false;

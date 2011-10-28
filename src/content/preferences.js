@@ -29,7 +29,7 @@ httpsfinder.preferences = {
         Components.utils.import("resource://hfShared/hfShared.js", httpsfinder.preferences);
 
         var enable = document.getElementById('enable');
-        if(enable.checked){
+        if (enable.checked){
             document.getElementById('noruleprompt').disabled = false;
             document.getElementById('promptLabel').disabled = false;
             document.getElementById('autoforward').disabled = false;
@@ -53,7 +53,7 @@ httpsfinder.preferences = {
             document.getElementById('httpsfoundprompt').disabled = true;
             document.getElementById('httpsfoundpromptLbl').disabled = true;
         }
-        else if(!autoforward.checked && enable.checked){
+        else if (!autoforward.checked && enable.checked){
             document.getElementById('httpsfoundprompt').disabled = false;
             document.getElementById('httpsfoundpromptLbl').disabled = false;
         }
@@ -68,7 +68,7 @@ httpsfinder.preferences = {
         var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
         .getService(Components.interfaces.nsIPrivateBrowsingService);
 
-        if(pbs.privateBrowsingEnabled){
+        if (pbs.privateBrowsingEnabled){
             let row = document.createElement('listitem');
             let cell = document.createElement('listcell');
             var strings = document.getElementById("httpsfinderStrings");
@@ -147,7 +147,7 @@ httpsfinder.preferences = {
     //Push user specified rule to sqlite db
     AddToWhitelist: function(){
         var url = document.getElementById('whitelistURL').value.toLowerCase();
-        if(url.length == 0){
+        if (url.length == 0){
             alert("No rule specified");
             return;
         }
@@ -211,8 +211,8 @@ httpsfinder.preferences = {
 
         var selectedItems = theList.selectedItems;
 
-        for(let i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++){
-            if(httpsfinder.preferences.results.goodSSL[i] == selectedItems[0].firstChild.getAttribute("label"))
+        for (let i = 0; i < httpsfinder.preferences.results.goodSSL.length; i++){
+            if (httpsfinder.preferences.results.goodSSL[i] == selectedItems[0].firstChild.getAttribute("label"))
                 httpsfinder.preferences.results.goodSSL.splice(i,1);
         }
 
@@ -228,11 +228,11 @@ httpsfinder.preferences = {
         theList.ensureIndexIsVisible(theList.selectedIndex);
         var selectedItems = theList.selectedItems;
 
-        if(selectedItems.length == 0)
+        if (selectedItems.length == 0)
             return;
 
         var urls = [];
-        for(var i=0; i < selectedItems.length; i++)
+        for (var i=0; i < selectedItems.length; i++)
             urls.push(selectedItems[i].firstChild.getAttribute("label"));
 
         try{
@@ -264,14 +264,14 @@ httpsfinder.preferences = {
                 handleCompletion: function(aReason){
                     if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED){
                         //Remove any selected/removed items
-                        for(let i=0; i < selectedItems.length; i++){
-                            for(let j=0; j < urls.length; j++){
-                                if(selectedItems[i].firstChild.getAttribute("label") == urls[j])
+                        for (let i=0; i < selectedItems.length; i++){
+                            for (let j=0; j < urls.length; j++){
+                                if (selectedItems[i].firstChild.getAttribute("label") == urls[j])
                                     theList.removeChild(selectedItems[i]);
                             }
                         }
 
-                        if(theList.getRowCount() == 0){
+                        if (theList.getRowCount() == 0){
                             document.getElementById('modifyRule').disabled = true;
                             document.getElementById('removeRule').disabled = true;
                         }
@@ -294,7 +294,7 @@ httpsfinder.preferences = {
     autoForwardToggle: function(){
         var autoforward = document.getElementById('autoforward');
 
-        if(autoforward.checked){
+        if (autoforward.checked){
             document.getElementById('httpsfoundprompt').disabled = false;
             document.getElementById('httpsfoundpromptLbl').disabled = false;
         }
@@ -308,7 +308,7 @@ httpsfinder.preferences = {
         var enable = document.getElementById('enable');
         var autoforward = document.getElementById('autoforward');
 
-        if(enable.checked){
+        if (enable.checked){
             document.getElementById('noruleprompt').disabled = true;
             document.getElementById('promptLabel').disabled = true;
             document.getElementById('autoforward').disabled = true;
@@ -319,7 +319,7 @@ httpsfinder.preferences = {
             document.getElementById('removeRule').disabled = true;
             document.getElementById('whitelist').disabled = true;
 
-            if(autoforward.checked){
+            if (autoforward.checked){
                 document.getElementById('httpsfoundprompt').disabled = true;
                 document.getElementById('httpsfoundpromptLbl').disabled = true;
             }
@@ -337,14 +337,14 @@ httpsfinder.preferences = {
             document.getElementById('whitelistURLLabel').disabled = false;
             document.getElementById('whitelist').disabled = false;
 
-            if(!autoforward.checked){
+            if (!autoforward.checked){
                 document.getElementById('httpsfoundprompt').disabled = false;
                 document.getElementById('httpsfoundpromptLbl').disabled = false;
             }
 
             var theList = document.getElementById('whitelist');
 
-            if(theList.selectedCount == 1){
+            if (theList.selectedCount == 1){
                 document.getElementById('modifyRule').disabled = false;
                 document.getElementById('removeRule').disabled = false;
             }
@@ -356,7 +356,7 @@ httpsfinder.preferences = {
     ResultSelect: function(){
         var theList = document.getElementById('cacheList');
 
-        if(theList.selectedCount == 1){
+        if (theList.selectedCount == 1){
             document.getElementById('viewReport').disabled = false;
             document.getElementById('removeFromCache').disabled = false;
             document.getElementById('writeRule').disabled = false;
@@ -373,7 +373,7 @@ httpsfinder.preferences = {
     WhitelistSelect: function(){
         var theList = document.getElementById('whitelist');
 
-        if(theList.selectedCount == 1){
+        if (theList.selectedCount == 1){
             document.getElementById('modifyRule').disabled = false;
             document.getElementById('removeRule').disabled = false;
         }
@@ -398,7 +398,7 @@ httpsfinder.preferences = {
         httpsfinder.preferences.results.permWhitelistLength = 0;
 
         var theList = document.getElementById('cacheList');
-        while(theList.itemCount > 0)
+        while (theList.itemCount > 0)
             theList.removeItemAt(0);
 
         httpsfinder.preferences.loadResults();
