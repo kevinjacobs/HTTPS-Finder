@@ -66,9 +66,6 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Varaktighet (sekunder)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Avmarkera för att endast köra tyst identifiering. Granska resultat och skapa regler under fliken Avancerat">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Aktivera meddelanden när HTTPS hittas (om &quot;Tvinga HTTPS automatiskt&quot; är inaktiverat)">
-
-
-
 <!ENTITY httpsfinder.translation.german "- Tyska (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Nederländska (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polish (PcP)">

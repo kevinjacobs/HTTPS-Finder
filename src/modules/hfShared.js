@@ -201,8 +201,12 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
         file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0666);
     }
     catch(e){
-        if(e.name == 'NS_ERROR_FILE_ALREADY_EXISTS')
-            file.remove(false);   
+        if(e.name == 'NS_ERROR_FILE_ALREADY_EXISTS'){
+            if (currentWindow.confirm(strings.getString("httpsfinder.rulePreview.overwriteConfirm")))
+                file.remove(false);               
+            else
+                return;            
+        }
     }
     ostream.init(file, 0x02 | 0x08 | 0x20, 0666, ostream.DEFER_OPEN);
     var converter = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].

@@ -66,9 +66,6 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Dauer (Sekunden)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Nur für stillschweigende Erkennung. Anzeige der Ergebnisse und Erstellung der Regeln aus dem Tab Erweitert">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Gefundene HTTPS-Warnungen aktivieren (falls die automatische HTTPS-Erzwingung deaktiviert ist)">
-
-
-
 <!ENTITY httpsfinder.translation.german "- Deutsch (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Niederländisch (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Politur (PcP)">

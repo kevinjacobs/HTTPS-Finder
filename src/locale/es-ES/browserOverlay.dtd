@@ -66,9 +66,6 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Duración (seconds)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Deshabilitar  para usar sólo detencción silenciosa. Para ver resultados y crear reglas, desde la pestaña Avanzadas">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Activar alertas de HTTPS Encontrado (si Aplicar HTTPS Automáticamente está desactivado)">
-
-
-
 <!ENTITY httpsfinder.translation.german "- Alemán (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Holandés (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polaco (PcP)">
