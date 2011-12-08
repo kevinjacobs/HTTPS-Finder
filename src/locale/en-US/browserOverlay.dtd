@@ -5,8 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.79">
-<!ENTITY httpsfinder.buildDate "28 October 2011">
+<!ENTITY httpsfinder.version "0.80">
+<!ENTITY httpsfinder.buildDate "07 December 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">

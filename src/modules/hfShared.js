@@ -112,11 +112,12 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
 
     //One will be "domain.com" and the other will be "www.domain.com"
     var domains = hostname.split(".");
+    var name = title + topLevel;
     if(domains.length == 2){
         //Then the hostname is of the form "mysite.com". We add a "www." rule as well in this case.
         var wwwHost =  "www." + hostname;
         to = "https://" + hostname + "/";
-        rule = <{"ruleset"} name = {title}>
+        rule = <{"ruleset"} name = {name}>
         <{"target"} host={hostname}/>
         <{"target"} host={wwwHost}/>
         <{"rule"} from={from} to={to}/>
@@ -131,14 +132,14 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
             from = "^http://(www\\.)?" + fromBits[0] + "\\." + fromBits[1]  + "\\"  + topLevel + "/";         
         }
         to = "https://" + hostname + "/";
-        rule = <{"ruleset"} name = {title}>
+        rule = <{"ruleset"} name = {name}>
         <{"target"} host={hostname}/>
         <{'rule'} from={from} to={to}/>
         </{"ruleset"}>;
     }
     else
         //Catch all
-        rule = <{"ruleset"} name = {title}>
+        rule = <{"ruleset"} name = {name}>
         <{"target"} host={hostname}/>
         <{"rule"} from={from} to={to}/>
         </{"ruleset"}>;
