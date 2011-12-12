@@ -264,15 +264,10 @@ httpsfinder.detect = {
             return;
         }
         else
-            for(var i=0; i<httpsfinder.results.whitelist.length; i++)
-                if(httpsfinder.results.whitelist[i] == host){
-                    httpsfinder.results.whitelist.splice(i,1);
-                    if(httpsfinder.debug)
-                        dump("httpsfinder unblocking detection on " + host + "\n");
-                }
-
+            httpsfinder.browserOverlay.removeFromWhitelist(null, host);          
+          
         //If the code gets to this point, the HTTPS is good.
-
+        
         //Push host to good SSL list (remember result and skip repeat detection)
         if(httpsfinder.results.goodSSL.indexOf(host) == -1 && !httpsfinder.pbs.privateBrowsingEnabled){
             if(httpsfinder.debug) dump("Pushing " + host + " to good SSL list\n");
@@ -435,7 +430,6 @@ httpsfinder.browserOverlay = {
     redirectedTab: [[]], //Tab info for pre-redirect URLs.
     recent: [[]], //Recent auto-redirects used for detecting http->https->http redirect loops. Second subscript holds the tabIndex of the redirect
     lastRecentReset: null, //time counter for detecting redirect loops
-    permWhitelistLength: 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
 
     //Window start up - set listeners, read in whitelist, etc
     init: function(){
@@ -480,8 +474,9 @@ httpsfinder.browserOverlay = {
                         }
                     }
 
-                else if(httpsfinder.browserOverlay.isWhitelisted(host))
+                else if(httpsfinder.browserOverlay.isWhitelisted(host) && !httpsfinder.browserOverlay.isPermWhitelisted(host)){
                     httpsfinder.browserOverlay.removeFromWhitelist(null, host);
+                }
             },
 
             //Called when all history is cleared.
@@ -791,6 +786,24 @@ httpsfinder.browserOverlay = {
         }
     },
 
+    //Check if host is whitelisted (permanently by user, not by us). Checks permanently whitelisted items.
+    isPermWhitelisted: function(host){
+        for(var i = 0; i < httpsfinder.results.permWhitelistLength; i++){
+            var whitelistItem = httpsfinder.results.whitelist[i];
+            if(whitelistItem == host)
+                return true;
+
+            //If rule starts with *., check the end of the hostname (i.e. for *.google.com, check for host ending in .google.com
+            else if(whitelistItem.substr(0,2) == "*.")
+                //Delete * from rule, compare to last "rule length" chars of the hostname
+                if(whitelistItem.replace("*","") == host.substr(host.length -
+                    whitelistItem.length + 1,host.length))
+                    return true;
+        }
+        return false;
+    },
+
+
     //Check if host is whitelisted. Checks permanently whitelisted items and session items.
     isWhitelisted: function(host){
         for(var i=0; i < httpsfinder.results.whitelist.length; i++){
@@ -927,9 +940,9 @@ httpsfinder.browserOverlay = {
         if(!aDocument && host)
             for(let i=0; i<httpsfinder.results.whitelist.length; i++){
                 if(httpsfinder.results.whitelist[i] == host){
-                    httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
+                        dump("1 httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
+                    httpsfinder.results.whitelist.splice(i,1);
                 }
             }
 
@@ -938,9 +951,9 @@ httpsfinder.browserOverlay = {
             var preRedirectHost = gBrowser.getBrowserForDocument(aDocument).currentURI.host;
             for(let i=0; i<httpsfinder.results.whitelist.length; i++){
                 if(httpsfinder.results.whitelist[i] == preRedirectHost.slice((preRedirectHost.length - httpsfinder.results.whitelist[i].length),preRedirectHost.length)){
-                    httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist.\n");
+                        dump("2 httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
+                    httpsfinder.results.whitelist.splice(i,1);
 
                 }
             }
@@ -949,11 +962,11 @@ httpsfinder.browserOverlay = {
         // Catch for any thing that slipped through... Why is this needed? Maybe if "gBrowser.getBrowserForDocument(aDocument).currentURI.host" (above) fails?
         else
             for(var i=0; i<httpsfinder.results.whitelist.length; i++)
-                if(i > httpsfinder.browserOverlay.permWhitelistLength - 1 &&
+                if(i > httpsfinder.results.permWhitelistLength - 1 &&
                     httpsfinder.browserOverlay.getHostWithoutSub(httpsfinder.results.whitelist[i]) == httpsfinder.browserOverlay.getHostWithoutSub(host)){
-                    httpsfinder.results.whitelist.splice(i,1);
                     if(httpsfinder.debug)
-                        dump("httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist..\n");
+                        dump("3 httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
+                    httpsfinder.results.whitelist.splice(i,1);
                 }
     },
 

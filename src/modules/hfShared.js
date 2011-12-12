@@ -31,7 +31,7 @@ var EXPORTED_SYMBOLS = ['results',
 
 var results = {
     goodSSL : [],
-    permWhitelistLength : 0,
+    permWhitelistLength : 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
     whitelist : [],
     tempNoAlerts : []
 };
