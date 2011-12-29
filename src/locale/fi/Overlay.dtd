@@ -74,3 +74,8 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Kesto (sekuntia)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Poista valinta, joka käyttää vain hiljaista havannointia. Katsele tuloksia ja luo säännöt Lisäasetukset-välilehdestä">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Ota käyttöön HTTPS löytyi -hälytykset (jos HTTPS-yhteyskäytännön automaattinen käyttöönotto on otettu pois käytöstä)">
+
+
+
+
+<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">

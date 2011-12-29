@@ -218,6 +218,9 @@
 "httpsfinder_preference_savedRulesTip":{
 "message":"Tallenna säännöt, jotka voidaan ottaa pois käytöstä HTTPS Everywhere -ohjelmiston asetuksissa."
 },
+"httpsfinder_preference_secureCookies":{
+"message":"Secure cookies for valid HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Näytä säännön esikatselu (sallii muokkauksen) ennen säännön tallentamista"
 },

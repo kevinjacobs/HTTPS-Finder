@@ -27,6 +27,7 @@
             <preference id="httpsfinder-autoDismiss" name="extensions.httpsfinder.dismissAlerts" type="bool"/>
             <preference id="httpsfinder-dismissTime" name="extensions.httpsfinder.alertDismissTime" type="int"/>
             <preference id="httpsfinder-HTTPSFoundAlerts" name="extensions.httpsfinder.httpsfoundalert" type="bool"/>
+            <preference id="httpsfinder-secureCookies" name="extensions.httpsfinder.attemptSecureCookies" type="bool"/>
         </preferences>
 
         <tabbox id="httpsfindertabs" selectedIndex="0">
@@ -114,12 +115,16 @@
                                 </row>
                                 <row>
                                     <checkbox id="rulepreview" preference="httpsfinder-showrulepreview"/>
-                                    <label control="rulepreview" value="&httpsfinder.preference.showpreview;"/>
+                                    <description control="rulepreview">&httpsfinder.preference.showpreview;</description>
+                                </row>
+                                <row>
+                                    <checkbox id="securecookies" preference="httpsfinder-secureCookies"/>
+                                    <description control="securecookies">&httpsfinder.preference.secureCookies;</description>
                                 </row>
                                 <vbox>
                                     <row>
                                         <checkbox id="autoDismiss" preference="httpsfinder-autoDismiss"/>
-                                        <label control="ADText" value="&httpsfinder.preference.autoDismissTitle;"/>
+                                        <description control="ADText">&httpsfinder.preference.autoDismissTitle;</description>
                                         <textbox id="dismissTime" type="number" min="0" max="60" preference="httpsfinder-dismissTime"
                                                    size="2" maxlength="2" tooltiptext="&httpsfinder.preference.autoDismissToolTip;" style="width: 50px;"/>
                                     </row>

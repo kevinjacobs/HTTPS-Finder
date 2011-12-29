@@ -218,6 +218,9 @@
 "httpsfinder_preference_savedRulesTip":{
 "message":"Las reglas guardadas pueden deshabilitarse en la configuración de HTTPS Everywhere."
 },
+"httpsfinder_preference_secureCookies":{
+"message":"Secure cookies for valid HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Mostrar previsualización de la regla (permite edición) antes de guardar las reglas"
 },

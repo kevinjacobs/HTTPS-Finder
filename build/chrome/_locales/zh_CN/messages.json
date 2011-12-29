@@ -218,6 +218,9 @@
 "httpsfinder_preference_savedRulesTip":{
 "message":"已保存的规则可在HTTPS Everywhere中被禁用"
 },
+"httpsfinder_preference_secureCookies":{
+"message":"Secure cookies for valid HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"规则保存前进行预览(允许编辑)"
 },

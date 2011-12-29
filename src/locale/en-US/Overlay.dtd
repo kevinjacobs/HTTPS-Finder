@@ -36,6 +36,7 @@
 <!ENTITY httpsfinder.preference.aboutTab "About">
 <!ENTITY httpsfinder.preference.detectionLabel "Detection Method">
 <!ENTITY httpsfinder.preference.showpreview "Show rule preview (allows editing) before saving rules">
+<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
 <!ENTITY httpsfinder.preference.detectionDescLONG "HEAD requests use less bandwidth than GET, but some servers may not support them. If this happens, HTTPS Finder will attempt to fall back to a GET request.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Recommended setting: If you have a fast connection, uncheck to use GET only.  On slower connections, HEAD first may be noticeably faster on most sites.">
 <!ENTITY httpsfinder.preference.debug "Enable debug (verbose) logging">

@@ -218,6 +218,9 @@
 "httpsfinder_preference_savedRulesTip":{
 "message":"Sparade regler kan inaktiveras i HTTPS Everywheres inställningar."
 },
+"httpsfinder_preference_secureCookies":{
+"message":"Secure cookies for valid HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Visa förhandsgranskning (medger redigering) innan regler sparas"
 },

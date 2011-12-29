@@ -74,3 +74,8 @@
 <!ENTITY httpsfinder.translation.portuguese "- Portugisiska (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finska (Jorma Karvonen)">
 <!ENTITY httpsfinder.translation.chinese "- Kinesiska (Christopher Meng)">
+
+
+
+
+<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">

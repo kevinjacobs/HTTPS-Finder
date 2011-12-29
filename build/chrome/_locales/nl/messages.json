@@ -218,6 +218,9 @@
 "httpsfinder_preference_savedRulesTip":{
 "message":"Opgeslagen regels kunnen worden uitgezet in de voorkeuren van HTTPS Everywhere"
 },
+"httpsfinder_preference_secureCookies":{
+"message":"Secure cookies for valid HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Laat regels zien voor ze worden opgeslagen. Dit maakt het mogelijk regels te bewerken."
 },

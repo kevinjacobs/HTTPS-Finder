@@ -66,7 +66,7 @@
 <!ENTITY httpsfinder.translation.finnish "- Fiński (Jorma Karvonen)">
 <!ENTITY httpsfinder.translation.chinese "- Chiński (Christopher Meng)">
 
-<!-- New in 0.73 - Will need to be translated -->
+<!-- New in 0.73+ - Will need to be translated -->
 <!ENTITY httpsfinder.preference.createRule "Create Rule">
 <!ENTITY httpsfinder.preference.sslReport "Generate SSL Report">
 <!ENTITY httpsfinder.preference.clearResults "Clear All Results">
@@ -76,3 +76,4 @@
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Duration (seconds)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)">
+<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">

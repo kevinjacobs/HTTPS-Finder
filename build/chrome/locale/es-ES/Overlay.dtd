@@ -74,3 +74,8 @@
 <!ENTITY httpsfinder.translation.portuguese "- Portugués (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finlandés (Jorma Karvonen)">
 <!ENTITY httpsfinder.translation.chinese "- Chino (Christopher Meng)">
+
+
+
+
+<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">

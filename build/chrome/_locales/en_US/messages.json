@@ -218,6 +218,9 @@
 "httpsfinder_preference_savedRulesTip":{
 "message":"Saved rules can be disabled in HTTPS Everywhere settings."
 },
+"httpsfinder_preference_secureCookies":{
+"message":"Secure cookies for valid HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Show rule preview (allows editing) before saving rules"
 },
