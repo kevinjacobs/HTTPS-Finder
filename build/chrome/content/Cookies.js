@@ -15,9 +15,8 @@ var OS = hfCC["@mozilla.org/observer-service;1"]
 
 var originallyInsecureCookies = [];
 
-//Temp/ FIXME
-var aConsoleService = hfCC["@mozilla.org/consoleservice;1"].
-     getService(hfCI.nsIConsoleService);
+//var aConsoleService = hfCC["@mozilla.org/consoleservice;1"].
+//     getService(hfCI.nsIConsoleService);
 
 function goodSSLFound(host){
     if(httpsfinder.prefs.getBoolPref("attemptSecureCookies")){   
@@ -26,7 +25,7 @@ function goodSSLFound(host){
             var cookie = enumerator.getNext().QueryInterface(Components.interfaces.nsICookie2);
             if(!cookie.isSecure){
                 this._secureIndividualCookie(cookie);                
-                this.aConsoleService.logStringMessage("Securing cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
+                //this.aConsoleService.logStringMessage("Securing cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
             }
         }
     }
@@ -37,17 +36,16 @@ function getCookiesFromHost(host){
 }
 
 function _secureIndividualCookie(cookie) {    
-    if(httpsfinder.Overlay.isPermWhitelisted(cookie.host))
+    if(httpsfinder.Overlay.isWhitelisted(cookie.host))
         return;
     
     this.originallyInsecureCookies.push(cookie.name + ";" + cookie.host + "/" + cookie.path);
-    
     var expiry = Math.min(cookie.expiry, Math.pow(2,31))
     this.cookieManager.remove(cookie.host, cookie.name, cookie.path, false);
     this.cookieManager.add(cookie.host, cookie.path, cookie.name, cookie.value, true, cookie.isHTTPOnly, cookie.isSession, expiry);    
 }
 
-//Used for restoring insecure cookies (in case user adds domain to whitelist, we restore defaults)
+//Used for restoring insecure cookies (if user adds domain to whitelist, we restore defaults)
 function _insecureIndividualCookie(cookie) { 
     var expiry = Math.min(cookie.expiry, Math.pow(2,31))
     this.cookieManager.remove(cookie.host, cookie.name, cookie.path, false);
