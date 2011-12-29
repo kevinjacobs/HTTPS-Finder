@@ -13,4 +13,4 @@ locale        httpsfinder        fi                      jar:chrome/httpsfinder.
 locale        httpsfinder        zh-CN                      jar:chrome/httpsfinder.jar!/locale/zh-CN/
 
 resource hfShared /../modules/
-overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/browserOverlay.xul
+overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/Overlay.xul

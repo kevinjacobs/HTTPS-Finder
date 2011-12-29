@@ -12,3 +12,4 @@ pref("extensions.httpsfinder.dismissAlerts", false);
 pref("extensions.httpsfinder.alertDismissTime", 4);
 pref("extensions.httpsfinder.appendVersionTagToRules", true);
 pref("extensions.httpsfinder.allowSelfSignedCerts", false);
+pref("extensions.httpsfinder.attemptSecureCookies", false);

@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 
 <?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
-<?xml-stylesheet type="text/css" href="chrome://httpsfinder/skin/browserOverlay.css" ?>
+<?xml-stylesheet type="text/css" href="chrome://httpsfinder/skin/Overlay.css" ?>
 
-<!DOCTYPE overlay SYSTEM "chrome://httpsfinder/locale/browserOverlay.dtd">
+<!DOCTYPE overlay SYSTEM "chrome://httpsfinder/locale/Overlay.dtd">
 <overlay id="httpsfinder-browser-overlay"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-    <script type="application/x-javascript" src="chrome://httpsfinder/content/browserOverlay.js" />
-    <script type="application/x-javascript" src="chrome://httpsfinder/content/preferences.js" />
+    <script type="application/x-javascript" src="chrome://httpsfinder/content/Overlay.js" />
+    <script type="application/x-javascript" src="chrome://httpsfinder/content/Preferences.js" />
 
     <stringbundleset id="stringbundleset">
         <stringbundle id="httpsfinderStrings"
-      src="chrome://httpsfinder/locale/browserOverlay.properties" />
+      src="chrome://httpsfinder/locale/Overlay.properties" />
     </stringbundleset>
 
     <menupopup id="menu_ToolsPopup">
@@ -24,13 +24,13 @@
                     id="httpsfinderSettingsItem"
                     image="chrome://httpsfinder/skin/settings.png"
                     label="&httpsfinder.menu.settings;" accesskey="&httpsfinder.menu.settingsKey;"
-                    oncommand="window.openDialog('chrome://httpsfinder/content/preferences.xul', '',
+                    oncommand="window.openDialog('chrome://httpsfinder/content/Preferences.xul', '',
                         'chrome, dialog, modal,centerscreen, resizable=no', null).focus();" />
                 <menuitem class="menuitem-iconic"
                     id="httpsfinderReloadWhitelist"
                     image="chrome://httpsfinder/skin/refresh.png"
                     label="&httpsfinder.menu.refresh;" accesskey="&httpsfinder.menu.refreshKey;"
-                    oncommand="httpsfinder.browserOverlay.resetWhitelist();" />
+                    oncommand="httpsfinder.Overlay.resetWhitelist();" />
                 <menuseparator/>
                 <menuitem class="menuitem-iconic" id="httpsfinderHomepageItem"
                     image="chrome://httpsfinder/skin/iconSmall.png"

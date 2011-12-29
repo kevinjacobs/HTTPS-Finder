@@ -13,4 +13,4 @@ locale	{appname}	fi		      locale/fi/
 locale	{appname}	zh-CN		      locale/zh-CN/
 
 resource hfShared /../modules/
-overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/browserOverlay.xul
+overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/Overlay.xul
