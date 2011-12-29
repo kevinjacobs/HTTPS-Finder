@@ -1,0 +1,314 @@
+{
+"httpsfinder_authorTitle":{
+"message":"Tekijä:"
+},
+"httpsfinder_buildDate":{
+"message":"29 joulukuu 2011"
+},
+"httpsfinder_buildDateTitle":{
+"message":"Rakentamispäivämäärä:"
+},
+"httpsfinder_description":{
+"message":"Havaitsee ja hälyttää automaattisesti kun SSL on käytettävissä webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sääntöluominen"
+},
+"httpsfinder_googleCodeURL":{
+"message":"https://code.google.com/p/https-finder/"
+},
+"httpsfinder_main_NoHttpsEverywhere":{
+"message":"Näyttää siltä, että HTTPS Everywhere -ohjelmisto ei ole asennettu. Säännöt tallennetaan, mutta niitä ei pakoteta käyttöön ennen ohjelmiston asentamista."
+},
+"httpsfinder_main_autoForwardRulePrompt":{
+"message":"HTTPS pakotettu. Tallennetaanko sääntö HTTPS-Everywhere -ohjelmalle? (Huomautus: HTTPS-yhteyskäytännön kautta tarjotut palvelut voivat erota HTTP-version tarjoamista)"
+},
+"httpsfinder_main_getHttpsEverywhere":{
+"message":"Hae HTTPS Everywhere -ohjelmisto"
+},
+"httpsfinder_main_getHttpsEverywhereKey":{
+"message":"V"
+},
+"httpsfinder_main_httpsFoundPrompt":{
+"message":"Näyttää siltä kuin tästä sivusta on olemassa salattu versio. Haluatko siirtyä sille nyt?"
+},
+"httpsfinder_main_noRedirect":{
+"message":"Ei nyt"
+},
+"httpsfinder_main_noRedirectKey":{
+"message":"N"
+},
+"httpsfinder_main_noThanks":{
+"message":"Ei nyt"
+},
+"httpsfinder_main_noThanksKey":{
+"message":"E"
+},
+"httpsfinder_main_rememberSetting":{
+"message":"Tallenna sääntö"
+},
+"httpsfinder_main_rememberSettingKey":{
+"message":"T"
+},
+"httpsfinder_main_restartNo":{
+"message":"Käynnistä uudelleen myöhemmin"
+},
+"httpsfinder_main_restartNoKey":{
+"message":"M"
+},
+"httpsfinder_main_restartPrompt":{
+"message":"Sääntö pakotetaan käyttöön seuraavan Firefox-uudellenkäynnistyksen jälkeen. Käynnistetäänkö uudelleen nyt? (Selaimen välilehdet tallennetaan)"
+},
+"httpsfinder_main_restartPromptPrivate":{
+"message":"Sääntö pakotetaan käyttöön seuraavan Firefox-uudellenkäynnistyksen jälkeen. Käynnistetäänkö uudelleen nyt? Selaimen välilehtiä EI tallenneta (yksityinen selaus käytössä)"
+},
+"httpsfinder_main_restartYes":{
+"message":"Käynnistä uudelleen nyt"
+},
+"httpsfinder_main_restartYesKey":{
+"message":"U"
+},
+"httpsfinder_main_ruleAddedText":{
+"message":"HTTPS-Everywhere -ohjelmisto pakottaa säännön käyttöön selaimen seuraavan uudelleenkäynnistyksen jälkeen."
+},
+"httpsfinder_main_ruleAddedTitle":{
+"message":"Sääntö lisätty"
+},
+"httpsfinder_main_saveRulePrompt":{
+"message":"Tallennetaanko tämä sääntö HTTPS-Everywhere -ohjelmalle? (Huomautus: HTTPS-yhteyskäytännön kautta tarjotut palvelut voivat erota HTTP-version tarjoamista)"
+},
+"httpsfinder_main_selfSignedAlert":{
+"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+},
+"httpsfinder_main_tempWhitelistedBody":{
+"message":"Verkkoalue lisätty tilapäiselle (istunto) valkoiselle listalle."
+},
+"httpsfinder_main_tempWhitelistedTitle":{
+"message":"Sijoitettu tilapäisesti valkoiselle listalle"
+},
+"httpsfinder_main_whitelist":{
+"message":"Lisää valkoiselle listalle"
+},
+"httpsfinder_main_whitelistAdded":{
+"message":"Verkkoaluesääntö lisätty valkoiselle listalle"
+},
+"httpsfinder_main_whitelistKey":{
+"message":"L"
+},
+"httpsfinder_main_yesRedirect":{
+"message":"Kyllä, siirry HTTPS-yhteyskäytäntöön"
+},
+"httpsfinder_main_yesRedirectKey":{
+"message":"K"
+},
+"httpsfinder_menu_help":{
+"message":"Opaste"
+},
+"httpsfinder_menu_helpKey":{
+"message":"O"
+},
+"httpsfinder_menu_homepage":{
+"message":"Hankkeen webbisivu"
+},
+"httpsfinder_menu_homepageKey":{
+"message":"H"
+},
+"httpsfinder_menu_rate":{
+"message":"Anna arvosana HTTPS Finder -ohjelmistolle"
+},
+"httpsfinder_menu_rateKey":{
+"message":"F"
+},
+"httpsfinder_menu_refresh":{
+"message":"Nollaa tilapäinen valkoinen lista"
+},
+"httpsfinder_menu_refreshKey":{
+"message":"N"
+},
+"httpsfinder_menu_settings":{
+"message":"Asetukset"
+},
+"httpsfinder_menu_settingsKey":{
+"message":"A"
+},
+"httpsfinder_mySite":{
+"message":"http://www.KevinAJacobs.com"
+},
+"httpsfinder_overlay_whitelistReset":{
+"message":"Valkoisen listan ja istunnon havaintotulokset nollattu"
+},
+"httpsfinder_prefSize_detectChkDescWidth":{
+"message":"405"
+},
+"httpsfinder_prefSize_detectDescWidth":{
+"message":"450"
+},
+"httpsfinder_prefSize_windowHeight":{
+"message":"570"
+},
+"httpsfinder_prefSize_windowWidth":{
+"message":"515"
+},
+"httpsfinder_preference_aboutTab":{
+"message":"Ohjelmasta"
+},
+"httpsfinder_preference_advancedTab":{
+"message":"Lisäasetukset"
+},
+"httpsfinder_preference_autoDismissTitle":{
+"message":"Poista hälytykset automaattisesti seuraavana aikana (sekuntia)"
+},
+"httpsfinder_preference_autoDismissToolTip":{
+"message":"Kesto (sekuntia)"
+},
+"httpsfinder_preference_autoForward":{
+"message":"Pakota HTTPS automaattisesti silloin kun se on käytettävissä"
+},
+"httpsfinder_preference_clearResults":{
+"message":"Nollaa kaikki tulokset"
+},
+"httpsfinder_preference_createRule":{
+"message":"Luo sääntö"
+},
+"httpsfinder_preference_debug":{
+"message":"Ota käyttöön vianjäljityksen (lavea) lokikirjaus"
+},
+"httpsfinder_preference_detectionDescLONG":{
+"message":"HEAD-pyynnöt käyttävät vähemmän kaistanleveyttä kuin GET-pyynnöt, mutta jotkut palvelimet eivät tue niitä. Jos näin tapahtuu, HTTPS Finder yrittää palata takaisin GET-pyyntöihin."
+},
+"httpsfinder_preference_detectionDescRec":{
+"message":"Suositeltu asetus: Jos sinulla on nopea yhteys, poista valinta, joka käyttää vain GET-pyyntöjä. Hitaammilla yhteyksillä HEAD-pyynnöt ensin saattavat olla huomattavasti nopeampia useimmilla webbisivuilla."
+},
+"httpsfinder_preference_detectionLabel":{
+"message":"Havannointimenetelmä"
+},
+"httpsfinder_preference_enable":{
+"message":"Ota käyttöön HTTPS Finder"
+},
+"httpsfinder_preference_generalTab":{
+"message":"Yleiset asetukset"
+},
+"httpsfinder_preference_headFirst":{
+"message":"Käytä ensin HEAD-pyyntöjä (palaa GET-pyyntöihin, jos palvelin ei tue HEAD-pyyntöjä)"
+},
+"httpsfinder_preference_learnLinkName":{
+"message":"täällä"
+},
+"httpsfinder_preference_learnMoreTip":{
+"message":"Opi lisää HTTPS Finder -ohjelmasta"
+},
+"httpsfinder_preference_listHeaderHTTPS":{
+"message":"HTTPS-tulos"
+},
+"httpsfinder_preference_listHeaderTitle":{
+"message":"Istunnon havannointitulokset"
+},
+"httpsfinder_preference_noHTTPSAlertTitle":{
+"message":"Ota käyttöön HTTPS löytyi -hälytykset (jos HTTPS-yhteyskäytännön automaattinen käyttöönotto on otettu pois käytöstä)"
+},
+"httpsfinder_preference_noHTTPSAlertTooltip":{
+"message":"Poista valinta, joka käyttää vain hiljaista havannointia. Katsele tuloksia ja luo säännöt Lisäasetukset-välilehdestä"
+},
+"httpsfinder_preference_noResultsPB":{
+"message":"Tuloksia ei tallennettu yksityisess selauksessa"
+},
+"httpsfinder_preference_noRulePrompt":{
+"message":"Älä kysy HTTPS-säännön tallentamista (silloin kun HTTPS Everywhere -ohjelmistoa ei käytetä)"
+},
+"httpsfinder_preference_ruleTip":{
+"message":"Huomauta valkoisen listan sääntöjä varten, että www.domain.com on verkkoalueen domain.com aliverkkoalue."
+},
+"httpsfinder_preference_savedRulesTip":{
+"message":"Tallenna säännöt, jotka voidaan ottaa pois käytöstä HTTPS Everywhere -ohjelmiston asetuksissa."
+},
+"httpsfinder_preference_showpreview":{
+"message":"Näytä säännön esikatselu (sallii muokkauksen) ennen säännön tallentamista"
+},
+"httpsfinder_preference_sslReport":{
+"message":"Tuota SSL-ilmoitus"
+},
+"httpsfinder_preference_supportEmail":{
+"message":"httpsfinder@gmail.com"
+},
+"httpsfinder_preference_supportTitle":{
+"message":"Tukisähköpostiosoite:"
+},
+"httpsfinder_preference_title":{
+"message":"HTTPS Finder -asetukset"
+},
+"httpsfinder_preference_titleKey":{
+"message":"P"
+},
+"httpsfinder_preference_translations":{
+"message":"Kotoistamiset ovat tarjonneet seuraavat henkilöt:"
+},
+"httpsfinder_preference_whitelistAddButton":{
+"message":"Lisää valkoiselle listalle"
+},
+"httpsfinder_preference_whitelistAddTextbox":{
+"message":"Tietokonenimi (domain.tld, sub.domain.tld, *.domain.tld)"
+},
+"httpsfinder_preference_whitelistLabel":{
+"message":"Verkkoalueiden valkoinen lista (älä tutki HTTPS-yhteyskäytännön olemassaoloa näillä verkkoalueilla)"
+},
+"httpsfinder_preference_whitelistModify":{
+"message":"Muokkaa"
+},
+"httpsfinder_preference_whitelistRemove":{
+"message":"Poista rivi"
+},
+"httpsfinder_preference_whitelistUrlColumn":{
+"message":"Tietokonenimi"
+},
+"httpsfinder_rulePreview_clickhere":{
+"message":"täällä"
+},
+"httpsfinder_rulePreview_learnmore":{
+"message":"Opi lisää sääntöjen muotoilusta"
+},
+"httpsfinder_rulePreview_link":{
+"message":"https://www.eff.org/https-everywhere/rulesets"
+},
+"httpsfinder_rulePreview_overwriteConfirm":{
+"message":"Overwrite existing rule?"
+},
+"httpsfinder_rulePreview_tip1":{
+"message":"Kaikki tekemäsi muutokset heijastuvat tallennettuun sääntöön."
+},
+"httpsfinder_rulePreview_tip2":{
+"message":"Napsauta OK-painiketta säännön tallentamiseksi tai Peruuta-painiketta paluuseen ilman tallentamista"
+},
+"httpsfinder_rulePreview_top":{
+"message":"Säännön esikatselu:"
+},
+"httpsfinder_title":{
+"message":"HTTPS Finder"
+},
+"httpsfinder_translation_chinese":{
+"message":"- Kiinalainen (Christopher Meng)"
+},
+"httpsfinder_translation_dutch":{
+"message":"- hollanti (Donné Brok)"
+},
+"httpsfinder_translation_finnish":{
+"message":"- suomi (Jorma Karvonen)"
+},
+"httpsfinder_translation_german":{
+"message":"- saksa (Michael Wolf &amp; Daniel Helmert)"
+},
+"httpsfinder_translation_polish":{
+"message":"- puola (PcP)"
+},
+"httpsfinder_translation_portuguese":{
+"message":"- portugali (Megahertz)"
+},
+"httpsfinder_translation_spanish":{
+"message":"- espanja (strel)"
+},
+"httpsfinder_translation_swedish":{
+"message":"- ruotsi (Mikael Hiort)"
+},
+"httpsfinder_version":{
+"message":"0.81"
+},
+"httpsfinder_version":{
+"message":"0.81"
+}
+}

@@ -1,0 +1,314 @@
+{
+"httpsfinder_authorTitle":{
+"message":"Autor:"
+},
+"httpsfinder_buildDate":{
+"message":"29 diciembre 2011"
+},
+"httpsfinder_buildDateTitle":{
+"message":"Fecha de creación:"
+},
+"httpsfinder_description":{
+"message":"Detectar automáticamente y alertar cuando SSL esté disponible en una página web. Creación automatizada de reglas para HTTPS Everywhere"
+},
+"httpsfinder_googleCodeURL":{
+"message":"https://code.google.com/p/https-finder/"
+},
+"httpsfinder_main_NoHttpsEverywhere":{
+"message":"No parece que tenga instalado HTTPS Everywhere. Las reglas serán guardadas, pero no aplicadas hasta que lo instale."
+},
+"httpsfinder_main_autoForwardRulePrompt":{
+"message":"HTTPS aplicado. ¿Guardar esta regla para HTTPS-Everywhere? (Nota: Los servicios ofrecidos sobre HTTPS podrían diferir de la versión HTTP)"
+},
+"httpsfinder_main_getHttpsEverywhere":{
+"message":"Obtener HTTPS Everywhere"
+},
+"httpsfinder_main_getHttpsEverywhereKey":{
+"message":"G"
+},
+"httpsfinder_main_httpsFoundPrompt":{
+"message":"Parece que hay una versión encriptada de esta página. ¿Le gustaría ir allí ahora?"
+},
+"httpsfinder_main_noRedirect":{
+"message":"Ahora no"
+},
+"httpsfinder_main_noRedirectKey":{
+"message":"N"
+},
+"httpsfinder_main_noThanks":{
+"message":"Ahora no"
+},
+"httpsfinder_main_noThanksKey":{
+"message":"N"
+},
+"httpsfinder_main_rememberSetting":{
+"message":"Guardar regla"
+},
+"httpsfinder_main_rememberSettingKey":{
+"message":"S"
+},
+"httpsfinder_main_restartNo":{
+"message":"Reiniciar más tarde"
+},
+"httpsfinder_main_restartNoKey":{
+"message":"l"
+},
+"httpsfinder_main_restartPrompt":{
+"message":"La regla será aplicada después del próximo reinicio de Firefox. ¿Reiniciar ahora? (Las pestañas serán guardadas)"
+},
+"httpsfinder_main_restartPromptPrivate":{
+"message":"La regla será aplicada después del próximo reinicio de Firefox. ¿Reiniciar ahora? Las pestañas NO serán guardadas (navegación privada activada)"
+},
+"httpsfinder_main_restartYes":{
+"message":"Reiniciar ahora"
+},
+"httpsfinder_main_restartYesKey":{
+"message":"n"
+},
+"httpsfinder_main_ruleAddedText":{
+"message":"La regla será aplicada por HTTPS Everywhere después del próximo reinicio del navegador."
+},
+"httpsfinder_main_ruleAddedTitle":{
+"message":"Regla Añadida"
+},
+"httpsfinder_main_saveRulePrompt":{
+"message":"¿Guardar esta regla para HTTPS-Everywhere? (Nota: Los servicios ofrecidos sobre HTTPS podrían diferir de los de la versión HTTP)"
+},
+"httpsfinder_main_selfSignedAlert":{
+"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+},
+"httpsfinder_main_tempWhitelistedBody":{
+"message":"Dominio añadido a la lista blanca temporal (sesión)."
+},
+"httpsfinder_main_tempWhitelistedTitle":{
+"message":"En lista blanca temporal"
+},
+"httpsfinder_main_whitelist":{
+"message":"Añadir a la lista blanca"
+},
+"httpsfinder_main_whitelistAdded":{
+"message":"Regla de dominio añadida a la lista blanca"
+},
+"httpsfinder_main_whitelistKey":{
+"message":"A"
+},
+"httpsfinder_main_yesRedirect":{
+"message":"Sí, ve a HTTPS"
+},
+"httpsfinder_main_yesRedirectKey":{
+"message":"L"
+},
+"httpsfinder_menu_help":{
+"message":"Ayuda"
+},
+"httpsfinder_menu_helpKey":{
+"message":"A"
+},
+"httpsfinder_menu_homepage":{
+"message":"Página Web del Proyecto"
+},
+"httpsfinder_menu_homepageKey":{
+"message":"P"
+},
+"httpsfinder_menu_rate":{
+"message":"Valore HTTPS Finder"
+},
+"httpsfinder_menu_rateKey":{
+"message":"R"
+},
+"httpsfinder_menu_refresh":{
+"message":"Borrar la lista blanca temporal"
+},
+"httpsfinder_menu_refreshKey":{
+"message":"C"
+},
+"httpsfinder_menu_settings":{
+"message":"Preferencias"
+},
+"httpsfinder_menu_settingsKey":{
+"message":"P"
+},
+"httpsfinder_mySite":{
+"message":"http://www.KevinAJacobs.com"
+},
+"httpsfinder_overlay_whitelistReset":{
+"message":"Lista blanca y resultados de detección de sesión borrados"
+},
+"httpsfinder_prefSize_detectChkDescWidth":{
+"message":"405"
+},
+"httpsfinder_prefSize_detectDescWidth":{
+"message":"450"
+},
+"httpsfinder_prefSize_windowHeight":{
+"message":"570"
+},
+"httpsfinder_prefSize_windowWidth":{
+"message":"515"
+},
+"httpsfinder_preference_aboutTab":{
+"message":"Acerca de"
+},
+"httpsfinder_preference_advancedTab":{
+"message":"Avanzadas"
+},
+"httpsfinder_preference_autoDismissTitle":{
+"message":"Auto-ocultar alertas después de (segundos)"
+},
+"httpsfinder_preference_autoDismissToolTip":{
+"message":"Duración (seconds)"
+},
+"httpsfinder_preference_autoForward":{
+"message":"Aplicar HTTPS automáticamente cuando esté disponible"
+},
+"httpsfinder_preference_clearResults":{
+"message":"Limpiar Todos los Resultados"
+},
+"httpsfinder_preference_createRule":{
+"message":"Crear Regla"
+},
+"httpsfinder_preference_debug":{
+"message":"Activar registro de depuración (debug logging, detallado)"
+},
+"httpsfinder_preference_detectionDescLONG":{
+"message":"Las peticiones HEAD usan menos ancho de banda que las GET, pero algunos servidores podrían no soportarlas. Si esto sucede, HTTPS Finder intentará volver a las peticiones GET."
+},
+"httpsfinder_preference_detectionDescRec":{
+"message":"Configuración recomendada: Si tiene una conexión rápida, deseleccione para usar sólo GET. En conexiones lentas, usar HEAD primero podría ser notoriamente más rápido en la mayoría de los sitios."
+},
+"httpsfinder_preference_detectionLabel":{
+"message":"Método de Detección"
+},
+"httpsfinder_preference_enable":{
+"message":"Activar HTTPS Finder"
+},
+"httpsfinder_preference_generalTab":{
+"message":"General"
+},
+"httpsfinder_preference_headFirst":{
+"message":"Usar detección HEAD primero (Volver a GET si no esta soportada por el servidor)"
+},
+"httpsfinder_preference_learnLinkName":{
+"message":"aquí"
+},
+"httpsfinder_preference_learnMoreTip":{
+"message":"Aprende más acerca de HTTPS Finder"
+},
+"httpsfinder_preference_listHeaderHTTPS":{
+"message":"Resultados HTTPS"
+},
+"httpsfinder_preference_listHeaderTitle":{
+"message":"Resultados descubiertos durante la sesión"
+},
+"httpsfinder_preference_noHTTPSAlertTitle":{
+"message":"Activar alertas de HTTPS Encontrado (si Aplicar HTTPS Automáticamente está desactivado)"
+},
+"httpsfinder_preference_noHTTPSAlertTooltip":{
+"message":"Deshabilitar  para usar sólo detencción silenciosa. Para ver resultados y crear reglas, desde la pestaña Avanzadas"
+},
+"httpsfinder_preference_noResultsPB":{
+"message":"Ningún resultado guardado en Navegación Privada"
+},
+"httpsfinder_preference_noRulePrompt":{
+"message":"No sugerir guardar regla HTTPS (Para usar sin HTTPS Everywhere)"
+},
+"httpsfinder_preference_ruleTip":{
+"message":"Para las reglas de la lista blanca, observe que www.dominio.com es un subdominio de dominio.com"
+},
+"httpsfinder_preference_savedRulesTip":{
+"message":"Las reglas guardadas pueden deshabilitarse en la configuración de HTTPS Everywhere."
+},
+"httpsfinder_preference_showpreview":{
+"message":"Mostrar previsualización de la regla (permite edición) antes de guardar las reglas"
+},
+"httpsfinder_preference_sslReport":{
+"message":"Generar Informe de SSL"
+},
+"httpsfinder_preference_supportEmail":{
+"message":"httpsfinder@gmail.com"
+},
+"httpsfinder_preference_supportTitle":{
+"message":"Email de Soporte:"
+},
+"httpsfinder_preference_title":{
+"message":"Preferencias de HTTPS Finder"
+},
+"httpsfinder_preference_titleKey":{
+"message":"H"
+},
+"httpsfinder_preference_translations":{
+"message":"Traducciones realizadas por las siguientes personas:"
+},
+"httpsfinder_preference_whitelistAddButton":{
+"message":"Anadir a la Lista Blanca"
+},
+"httpsfinder_preference_whitelistAddTextbox":{
+"message":"Host (dominio.tld, sub.dominio.tld, *.dominio.tld)"
+},
+"httpsfinder_preference_whitelistLabel":{
+"message":"Lista Blanca de Dominios (No detectar HTTPS en estos dominios)"
+},
+"httpsfinder_preference_whitelistModify":{
+"message":"Modificar"
+},
+"httpsfinder_preference_whitelistRemove":{
+"message":"Borrar"
+},
+"httpsfinder_preference_whitelistUrlColumn":{
+"message":"Host"
+},
+"httpsfinder_rulePreview_clickhere":{
+"message":"aquí"
+},
+"httpsfinder_rulePreview_learnmore":{
+"message":"Aprenda más acercar del formato de las reglas"
+},
+"httpsfinder_rulePreview_link":{
+"message":"https://www.eff.org/https-everywhere/rulesets"
+},
+"httpsfinder_rulePreview_overwriteConfirm":{
+"message":"Overwrite existing rule?"
+},
+"httpsfinder_rulePreview_tip1":{
+"message":"Cualquier cambio que haga se reflejará en la regla guardada."
+},
+"httpsfinder_rulePreview_tip2":{
+"message":"Haga click en Aceptar para guardar la regla, o en Cancelar para volver atras sin guardar"
+},
+"httpsfinder_rulePreview_top":{
+"message":"Previsualización de Regla:"
+},
+"httpsfinder_title":{
+"message":"HTTPS Finder"
+},
+"httpsfinder_translation_chinese":{
+"message":"- Chino (Christopher Meng)"
+},
+"httpsfinder_translation_dutch":{
+"message":"- Holandés (Donné Brok)"
+},
+"httpsfinder_translation_finnish":{
+"message":"- Finlandés (Jorma Karvonen)"
+},
+"httpsfinder_translation_german":{
+"message":"- Alemán (Michael Wolf &amp; Daniel Helmert)"
+},
+"httpsfinder_translation_polish":{
+"message":"- Polaco (PcP)"
+},
+"httpsfinder_translation_portuguese":{
+"message":"- Portugués (Megahertz)"
+},
+"httpsfinder_translation_spanish":{
+"message":"- Español (strel)"
+},
+"httpsfinder_translation_swedish":{
+"message":"- Sueco (Mikael Hiort)"
+},
+"httpsfinder_version":{
+"message":"0.81"
+},
+"httpsfinder_version":{
+"message":"0.81"
+}
+}

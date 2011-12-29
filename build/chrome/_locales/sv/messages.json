@@ -1,0 +1,314 @@
+{
+"httpsfinder_authorTitle":{
+"message":"Skapat av:"
+},
+"httpsfinder_buildDate":{
+"message":"den 29 december 2011"
+},
+"httpsfinder_buildDateTitle":{
+"message":"Versionsdatum:"
+},
+"httpsfinder_description":{
+"message":"Identifierar automatiskt om SSL Ã¤r tillgÃ¤ngligt pÃ¥ en webbsida och meddelar dig om det. Automatiserat regelskapande fÃ¶r HTTPS Everywhere"
+},
+"httpsfinder_googleCodeURL":{
+"message":"https://code.google.com/p/https-finder/"
+},
+"httpsfinder_main_NoHttpsEverywhere":{
+"message":"Det verkar som att du inte har installerat HTTPS Everywhere. Reglerna kommer att sparas, men inte tillÃ¤mpas fÃ¶rrÃ¤n du installerar det tillÃ¤gget."
+},
+"httpsfinder_main_autoForwardRulePrompt":{
+"message":"HTTPS anvÃ¤nds. Spara denna regel fÃ¶r HTTPS Everywhere? (Obs.: TjÃ¤nster som erbjuds Ã¶ver HTTPS kan skilja sig frÃ¥n HTTP-versionen)"
+},
+"httpsfinder_main_getHttpsEverywhere":{
+"message":"HÃ¤mta HTTPS Everywhere"
+},
+"httpsfinder_main_getHttpsEverywhereKey":{
+"message":"H"
+},
+"httpsfinder_main_httpsFoundPrompt":{
+"message":"Det verkar som att det finns en krypterad version av denna sida. Vill du gÃ¥ till den nu?"
+},
+"httpsfinder_main_noRedirect":{
+"message":"Inte nu"
+},
+"httpsfinder_main_noRedirectKey":{
+"message":"n"
+},
+"httpsfinder_main_noThanks":{
+"message":"Inte nu"
+},
+"httpsfinder_main_noThanksKey":{
+"message":"n"
+},
+"httpsfinder_main_rememberSetting":{
+"message":"Spara regel"
+},
+"httpsfinder_main_rememberSettingKey":{
+"message":"S"
+},
+"httpsfinder_main_restartNo":{
+"message":"Starta om senare"
+},
+"httpsfinder_main_restartNoKey":{
+"message":"e"
+},
+"httpsfinder_main_restartPrompt":{
+"message":"Regeln kommer att tillÃ¤mpas efter nÃ¤sta omstart av Firefox. Starta om nu? (Flikar kommer att sparas)"
+},
+"httpsfinder_main_restartPromptPrivate":{
+"message":"Regeln kommer att tillÃ¤mpas efter nÃ¤sta omstart av Firefox. Starta om nu?"
+},
+"httpsfinder_main_restartYes":{
+"message":"Starta om nu"
+},
+"httpsfinder_main_restartYesKey":{
+"message":"n"
+},
+"httpsfinder_main_ruleAddedText":{
+"message":"Regeln kommer att tillÃ¤mpas av HTTPS Everywhere efter nÃ¤sta omstart av webblÃ¤saren."
+},
+"httpsfinder_main_ruleAddedTitle":{
+"message":"Regel har lagts till"
+},
+"httpsfinder_main_saveRulePrompt":{
+"message":"Spara denna regel fÃ¶r HTTPS Everywhere? (Obs.: TjÃ¤nster som erbjuds Ã¶ver HTTPS kan skilja sig frÃ¥n HTTP-versionen)"
+},
+"httpsfinder_main_selfSignedAlert":{
+"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+},
+"httpsfinder_main_tempWhitelistedBody":{
+"message":"DomÃ¤nen lades till i temporÃ¤r lista (session) Ã¶ver betrodda domÃ¤ner."
+},
+"httpsfinder_main_tempWhitelistedTitle":{
+"message":"TemporÃ¤r listning"
+},
+"httpsfinder_main_whitelist":{
+"message":"LÃ¤gg till i listan Ã¶ver betrodda domÃ¤ner"
+},
+"httpsfinder_main_whitelistAdded":{
+"message":"En domÃ¤nregel lades till i listan Ã¶ver betrodda domÃ¤ner"
+},
+"httpsfinder_main_whitelistKey":{
+"message":"L"
+},
+"httpsfinder_main_yesRedirect":{
+"message":"Ja, anvÃ¤nd HTTPS"
+},
+"httpsfinder_main_yesRedirectKey":{
+"message":"J"
+},
+"httpsfinder_menu_help":{
+"message":"Hjälp"
+},
+"httpsfinder_menu_helpKey":{
+"message":"H"
+},
+"httpsfinder_menu_homepage":{
+"message":"Projektets webbplats"
+},
+"httpsfinder_menu_homepageKey":{
+"message":"P"
+},
+"httpsfinder_menu_rate":{
+"message":"Betygsätt HTTPS Finder"
+},
+"httpsfinder_menu_rateKey":{
+"message":"B"
+},
+"httpsfinder_menu_refresh":{
+"message":"Rensa temporär lista"
+},
+"httpsfinder_menu_refreshKey":{
+"message":"R"
+},
+"httpsfinder_menu_settings":{
+"message":"Inställningar"
+},
+"httpsfinder_menu_settingsKey":{
+"message":"I"
+},
+"httpsfinder_mySite":{
+"message":"http://www.KevinAJacobs.com"
+},
+"httpsfinder_overlay_whitelistReset":{
+"message":"Listan Ã¶ver betrodda domÃ¤ner och sessionens identifieringsresultat har rensats"
+},
+"httpsfinder_prefSize_detectChkDescWidth":{
+"message":"405"
+},
+"httpsfinder_prefSize_detectDescWidth":{
+"message":"450"
+},
+"httpsfinder_prefSize_windowHeight":{
+"message":"570"
+},
+"httpsfinder_prefSize_windowWidth":{
+"message":"515"
+},
+"httpsfinder_preference_aboutTab":{
+"message":"Om"
+},
+"httpsfinder_preference_advancedTab":{
+"message":"Avancerat"
+},
+"httpsfinder_preference_autoDismissTitle":{
+"message":"Stäng meddelanden automatiskt efter (sekunder)"
+},
+"httpsfinder_preference_autoDismissToolTip":{
+"message":"Varaktighet (sekunder)"
+},
+"httpsfinder_preference_autoForward":{
+"message":"Tvinga automatiskt HTTPS om tillgängligt"
+},
+"httpsfinder_preference_clearResults":{
+"message":"Rensa alla resultat"
+},
+"httpsfinder_preference_createRule":{
+"message":"Skapa regel"
+},
+"httpsfinder_preference_debug":{
+"message":"Aktivera felsökningsloggning (utförlig)"
+},
+"httpsfinder_preference_detectionDescLONG":{
+"message":"HEAD-begäranden använder mindre bandbredd än GET, men vissa servrar stödjer dem inte. Om det händer försöker HTTPS Finder istället använda en GET-begäran."
+},
+"httpsfinder_preference_detectionDescRec":{
+"message":"Rekommenderad inställning: Om du har en snabb anslutning, avmarkera för att endast använda GET.  För långsammare anslutningar kan HEAD vara märkbart snabbare på de flesta webbplatser."
+},
+"httpsfinder_preference_detectionLabel":{
+"message":"Identifieringsmetod"
+},
+"httpsfinder_preference_enable":{
+"message":"Aktivera HTTPS Finder"
+},
+"httpsfinder_preference_generalTab":{
+"message":"Allmänt"
+},
+"httpsfinder_preference_headFirst":{
+"message":"Använd HEAD-identifiering först (använd GET istället om servern inte stödjer HEAD)"
+},
+"httpsfinder_preference_learnLinkName":{
+"message":"här"
+},
+"httpsfinder_preference_learnMoreTip":{
+"message":"Läs mer om HTTPS Finder"
+},
+"httpsfinder_preference_listHeaderHTTPS":{
+"message":"HTTPS-resultat"
+},
+"httpsfinder_preference_listHeaderTitle":{
+"message":"Identifikationsresultat för sessionen"
+},
+"httpsfinder_preference_noHTTPSAlertTitle":{
+"message":"Aktivera meddelanden när HTTPS hittas (om &quot;Tvinga HTTPS automatiskt&quot; är inaktiverat)"
+},
+"httpsfinder_preference_noHTTPSAlertTooltip":{
+"message":"Avmarkera för att endast köra tyst identifiering. Granska resultat och skapa regler under fliken Avancerat"
+},
+"httpsfinder_preference_noResultsPB":{
+"message":"Inga resultat sparas vid privat surfning"
+},
+"httpsfinder_preference_noRulePrompt":{
+"message":"Visa ingen uppmaning att spara HTTPS-regel (för användning utan HTTPS Everywhere)"
+},
+"httpsfinder_preference_ruleTip":{
+"message":"För betrodda domäner: Notera att www.domän.se är en underdomän av domän.se."
+},
+"httpsfinder_preference_savedRulesTip":{
+"message":"Sparade regler kan inaktiveras i HTTPS Everywheres inställningar."
+},
+"httpsfinder_preference_showpreview":{
+"message":"Visa förhandsgranskning (medger redigering) innan regler sparas"
+},
+"httpsfinder_preference_sslReport":{
+"message":"Generera SSL-rapport"
+},
+"httpsfinder_preference_supportEmail":{
+"message":"httpsfinder@gmail.com"
+},
+"httpsfinder_preference_supportTitle":{
+"message":"E-postadress till support:"
+},
+"httpsfinder_preference_title":{
+"message":"Inställningar för HTTPS Finder"
+},
+"httpsfinder_preference_titleKey":{
+"message":"H"
+},
+"httpsfinder_preference_translations":{
+"message":"Översättningar har gjorts av följande personer:"
+},
+"httpsfinder_preference_whitelistAddButton":{
+"message":"Lägg till"
+},
+"httpsfinder_preference_whitelistAddTextbox":{
+"message":"Värdnamn (domän.tld, udomän.domän.tld, *.domän.tld)"
+},
+"httpsfinder_preference_whitelistLabel":{
+"message":"Betrodda domäner (identifiera inte HTTPS på dessa domäner)"
+},
+"httpsfinder_preference_whitelistModify":{
+"message":"Ändra"
+},
+"httpsfinder_preference_whitelistRemove":{
+"message":"Ta bort"
+},
+"httpsfinder_preference_whitelistUrlColumn":{
+"message":"Värdnamn"
+},
+"httpsfinder_rulePreview_clickhere":{
+"message":"här"
+},
+"httpsfinder_rulePreview_learnmore":{
+"message":"Läs mer om regelformatering"
+},
+"httpsfinder_rulePreview_link":{
+"message":"https://www.eff.org/https-everywhere/rulesets"
+},
+"httpsfinder_rulePreview_overwriteConfirm":{
+"message":"Overwrite existing rule?"
+},
+"httpsfinder_rulePreview_tip1":{
+"message":"Alla ändringar du gör kommer att återspeglas i den sparade regeln."
+},
+"httpsfinder_rulePreview_tip2":{
+"message":"Klicka på OK för att spara regeln eller Avbryt för att gå tillbaka utan att spara"
+},
+"httpsfinder_rulePreview_top":{
+"message":"Förhandsgranskning:"
+},
+"httpsfinder_title":{
+"message":"HTTPS Finder"
+},
+"httpsfinder_translation_chinese":{
+"message":"- Kinesiska (Christopher Meng)"
+},
+"httpsfinder_translation_dutch":{
+"message":"- Nederländska (Donné Brok)"
+},
+"httpsfinder_translation_finnish":{
+"message":"- Finska (Jorma Karvonen)"
+},
+"httpsfinder_translation_german":{
+"message":"- Tyska (Michael Wolf &amp; Daniel Helmert)"
+},
+"httpsfinder_translation_polish":{
+"message":"- Polish (PcP)"
+},
+"httpsfinder_translation_portuguese":{
+"message":"- Portugisiska (Megahertz)"
+},
+"httpsfinder_translation_spanish":{
+"message":"- Spanska (strel)"
+},
+"httpsfinder_translation_swedish":{
+"message":"- Svenska (Mikael Hiort)"
+},
+"httpsfinder_version":{
+"message":"0.81"
+},
+"httpsfinder_version":{
+"message":"0.81"
+}
+}

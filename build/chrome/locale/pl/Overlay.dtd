@@ -1,0 +1,78 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "515">
+<!ENTITY httpsfinder.prefSize.windowHeight "560">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "525">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "480">
+<!--End prefWindow sizing-->
+
+<!--Styczeń, Luty, Marzec, Kwiecień, Maj, Czerwiec, Lipiec, Sierpień, Wrzesień, Październik, Listopad, Grudzień-->
+
+<!ENTITY httpsfinder.version "0.81">
+<!ENTITY httpsfinder.buildDate "29 Grudzień 2011">
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "Data wydania:">
+<!ENTITY httpsfinder.authorTitle "Autor:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "Ustawienia HTTPS Finder ">
+<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.translations "Przettłumaczono przez następujące osoby:">
+<!ENTITY httpsfinder.preference.supportTitle "E-mail wsparcia:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "Uruchom HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "Nie pytaj o zapisanie reguł przekierowań (do wykorzystania bez HTTPS Everywhere)">
+<!ENTITY httpsfinder.preference.autoForward "Automatycznie przekieruj na HTTPS, kiedy dostępne">
+<!ENTITY httpsfinder.preference.whitelistLabel "Biała lista domen (Nie wykrywaj HTTPS na nich)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "Dodaj do białej listy">
+<!ENTITY httpsfinder.preference.whitelistModify "Modyfikuj">
+<!ENTITY httpsfinder.preference.whitelistRemove "Usuń">
+<!ENTITY httpsfinder.preference.savedRulesTip "Zapisane reguły mogą zostać wyłączone w ustawieniach HTTPS Everywhere">
+<!ENTITY httpsfinder.preference.ruleTip "Do reguł białej listy pamiętaj, że www.domain.com jest subdomeną domain.com.">
+<!ENTITY httpsfinder.preference.learnMoreTip "Czytaj więcej na temat HTTPS Finder">
+<!ENTITY httpsfinder.preference.learnLinkName "tutaj">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "Nazwa hosta (domain.tld, sub.domain.tld, *.domain.tld)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "Nazwa hosta">
+<!ENTITY httpsfinder.preference.headFirst "Używaj pierw wykrywania HEAD (Powróci do żądań GET, jeśli nie wspierane przez serwer)">
+<!ENTITY httpsfinder.preference.generalTab "Ogólne">
+<!ENTITY httpsfinder.preference.advancedTab "Zaawansowane">
+<!ENTITY httpsfinder.preference.aboutTab "O wtyczce">
+<!ENTITY httpsfinder.preference.detectionLabel "Meteoda wykrywania">
+<!ENTITY httpsfinder.preference.showpreview "Pokaż podgląd reguły (pozwala edytować) przed zapisaniem reguły">
+<!ENTITY httpsfinder.preference.detectionDescLONG "Żądania HEAD używają mniej łącza niż GET, ale niektóre serwery mogą nie obsługiwać go. Jeśli tak się stanie, HTTPS Finder będzie próbował ponownie połączyć się przez żądanie GET.">
+<!ENTITY httpsfinder.preference.detectionDescRec "Zalecenia do ustawień: Jeśli masz szybkie łącze, usuń zaznaczenie, aby używać żądań GET. Na wolniejszych łączach, HEAD może być zauważalnie szybsze na większości witryn.">
+<!ENTITY httpsfinder.preference.debug "Włącz 'gadatliwy' tryb">
+<!ENTITY httpsfinder.rulePreview.top "Podgląd reguły">
+<!ENTITY httpsfinder.rulePreview.tip1 "Wszelkie wprowadzone zmiany zostaną uwzględnione w zapisanej regule.">
+<!ENTITY httpsfinder.rulePreview.tip2 "Kliknij przycisk OK, aby zapisać regułę, lub Anuluj, aby powrócić bez zapisywania">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "tutaj">
+<!ENTITY httpsfinder.rulePreview.learnmore "Dowiedz się więcej o zasadach formatowania">
+<!ENTITY httpsfinder.menu.settings "Ustawienia">
+<!ENTITY httpsfinder.menu.settingsKey "U">
+<!ENTITY httpsfinder.menu.refresh "Usuń tymczasową białą liste">
+<!ENTITY httpsfinder.menu.refreshKey "t">
+<!ENTITY httpsfinder.menu.homepage "Strona projektu">
+<!ENTITY httpsfinder.menu.homepageKey "S">
+<!ENTITY httpsfinder.menu.rate "Oceń HTTPS Finder">
+<!ENTITY httpsfinder.menu.rateKey "O">
+<!ENTITY httpsfinder.menu.help "Pomoc">
+<!ENTITY httpsfinder.menu.helpKey "P">
+<!ENTITY httpsfinder.translation.german "- Niemiecki (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Holenderski (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polska (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Szwedzki (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Hiszpański (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portugalski (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Fiński (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Chiński (Christopher Meng)">
+
+<!-- New in 0.73 - Will need to be translated -->
+<!ENTITY httpsfinder.preference.createRule "Create Rule">
+<!ENTITY httpsfinder.preference.sslReport "Generate SSL Report">
+<!ENTITY httpsfinder.preference.clearResults "Clear All Results">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS Result">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Session discovery results">
+<!ENTITY httpsfinder.preference.autoDismissTitle "Auto-dismiss alerts after (seconds)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "Duration (seconds)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)">

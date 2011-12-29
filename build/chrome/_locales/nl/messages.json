@@ -1,0 +1,314 @@
+{
+"httpsfinder_authorTitle":{
+"message":"Auteur:"
+},
+"httpsfinder_buildDate":{
+"message":"29 december 2011"
+},
+"httpsfinder_buildDateTitle":{
+"message":"Datum van uitgave:"
+},
+"httpsfinder_description":{
+"message":"Laat zien of een website beschikbaar is in SSL en maakt automatisch regels voor HTTPS Everywhere"
+},
+"httpsfinder_googleCodeURL":{
+"message":"https://code.google.com/p/https-finder/"
+},
+"httpsfinder_main_NoHttpsEverywhere":{
+"message":"HTTPS Everywhere is waarschijnlijk niet geïnstalleerd. Regels worden opgeslagen, maar worden pas toegepast na installatie van HTTPS Everywhere."
+},
+"httpsfinder_main_autoForwardRulePrompt":{
+"message":"HTTPS wordt toegepast. Deze regel opslaan voor HTTPS Everywhere? (Opmerking: Websites via HTTPS kunnen verschillen van de HTTP versie)"
+},
+"httpsfinder_main_getHttpsEverywhere":{
+"message":"Installeer HTTPS Everywhere"
+},
+"httpsfinder_main_getHttpsEverywhereKey":{
+"message":"I"
+},
+"httpsfinder_main_httpsFoundPrompt":{
+"message":"Een beveiligde versie van deze pagina is beschikbaar. Wilt u deze gebruiken?"
+},
+"httpsfinder_main_noRedirect":{
+"message":"Nu niet"
+},
+"httpsfinder_main_noRedirectKey":{
+"message":"N"
+},
+"httpsfinder_main_noThanks":{
+"message":"Nu niet"
+},
+"httpsfinder_main_noThanksKey":{
+"message":"N"
+},
+"httpsfinder_main_rememberSetting":{
+"message":"Sla regel op"
+},
+"httpsfinder_main_rememberSettingKey":{
+"message":"S"
+},
+"httpsfinder_main_restartNo":{
+"message":"Herstart later"
+},
+"httpsfinder_main_restartNoKey":{
+"message":"l"
+},
+"httpsfinder_main_restartPrompt":{
+"message":"Regel wordt gebruikt na een herstart van Firefox. Nu herstarten? (Tabbladen worden opgeslagen)"
+},
+"httpsfinder_main_restartPromptPrivate":{
+"message":"Regel wordt gebruikt na een herstart van Firefox. Nu herstarten?"
+},
+"httpsfinder_main_restartYes":{
+"message":"Herstart nu"
+},
+"httpsfinder_main_restartYesKey":{
+"message":"n"
+},
+"httpsfinder_main_ruleAddedText":{
+"message":"Deze regel zal worden gebruikt door HTTPS Everywhere na een herstart van uw browser."
+},
+"httpsfinder_main_ruleAddedTitle":{
+"message":"Regel toegevoegd."
+},
+"httpsfinder_main_saveRulePrompt":{
+"message":"Deze regel opslaan voor HTTPS Everywhere? (Opmerking: Websites via HTTPS kunnen verschillen van de HTTP versie)"
+},
+"httpsfinder_main_selfSignedAlert":{
+"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+},
+"httpsfinder_main_tempWhitelistedBody":{
+"message":"Domein tijdelijk (voor de duur van deze sessie) toegevoegd aan witte lijst."
+},
+"httpsfinder_main_tempWhitelistedTitle":{
+"message":"Tijdelijk toegevoegd aan witte lijst"
+},
+"httpsfinder_main_whitelist":{
+"message":"Toevoegen aan witte lijst"
+},
+"httpsfinder_main_whitelistAdded":{
+"message":"Domein toegevoegd aan witte lijst"
+},
+"httpsfinder_main_whitelistKey":{
+"message":"T"
+},
+"httpsfinder_main_yesRedirect":{
+"message":"Ja, gebruik HTTPS"
+},
+"httpsfinder_main_yesRedirectKey":{
+"message":"J"
+},
+"httpsfinder_menu_help":{
+"message":"Help"
+},
+"httpsfinder_menu_helpKey":{
+"message":"H"
+},
+"httpsfinder_menu_homepage":{
+"message":"Website HTTPS Finder"
+},
+"httpsfinder_menu_homepageKey":{
+"message":"F"
+},
+"httpsfinder_menu_rate":{
+"message":"Beoordeel HTTPS Finder"
+},
+"httpsfinder_menu_rateKey":{
+"message":"B"
+},
+"httpsfinder_menu_refresh":{
+"message":"Wis tijdelijke witte lijst"
+},
+"httpsfinder_menu_refreshKey":{
+"message":"W"
+},
+"httpsfinder_menu_settings":{
+"message":"Voorkeuren"
+},
+"httpsfinder_menu_settingsKey":{
+"message":"V"
+},
+"httpsfinder_mySite":{
+"message":"http://www.KevinAJacobs.com"
+},
+"httpsfinder_overlay_whitelistReset":{
+"message":"Witte lijst en tijdelijke detectieregels zijn verwijderd"
+},
+"httpsfinder_prefSize_detectChkDescWidth":{
+"message":"460"
+},
+"httpsfinder_prefSize_detectDescWidth":{
+"message":"485"
+},
+"httpsfinder_prefSize_windowHeight":{
+"message":"560"
+},
+"httpsfinder_prefSize_windowWidth":{
+"message":"475"
+},
+"httpsfinder_preference_aboutTab":{
+"message":"Over"
+},
+"httpsfinder_preference_advancedTab":{
+"message":"Geavanceerd"
+},
+"httpsfinder_preference_autoDismissTitle":{
+"message":"Automatische time-out van notificaties (seconden)"
+},
+"httpsfinder_preference_autoDismissToolTip":{
+"message":"Duur (seconden)"
+},
+"httpsfinder_preference_autoForward":{
+"message":"Automatisch HTTPS gebruiken indien mogelijk"
+},
+"httpsfinder_preference_clearResults":{
+"message":"Wis alle resultaten"
+},
+"httpsfinder_preference_createRule":{
+"message":"Maak regel"
+},
+"httpsfinder_preference_debug":{
+"message":"Schakel foutopsporing in"
+},
+"httpsfinder_preference_detectionDescLONG":{
+"message":"HEAD gebruikt minder bandbreedte dan GET, maar deze methode wordt niet door alle servers ondersteund. In dat geval zal HTTPS Finder proberen om GET te gebruiken."
+},
+"httpsfinder_preference_detectionDescRec":{
+"message":"Aanbevolen instelling: Zet deze optie uit indien u over een snelle verbinding beschikt, zodat alleen GET wordt gebruikt. Bij langzame verbindingen zal HEAD (en daarna eventueel GET) aanmerkelijk sneller zijn."
+},
+"httpsfinder_preference_detectionLabel":{
+"message":"Detectie-methode"
+},
+"httpsfinder_preference_enable":{
+"message":"HTTPS Finder inschakelen"
+},
+"httpsfinder_preference_generalTab":{
+"message":"Algemeen"
+},
+"httpsfinder_preference_headFirst":{
+"message":"Gebruik eerst HEAD detectie (indien deze niet wordt ondersteund, wordt GET gebruikt)"
+},
+"httpsfinder_preference_learnLinkName":{
+"message":"hier"
+},
+"httpsfinder_preference_learnMoreTip":{
+"message":"Meer informatie over HTTPS Finder"
+},
+"httpsfinder_preference_listHeaderHTTPS":{
+"message":"HTTPS resultaten"
+},
+"httpsfinder_preference_listHeaderTitle":{
+"message":"Ontdekte resultaten tijdens deze sessie"
+},
+"httpsfinder_preference_noHTTPSAlertTitle":{
+"message":"Toon notificaties wanneer HTTPS is gevonden (indien automatisch HTTPS gebruiken is uitgeschakeld)"
+},
+"httpsfinder_preference_noHTTPSAlertTooltip":{
+"message":"Zet deze optie uit om geen notificaties te ontvangen. Gebruik het tabblad 'geavanceerd' om regels te maken en bekijken"
+},
+"httpsfinder_preference_noResultsPB":{
+"message":"Geen resultaten opgeslagen in een Privénavigatiesessie"
+},
+"httpsfinder_preference_noRulePrompt":{
+"message":"Niet vragen om regels op te slaan (Voor gebruik zonder HTTPS Everywhere)"
+},
+"httpsfinder_preference_ruleTip":{
+"message":"Voor de witte lijst geldt: www.domein.com is een subdomein van domein.com"
+},
+"httpsfinder_preference_savedRulesTip":{
+"message":"Opgeslagen regels kunnen worden uitgezet in de voorkeuren van HTTPS Everywhere"
+},
+"httpsfinder_preference_showpreview":{
+"message":"Laat regels zien voor ze worden opgeslagen. Dit maakt het mogelijk regels te bewerken."
+},
+"httpsfinder_preference_sslReport":{
+"message":"Genereer SSL rapport"
+},
+"httpsfinder_preference_supportEmail":{
+"message":"httpsfinder@gmail.com"
+},
+"httpsfinder_preference_supportTitle":{
+"message":"E-mail voor ondersteuning:"
+},
+"httpsfinder_preference_title":{
+"message":"HTTPS Finder voorkeuren"
+},
+"httpsfinder_preference_titleKey":{
+"message":"H"
+},
+"httpsfinder_preference_translations":{
+"message":"Vertaald door:"
+},
+"httpsfinder_preference_whitelistAddButton":{
+"message":"Toevoegen aan witte lijst"
+},
+"httpsfinder_preference_whitelistAddTextbox":{
+"message":"Hostnaam (domein.com, sub.domein.com, *.domein.com)"
+},
+"httpsfinder_preference_whitelistLabel":{
+"message":"Witte lijst (Niet naar HTTPS zoeken voor deze domeinnamen)"
+},
+"httpsfinder_preference_whitelistModify":{
+"message":"Wijzigen"
+},
+"httpsfinder_preference_whitelistRemove":{
+"message":"Verwijderen"
+},
+"httpsfinder_preference_whitelistUrlColumn":{
+"message":"Hostnaam"
+},
+"httpsfinder_rulePreview_clickhere":{
+"message":"hier"
+},
+"httpsfinder_rulePreview_learnmore":{
+"message":"Meer informatie over het maken van regels"
+},
+"httpsfinder_rulePreview_link":{
+"message":"https://www.eff.org/https-everywhere/rulesets"
+},
+"httpsfinder_rulePreview_overwriteConfirm":{
+"message":"Overwrite existing rule?"
+},
+"httpsfinder_rulePreview_tip1":{
+"message":"Alle wijzigingen die u maakt worden opgeslagen in de regel."
+},
+"httpsfinder_rulePreview_tip2":{
+"message":"Klik op OK om de regel op te slaan of op Annuleren om terug te keren zonder op te slaan"
+},
+"httpsfinder_rulePreview_top":{
+"message":"Voorbeeldweergave van de regel:"
+},
+"httpsfinder_title":{
+"message":"HTTPS Finder"
+},
+"httpsfinder_translation_chinese":{
+"message":"- Chinees (Christopher Meng)"
+},
+"httpsfinder_translation_dutch":{
+"message":"- Nederlands (Donné Brok)"
+},
+"httpsfinder_translation_finnish":{
+"message":"- Fins (Jorma Karvonen)"
+},
+"httpsfinder_translation_german":{
+"message":"- Duits (Michael Wolf &amp; Daniel Helmert)"
+},
+"httpsfinder_translation_polish":{
+"message":"- Poolse (PcP)"
+},
+"httpsfinder_translation_portuguese":{
+"message":"- Portugees (Megahertz)"
+},
+"httpsfinder_translation_spanish":{
+"message":"- Spaans (strel)"
+},
+"httpsfinder_translation_swedish":{
+"message":"- Svensk (Mikael Hiort)"
+},
+"httpsfinder_version":{
+"message":"0.81"
+},
+"httpsfinder_version":{
+"message":"0.81"
+}
+}
