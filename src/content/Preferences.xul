@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://httpsfinder/content/about.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://httpsfinder/locale/Overlay.dtd">
+<prefwindow
+    id="prefWindow"
+    title="&httpsfinder.preference.title;"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    buttons="accept,cancel">
+    <script type="application/x-javascript" src="chrome://httpsfinder/content/Preferences.js"/>
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="httpsfinderStrings"
+        src="chrome://httpsfinder/locale/Overlay.properties" />
+    </stringbundleset>
+
+    <prefpane label="&httpsfinder.preference.title;"
+        onpaneload="httpsfinder.Preferences.loadWindowObjects()">
+
+        <preferences>
+            <preference id="httpsfinder-enable" name="extensions.httpsfinder.enable" type="bool"/>
+            <preference id="httpsfinder-noruleprompt" name="extensions.httpsfinder.noruleprompt" type="bool"/>
+            <preference id="httpsfinder-autoforward" name="extensions.httpsfinder.autoforward" type="bool"/>
+            <preference id="httpsfinder-headfirst" name="extensions.httpsfinder.headfirst" type="bool"/>
+            <preference id="httpsfinder-showrulepreview" name="extensions.httpsfinder.showrulepreview" type="bool"/>
+            <preference id="httpsfinder-autoDismiss" name="extensions.httpsfinder.dismissAlerts" type="bool"/>
+            <preference id="httpsfinder-dismissTime" name="extensions.httpsfinder.alertDismissTime" type="int"/>
+            <preference id="httpsfinder-HTTPSFoundAlerts" name="extensions.httpsfinder.httpsfoundalert" type="bool"/>
+        </preferences>
+
+        <tabbox id="httpsfindertabs" selectedIndex="0">
+            <tabs>
+                <tab label="&httpsfinder.preference.generalTab;"/>
+                <tab label="&httpsfinder.preference.advancedTab;"/>
+                <tab label="&httpsfinder.preference.aboutTab;"/>
+            </tabs>
+            <tabpanels>
+                 <!--_______________________________ Main panel ______________________________________  -->
+                <tabpanel>
+                    <column>
+                        <grid>
+                            <rows>
+                                <row>
+                                    <checkbox id="enable" preference="httpsfinder-enable" onclick="httpsfinder.Preferences.EnableChecked(document)"/>
+                                    <label  control="enable" value="&httpsfinder.preference.enable;" />
+                                </row>
+                                <row>
+                                    <checkbox id="noruleprompt" preference="httpsfinder-noruleprompt"/>
+                                    <label id="promptLabel" control="noruleprompt" value="&httpsfinder.preference.noRulePrompt;"/>
+                                </row>
+                                <tooltip id="silentModeTip" orient="vertical" style="background-color: #33DD00;">
+                                    <label value="&httpsfinder.preference.noHTTPSAlertTooltip;"/>
+                                </tooltip>
+                                <row>
+                                    <checkbox id="httpsfoundprompt" preference="httpsfinder-HTTPSFoundAlerts" onclick="" tooltip="silentModeTip"/>
+                                    <label tooltip="silentModeTip" id="httpsfoundpromptLbl" control="httpsfoundprompt"
+                                        value="&httpsfinder.preference.noHTTPSAlertTitle;" />
+                                </row>
+                                <row>
+                                    <checkbox id="autoforward" preference="httpsfinder-autoforward" onclick="httpsfinder.Preferences.autoForwardToggle(document)"/>
+                                    <label id="autoforwardLabel" control="autoforward" value="&httpsfinder.preference.autoForward;"/>
+                                </row>
+                                <separator class="thin"/>
+                            </rows>
+                        </grid>
+                        <groupbox minwidth="465">
+                            <caption label="&httpsfinder.preference.whitelistLabel;"/>
+                            <row>
+                                <textbox id="whitelistURL" emptytext="&httpsfinder.preference.whitelistAddTextbox;" size="49" />
+                                <button id="whitelistURLLabel" label="&httpsfinder.preference.whitelistAddButton;" oncommand="httpsfinder.Preferences.AddToWhitelist(document)"/>
+                            </row>
+                            <row>
+                                <listbox seltype="multiple" flex="2"  id="whitelist" onselect="httpsfinder.Preferences.WhitelistSelect(document)">
+                                    <listhead>
+                                        <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="240"/>
+                                    </listhead>
+                                </listbox>
+                            </row>
+                            <row>
+                                <button id="modifyRule" label="&httpsfinder.preference.whitelistModify;" oncommand="httpsfinder.Preferences.ModifyWhitelistRule(document)" disabled="true"/>
+                                <button id="removeRule" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.Preferences.RemoveWhitelistRule(document)" disabled="true"/>
+                            </row>
+                        </groupbox>
+                        <separator class="thin"/>
+                        <vbox>
+                            <label value="&httpsfinder.preference.ruleTip;" control="ruleTip"/>
+                        </vbox>
+                        <vbox>
+                            <label value="&httpsfinder.preference.savedRulesTip;" control="savedRulesTip"/>
+                        </vbox>
+                        <vbox>
+                            <row>
+                                <label value="&httpsfinder.preference.learnMoreTip;" control="learnMoreTip"/>
+                                <label id="projectlink"
+                                         value="&httpsfinder.preference.learnLinkName;"
+                                         style="color: blue; text-decoration:underline;"
+                                         onmouseover="event.target.style.cursor='pointer'"
+                                         onmouseout="event.target.style.cursor='default'"
+                                        onclick="httpsfinder.Preferences.openWebsiteInTab('https://code.google.com/p/https-finder/');"/>
+                            </row>
+                        </vbox>
+                    </column>
+                </tabpanel>
+
+                <!--_______________________________ Advanced panel ______________________________________  -->
+                <tabpanel>
+                    <column>
+                        <grid>
+                            <rows>
+                                <row>
+                                    <checkbox id="headfirst" preference="httpsfinder-headfirst"/>
+                                    <description control="headfirst">&httpsfinder.preference.headFirst;</description>
+                                </row>
+                                <row>
+                                    <checkbox id="rulepreview" preference="httpsfinder-showrulepreview"/>
+                                    <label control="rulepreview" value="&httpsfinder.preference.showpreview;"/>
+                                </row>
+                                <vbox>
+                                    <row>
+                                        <checkbox id="autoDismiss" preference="httpsfinder-autoDismiss"/>
+                                        <label control="ADText" value="&httpsfinder.preference.autoDismissTitle;"/>
+                                        <textbox id="dismissTime" type="number" min="0" max="60" preference="httpsfinder-dismissTime"
+                                                   size="2" maxlength="2" tooltiptext="&httpsfinder.preference.autoDismissToolTip;" style="width: 50px;"/>
+                                    </row>
+                                </vbox>
+                            </rows>
+                        </grid>
+                        <separator class="thin"/>
+                        <hbox>
+                            <groupbox flex="1" minwidth="465">
+                                <caption label="&httpsfinder.preference.listHeaderTitle;"/>
+                                <row>
+                                    <listbox seltype="single" flex="2" id="cacheList"
+                                             onselect="httpsfinder.Preferences.ResultSelect(document)">
+                                        <listhead>
+                                            <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="210"/>
+                                            <listheader label="&httpsfinder.preference.listHeaderHTTPS;"  style="padding: 4"/>
+                                        </listhead>
+                                    </listbox>
+                                </row>
+                                <row>
+                                    <button id="writeRule" label="&httpsfinder.preference.createRule;" oncommand="httpsfinder.Preferences.writeRule();" disabled="true"/>
+                                    <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.Preferences.removeCacheItem(document)" disabled="true"/>
+                                    <button id="viewReport" label="&httpsfinder.preference.sslReport;" oncommand="httpsfinder.Preferences.sslReport();" disabled="true"/>
+                                    <button id="resetCache" label="&httpsfinder.preference.clearResults;" oncommand="httpsfinder.Preferences.resetWhitelist();"/>
+                                </row>
+                            </groupbox>
+                        </hbox>
+                    </column>
+                </tabpanel>
+
+                <!--_______________________________ About panel ______________________________________  -->
+                <tabpanel>
+                    <column>
+                        <vbox id="httpsfinderPrefsAbout">
+                            <hbox id="httpsfinder-about-details">
+                                <description class="name">&httpsfinder.title;</description>
+                                <description class="name">&httpsfinder.version;</description>
+                                <image id="logo" src='chrome://httpsfinder/skin/iconLarge.png'/>
+                            </hbox>
+                            <description value="&httpsfinder.buildDateTitle;" class="title"/>
+                            <description>&httpsfinder.buildDate;</description>
+                            <description value="&httpsfinder.authorTitle;" class="title"/>
+                            <description>Kevin Jacobs</description>
+
+                            <description onclick="httpsfinder.Preferences.openWebsiteInTab('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>
+                            <description value="&httpsfinder.preference.supportTitle;" class="title"/>
+                            <description onclick="location.href='mailto:&httpsfinder.preference.supportEmail;'" class="url">&httpsfinder.preference.supportEmail;</description>
+                        </vbox>
+                        <separator class="thin"/>
+                        <separator class="thin"/>
+                        <separator class="thin"/>
+                        <separator class="groove"  width = "&httpsfinder.prefSize.detectDescWidth;"/>
+                        <separator class="thin"/>
+                        <row>
+                            <groupbox width = "&httpsfinder.prefSize.detectDescWidth;">
+                                <caption label="&httpsfinder.preference.translations;"/>
+                                <row>
+                                    <label value="&httpsfinder.translation.german;"/>
+                                </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.dutch;"/>
+                                </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.polish;"/>
+                                </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.swedish;"/>
+                                </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.spanish;"/>
+                                </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.portuguese;"/>
+                                </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.finnish;"/>
+                                </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.chinese;"/>
+                                </row>
+                            </groupbox>
+                        </row>
+                        <separator class="thin"/>
+                        <separator class="thin"/>
+                    </column>
+                </tabpanel>
+            </tabpanels>
+        </tabbox>
+    </prefpane>
+
+</prefwindow>
