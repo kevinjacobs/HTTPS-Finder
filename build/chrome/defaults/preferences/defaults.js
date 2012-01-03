@@ -13,3 +13,4 @@ pref("extensions.httpsfinder.alertDismissTime", 4);
 pref("extensions.httpsfinder.appendVersionTagToRules", true);
 pref("extensions.httpsfinder.allowSelfSignedCerts", false);
 pref("extensions.httpsfinder.attemptSecureCookies", false);
+pref("extensions.httpsfinder.secureWildcardCookies", false);

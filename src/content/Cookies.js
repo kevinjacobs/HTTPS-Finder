@@ -16,7 +16,7 @@ var OS = hfCC["@mozilla.org/observer-service;1"]
 var originallyInsecureCookies = [];
 
 //var aConsoleService = hfCC["@mozilla.org/consoleservice;1"].
-//     getService(hfCI.nsIConsoleService);
+//getService(hfCI.nsIConsoleService);
 
 function goodSSLFound(host){
     if(httpsfinder.prefs.getBoolPref("attemptSecureCookies")){   
@@ -24,8 +24,8 @@ function goodSSLFound(host){
         while (enumerator.hasMoreElements()) {
             var cookie = enumerator.getNext().QueryInterface(Components.interfaces.nsICookie2);
             if(!cookie.isSecure){
-                this._secureIndividualCookie(cookie);                
-                //this.aConsoleService.logStringMessage("Securing cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
+                this.handleInsecureCookie(cookie);                
+            //this.aConsoleService.logStringMessage("Securing cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
             }
         }
     }
@@ -55,6 +55,15 @@ function _insecureIndividualCookie(cookie) {
 function handleInsecureCookie(cookie){
     if(httpsfinder.results.goodSSL.indexOf(cookie.host) != -1)
         this._secureIndividualCookie(cookie);    
+    else if(httpsfinder.prefs.getBoolPref("secureWildcardCookies")){
+        for(var i = 0; i < httpsfinder.results.goodSSL.length; i++){
+            var trimmed = httpsfinder.results.goodSSL[i];
+            trimmed = trimmed.substring(trimmed.indexOf("."), trimmed.length);    
+            
+            if(cookie.host === trimmed)
+                this._secureIndividualCookie(cookie);
+        }        
+    }
 }
 
 function restoreDefaultCookiesForHost(host){
@@ -66,7 +75,7 @@ function restoreDefaultCookiesForHost(host){
             && cookie.isSecure)
             {
             this._insecureIndividualCookie(cookie);
-            //aConsoleService.logStringMessage("a logging message");.reportError("Restoring cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
+        //aConsoleService.logStringMessage("Restoring cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
         }
     }
 }
