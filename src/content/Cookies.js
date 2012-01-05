@@ -15,18 +15,13 @@ var OS = hfCC["@mozilla.org/observer-service;1"]
 
 var originallyInsecureCookies = [];
 
-//var aConsoleService = hfCC["@mozilla.org/consoleservice;1"].
-//getService(hfCI.nsIConsoleService);
-
 function goodSSLFound(host){
     if(httpsfinder.prefs.getBoolPref("attemptSecureCookies")){   
         var enumerator = this.getCookiesFromHost(host);
         while (enumerator.hasMoreElements()) {
             var cookie = enumerator.getNext().QueryInterface(Components.interfaces.nsICookie2);
-            if(!cookie.isSecure){
-                this.handleInsecureCookie(cookie);                
-            //this.aConsoleService.logStringMessage("Securing cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
-            }
+            if(!cookie.isSecure)
+                this.handleInsecureCookie(cookie);
         }
     }
 }
@@ -39,7 +34,11 @@ function _secureIndividualCookie(cookie) {
     if(httpsfinder.Overlay.isWhitelisted(cookie.host))
         return;
     
-    this.originallyInsecureCookies.push(cookie.name + ";" + cookie.host + "/" + cookie.path);
+    if(httpsfinder.results.securedCookieHosts.indexOf(cookie.host) == -1)
+        httpsfinder.results.securedCookieHosts.push(cookie.host);
+    
+    this.originallyInsecureCookies.push(cookie.name + ";" + cookie.host + "/" + cookie.path);    
+    
     var expiry = Math.min(cookie.expiry, Math.pow(2,31))
     this.cookieManager.remove(cookie.host, cookie.name, cookie.path, false);
     this.cookieManager.add(cookie.host, cookie.path, cookie.name, cookie.value, true, cookie.isHTTPOnly, cookie.isSession, expiry);    
@@ -53,6 +52,9 @@ function _insecureIndividualCookie(cookie) {
 }
 
 function handleInsecureCookie(cookie){
+    if(httpsfinder.results.cookieHostWhitelist.indexOf(cookie.host) != -1)
+        return;
+        
     if(httpsfinder.results.goodSSL.indexOf(cookie.host) != -1)
         this._secureIndividualCookie(cookie);    
     else if(httpsfinder.prefs.getBoolPref("secureWildcardCookies")){
@@ -73,10 +75,7 @@ function restoreDefaultCookiesForHost(host){
         
         if(this.originallyInsecureCookies.indexOf(cookie.name + ";" + cookie.host + "/" + cookie.path) != -1
             && cookie.isSecure)
-            {
             this._insecureIndividualCookie(cookie);
-        //aConsoleService.logStringMessage("Restoring cookie for host: " + cookie.rawHost + "  Name: " + cookie.name);
-        }
     }
 }
 

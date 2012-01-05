@@ -141,12 +141,16 @@
                                         <listhead>
                                             <listheader label="&httpsfinder.preference.whitelistUrlColumn;" width="210"/>
                                             <listheader label="&httpsfinder.preference.listHeaderHTTPS;"  style="padding: 4"/>
+                                            <listheader label="Cookies Secured"  style="padding: 4"/>
                                         </listhead>
                                     </listbox>
                                 </row>
                                 <row>
                                     <button id="writeRule" label="&httpsfinder.preference.createRule;" oncommand="httpsfinder.Preferences.writeRule();" disabled="true"/>
                                     <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.Preferences.removeCacheItem(document)" disabled="true"/>
+                                    <button id="restoreCookies" label="Restore insecure cookies" oncommand="httpsfinder.Preferences.resetCookies();" disabled="true"/>
+                                </row>
+                                <row>
                                     <button id="viewReport" label="&httpsfinder.preference.sslReport;" oncommand="httpsfinder.Preferences.sslReport();" disabled="true"/>
                                     <button id="resetCache" label="&httpsfinder.preference.clearResults;" oncommand="httpsfinder.Preferences.resetWhitelist();"/>
                                 </row>

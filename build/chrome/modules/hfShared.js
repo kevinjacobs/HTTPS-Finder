@@ -30,10 +30,14 @@ var EXPORTED_SYMBOLS = ['results',
 'sharedWriteRule',
 'getHostWithoutSub',
 'restartNow',
-'alertRuleFinished'];
+'alertRuleFinished',
+'restoreDefaultCookiesForHost'];
 
 var results = {
     goodSSL : [],
+    originallyInsecureCookies: [],
+    cookieHostWhitelist : [],
+    securedCookieHosts : [],
     permWhitelistLength : 0, //Count for permanent whitelist items (first x items are permanent, the rest are temp)
     whitelist : [],
     tempNoAlerts : []
@@ -41,6 +45,27 @@ var results = {
 
 var redirectedTab =  [[]]; //Tab info for pre-redirect URLs.
 
+function restoreDefaultCookiesForHost(host, wildcardHost){
+    var cookieManager = hfCC["@mozilla.org/cookiemanager;1"]
+    .getService(hfCI.nsICookieManager2);
+    
+    var enumerator = cookieManager.getCookiesFromHost(host);
+    
+    while (enumerator.hasMoreElements()) {
+        var cookie = enumerator.getNext().QueryInterface(Components.interfaces.nsICookie2);     
+        
+        if(cookie.host == host){
+            var expiry = Math.min(cookie.expiry, Math.pow(2,31))
+            cookieManager.remove(cookie.host, cookie.name, cookie.path, false);
+            cookieManager.add(cookie.host, cookie.path, cookie.name, cookie.value, false, cookie.isHTTPOnly, cookie.isSession, expiry);    
+        }
+        else if(wildcardHost != null && (cookie.host == wildcardHost)){
+            expiry = Math.min(cookie.expiry, Math.pow(2,31))
+            cookieManager.remove(cookie.host, cookie.name, cookie.path, false);
+            cookieManager.add(cookie.host, cookie.path, cookie.name, cookie.value, false, cookie.isHTTPOnly, cookie.isSession, expiry);    
+        }
+    }
+};
 
 //Generic notifier method
 function popupNotify(title,body){
@@ -120,11 +145,36 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
         //Then the hostname is of the form "mysite.com". We add a "www." rule as well in this case.
         var wwwHost =  "www." + hostname;
         to = "https://" + hostname + "/";
-        rule = <{"ruleset"} name = {name}>
-        <{"target"} host={hostname}/>
-        <{"target"} host={wwwHost}/>
-        <{"rule"} from={from} to={to}/>
-        </{'ruleset'}>;
+        rule = <{
+        "ruleset"
+        }
+        name = {
+        name
+        }>
+        <{
+        "target"
+        }
+        host={
+        hostname
+        }/>
+        <{
+        "target"
+        }
+        host={
+        wwwHost
+        }/>
+        <{
+        "rule"
+        }
+        from={
+        from
+        }
+        to={
+        to
+        }/>
+        </{
+        'ruleset'
+        }>;
     }
     else if(domains.length == 3){
         //Then the hostname already contains subdomain info (www or non-www).
@@ -135,17 +185,57 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
             from = "^http://(www\\.)?" + fromBits[0] + "\\." + fromBits[1]  + "\\"  + topLevel + "/";         
         }
         to = "https://" + hostname + "/";
-        rule = <{"ruleset"} name = {name}>
-        <{"target"} host={hostname}/>
-        <{'rule'} from={from} to={to}/>
-        </{"ruleset"}>;
+        rule = <{
+        "ruleset"
+        }
+        name = {
+        name
+        }>
+        <{
+        "target"
+        }
+        host={
+        hostname
+        }/>
+        <{
+        'rule'
+        }
+        from={
+        from
+        }
+        to={
+        to
+        }/>
+        </{
+        "ruleset"
+        }>;
     }
     else
         //Catch all
-        rule = <{"ruleset"} name = {name}>
-        <{"target"} host={hostname}/>
-        <{"rule"} from={from} to={to}/>
-        </{"ruleset"}>;
+        rule = <{
+        "ruleset"
+        }
+        name = {
+        name
+        }>
+        <{
+        "target"
+        }
+        host={
+        hostname
+        }/>
+        <{
+        "rule"
+        }
+        from={
+        from
+        }
+        to={
+        to
+        }/>
+        </{
+        "ruleset"
+        }>;
 
     if(rule)
         rule = rule.toXMLString();
@@ -247,11 +337,11 @@ function restartNow(){
 function alertRuleFinished(aDocument){ 
     //Check firefox version and use appropriate method
     var Application = hfCC["@mozilla.org/fuel/application;1"]
-        .getService(hfCI.fuelIApplication);
+    .getService(hfCI.fuelIApplication);
     var windowMediator = hfCC["@mozilla.org/appshell/window-mediator;1"]
-        .getService(hfCI.nsIWindowMediator);
+    .getService(hfCI.nsIWindowMediator);
     var prefService = hfCC["@mozilla.org/preferences-service;1"]
-        .getService(hfCI.nsIPrefService);
+    .getService(hfCI.nsIPrefService);
 
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
     var strings = currentWindow.document.getElementById("httpsfinderStrings");

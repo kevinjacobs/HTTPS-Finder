@@ -83,23 +83,59 @@ httpsfinder.Preferences = {
 
         for (var i = 0; i < httpsfinder.Preferences.results.goodSSL.length; i++)
         {
+            var host = httpsfinder.Preferences.results.goodSSL[i];
+            
             //Add domain name to row
             var row = document.createElement('listitem');
             var cell = document.createElement('listcell');
-            cell.setAttribute('label', httpsfinder.Preferences.results.goodSSL[i]);
+            cell.setAttribute('label', host);
             row.appendChild(cell);
 
-            //Add check mark to row
+            //Add check mark to HTTPS column
             var checkIcon = document.createElement('image');
             checkIcon.setAttribute('src', 'chrome://httpsfinder/skin/goodSSL.png');
             var hbox = document.createElement('hbox');
             hbox.appendChild(checkIcon);
             hbox.setAttribute('pack', 'center');
             row.appendChild(hbox);
+            
 
+            if(httpsfinder.Preferences.results.cookieHostWhitelist.indexOf(host) == -1){
+                for(var j = 0; j < httpsfinder.Preferences.results.securedCookieHosts.length; j++){
+                    if(httpsfinder.Preferences.results.securedCookieHosts[j] == host){                   
+                        //Add check mark to Cookies Secured column
+                        checkIcon = document.createElement('image');
+                        checkIcon.setAttribute('src', 'chrome://httpsfinder/skin/goodSSL.png');
+                        hbox = document.createElement('hbox');
+                        hbox.appendChild(checkIcon);
+                        hbox.setAttribute('pack', 'center');
+                        row.appendChild(hbox);  
+                    }
+                }          
+            }
+            else
+                row.appendChild(document.createElement('hbox'));
+            
             //Add row to groupbox
             theList.appendChild(row);
         }
+    },
+    
+    resetCookies: function(){
+        var theList = document.getElementById('cacheList');
+        theList.ensureIndexIsVisible(theList.selectedIndex);
+        var selectedItems = theList.selectedItems;
+
+        var selectedHost = selectedItems[0].firstChild.getAttribute("label");
+        
+        var wildcardHost = selectedHost.substring(selectedHost.indexOf("."));
+        
+        httpsfinder.Preferences.results.cookieHostWhitelist.push(selectedHost);
+        httpsfinder.Preferences.results.cookieHostWhitelist.push(wildcardHost);
+        
+        httpsfinder.Preferences.restoreDefaultCookiesForHost(selectedHost, wildcardHost); 
+        
+        selectedItems[0].replaceChild(document.createElement('hbox'), selectedItems[0].lastChild);
     },
 
     //Import whitelist and populate listbox with rules
@@ -351,18 +387,10 @@ httpsfinder.Preferences = {
 
     //Enable and disable modify/remove buttons
     ResultSelect: function(){
-        var theList = document.getElementById('cacheList');
-
-        if (theList.selectedCount == 1){
-            document.getElementById('viewReport').disabled = false;
-            document.getElementById('removeFromCache').disabled = false;
-            document.getElementById('writeRule').disabled = false;
-        }
-        else{
-            document.getElementById('viewReport').disabled = true;
-            document.getElementById('removeFromCache').disabled = true;
-            document.getElementById('writeRule').disabled = false;
-        }
+        document.getElementById('viewReport').disabled = false;
+        document.getElementById('removeFromCache').disabled = false;
+        document.getElementById('writeRule').disabled = false;
+        document.getElementById('restoreCookies').disabled = false;
     },
 
 
@@ -421,7 +449,6 @@ httpsfinder.Preferences = {
 
         var eTLDService = hfCC["@mozilla.org/network/effective-tld-service;1"]
         .getService(hfCI.nsIEffectiveTLDService);
-
 
         var hostname = selectedItems[0].firstChild.getAttribute("label");
         var topLevel = "." + eTLDService.getPublicSuffixFromHost(hostname);
