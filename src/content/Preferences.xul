@@ -114,10 +114,6 @@
                                     <description control="headfirst">&httpsfinder.preference.headFirst;</description>
                                 </row>
                                 <row>
-                                    <checkbox id="rulepreview" preference="httpsfinder-showrulepreview"/>
-                                    <description control="rulepreview">&httpsfinder.preference.showpreview;</description>
-                                </row>
-                                <row>
                                     <checkbox id="securecookies" preference="httpsfinder-secureCookies"/>
                                     <description control="securecookies">&httpsfinder.preference.secureCookies;</description>
                                 </row>
@@ -147,7 +143,7 @@
                                 </row>
                                 <row>
                                     <button id="writeRule" label="&httpsfinder.preference.createRule;" oncommand="httpsfinder.Preferences.writeRule();" disabled="true"/>
-                                    <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.Preferences.removeCacheItem(document)" disabled="true"/>
+                                    <button id="removeFromCache" label="&httpsfinder.preference.whitelistRemove;" oncommand="httpsfinder.Preferences.removeCacheItem()" disabled="true"/>
                                     <button id="restoreCookies" label="Restore insecure cookies" oncommand="httpsfinder.Preferences.resetCookies();" disabled="true"/>
                                 </row>
                                 <row>

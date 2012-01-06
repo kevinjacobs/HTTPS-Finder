@@ -251,6 +251,11 @@ httpsfinder.Preferences = {
                 httpsfinder.Preferences.results.goodSSL.splice(i,1);
         }
 
+        for (let i = 0; i < httpsfinder.Preferences.results.cookieHostWhitelist.length; i++){
+            if (httpsfinder.Preferences.results.cookieHostWhitelist[i] == selectedItems[0].firstChild.getAttribute("label"))
+                httpsfinder.Preferences.results.cookieHostWhitelist.splice(i,1);
+        }
+
         while(theList.itemCount > 0)
             theList.removeItemAt(0);
 
