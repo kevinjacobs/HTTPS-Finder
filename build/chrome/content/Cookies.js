@@ -57,7 +57,11 @@ function handleInsecureCookie(cookie){
         
     if(httpsfinder.results.goodSSL.indexOf(cookie.host) != -1)
         this._secureIndividualCookie(cookie);    
-    else if(httpsfinder.prefs.getBoolPref("secureWildcardCookies")){
+    //Only securing wildcard cookies for normal "www.", or "no sub" domains. It seems that most incompatibility problems are 
+    //fixed by doing this, since typically specialized subdomains may have HTTPS support whereas the whole site might not.
+    //On the other hand, if the www. subdomain has good HTTPS, we're usually safe securing wildcard cookies here.
+    else if(httpsfinder.prefs.getBoolPref("secureWildcardCookies") && 
+        (cookie.host.indexOf("www.") != -1 || cookie.host.indexOf(".") == cookie.host.lastIndexOf("."))){
         for(var i = 0; i < httpsfinder.results.goodSSL.length; i++){
             var trimmed = httpsfinder.results.goodSSL[i];
             trimmed = trimmed.substring(trimmed.indexOf("."), trimmed.length);    
