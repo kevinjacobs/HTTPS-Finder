@@ -135,7 +135,8 @@ httpsfinder.Preferences = {
         
         httpsfinder.Preferences.restoreDefaultCookiesForHost(selectedHost, wildcardHost); 
         
-        selectedItems[0].replaceChild(document.createElement('hbox'), selectedItems[0].lastChild);
+        if(selectedItems[0].childNodes.length > 2)
+            selectedItems[0].replaceChild(document.createElement('hbox'), selectedItems[0].lastChild);
     },
 
     //Import whitelist and populate listbox with rules
@@ -395,7 +396,14 @@ httpsfinder.Preferences = {
         document.getElementById('viewReport').disabled = false;
         document.getElementById('removeFromCache').disabled = false;
         document.getElementById('writeRule').disabled = false;
-        document.getElementById('restoreCookies').disabled = false;
+        
+        var theList = document.getElementById('cacheList');
+        var selectedItems = theList.selectedItems;  
+        
+        if(selectedItems[0].childNodes.length > 2)
+            document.getElementById('restoreCookies').disabled = false;
+        else
+            document.getElementById('restoreCookies').disabled = true;
     },
 
 
