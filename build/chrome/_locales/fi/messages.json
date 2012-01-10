@@ -3,7 +3,7 @@
 "message":"Tekijä:"
 },
 "httpsfinder_buildDate":{
-"message":"29 joulukuu 2011"
+"message":"10 tammikuu 2011"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Rakentamispäivämäärä:"
@@ -221,6 +221,9 @@
 "httpsfinder_preference_secureCookies":{
 "message":"Secure cookies for valid HTTPS domains"
 },
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"Also secure wildcard cookies for HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Näytä säännön esikatselu (sallii muokkauksen) ennen säännön tallentamista"
 },
@@ -309,9 +312,9 @@
 "message":"- ruotsi (Mikael Hiort)"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 }
 }

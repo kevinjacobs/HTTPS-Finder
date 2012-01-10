@@ -28,6 +28,7 @@
             <preference id="httpsfinder-dismissTime" name="extensions.httpsfinder.alertDismissTime" type="int"/>
             <preference id="httpsfinder-HTTPSFoundAlerts" name="extensions.httpsfinder.httpsfoundalert" type="bool"/>
             <preference id="httpsfinder-secureCookies" name="extensions.httpsfinder.attemptSecureCookies" type="bool"/>
+            <preference id="httpsfinder-secureWildcardCookies" name="extensions.httpsfinder.secureWildcardCookies" type="bool"/>
         </preferences>
 
         <tabbox id="httpsfindertabs" selectedIndex="0">
@@ -116,6 +117,10 @@
                                 <row>
                                     <checkbox id="securecookies" preference="httpsfinder-secureCookies"/>
                                     <description control="securecookies">&httpsfinder.preference.secureCookies;</description>
+                                </row>
+                                <row>
+                                    <checkbox id="securewildcardcookies" preference="httpsfinder-secureWildcardCookies"/>
+                                    <description control="securewildcardcookies">&httpsfinder.preference.secureWildcardCookies;</description>
                                 </row>
                                 <vbox>
                                     <row>

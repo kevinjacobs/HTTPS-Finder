@@ -3,7 +3,7 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"29/dezembro/2011"
+"message":"10/janeiro/2011"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Data da revisão:"
@@ -221,6 +221,9 @@
 "httpsfinder_preference_secureCookies":{
 "message":"Secure cookies for valid HTTPS domains"
 },
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"Also secure wildcard cookies for HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Mostre uma prévia da regra (permite edição) antes de salvar"
 },
@@ -309,9 +312,9 @@
 "message":"- Sueco (Mikael Hiort)"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 }
 }

@@ -5,8 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.81">
-<!ENTITY httpsfinder.buildDate "29 December 2011">
+<!ENTITY httpsfinder.version "0.82">
+<!ENTITY httpsfinder.buildDate "10 January 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "插件最后打包于:">
 <!ENTITY httpsfinder.authorTitle "作者:">
@@ -77,3 +77,4 @@
 
 
 <!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">

@@ -3,7 +3,7 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"29 diciembre 2011"
+"message":"10 enero 2011"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Fecha de creación:"
@@ -221,6 +221,9 @@
 "httpsfinder_preference_secureCookies":{
 "message":"Secure cookies for valid HTTPS domains"
 },
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"Also secure wildcard cookies for HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Mostrar previsualización de la regla (permite edición) antes de guardar las reglas"
 },
@@ -312,6 +315,6 @@
 "message":"0.81"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 }
 }

@@ -3,7 +3,7 @@
 "message":"Skapat av:"
 },
 "httpsfinder_buildDate":{
-"message":"den 29 december 2011"
+"message":"den 10 januari 2011"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Versionsdatum:"
@@ -221,6 +221,9 @@
 "httpsfinder_preference_secureCookies":{
 "message":"Secure cookies for valid HTTPS domains"
 },
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"Also secure wildcard cookies for HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Visa förhandsgranskning (medger redigering) innan regler sparas"
 },
@@ -309,9 +312,9 @@
 "message":"- Svenska (Mikael Hiort)"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 }
 }

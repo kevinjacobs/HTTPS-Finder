@@ -3,7 +3,7 @@
 "message":"作者:"
 },
 "httpsfinder_buildDate":{
-"message":"29 December 2011"
+"message":"10 January 2011"
 },
 "httpsfinder_buildDateTitle":{
 "message":"插件最后打包于:"
@@ -221,6 +221,9 @@
 "httpsfinder_preference_secureCookies":{
 "message":"Secure cookies for valid HTTPS domains"
 },
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"Also secure wildcard cookies for HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"规则保存前进行预览(允许编辑)"
 },
@@ -309,9 +312,9 @@
 "message":"- Swedish (Mikael Hiort)"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 }
 }

@@ -5,8 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.81">
-<!ENTITY httpsfinder.buildDate "29 December 2011">
+<!ENTITY httpsfinder.version "0.82">
+<!ENTITY httpsfinder.buildDate "10 January 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
 <!ENTITY httpsfinder.authorTitle "Author:">
@@ -37,6 +37,7 @@
 <!ENTITY httpsfinder.preference.detectionLabel "Detection Method">
 <!ENTITY httpsfinder.preference.showpreview "Show rule preview (allows editing) before saving rules">
 <!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">
 <!ENTITY httpsfinder.preference.detectionDescLONG "HEAD requests use less bandwidth than GET, but some servers may not support them. If this happens, HTTPS Finder will attempt to fall back to a GET request.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Recommended setting: If you have a fast connection, uncheck to use GET only.  On slower connections, HEAD first may be noticeably faster on most sites.">
 <!ENTITY httpsfinder.preference.debug "Enable debug (verbose) logging">

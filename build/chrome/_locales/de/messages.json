@@ -3,7 +3,7 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"29. Dezember 2011"
+"message":"10. Januar 2011"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Build-Datum:"
@@ -221,6 +221,9 @@
 "httpsfinder_preference_secureCookies":{
 "message":"Secure cookies for valid HTTPS domains"
 },
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"Also secure wildcard cookies for HTTPS domains"
+},
 "httpsfinder_preference_showpreview":{
 "message":"Vor dem Speichern der Regeln Regelvorschau zeigen (erlaubt Bearbeitung)"
 },
@@ -309,9 +312,9 @@
 "message":"- Zweeds (Mikael Hiort)"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 }
 }

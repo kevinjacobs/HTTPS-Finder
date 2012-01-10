@@ -7,8 +7,8 @@
 
 <!--januari februari mars april maj juni juli augusti september oktober november december  -->
 
-<!ENTITY httpsfinder.version "0.81">
-<!ENTITY httpsfinder.buildDate "den 29 december 2011">
+<!ENTITY httpsfinder.version "0.82">
+<!ENTITY httpsfinder.buildDate "den 10 januari 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Versionsdatum:">
 <!ENTITY httpsfinder.authorTitle "Skapat av:">
@@ -79,3 +79,4 @@
 
 
 <!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">
