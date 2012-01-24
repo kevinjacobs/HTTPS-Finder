@@ -7,20 +7,20 @@
 
 <!--enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre. Format: 23 may 2011-->
 
-<!ENTITY httpsfinder.version "0.81">
-<!ENTITY httpsfinder.buildDate "10 enero 2011">
+<!ENTITY httpsfinder.version "0.82">
+<!ENTITY httpsfinder.buildDate "23 enero 2011">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Fecha de creación:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
 <!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
 <!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
 <!ENTITY httpsfinder.preference.title "Preferencias de HTTPS Finder">
-<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.titleKey "P">
 <!ENTITY httpsfinder.preference.translations "Traducciones realizadas por las siguientes personas:">
 <!ENTITY httpsfinder.preference.supportTitle "Email de Soporte:">
 <!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
 <!ENTITY httpsfinder.preference.enable "Activar HTTPS Finder">
-<!ENTITY httpsfinder.preference.noRulePrompt "No sugerir guardar regla HTTPS (Para usar sin HTTPS Everywhere)">
+<!ENTITY httpsfinder.preference.noRulePrompt "No sugerir Guardar Regla HTTPS (Para usar sin HTTPS Everywhere)">
 <!ENTITY httpsfinder.preference.autoForward "Aplicar HTTPS automáticamente cuando esté disponible">
 <!ENTITY httpsfinder.preference.whitelistLabel "Lista Blanca de Dominios (No detectar HTTPS en estos dominios)">
 <!ENTITY httpsfinder.preference.whitelistAddButton "Anadir a la Lista Blanca">
@@ -50,11 +50,11 @@
 <!ENTITY httpsfinder.menu.settings "Preferencias">
 <!ENTITY httpsfinder.menu.settingsKey "P">
 <!ENTITY httpsfinder.menu.refresh "Borrar la lista blanca temporal">
-<!ENTITY httpsfinder.menu.refreshKey "C">
+<!ENTITY httpsfinder.menu.refreshKey "B">
 <!ENTITY httpsfinder.menu.homepage "Página Web del Proyecto">
 <!ENTITY httpsfinder.menu.homepageKey "P">
 <!ENTITY httpsfinder.menu.rate "Valore HTTPS Finder">
-<!ENTITY httpsfinder.menu.rateKey "R">
+<!ENTITY httpsfinder.menu.rateKey "V">
 <!ENTITY httpsfinder.menu.help "Ayuda">
 <!ENTITY httpsfinder.menu.helpKey "A">
 <!ENTITY httpsfinder.preference.createRule "Crear Regla">
@@ -78,5 +78,5 @@
 
 
 
-<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
-<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">
+<!ENTITY httpsfinder.preference.secureCookies "Cookies seguras para dominios HTTPS válidos">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "También cookies multidominio seguras para dominios HTTPS">

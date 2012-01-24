@@ -3,13 +3,13 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"10 enero 2011"
+"message":"23 enero 2011"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Fecha de creación:"
 },
 "httpsfinder_description":{
-"message":"Detectar automáticamente y alertar cuando SSL esté disponible en una página web. Creación automatizada de reglas para HTTPS Everywhere"
+"message":"Detectar y alertar automáticamente cuando SSL esté disponible en una página web. Creación automatizada de reglas para HTTPS Everywhere"
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
@@ -24,34 +24,34 @@
 "message":"Obtener HTTPS Everywhere"
 },
 "httpsfinder_main_getHttpsEverywhereKey":{
-"message":"G"
+"message":"O"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Parece que hay una versión encriptada de esta página. ¿Le gustaría ir allí ahora?"
+"message":"Parece que hay una versión cifrada de esta página. ¿Le gustaría ir allí ahora?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Ahora no"
 },
 "httpsfinder_main_noRedirectKey":{
-"message":"N"
+"message":"n"
 },
 "httpsfinder_main_noThanks":{
 "message":"Ahora no"
 },
 "httpsfinder_main_noThanksKey":{
-"message":"N"
+"message":"n"
 },
 "httpsfinder_main_rememberSetting":{
 "message":"Guardar regla"
 },
 "httpsfinder_main_rememberSettingKey":{
-"message":"S"
+"message":"G"
 },
 "httpsfinder_main_restartNo":{
 "message":"Reiniciar más tarde"
 },
 "httpsfinder_main_restartNoKey":{
-"message":"l"
+"message":"t"
 },
 "httpsfinder_main_restartPrompt":{
 "message":"La regla será aplicada después del próximo reinicio de Firefox. ¿Reiniciar ahora? (Las pestañas serán guardadas)"
@@ -63,7 +63,7 @@
 "message":"Reiniciar ahora"
 },
 "httpsfinder_main_restartYesKey":{
-"message":"n"
+"message":"a"
 },
 "httpsfinder_main_ruleAddedText":{
 "message":"La regla será aplicada por HTTPS Everywhere después del próximo reinicio del navegador."
@@ -75,7 +75,7 @@
 "message":"¿Guardar esta regla para HTTPS-Everywhere? (Nota: Los servicios ofrecidos sobre HTTPS podrían diferir de los de la versión HTTP)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+"message":"Esta página ofrece un certificado auto-firmado para HTTPS. Aï¿½ádala a la lista blanca, o vaya a la página HTTPS y aï¿½ádala como excepción. NOTA: HTTPS Finder no aplicará HTTPS en sitios auto firmados, cree una regla si quiere ir siempre por HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
 "message":"Dominio añadido a la lista blanca temporal (sesión)."
@@ -96,7 +96,7 @@
 "message":"Sí, ve a HTTPS"
 },
 "httpsfinder_main_yesRedirectKey":{
-"message":"L"
+"message":"S"
 },
 "httpsfinder_menu_help":{
 "message":"Ayuda"
@@ -114,13 +114,13 @@
 "message":"Valore HTTPS Finder"
 },
 "httpsfinder_menu_rateKey":{
-"message":"R"
+"message":"V"
 },
 "httpsfinder_menu_refresh":{
 "message":"Borrar la lista blanca temporal"
 },
 "httpsfinder_menu_refreshKey":{
-"message":"C"
+"message":"B"
 },
 "httpsfinder_menu_settings":{
 "message":"Preferencias"
@@ -210,7 +210,7 @@
 "message":"Ningún resultado guardado en Navegación Privada"
 },
 "httpsfinder_preference_noRulePrompt":{
-"message":"No sugerir guardar regla HTTPS (Para usar sin HTTPS Everywhere)"
+"message":"No sugerir Guardar Regla HTTPS (Para usar sin HTTPS Everywhere)"
 },
 "httpsfinder_preference_ruleTip":{
 "message":"Para las reglas de la lista blanca, observe que www.dominio.com es un subdominio de dominio.com"
@@ -219,10 +219,10 @@
 "message":"Las reglas guardadas pueden deshabilitarse en la configuración de HTTPS Everywhere."
 },
 "httpsfinder_preference_secureCookies":{
-"message":"Secure cookies for valid HTTPS domains"
+"message":"Cookies seguras para dominios HTTPS válidos"
 },
 "httpsfinder_preference_secureWildcardCookies":{
-"message":"Also secure wildcard cookies for HTTPS domains"
+"message":"También cookies multidominio seguras para dominios HTTPS"
 },
 "httpsfinder_preference_showpreview":{
 "message":"Mostrar previsualización de la regla (permite edición) antes de guardar las reglas"
@@ -240,7 +240,7 @@
 "message":"Preferencias de HTTPS Finder"
 },
 "httpsfinder_preference_titleKey":{
-"message":"H"
+"message":"P"
 },
 "httpsfinder_preference_translations":{
 "message":"Traducciones realizadas por las siguientes personas:"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"Overwrite existing rule?"
+"message":"¿Sobreescribir regla existente?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Cualquier cambio que haga se reflejará en la regla guardada."
@@ -312,7 +312,7 @@
 "message":"- Sueco (Mikael Hiort)"
 },
 "httpsfinder_version":{
-"message":"0.81"
+"message":"0.82"
 },
 "httpsfinder_version":{
 "message":"0.82"
