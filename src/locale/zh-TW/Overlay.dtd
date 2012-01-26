@@ -1,0 +1,76 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "515">
+<!ENTITY httpsfinder.prefSize.windowHeight "570">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "450">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
+<!--End prefWindow sizing-->
+
+<!ENTITY httpsfinder.version "0.82">
+<!ENTITY httpsfinder.buildDate "2011年1月23日"><!--Format is "yyyy年mm月dd日", and prefixed zero should be ignored.-->
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "更新時間:">
+<!ENTITY httpsfinder.authorTitle "作者:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "HTTPS Finder設定">
+<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.translations "翻譯由以下人士提供:">
+<!ENTITY httpsfinder.preference.supportTitle "Email幫助:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "啟用HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "不要提示我儲存HTTPS規則 (適用於不使用HTTPS Everywhere的使用者)">
+<!ENTITY httpsfinder.preference.autoForward "當HTTPS可用時自動使用">
+<!ENTITY httpsfinder.preference.whitelistLabel "網域白名單(不偵測這些網頁)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "加入白名單">
+<!ENTITY httpsfinder.preference.whitelistModify "修改">
+<!ENTITY httpsfinder.preference.whitelistRemove "移除">
+<!ENTITY httpsfinder.preference.savedRulesTip "儲存的規則可以在HTTPS Everywhere設定中停用">
+<!ENTITY httpsfinder.preference.ruleTip "請注意: www.domain.com 為 domain.com 的子網域">
+<!ENTITY httpsfinder.preference.learnMoreTip "更多關於HTTPS Finder">
+<!ENTITY httpsfinder.preference.learnLinkName "這裡">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "網域名稱(domain.tld, sub.domain.tld, *.domain.tld)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "網域名稱">
+<!ENTITY httpsfinder.preference.headFirst "先使用HEAD偵測 (若伺服器不支援則用GET)">
+<!ENTITY httpsfinder.preference.generalTab "一般">
+<!ENTITY httpsfinder.preference.advancedTab "進階">
+<!ENTITY httpsfinder.preference.aboutTab "關於">
+<!ENTITY httpsfinder.preference.detectionLabel "偵測方法">
+<!ENTITY httpsfinder.preference.showpreview "儲存之前預覽規則(可以編輯)">
+<!ENTITY httpsfinder.preference.secureCookies "在HTTPS網域使用Secure cookies">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "同時在HTTPS網域使用secure wildcard cookies">
+<!ENTITY httpsfinder.preference.detectionDescLONG "HEAD使用較少的頻寬，但是有些伺服器不支援，發生時HTTPS Finder會自動使用GET。">
+<!ENTITY httpsfinder.preference.detectionDescRec "建議設定: 如果你有較快的網路，不要勾選。在較慢的網路下，使用HEAD會明顯的加快。">
+<!ENTITY httpsfinder.preference.debug "啟用除錯紀錄">
+<!ENTITY httpsfinder.rulePreview.top "預覽規則:">
+<!ENTITY httpsfinder.rulePreview.tip1 "任何改變將會儲存到規則中">
+<!ENTITY httpsfinder.rulePreview.tip2 "按確定儲存規則或按取消直接返回">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "這裡">
+<!ENTITY httpsfinder.rulePreview.learnmore "更多的規則格式">
+<!ENTITY httpsfinder.menu.settings "設定">
+<!ENTITY httpsfinder.menu.settingsKey "P">
+<!ENTITY httpsfinder.menu.refresh "清除暫時白名單">
+<!ENTITY httpsfinder.menu.refreshKey "C">
+<!ENTITY httpsfinder.menu.homepage "官方網站">
+<!ENTITY httpsfinder.menu.homepageKey "P">
+<!ENTITY httpsfinder.menu.rate "為HTTPS Finder評分">
+<!ENTITY httpsfinder.menu.rateKey "R">
+<!ENTITY httpsfinder.menu.help "幫助">
+<!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.preference.createRule "新增規則">
+<!ENTITY httpsfinder.preference.sslReport "產生SSL報告">
+<!ENTITY httpsfinder.preference.clearResults "清除所有結果">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS結果">
+<!ENTITY httpsfinder.preference.listHeaderTitle "可用HTTPS的網域 (session)">
+<!ENTITY httpsfinder.preference.autoDismissTitle "多久後自動忽略提示 (秒)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "持續時間 (秒)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Uncheck for silent detection only. View results and create rules from the Advanced tab">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "當HTTPS可用時提示 (若沒開啟自動使用HTTPS)">
+<!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng)">
