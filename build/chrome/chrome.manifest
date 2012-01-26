@@ -11,6 +11,7 @@ locale	httpsfinder	pt-PT		      locale/pt/
 locale	httpsfinder	pt-BR		      locale/pt/
 locale	httpsfinder	fi		      locale/fi/
 locale	httpsfinder	zh-CN		      locale/zh-CN/
+locale	httpsfinder	zh-TW		      locale/zh-TW/
 
 resource hfShared /../modules/
 overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/Overlay.xul

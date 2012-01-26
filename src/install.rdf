@@ -48,6 +48,12 @@
                 <em:description>当前页面可用HTTPS时，自动提示并为HTTPS Everywhere创建规则。</em:description>
                 <em:translator>Christopher Meng</em:translator>
             </Description>
+            <Description>
+                <em:locale>zh-TW</em:locale>
+                <em:description>自動偵測並提示可用的SSL網頁，並加入HTTPS Everywhere規則。</em:description>
+                <em:translator>swda289346</em:translator>
+            </Description>
+
         </em:localized>
 
         <em:name>HTTPS Finder</em:name>
@@ -66,7 +72,7 @@
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <em:minVersion>4.0</em:minVersion>
-                <em:maxVersion>12.0a2</em:maxVersion>
+                <em:maxVersion>12.0a1</em:maxVersion>
             </Description>
         </em:targetApplication>
     </Description>

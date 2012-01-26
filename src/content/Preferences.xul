@@ -210,6 +210,9 @@
                                 <row>
                                     <label value="&httpsfinder.translation.chinese;"/>
                                 </row>
+                                <row>
+                                    <label value="&httpsfinder.translation.taiwan;"/>
+                                </row>
                             </groupbox>
                         </row>
                         <separator class="thin"/>

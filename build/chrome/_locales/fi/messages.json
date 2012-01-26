@@ -311,6 +311,9 @@
 "httpsfinder_translation_swedish":{
 "message":"- ruotsi (Mikael Hiort)"
 },
+"httpsfinder_translation_taiwan":{
+"message":"- Chinese (Taiwan)(swda289346)"
+},
 "httpsfinder_version":{
 "message":"0.82"
 },

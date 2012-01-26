@@ -65,6 +65,7 @@
 <!ENTITY httpsfinder.translation.portuguese "- portugali (Megahertz)">
 <!ENTITY httpsfinder.translation.spanish "- espanja (strel)">
 <!ENTITY httpsfinder.translation.chinese "- Kiinalainen (Christopher Meng)">
+<!ENTITY httpsfinder.translation.taiwan "- Chinese (Taiwan)(swda289346)">
 <!ENTITY httpsfinder.preference.createRule "Luo sääntö">
 <!ENTITY httpsfinder.preference.sslReport "Tuota SSL-ilmoitus">
 <!ENTITY httpsfinder.preference.clearResults "Nollaa kaikki tulokset">

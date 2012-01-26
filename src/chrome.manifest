@@ -11,6 +11,7 @@ locale	{appname}	pt-PT		      locale/pt/
 locale	{appname}	pt-BR		      locale/pt/
 locale	{appname}	fi		      locale/fi/
 locale	{appname}	zh-CN		      locale/zh-CN/
+locale	{appname}	zh-TW		      locale/zh-TW/
 
 resource hfShared /../modules/
 overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/Overlay.xul
