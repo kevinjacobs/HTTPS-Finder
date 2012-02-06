@@ -41,6 +41,8 @@
 <!ENTITY httpsfinder.preference.detectionDescLONG "HEAD erfordert die Verwendung einer geringeren Bandbreite als GET, aber manche Server unterstützen das möglicherweise nicht. Falls das geschieht, wird HTTPS Finder eine GET-Abfrage versuchen.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Empfohlene Einstellung: Wenn Sie eine schnelle Verbindung haben, deaktivieren Sie, um nur GET zu verwenden. Bei langsameren Verbindungen ist HEAD möglicherweise bei den meisten Sites merklich schneller.">
 <!ENTITY httpsfinder.preference.debug "Fehlersuche ausführlich protokollieren">
+<!ENTITY httpsfinder.preference.secureCookies "Cookies für gültige HTTPS-Domains sichern">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Auch Platzhalter-Cookies für HTTPS-Domains sichern">
 <!ENTITY httpsfinder.rulePreview.top "Regelvorschau:">
 <!ENTITY httpsfinder.rulePreview.tip1 "Alle von Ihnen vorgenommenen Änderungen spiegeln sich in der gespeicherten Regel wider.">
 <!ENTITY httpsfinder.rulePreview.tip2 "Klicken Sie OK, um die Regel zu speichern oder Abbrechen, um ohne Speicherung zurückzukehren">
@@ -68,16 +70,13 @@
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Gefundene HTTPS-Warnungen aktivieren (falls die automatische HTTPS-Erzwingung deaktiviert ist)">
 <!ENTITY httpsfinder.translation.german "- Deutsch (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Niederländisch (Donné Brok)">
-<!ENTITY httpsfinder.translation.polish "- Politur (PcP)">
-<!ENTITY httpsfinder.translation.swedish "- Zweeds (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.polish "- Polnisch (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Schwedisch (Mikael Hiort)">
 <!ENTITY httpsfinder.translation.spanish "- Spanisch (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portugiesisch (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finnisch (Jorma Karvonen)">
-<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng)">
-<!ENTITY httpsfinder.translation.taiwan "- Chinese (Taiwan) (swda289346)">
+<!ENTITY httpsfinder.translation.chinese "- Chinesisch (Christopher Meng)">
+<!ENTITY httpsfinder.translation.taiwan "- Chinesisch (Taiwan) (swda289346)">
 
 
 
-
-<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
-<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">
