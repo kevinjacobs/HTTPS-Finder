@@ -7,8 +7,8 @@
 
 <!--tammikuu, helmikuu, maaliskuu, huhtikuu, toukokuu, kesäkuu, heinäkuu, elokuu, syyskuu, lokakuu, marraskuu, joulukuu  -->
 
-<!ENTITY httpsfinder.version "0.82">
-<!ENTITY httpsfinder.buildDate "23 tammikuu 2011">
+<!ENTITY httpsfinder.version "0.83">
+<!ENTITY httpsfinder.buildDate "6 helmikuu 2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Rakentamispäivämäärä:">
 <!ENTITY httpsfinder.authorTitle "Tekijä:">

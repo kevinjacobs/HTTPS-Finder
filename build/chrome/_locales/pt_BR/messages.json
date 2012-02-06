@@ -3,22 +3,22 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"23/janeiro/2011"
+"message":"6/fevereiro/2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Data da revisão:"
 },
 "httpsfinder_description":{
-"message":"Automaticamente detecta e alerta quando SSL (protocólo de segurança) está disponível numa página da web. Automatiza a criação de uma regra para uso do aditivo HTTPS Everywhere."
+"message":"Automaticamente detecta e alerta quando SSL (protocÃ³lo de seguranÃ§a) estÃ¡ disponÃ­vel numa pÃ¡gina da web. Automatiza a criaÃ§Ã£o de uma regra para uso do aditivo HTTPS Everywhere."
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"Não foi detectado que esteja instalado o aditivo HTTPS Everywhere. Regras serão salvas, mas não usadas até que seja instalado o aditivo HTTPS Everywhere."
+"message":"NÃ£o foi detectado que esteja instalado o aditivo HTTPS Everywhere. Regras serÃ£o salvas, mas nÃ£o usadas atÃ© que seja instalado o aditivo HTTPS Everywhere."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"Forçado HTTPS. Salvar esta regra para uso do aditivo HTTPS Everywhere? (Atenção: Serviços oferecidos em páginas HTTPS podem divergir em relação a versão HTTP)"
+"message":"ForÃ§ado HTTPS. Salvar esta regra para uso do aditivo HTTPS Everywhere? (AtenÃ§Ã£o: ServiÃ§os oferecidos em pÃ¡ginas HTTPS podem divergir em relaÃ§Ã£o a versÃ£o HTTP)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"BAIXAR o aditivo HTTPS Everywhere"
@@ -27,16 +27,16 @@
 "message":"B"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Parece que tem uma versão HTTPS desta página (encriptada). Gostaria de transferir para ela agora?"
+"message":"Parece que tem uma versÃ£o HTTPS desta pÃ¡gina (encriptada). Gostaria de transferir para ela agora?"
 },
 "httpsfinder_main_noRedirect":{
-"message":"Agora NÃO!"
+"message":"Agora NÃO!"
 },
 "httpsfinder_main_noRedirectKey":{
 "message":"N"
 },
 "httpsfinder_main_noThanks":{
-"message":"Agora NÃO!"
+"message":"Agora NÃO!"
 },
 "httpsfinder_main_noThanksKey":{
 "message":"N"
@@ -54,10 +54,10 @@
 "message":"D"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"Regra será usada pelo aditivo HTTPS Everywhere depois da reinicialização do navegador. Reiniciar agora? (abas da sessão serão salvas)"
+"message":"Regra serÃ¡ usada pelo aditivo HTTPS Everywhere depois da reinicializaÃ§Ã£o do navegador. Reiniciar agora? (abas da sessÃ£o serÃ£o salvas)"
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"Regra será usada pelo aditivo HTTPS Everywhere depois da reinicialização do navegador. Reiniciar agora? (abas da sessão NÃO serão salvas pois navegação privada está em curso)"
+"message":"Regra serÃ¡ usada pelo aditivo HTTPS Everywhere depois da reinicializaÃ§Ã£o do navegador. Reiniciar agora? (abas da sessÃ£o NÃO serÃ£o salvas pois navegaÃ§Ã£o privada estÃ¡ em curso)"
 },
 "httpsfinder_main_restartYes":{
 "message":"Reiniciar AGORA!"
@@ -66,28 +66,28 @@
 "message":"A"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"Regra será usada pelo aditivo HTTPS Everywhere depois da reinicialização do navegador."
+"message":"Regra serÃ¡ usada pelo aditivo HTTPS Everywhere depois da reinicializaÃ§Ã£o do navegador."
 },
 "httpsfinder_main_ruleAddedTitle":{
 "message":"Regra adicionada."
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Salvar esta regra para uso do aditivo HTTPS Everywhere? (Atenção: Serviços oferecidos em páginas HTTPS podem divergir em relação a versão HTTP)"
+"message":"Salvar esta regra para uso do aditivo HTTPS Everywhere? (AtenÃ§Ã£o: ServiÃ§os oferecidos em pÃ¡ginas HTTPS podem divergir em relaÃ§Ã£o a versÃ£o HTTP)"
 },
 "httpsfinder_main_selfSignedAlert":{
 "message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"Domínio adicionado à Lista Branca temporária da sessão."
+"message":"DomÃ­nio adicionado Ã  Lista Branca temporÃ¡ria da sessÃ£o."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
-"message":"Lista Branca temporária"
+"message":"Lista Branca temporÃ¡ria"
 },
 "httpsfinder_main_whitelist":{
-"message":"ADICIONE à Lista Branca"
+"message":"ADICIONE Ã  Lista Branca"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"Regra do domínio adicionada na Lista Branca"
+"message":"Regra do domÃ­nio adicionada na Lista Branca"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"A"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"Lista Branca e detecção da sessão apagadas."
+"message":"Lista Branca e detecÃ§Ã£o da sessÃ£o apagadas."
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"405"
@@ -207,7 +207,7 @@
 "message":"Desmarque para detecção somente silenciosa. Veja resultados e crie regras na aba Avançado"
 },
 "httpsfinder_preference_noResultsPB":{
-"message":"Resultados NÃO são salvos no modo de navegação privativa."
+"message":"Resultados NÃO sÃ£o salvos no modo de navegaÃ§Ã£o privativa."
 },
 "httpsfinder_preference_noRulePrompt":{
 "message":"Não pergunte para salvar regra do HTTPS Finder (Para uso sem o aditivo HTTPS Everywhere)"
@@ -315,9 +315,9 @@
 "message":"- Chinese (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 }
 }

@@ -5,10 +5,10 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!--januari februari mars april maj juni juli augusti september oktober november december  -->
+<!--januari februari mars april maj juni juli augusti september oktober november december -->
 
-<!ENTITY httpsfinder.version "0.82">
-<!ENTITY httpsfinder.buildDate "den 23 januari 2011">
+<!ENTITY httpsfinder.version "0.83">
+<!ENTITY httpsfinder.buildDate "den 6 februari 2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Versionsdatum:">
 <!ENTITY httpsfinder.authorTitle "Skapat av:">
@@ -21,7 +21,7 @@
 <!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
 <!ENTITY httpsfinder.preference.enable "Aktivera HTTPS Finder">
 <!ENTITY httpsfinder.preference.noRulePrompt "Visa ingen uppmaning att spara HTTPS-regel (för användning utan HTTPS Everywhere)">
-<!ENTITY httpsfinder.preference.autoForward "Tvinga automatiskt HTTPS om tillgängligt">
+<!ENTITY httpsfinder.preference.autoForward "Tvinga HTTPS automatiskt, om tillgängligt">
 <!ENTITY httpsfinder.preference.whitelistLabel "Betrodda domäner (identifiera inte HTTPS på dessa domäner)">
 <!ENTITY httpsfinder.preference.whitelistAddButton "Lägg till">
 <!ENTITY httpsfinder.preference.whitelistModify "Ändra">
@@ -41,6 +41,17 @@
 <!ENTITY httpsfinder.preference.detectionDescLONG "HEAD-begäranden använder mindre bandbredd än GET, men vissa servrar stödjer dem inte. Om det händer försöker HTTPS Finder istället använda en GET-begäran.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Rekommenderad inställning: Om du har en snabb anslutning, avmarkera för att endast använda GET.  För långsammare anslutningar kan HEAD vara märkbart snabbare på de flesta webbplatser.">
 <!ENTITY httpsfinder.preference.debug "Aktivera felsökningsloggning (utförlig)">
+<!ENTITY httpsfinder.preference.createRule "Skapa regel">
+<!ENTITY httpsfinder.preference.sslReport "Generera SSL-rapport">
+<!ENTITY httpsfinder.preference.clearResults "Rensa alla resultat">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS-resultat">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Identifikationsresultat för sessionen">
+<!ENTITY httpsfinder.preference.autoDismissTitle "Stäng meddelanden automatiskt efter (sekunder)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "Varaktighet (sekunder)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Avmarkera för att endast köra tyst identifiering. Granska resultat och skapa regler under fliken Avancerat">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Aktivera meddelanden när HTTPS hittas (om &quot;Tvinga HTTPS automatiskt&quot; är inaktiverat)">
+<!ENTITY httpsfinder.preference.secureCookies "Använd säkra kakor för giltiga HTTPS-domäner">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Använd även säkra jokerkakor för HTTPS-domäner">
 <!ENTITY httpsfinder.rulePreview.top "Förhandsgranskning:">
 <!ENTITY httpsfinder.rulePreview.tip1 "Alla ändringar du gör kommer att återspeglas i den sparade regeln.">
 <!ENTITY httpsfinder.rulePreview.tip2 "Klicka på OK för att spara regeln eller Avbryt för att gå tillbaka utan att spara">
@@ -57,27 +68,12 @@
 <!ENTITY httpsfinder.menu.rateKey "B">
 <!ENTITY httpsfinder.menu.help "Hjälp">
 <!ENTITY httpsfinder.menu.helpKey "H">
-<!ENTITY httpsfinder.preference.createRule "Skapa regel">
-<!ENTITY httpsfinder.preference.sslReport "Generera SSL-rapport">
-<!ENTITY httpsfinder.preference.clearResults "Rensa alla resultat">
-<!ENTITY httpsfinder.preference.listHeaderHTTPS "HTTPS-resultat">
-<!ENTITY httpsfinder.preference.listHeaderTitle "Identifikationsresultat för sessionen">
-<!ENTITY httpsfinder.preference.autoDismissTitle "Stäng meddelanden automatiskt efter (sekunder)">
-<!ENTITY httpsfinder.preference.autoDismissToolTip "Varaktighet (sekunder)">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Avmarkera för att endast köra tyst identifiering. Granska resultat och skapa regler under fliken Avancerat">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Aktivera meddelanden när HTTPS hittas (om &quot;Tvinga HTTPS automatiskt&quot; är inaktiverat)">
 <!ENTITY httpsfinder.translation.german "- Tyska (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Nederländska (Donné Brok)">
-<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
-<!ENTITY httpsfinder.translation.swedish "- Svenska (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.polish "- Polska (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Svenska (Mikael Hiort af Ornäs)">
 <!ENTITY httpsfinder.translation.spanish "- Spanska (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portugisiska (Megahertz)">
 <!ENTITY httpsfinder.translation.finnish "- Finska (Jorma Karvonen)">
-<!ENTITY httpsfinder.translation.chinese "- Kinesiska (Christopher Meng)">
-<!ENTITY httpsfinder.translation.taiwan "- Chinese (Taiwan) (swda289346)">
-
-
-
-
-<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
-<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">
+<!ENTITY httpsfinder.translation.chinese "- Kinesiska (förenklad) (Christopher Meng)">
+<!ENTITY httpsfinder.translation.taiwan "- Kinesiska (traditionell) (swda289346)">

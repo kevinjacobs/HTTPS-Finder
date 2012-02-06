@@ -3,13 +3,13 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"23 Styczeń 2011"
+"message":"6 Luty 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Data wydania:"
 },
 "httpsfinder_description":{
-"message":"Automatycznie wykrywaj i ostrzegaj, gdy SSL jest dostepne na stronie internetowej. Automatyczne twórz reguly dla HTTPS Everywhere "
+"message":"Automatycznie wykrywaj i ostrzegaj, gdy SSL jest dostepne na stronie internetowej. Automatyczne twÃ³rz reguly dla HTTPS Everywhere "
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
@@ -18,7 +18,7 @@
 "message":"Wyglada na to,ze nie masz HTTPS-Everywhere zainstalowane. Reguly zostana zapisane, ale nie wykonywane, az do zainstalowania go."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS wymuszone. Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie róznic od wersji HTTP)"
+"message":"HTTPS wymuszone. Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie rÃ³znic od wersji HTTP)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"Pobierz HTTPS Everywhere"
@@ -48,7 +48,7 @@
 "message":"S"
 },
 "httpsfinder_main_restartNo":{
-"message":"Zrestartuj pózniej"
+"message":"Zrestartuj pÃ³zniej"
 },
 "httpsfinder_main_restartNoKey":{
 "message":"l"
@@ -72,7 +72,7 @@
 "message":"Regula dodana"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie róznic od wersji HTTP)"
+"message":"Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie rÃ³znic od wersji HTTP)"
 },
 "httpsfinder_main_selfSignedAlert":{
 "message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
@@ -315,9 +315,9 @@
 "message":"- Chinese (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 }
 }

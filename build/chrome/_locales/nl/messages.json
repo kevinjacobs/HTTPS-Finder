@@ -3,7 +3,7 @@
 "message":"Auteur:"
 },
 "httpsfinder_buildDate":{
-"message":"23 januari 2011"
+"message":"6 februari 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Datum van uitgave:"
@@ -15,7 +15,7 @@
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"HTTPS Everywhere is waarschijnlijk niet geïnstalleerd. Regels worden opgeslagen, maar worden pas toegepast na installatie van HTTPS Everywhere."
+"message":"HTTPS Everywhere is waarschijnlijk niet geÃ¯nstalleerd. Regels worden opgeslagen, maar worden pas toegepast na installatie van HTTPS Everywhere."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
 "message":"HTTPS wordt toegepast. Deze regel opslaan voor HTTPS Everywhere? (Opmerking: Websites via HTTPS kunnen verschillen van de HTTP versie)"
@@ -207,7 +207,7 @@
 "message":"Zet deze optie uit om geen notificaties te ontvangen. Gebruik het tabblad 'geavanceerd' om regels te maken en bekijken"
 },
 "httpsfinder_preference_noResultsPB":{
-"message":"Geen resultaten opgeslagen in een Privénavigatiesessie"
+"message":"Geen resultaten opgeslagen in een PrivÃ©navigatiesessie"
 },
 "httpsfinder_preference_noRulePrompt":{
 "message":"Niet vragen om regels op te slaan (Voor gebruik zonder HTTPS Everywhere)"
@@ -315,9 +315,9 @@
 "message":"- Chinese (Taiwan)(swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 }
 }

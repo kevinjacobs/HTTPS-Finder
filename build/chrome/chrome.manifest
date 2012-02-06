@@ -1,15 +1,15 @@
 content httpsfinder 		              content/
 skin	httpsfinder	classic/1.0           skin/
 
-locale	httpsfinder	en-US		      locale/en-US/
 locale	httpsfinder	de		      locale/de/
+locale	httpsfinder	en-US		      locale/en-US/
+locale	httpsfinder	es-ES		      locale/es-ES/
+locale	httpsfinder	fi		      locale/fi/
 locale	httpsfinder	nl		      locale/nl/
 locale	httpsfinder	pl		      locale/pl/
-locale	httpsfinder	sv-SE		      locale/sv-SE/
-locale	httpsfinder	es-ES		      locale/es-ES/
 locale	httpsfinder	pt-PT		      locale/pt/
+locale	httpsfinder	sv-SE		      locale/sv-SE/
 locale	httpsfinder	pt-BR		      locale/pt/
-locale	httpsfinder	fi		      locale/fi/
 locale	httpsfinder	zh-CN		      locale/zh-CN/
 locale	httpsfinder	zh-TW		      locale/zh-TW/
 

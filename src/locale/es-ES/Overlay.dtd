@@ -7,8 +7,8 @@
 
 <!--enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre. Format: 23 may 2011-->
 
-<!ENTITY httpsfinder.version "0.82">
-<!ENTITY httpsfinder.buildDate "23 enero 2011">
+<!ENTITY httpsfinder.version "0.83">
+<!ENTITY httpsfinder.buildDate "6 febrero 2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Fecha de creación:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -41,6 +41,8 @@
 <!ENTITY httpsfinder.preference.detectionDescLONG "Las peticiones HEAD usan menos ancho de banda que las GET, pero algunos servidores podrían no soportarlas. Si esto sucede, HTTPS Finder intentará volver a las peticiones GET.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Configuración recomendada: Si tiene una conexión rápida, deseleccione para usar sólo GET. En conexiones lentas, usar HEAD primero podría ser notoriamente más rápido en la mayoría de los sitios.">
 <!ENTITY httpsfinder.preference.debug "Activar registro de depuración (debug logging, detallado)">
+<!ENTITY httpsfinder.preference.secureCookies "Cookies seguras para dominios HTTPS válidos">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "También cookies multidominio seguras para dominios HTTPS">
 <!ENTITY httpsfinder.rulePreview.top "Previsualización de Regla:">
 <!ENTITY httpsfinder.rulePreview.tip1 "Cualquier cambio que haga se reflejará en la regla guardada.">
 <!ENTITY httpsfinder.rulePreview.tip2 "Haga click en Aceptar para guardar la regla, o en Cancelar para volver atras sin guardar">
@@ -75,9 +77,3 @@
 <!ENTITY httpsfinder.translation.finnish "- Finlandés (Jorma Karvonen)">
 <!ENTITY httpsfinder.translation.chinese "- Chino (Christopher Meng)">
 <!ENTITY httpsfinder.translation.taiwan "- Chinese (Taiwan) (swda289346)">
-
-
-
-
-<!ENTITY httpsfinder.preference.secureCookies "Cookies seguras para dominios HTTPS válidos">
-<!ENTITY httpsfinder.preference.secureWildcardCookies "También cookies multidominio seguras para dominios HTTPS">

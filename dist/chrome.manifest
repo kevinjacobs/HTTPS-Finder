@@ -1,15 +1,15 @@
 content httpsfinder                               jar:chrome/httpsfinder.jar!/content/
 skin        httpsfinder        classic/1.0           jar:chrome/httpsfinder.jar!/skin/
 
-locale        httpsfinder        en-US                      jar:chrome/httpsfinder.jar!/locale/en-US/
 locale        httpsfinder        de                      jar:chrome/httpsfinder.jar!/locale/de/
+locale        httpsfinder        en-US                      jar:chrome/httpsfinder.jar!/locale/en-US/
+locale        httpsfinder        es-ES                      jar:chrome/httpsfinder.jar!/locale/es-ES/
+locale        httpsfinder        fi                      jar:chrome/httpsfinder.jar!/locale/fi/
 locale        httpsfinder        nl                      jar:chrome/httpsfinder.jar!/locale/nl/
 locale        httpsfinder        pl                      jar:chrome/httpsfinder.jar!/locale/pl/
-locale        httpsfinder        sv-SE                      jar:chrome/httpsfinder.jar!/locale/sv-SE/
-locale        httpsfinder        es-ES                      jar:chrome/httpsfinder.jar!/locale/es-ES/
 locale        httpsfinder        pt-PT                      jar:chrome/httpsfinder.jar!/locale/pt/
+locale        httpsfinder        sv-SE                      jar:chrome/httpsfinder.jar!/locale/sv-SE/
 locale        httpsfinder        pt-BR                      jar:chrome/httpsfinder.jar!/locale/pt/
-locale        httpsfinder        fi                      jar:chrome/httpsfinder.jar!/locale/fi/
 locale        httpsfinder        zh-CN                      jar:chrome/httpsfinder.jar!/locale/zh-CN/
 locale        httpsfinder        zh-TW                      jar:chrome/httpsfinder.jar!/locale/zh-TW/
 

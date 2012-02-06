@@ -3,22 +3,22 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"23 enero 2011"
+"message":"6 febrero 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Fecha de creación:"
 },
 "httpsfinder_description":{
-"message":"Detectar y alertar automáticamente cuando SSL esté disponible en una página web. Creación automatizada de reglas para HTTPS Everywhere"
+"message":"Detectar y alertar automÃ¡ticamente cuando SSL estÃ© disponible en una pÃ¡gina web. CreaciÃ³n automatizada de reglas para HTTPS Everywhere"
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"No parece que tenga instalado HTTPS Everywhere. Las reglas serán guardadas, pero no aplicadas hasta que lo instale."
+"message":"No parece que tenga instalado HTTPS Everywhere. Las reglas serÃ¡n guardadas, pero no aplicadas hasta que lo instale."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS aplicado. ¿Guardar esta regla para HTTPS-Everywhere? (Nota: Los servicios ofrecidos sobre HTTPS podrían diferir de la versión HTTP)"
+"message":"HTTPS aplicado. Â¿Guardar esta regla para HTTPS-Everywhere? (Nota: Los servicios ofrecidos sobre HTTPS podrÃ­an diferir de la versiÃ³n HTTP)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"Obtener HTTPS Everywhere"
@@ -27,7 +27,7 @@
 "message":"O"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Parece que hay una versión cifrada de esta página. ¿Le gustaría ir allí ahora?"
+"message":"Parece que hay una versiÃ³n cifrada de esta pÃ¡gina. Â¿Le gustarÃ­a ir allÃ­ ahora?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Ahora no"
@@ -48,16 +48,16 @@
 "message":"G"
 },
 "httpsfinder_main_restartNo":{
-"message":"Reiniciar más tarde"
+"message":"Reiniciar mÃ¡s tarde"
 },
 "httpsfinder_main_restartNoKey":{
 "message":"t"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"La regla será aplicada después del próximo reinicio de Firefox. ¿Reiniciar ahora? (Las pestañas serán guardadas)"
+"message":"La regla serÃ¡ aplicada despuÃ©s del prÃ³ximo reinicio de Firefox. Â¿Reiniciar ahora? (Las pestaÃ±as serÃ¡n guardadas)"
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"La regla será aplicada después del próximo reinicio de Firefox. ¿Reiniciar ahora? Las pestañas NO serán guardadas (navegación privada activada)"
+"message":"La regla serÃ¡ aplicada despuÃ©s del prÃ³ximo reinicio de Firefox. Â¿Reiniciar ahora? Las pestaÃ±as NO serÃ¡n guardadas (navegaciÃ³n privada activada)"
 },
 "httpsfinder_main_restartYes":{
 "message":"Reiniciar ahora"
@@ -66,34 +66,34 @@
 "message":"a"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"La regla será aplicada por HTTPS Everywhere después del próximo reinicio del navegador."
+"message":"La regla serÃ¡ aplicada por HTTPS Everywhere despuÃ©s del prÃ³ximo reinicio del navegador."
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"Regla Añadida"
+"message":"Regla AÃ±adida"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"¿Guardar esta regla para HTTPS-Everywhere? (Nota: Los servicios ofrecidos sobre HTTPS podrían diferir de los de la versión HTTP)"
+"message":"Â¿Guardar esta regla para HTTPS-Everywhere? (Nota: Los servicios ofrecidos sobre HTTPS podrÃ­an diferir de los de la versiÃ³n HTTP)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"Esta página ofrece un certificado auto-firmado para HTTPS. Aï¿½ádala a la lista blanca, o vaya a la página HTTPS y aï¿½ádala como excepción. NOTA: HTTPS Finder no aplicará HTTPS en sitios auto firmados, cree una regla si quiere ir siempre por HTTPS."
+"message":"Esta pÃ¡gina ofrece un certificado auto-firmado para HTTPS. AÃ±Ã¡dala a la lista blanca, o vaya a la pÃ¡gina HTTPS y aÃ±Ã¡dala como excepciÃ³n. NOTA: HTTPS Finder no aplicarÃ¡ HTTPS en sitios auto firmados, cree una regla si quiere ir siempre por HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"Dominio añadido a la lista blanca temporal (sesión)."
+"message":"Dominio aÃ±adido a la lista blanca temporal (sesiÃ³n)."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
 "message":"En lista blanca temporal"
 },
 "httpsfinder_main_whitelist":{
-"message":"Añadir a la lista blanca"
+"message":"AÃ±adir a la lista blanca"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"Regla de dominio añadida a la lista blanca"
+"message":"Regla de dominio aÃ±adida a la lista blanca"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"A"
 },
 "httpsfinder_main_yesRedirect":{
-"message":"Sí, ve a HTTPS"
+"message":"SÃ­, ve a HTTPS"
 },
 "httpsfinder_main_yesRedirectKey":{
 "message":"S"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"Lista blanca y resultados de detección de sesión borrados"
+"message":"Lista blanca y resultados de detecciÃ³n de sesiÃ³n borrados"
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"405"
@@ -207,7 +207,7 @@
 "message":"Deshabilitar  para usar sólo detencción silenciosa. Para ver resultados y crear reglas, desde la pestaña Avanzadas"
 },
 "httpsfinder_preference_noResultsPB":{
-"message":"Ningún resultado guardado en Navegación Privada"
+"message":"NingÃºn resultado guardado en NavegaciÃ³n Privada"
 },
 "httpsfinder_preference_noRulePrompt":{
 "message":"No sugerir Guardar Regla HTTPS (Para usar sin HTTPS Everywhere)"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"¿Sobreescribir regla existente?"
+"message":"Â¿Sobreescribir regla existente?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Cualquier cambio que haga se reflejará en la regla guardada."
@@ -315,9 +315,9 @@
 "message":"- Chinese (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 }
 }

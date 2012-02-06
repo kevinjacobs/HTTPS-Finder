@@ -3,13 +3,13 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"23. Januar 2011"
+"message":"6. Februar 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Build-Datum:"
 },
 "httpsfinder_description":{
-"message":"Automatische Erkennung und Alarm, wenn SSL auf einer Web-Seite ist. Automatische Regel-Erstellung für HTTPS Everywhere"
+"message":"Automatische Erkennung und Alarm, wenn SSL auf einer Web-Seite ist. Automatische Regel-Erstellung fÃ¼r HTTPS Everywhere"
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
@@ -18,7 +18,7 @@
 "message":"Anscheinend haben Sie HTTPS Everywhere nicht installiert. Regeln werden gespeichert, aber nicht vor der Installation von HTTP Everywhere angewendet."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS erzwungen. Diese Regel für HTTPS Everywhere speichern? (Beachte: Über HTTPS angebotene Dienste können von der HTTP-Version abweichen)"
+"message":"HTTPS erzwungen. Diese Regel fÃ¼r HTTPS Everywhere speichern? (Beachte: Ãber HTTPS angebotene Dienste kÃ¶nnen von der HTTP-Version abweichen)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"HTTPS Everywhere aufrufen"
@@ -27,7 +27,7 @@
 "message":"E"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Es scheint, dass es eine verschlüsselte Version dieser Seite gibt. Möchten Sie diese jetzt aufrufen?"
+"message":"Es scheint, dass es eine verschlÃ¼sselte Version dieser Seite gibt. MÃ¶chten Sie diese jetzt aufrufen?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Nein, hier bleiben"
@@ -48,7 +48,7 @@
 "message":"R"
 },
 "httpsfinder_main_restartNo":{
-"message":"Später neu starten"
+"message":"SpÃ¤ter neu starten"
 },
 "httpsfinder_main_restartNoKey":{
 "message":"S"
@@ -69,25 +69,25 @@
 "message":"Regel wird nach dem Neustart des Browsers durch  HTTPS Everywhere angewendet."
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"Regel hinzugefügt"
+"message":"Regel hinzugefÃ¼gt"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Diese Regel für HTTPS Everywhere speichern? (Beachte: Über HTTPS angebotene Dienste können von der HTTP-Version abweichen)"
+"message":"Diese Regel fÃ¼r HTTPS Everywhere speichern? (Beachte: Ãber HTTPS angebotene Dienste kÃ¶nnen von der HTTP-Version abweichen)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+"message":"Diese Seite bot ein selbstsigniertes Zertifikat fÃ¼r HTTPS. FÃ¼gen Sie sie zur Positivliste hinzu oder gehen Sie auf die HTTP-Seite und fÃ¼gen Sie eine Ausnahme hinzu. ACHTUNG: HTTPS Finder erzwingt HTTPS nicht auf selbstsignierten Websites. Legen Sie eine Regel an, wenn Sie immer zu HTTPS gehen mÃ¶chten."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"Domäne wurde zeitweise (für eine Sitzung) zur Positivliste hinzugefügt."
+"message":"DomÃ¤ne wurde zeitweise (fÃ¼r eine Sitzung) zur Positivliste hinzugefÃ¼gt."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
 "message":"Zeitweise in der Positivliste"
 },
 "httpsfinder_main_whitelist":{
-"message":"Zur Positivliste hinzufügen"
+"message":"Zur Positivliste hinzufÃ¼gen"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"Domänenregel zur Positivliste hinzugefügt"
+"message":"DomÃ¤nenregel zur Positivliste hinzugefÃ¼gt"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"Z"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"Positivliste und Erkennungsergebnisse der Sitzung gelöscht"
+"message":"Positivliste und Erkennungsergebnisse der Sitzung gelÃ¶scht"
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"480"
@@ -219,10 +219,10 @@
 "message":"Gespeicherte Regeln können in den Einstellungen von HTTPS Everywhere deaktivert werden."
 },
 "httpsfinder_preference_secureCookies":{
-"message":"Secure cookies for valid HTTPS domains"
+"message":"Cookies für gültige HTTPS-Domains sichern"
 },
 "httpsfinder_preference_secureWildcardCookies":{
-"message":"Also secure wildcard cookies for HTTPS domains"
+"message":"Auch Platzhalter-Cookies für HTTPS-Domains sichern"
 },
 "httpsfinder_preference_showpreview":{
 "message":"Vor dem Speichern der Regeln Regelvorschau zeigen (erlaubt Bearbeitung)"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"Overwrite existing rule?"
+"message":"Bestehende Regel Ã¼berschreiben?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Alle von Ihnen vorgenommenen Änderungen spiegeln sich in der gespeicherten Regel wider."
@@ -288,7 +288,7 @@
 "message":"HTTPS Finder"
 },
 "httpsfinder_translation_chinese":{
-"message":"- Chinese (Christopher Meng)"
+"message":"- Chinesisch (Christopher Meng)"
 },
 "httpsfinder_translation_dutch":{
 "message":"- Niederländisch (Donné Brok)"
@@ -300,7 +300,7 @@
 "message":"- Deutsch (Michael Wolf &amp; Daniel Helmert)"
 },
 "httpsfinder_translation_polish":{
-"message":"- Politur (PcP)"
+"message":"- Polnisch (PcP)"
 },
 "httpsfinder_translation_portuguese":{
 "message":"- Portugiesisch (Megahertz)"
@@ -309,15 +309,15 @@
 "message":"- Spanisch (strel)"
 },
 "httpsfinder_translation_swedish":{
-"message":"- Zweeds (Mikael Hiort)"
+"message":"- Schwedisch (Mikael Hiort)"
 },
 "httpsfinder_translation_taiwan":{
-"message":"- Chinese (Taiwan) (swda289346)"
+"message":"- Chinesisch (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 }
 }

@@ -3,22 +3,22 @@
 "message":"Tekijä:"
 },
 "httpsfinder_buildDate":{
-"message":"23 tammikuu 2011"
+"message":"6 helmikuu 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Rakentamispäivämäärä:"
 },
 "httpsfinder_description":{
-"message":"Havaitsee ja hälyttää automaattisesti kun SSL on käytettävissä webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sääntöluominen"
+"message":"Havaitsee ja hÃ¤lyttÃ¤Ã¤ automaattisesti kun SSL on kÃ¤ytettÃ¤vissÃ¤ webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sÃ¤Ã¤ntÃ¶luominen"
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"Näyttää siltä, että HTTPS Everywhere -ohjelmisto ei ole asennettu. Säännöt tallennetaan, mutta niitä ei pakoteta käyttöön ennen ohjelmiston asentamista."
+"message":"NÃ¤yttÃ¤Ã¤ siltÃ¤, ettÃ¤ HTTPS Everywhere -ohjelmisto ei ole asennettu. SÃ¤Ã¤nnÃ¶t tallennetaan, mutta niitÃ¤ ei pakoteta kÃ¤yttÃ¶Ã¶n ennen ohjelmiston asentamista."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS pakotettu. Tallennetaanko sääntö HTTPS-Everywhere -ohjelmalle? (Huomautus: HTTPS-yhteyskäytännön kautta tarjotut palvelut voivat erota HTTP-version tarjoamista)"
+"message":"HTTPS pakotettu. Tallennetaanko sÃ¤Ã¤ntÃ¶ HTTPS-Everywhere -ohjelmalle? (Huomautus: HTTPS-yhteyskÃ¤ytÃ¤nnÃ¶n kautta tarjotut palvelut voivat erota HTTP-version tarjoamista)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"Hae HTTPS Everywhere -ohjelmisto"
@@ -27,7 +27,7 @@
 "message":"V"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Näyttää siltä kuin tästä sivusta on olemassa salattu versio. Haluatko siirtyä sille nyt?"
+"message":"NÃ¤yttÃ¤Ã¤ siltÃ¤ kuin tÃ¤stÃ¤ sivusta on olemassa salattu versio. Haluatko siirtyÃ¤ sille nyt?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Ei nyt"
@@ -42,58 +42,58 @@
 "message":"E"
 },
 "httpsfinder_main_rememberSetting":{
-"message":"Tallenna sääntö"
+"message":"Tallenna sÃ¤Ã¤ntÃ¶"
 },
 "httpsfinder_main_rememberSettingKey":{
 "message":"T"
 },
 "httpsfinder_main_restartNo":{
-"message":"Käynnistä uudelleen myöhemmin"
+"message":"KÃ¤ynnistÃ¤ uudelleen myÃ¶hemmin"
 },
 "httpsfinder_main_restartNoKey":{
 "message":"M"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"Sääntö pakotetaan käyttöön seuraavan Firefox-uudellenkäynnistyksen jälkeen. Käynnistetäänkö uudelleen nyt? (Selaimen välilehdet tallennetaan)"
+"message":"SÃ¤Ã¤ntÃ¶ pakotetaan kÃ¤yttÃ¶Ã¶n seuraavan Firefox-uudellenkÃ¤ynnistyksen jÃ¤lkeen. KÃ¤ynnistetÃ¤Ã¤nkÃ¶ uudelleen nyt? (Selaimen vÃ¤lilehdet tallennetaan)"
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"Sääntö pakotetaan käyttöön seuraavan Firefox-uudellenkäynnistyksen jälkeen. Käynnistetäänkö uudelleen nyt? Selaimen välilehtiä EI tallenneta (yksityinen selaus käytössä)"
+"message":"SÃ¤Ã¤ntÃ¶ pakotetaan kÃ¤yttÃ¶Ã¶n seuraavan Firefox-uudellenkÃ¤ynnistyksen jÃ¤lkeen. KÃ¤ynnistetÃ¤Ã¤nkÃ¶ uudelleen nyt? Selaimen vÃ¤lilehtiÃ¤ EI tallenneta (yksityinen selaus kÃ¤ytÃ¶ssÃ¤)"
 },
 "httpsfinder_main_restartYes":{
-"message":"Käynnistä uudelleen nyt"
+"message":"KÃ¤ynnistÃ¤ uudelleen nyt"
 },
 "httpsfinder_main_restartYesKey":{
 "message":"U"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"HTTPS-Everywhere -ohjelmisto pakottaa säännön käyttöön selaimen seuraavan uudelleenkäynnistyksen jälkeen."
+"message":"HTTPS-Everywhere -ohjelmisto pakottaa sÃ¤Ã¤nnÃ¶n kÃ¤yttÃ¶Ã¶n selaimen seuraavan uudelleenkÃ¤ynnistyksen jÃ¤lkeen."
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"Sääntö lisätty"
+"message":"SÃ¤Ã¤ntÃ¶ lisÃ¤tty"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Tallennetaanko tämä sääntö HTTPS-Everywhere -ohjelmalle? (Huomautus: HTTPS-yhteyskäytännön kautta tarjotut palvelut voivat erota HTTP-version tarjoamista)"
+"message":"Tallennetaanko tÃ¤mÃ¤ sÃ¤Ã¤ntÃ¶ HTTPS-Everywhere -ohjelmalle? (Huomautus: HTTPS-yhteyskÃ¤ytÃ¤nnÃ¶n kautta tarjotut palvelut voivat erota HTTP-version tarjoamista)"
 },
 "httpsfinder_main_selfSignedAlert":{
 "message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"Verkkoalue lisätty tilapäiselle (istunto) valkoiselle listalle."
+"message":"Verkkoalue lisÃ¤tty tilapÃ¤iselle (istunto) valkoiselle listalle."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
-"message":"Sijoitettu tilapäisesti valkoiselle listalle"
+"message":"Sijoitettu tilapÃ¤isesti valkoiselle listalle"
 },
 "httpsfinder_main_whitelist":{
-"message":"Lisää valkoiselle listalle"
+"message":"LisÃ¤Ã¤ valkoiselle listalle"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"Verkkoaluesääntö lisätty valkoiselle listalle"
+"message":"VerkkoaluesÃ¤Ã¤ntÃ¶ lisÃ¤tty valkoiselle listalle"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"L"
 },
 "httpsfinder_main_yesRedirect":{
-"message":"Kyllä, siirry HTTPS-yhteyskäytäntöön"
+"message":"KyllÃ¤, siirry HTTPS-yhteyskÃ¤ytÃ¤ntÃ¶Ã¶n"
 },
 "httpsfinder_main_yesRedirectKey":{
 "message":"K"
@@ -315,9 +315,9 @@
 "message":"- Chinese (Taiwan)(swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 },
 "httpsfinder_version":{
-"message":"0.82"
+"message":"0.83"
 }
 }
