@@ -80,5 +80,5 @@
 
 
 
-<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
-<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">
+<!ENTITY httpsfinder.preference.secureCookies "Cookies seguros para domínios HTTPS válidos">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Também "cookies" curingas seguros para domínios HTTPS válidos">
