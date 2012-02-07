@@ -75,7 +75,7 @@
 "message":"Tallennetaanko tÃ¤mÃ¤ sÃ¤Ã¤ntÃ¶ HTTPS-Everywhere -ohjelmalle? (Huomautus: HTTPS-yhteyskÃ¤ytÃ¤nnÃ¶n kautta tarjotut palvelut voivat erota HTTP-version tarjoamista)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+"message":"TÃ¤mÃ¤ sivu tarjosi itse allekirjoitetun varmenteen HTTPS-yhteyskÃ¤ytÃ¤ntÃ¶Ã¤ varten. LisÃ¤Ã¤ se valkoiselle listalle tai siirry HTTPS-sivulle ja lisÃ¤Ã¤ poikkeus. HUOMAA: HTTPS Finder ei pakota HTTPS-yhteyskÃ¤ytÃ¤ntÃ¶Ã¤ sellaisille sivustoille, joissa on itse allekirjoitettu varmenne. Luo sÃ¤Ã¤ntÃ¶, jos haluat kÃ¤yttÃ¤Ã¤ aina HTTPS-yhteyskÃ¤ytÃ¤ntÃ¶Ã¤."
 },
 "httpsfinder_main_tempWhitelistedBody":{
 "message":"Verkkoalue lisÃ¤tty tilapÃ¤iselle (istunto) valkoiselle listalle."
@@ -219,10 +219,10 @@
 "message":"Tallenna säännöt, jotka voidaan ottaa pois käytöstä HTTPS Everywhere -ohjelmiston asetuksissa."
 },
 "httpsfinder_preference_secureCookies":{
-"message":"Secure cookies for valid HTTPS domains"
+"message":"Varmenna evästeet voimassa oleville HTTPS-verkkoalueille"
 },
 "httpsfinder_preference_secureWildcardCookies":{
-"message":"Also secure wildcard cookies for HTTPS domains"
+"message":"Varmenna myös jokerimerkkievästeet HTTPS-verkkoalueille"
 },
 "httpsfinder_preference_showpreview":{
 "message":"Näytä säännön esikatselu (sallii muokkauksen) ennen säännön tallentamista"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"Overwrite existing rule?"
+"message":"Korvataanko olemassa oleva sÃ¤Ã¤ntÃ¶?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Kaikki tekemäsi muutokset heijastuvat tallennettuun sääntöön."

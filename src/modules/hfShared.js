@@ -295,7 +295,7 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
     }
     catch(e){
         if(e.name == 'NS_ERROR_FILE_ALREADY_EXISTS'){
-            if (currentWindow.confirm(strings.getString("httpsfinder.RulePreview.overwriteConfirm")))
+            if (currentWindow.confirm(strings.getString("httpsfinder.rulePreview.overwriteConfirm")))
                 file.remove(false);               
             else
                 return;            
@@ -337,11 +337,11 @@ function restartNow(){
 function alertRuleFinished(aDocument){ 
     //Check firefox version and use appropriate method
     var Application = hfCC["@mozilla.org/fuel/application;1"]
-    .getService(hfCI.fuelIApplication);
+        .getService(hfCI.fuelIApplication);
     var windowMediator = hfCC["@mozilla.org/appshell/window-mediator;1"]
-    .getService(hfCI.nsIWindowMediator);
+        .getService(hfCI.nsIWindowMediator);
     var prefService = hfCC["@mozilla.org/preferences-service;1"]
-    .getService(hfCI.nsIPrefService);
+        .getService(hfCI.nsIPrefService);
 
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
     var strings = currentWindow.document.getElementById("httpsfinderStrings");
@@ -350,7 +350,12 @@ function alertRuleFinished(aDocument){
     var removeNotification = this.removeNotification;
 
     //Determin FF version and use proper method to check for HTTPS Everywhere
-    if(Application.version.charAt(0) >= 4){
+    var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]  
+         .getService(Components.interfaces.nsIXULAppInfo);  
+    var versionChecker = Components.classes["@mozilla.org/xpcom/version-comparator;1"]  
+         .getService(Components.interfaces.nsIVersionComparator);  
+                        
+    if(versionChecker.compare(appInfo.version, "4.0") >= 0){
         hfCU.import("resource://gre/modules/AddonManager.jsm");
         AddonManager.getAddonByID("https-everywhere@eff.org", function(addon) {
             //Addon is null if not installed

@@ -58,8 +58,13 @@ httpsfinder.Preferences = {
         else if (!autoforward.checked && enable.checked){
             document.getElementById('httpsfoundprompt').disabled = false;
             document.getElementById('httpsfoundpromptLbl').disabled = false;
+        }        
+        
+        if(document.getElementById('securecookies').checked){
+            document.getElementById('securewildcardcookies').disabled = false;
+            document.getElementById('securewildcardcookiesLabel').disabled = false;
+            
         }
-
         httpsfinder.Preferences.LoadWhitelist();
         httpsfinder.Preferences.loadResults();
     },
@@ -467,6 +472,18 @@ httpsfinder.Preferences = {
         var topLevel = "." + eTLDService.getPublicSuffixFromHost(hostname);
 
         httpsfinder.Preferences.sharedWriteRule(hostname, topLevel, "");
+    },
+    
+    secureCookieCheck: function() {
+        if(document.getElementById('securecookies').checked){
+            document.getElementById('securewildcardcookies').disabled = true;
+            document.getElementById('securewildcardcookiesLabel').disabled = true;
+        }
+        else{
+            document.getElementById('securewildcardcookies').disabled = false;
+            document.getElementById('securewildcardcookiesLabel').disabled = false;
+        }
+            
     }
 
 };

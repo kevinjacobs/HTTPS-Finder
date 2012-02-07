@@ -75,7 +75,7 @@
 "message":"Salvar esta regra para uso do aditivo HTTPS Everywhere? (AtenÃ§Ã£o: ServiÃ§os oferecidos em pÃ¡ginas HTTPS podem divergir em relaÃ§Ã£o a versÃ£o HTTP)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+"message":"Esta pÃ¡gina oferece um certificado HTTPS auto assinado. Adicione Ã  lista branca ou vÃ¡ atÃ© a pÃ¡gina HTTPS e adicione a exceÃ§Ã£o. NOTA: HTTPS Finder nÃ£o forÃ§arÃ¡ HTTPS em sites auto assinados. Crie uma regra se desejar que sempre vÃ¡ via HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
 "message":"DomÃ­nio adicionado Ã  Lista Branca temporÃ¡ria da sessÃ£o."
@@ -219,10 +219,10 @@
 "message":"Regras salvas podem ser desabilitadas em Ajustes e Opções do aditivo HTTPS Everywhere."
 },
 "httpsfinder_preference_secureCookies":{
-"message":"Secure cookies for valid HTTPS domains"
+"message":"Cookies seguros para domínios HTTPS válidos"
 },
 "httpsfinder_preference_secureWildcardCookies":{
-"message":"Also secure wildcard cookies for HTTPS domains"
+"message":"Também \"cookies\" curingas seguros para domínios HTTPS válidos"
 },
 "httpsfinder_preference_showpreview":{
 "message":"Mostre uma prévia da regra (permite edição) antes de salvar"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"Overwrite existing rule?"
+"message":"Sobrepor na regra existente?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Quaisquer alterações que você tiver feito na regra entram em vigor somente depois de salvas."

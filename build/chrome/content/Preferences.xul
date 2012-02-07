@@ -112,20 +112,20 @@
                             <rows>
                                 <row>
                                     <checkbox id="headfirst" preference="httpsfinder-headfirst"/>
-                                    <description control="headfirst">&httpsfinder.preference.headFirst;</description>
+                                    <label control="headfirst" value="&httpsfinder.preference.headFirst;"/>                
                                 </row>
                                 <row>
-                                    <checkbox id="securecookies" preference="httpsfinder-secureCookies"/>
-                                    <description control="securecookies">&httpsfinder.preference.secureCookies;</description>
+                                    <checkbox id="securecookies" preference="httpsfinder-secureCookies" onclick="httpsfinder.Preferences.secureCookieCheck()"/>
+                                    <label id="securecookies" control="securecookies" value="&httpsfinder.preference.secureCookies;"/>                                 
                                 </row>
                                 <row>
-                                    <checkbox id="securewildcardcookies" preference="httpsfinder-secureWildcardCookies"/>
-                                    <description control="securewildcardcookies">&httpsfinder.preference.secureWildcardCookies;</description>
-                                </row>
+                                    <checkbox disabled="true" id="securewildcardcookies" preference="httpsfinder-secureWildcardCookies"/>
+                                    <label disabled="true" id="securewildcardcookiesLabel" control="securewildcardcookiesLabel" value="&httpsfinder.preference.secureWildcardCookies;"/>
+                                 </row>
                                 <vbox>
                                     <row>
                                         <checkbox id="autoDismiss" preference="httpsfinder-autoDismiss"/>
-                                        <description control="ADText">&httpsfinder.preference.autoDismissTitle;</description>
+                                        <label control="ADText" value="&httpsfinder.preference.autoDismissTitle;"/>     
                                         <textbox id="dismissTime" type="number" min="0" max="60" preference="httpsfinder-dismissTime"
                                                    size="2" maxlength="2" tooltiptext="&httpsfinder.preference.autoDismissToolTip;" style="width: 50px;"/>
                                     </row>
