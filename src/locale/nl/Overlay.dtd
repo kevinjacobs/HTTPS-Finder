@@ -79,5 +79,5 @@
 
 
 
-<!ENTITY httpsfinder.preference.secureCookies "Secure cookies for valid HTTPS domains">
-<!ENTITY httpsfinder.preference.secureWildcardCookies "Also secure wildcard cookies for HTTPS domains">
+<!ENTITY httpsfinder.preference.secureCookies "Beveilig cookies voor geldige HTTPS domeinen">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Beveilig ook wildcard cookies voor HTTPS domeinen.">

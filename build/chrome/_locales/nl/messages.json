@@ -75,7 +75,7 @@
 "message":"Deze regel opslaan voor HTTPS Everywhere? (Opmerking: Websites via HTTPS kunnen verschillen van de HTTP versie)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+"message":"Deze pagina biedt een zelf-ondertekend certificaat voor HTTPS. Voeg deze pagina toe aan de witte lijst of ga naar de HTTPS pagina en voeg een uitzondering toe. Opmerking: HTTPS Finder forceert geen HTTPS op zelf-ondertekende pagina's. Maak een regel wanneer u altijd HTTPS wilt gebruiken."
 },
 "httpsfinder_main_tempWhitelistedBody":{
 "message":"Domein tijdelijk (voor de duur van deze sessie) toegevoegd aan witte lijst."
@@ -219,10 +219,10 @@
 "message":"Opgeslagen regels kunnen worden uitgezet in de voorkeuren van HTTPS Everywhere"
 },
 "httpsfinder_preference_secureCookies":{
-"message":"Secure cookies for valid HTTPS domains"
+"message":"Beveilig cookies voor geldige HTTPS domeinen"
 },
 "httpsfinder_preference_secureWildcardCookies":{
-"message":"Also secure wildcard cookies for HTTPS domains"
+"message":"Beveilig ook wildcard cookies voor HTTPS domeinen."
 },
 "httpsfinder_preference_showpreview":{
 "message":"Laat regels zien voor ze worden opgeslagen. Dit maakt het mogelijk regels te bewerken."
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"Overwrite existing rule?"
+"message":"Vervang bestaande regel?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Alle wijzigingen die u maakt worden opgeslagen in de regel."
