@@ -22,15 +22,8 @@
 
 "use strict";
 
-if(typeof window.hfCI == "undefined") const hfCI = Components.interfaces;
-if(typeof window.hfCC == "undefined") const hfCC = Components.classes;
-if(typeof window.hfCU == "undefined") const hfCU = Components.utils;
-if(typeof window.hfCR == "undefined") const hfCR = Components.results;
-
-
-
 const httpsfinder_INCLUDE = function(name, targetObj) {   
-    let LOADER = hfCC["@mozilla.org/moz/jssubscript-loader;1"].getService(hfCI.mozIJSSubScriptLoader);
+    let LOADER = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
     try {
         LOADER.loadSubScript("chrome://httpsfinder/content/"
             + name + ".js", targetObj);              
@@ -44,7 +37,7 @@ if (!httpsfinder) var httpsfinder = {
     strings: null, //Strings object for httpsfinder strings
     history: null, //History observer object (clears results when history is cleared)
     debug: null, //verbose logging bool
-    pbs: null//check private browsing status before saving Detection results
+    pbs: null //check private browsing status before saving Detection results
 };
 
 
@@ -58,10 +51,10 @@ httpsfinder.Overlay = {
     
       
     init: function(){
-        hfCU.import("resource://hfShared/hfShared.js", httpsfinder);
-
-        var prefs = hfCC["@mozilla.org/preferences-service;1"]
-        .getService(hfCI.nsIPrefBranch);
+        Cu.import("resource://hfShared/hfShared.js", httpsfinder);
+        
+        var prefs = Cc["@mozilla.org/preferences-service;1"]
+        .getService(Ci.nsIPrefBranch);
         httpsfinder.prefs =  prefs.getBranch("extensions.httpsfinder.");
 
         httpsfinder.Cookies = {};
@@ -70,15 +63,15 @@ httpsfinder.Overlay = {
         httpsfinder_INCLUDE('HTTPSDetect', httpsfinder.Detect);
 
         //pref change observer
-        httpsfinder.prefs.QueryInterface(hfCI.nsIPrefBranch2);
+        httpsfinder.prefs.QueryInterface(Ci.nsIPrefBranch2);
         httpsfinder.prefs.addObserver("", this, false);
         
         if(!httpsfinder.prefs.getBoolPref("enable"))
             return;
 
         //History observer
-        var hs = hfCC["@mozilla.org/browser/nav-history-service;1"].
-        getService(hfCI.nsINavHistoryService);
+        var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
+        getService(Ci.nsINavHistoryService);
         hs.addObserver(httpsfinder.history, false);
 
         //Used for auto-dismissing alerts (auto-dismiss timer is started when user clicks on a tab, so they don't miss background alerts)
@@ -91,13 +84,13 @@ httpsfinder.Overlay = {
             appcontent.addEventListener("load", httpsfinder.Overlay.onPageLoadListener, true);
 
         //Used to check private browsing status before caching Detection results
-        httpsfinder.pbs = hfCC["@mozilla.org/privatebrowsing;1"]
-        .getService(hfCI.nsIPrivateBrowsingService);
+        httpsfinder.pbs = Cc["@mozilla.org/privatebrowsing;1"]
+        .getService(Ci.nsIPrivateBrowsingService);
         
-        //Register HTTP observer for HTTPS Detection
-        httpsfinder.Detect.register();
+        //Register HTTP observer for HTTPS Detection   
+        httpsfinder.Detect.register();        
         httpsfinder.Cookies.register();
-
+        
         httpsfinder.strings = document.getElementById("httpsfinderStrings");
         if(httpsfinder.prefs == null || httpsfinder.strings == null){
             dump("httpsfinder cannot load Preferences or strings - init() failed\n");
@@ -111,19 +104,19 @@ httpsfinder.Overlay = {
         //Try/catch attempts to recreate db table (in case it has been deleted). Doesn't overwrite though
         try{
             //Create whitelist database
-            var file = hfCC["@mozilla.org/file/directory_service;1"]
-            .getService(hfCI.nsIProperties)
-            .get("ProfD", hfCI.nsIFile);
+            var file = Cc["@mozilla.org/file/directory_service;1"]
+            .getService(Ci.nsIProperties)
+            .get("ProfD", Ci.nsIFile);
             file.append("httpsfinder.sqlite");
-            var storageService = hfCC["@mozilla.org/storage/service;1"]
-            .getService(hfCI.mozIStorageService);
+            var storageService = Cc["@mozilla.org/storage/service;1"]
+            .getService(Ci.mozIStorageService);
             var mDBConn = storageService.openDatabase(file); //Creates db on first run.
             mDBConn.createTable("whitelist", "rule STRING NOT NULL UNIQUE");
 
         }catch(e){
             //NS_ERROR_FAILURE is thrown when we try to recreate a table (May be too generic though...))
             if(e.name != 'NS_ERROR_FAILURE')
-                hfCU.reportError("HTTPS Finder: initialize error " + e + "\n");
+                Cu.reportError("HTTPS Finder: initialize error " + e + "\n");
         }
         finally{
             mDBConn.close();
@@ -221,12 +214,12 @@ httpsfinder.Overlay = {
         httpsfinder.results.tempNoAlerts.length = 0;
 
         try{
-            var file = hfCC["@mozilla.org/file/directory_service;1"]
-            .getService(hfCI.nsIProperties)
-            .get("ProfD", hfCI.nsIFile);
+            var file = Cc["@mozilla.org/file/directory_service;1"]
+            .getService(Ci.nsIProperties)
+            .get("ProfD", Ci.nsIFile);
             file.append("httpsfinder.sqlite");
-            var storageService = hfCC["@mozilla.org/storage/service;1"]
-            .getService(hfCI.mozIStorageService);
+            var storageService = Cc["@mozilla.org/storage/service;1"]
+            .getService(Ci.mozIStorageService);
             var mDBConn = storageService.openDatabase(file);
             var statement = mDBConn.createStatement("SELECT rule FROM whitelist");
 
@@ -246,7 +239,7 @@ httpsfinder.Overlay = {
                     // 'x' entries in the whitelist array. Temp items are added later as x+1....x+n
                     httpsfinder.results.permWhitelistLength = httpsfinder.results.whitelist.length;
 
-                    if (aReason != hfCI.mozIStorageStatementCallback.REASON_FINISHED)
+                    if (aReason != Ci.mozIStorageStatementCallback.REASON_FINISHED)
                         dump("httpsfinder database error " + aReason.message + "\n");
                     else if(httpsfinder.prefs.getBoolPref("whitelistChanged"))
                         httpsfinder.prefs.setBoolPref("whitelistChanged", false);
@@ -254,7 +247,7 @@ httpsfinder.Overlay = {
             });
         }
         catch(e){
-            hfCU.reportError("HTTPS Finder: load whitelist " + e.name + "\n");
+            Cu.reportError("HTTPS Finder: load whitelist " + e.name + "\n");
         }
         finally{
             statement.reset();
@@ -302,12 +295,12 @@ httpsfinder.Overlay = {
         httpsfinder.Cookies.restoreDefaultCookiesForHost(hostname);
 
         try{
-            var file = hfCC["@mozilla.org/file/directory_service;1"]
-            .getService(hfCI.nsIProperties)
-            .get("ProfD", hfCI.nsIFile);
+            var file = Cc["@mozilla.org/file/directory_service;1"]
+            .getService(Ci.nsIProperties)
+            .get("ProfD", Ci.nsIFile);
             file.append("httpsfinder.sqlite");
-            var storageService = hfCC["@mozilla.org/storage/service;1"]
-            .getService(hfCI.mozIStorageService);
+            var storageService = Cc["@mozilla.org/storage/service;1"]
+            .getService(Ci.mozIStorageService);
             var mDBConn = storageService.openDatabase(file);
 
             var statement = mDBConn.createStatement("INSERT INTO whitelist (rule) VALUES (?1)");
@@ -320,7 +313,7 @@ httpsfinder.Overlay = {
                     dump("httpsfinder whitelist rule add error " + anError.message + "\n");
                 },
                 handleCompletion: function(aReason){
-                    if (aReason == hfCI.mozIStorageStatementCallback.REASON_FINISHED)
+                    if (aReason == Ci.mozIStorageStatementCallback.REASON_FINISHED)
                         if(!httpsfinder.Overlay.isWhitelisted(hostname) &&
                             !httpsfinder.pbs.privateBrowsingEnabled){
                             httpsfinder.results.whitelist.push(hostname);
@@ -329,7 +322,7 @@ httpsfinder.Overlay = {
             });
         }
         catch(e){
-            hfCU.reportError("HTTPS Finder: addToWhitelist " + e.name + "\n");
+            Cu.reportError("HTTPS Finder: addToWhitelist " + e.name + "\n");
         }
         finally{
             statement.reset();
@@ -426,8 +419,8 @@ httpsfinder.Overlay = {
     //Save rule for HTTPS Everywhere. We do a little work here, then pass
     //to the function provided by hfShared (the preference window uses the same code)
     writeRule: function(){
-        var eTLDService = hfCC["@mozilla.org/network/effective-tld-service;1"]
-        .getService(hfCI.nsIEffectiveTLDService);
+        var eTLDService = Cc["@mozilla.org/network/effective-tld-service;1"]
+        .getService(Ci.nsIEffectiveTLDService);
 
         var topLevel = null;
         try{
@@ -525,8 +518,8 @@ httpsfinder.Overlay = {
         httpsfinder.Overlay.redirectedTab[gBrowser.getBrowserIndexForDocument(aDocument)] = new Array();
         httpsfinder.Overlay.redirectedTab[gBrowser.getBrowserIndexForDocument(aDocument)][0] = true;
 
-        var ioService = hfCC["@mozilla.org/network/io-service;1"]
-        .getService(hfCI.nsIIOService);
+        var ioService = Cc["@mozilla.org/network/io-service;1"]
+        .getService(Ci.nsIIOService);
 
         var uri = gBrowser.getBrowserForDocument(aDocument).currentURI.asciiSpec;
         uri = uri.replace("http://", "https://");
@@ -612,8 +605,8 @@ httpsfinder.Overlay = {
 
                     gBrowser.tabContainer.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
 
-                    var hs = hfCC["@mozilla.org/browser/nav-history-service;1"].
-                    getService(hfCI.nsINavHistoryService);
+                    var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
+                    getService(Ci.nsINavHistoryService);
                     hs.removeObserver(httpsfinder.history, "false");
         
                     httpsfinder.Cookies.unregister();
@@ -656,8 +649,8 @@ httpsfinder.Overlay = {
         var container = gBrowser.tabContainer;
         container.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
 
-        var hs = hfCC["@mozilla.org/browser/nav-history-service;1"].
-        getService(hfCI.nsINavHistoryService);
+        var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
+        getService(Ci.nsINavHistoryService);
     
         try{
             hs.removeObserver(httpsfinder.history, "false");
@@ -709,7 +702,7 @@ httpsfinder.history = {
         httpsfinder.Overlay.resetWhitelist();
     },
 
-    QueryInterface: XPCOMUtils.generateQI([hfCI.nsINavHistoryObserver])
+    QueryInterface: XPCOMUtils.generateQI([Ci.nsINavHistoryObserver])
 };        
 
 

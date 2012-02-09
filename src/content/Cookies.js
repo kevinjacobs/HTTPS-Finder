@@ -2,16 +2,16 @@
  * Cookies.js handles cookie modification (setting securecookie flags)
  */
 
-var cookieManager = hfCC["@mozilla.org/cookiemanager;1"]
-.getService(hfCI.nsICookieManager2);
+var cookieManager = Cc["@mozilla.org/cookiemanager;1"]
+.getService(Ci.nsICookieManager2);
         
 
-var cookieService = hfCC["@mozilla.org/cookieService;1"]
-.getService(hfCI.nsICookieService);
+var cookieService = Cc["@mozilla.org/cookieService;1"]
+.getService(Ci.nsICookieService);
     
     
-var OS = hfCC["@mozilla.org/observer-service;1"]
-.getService(hfCI.nsIObserverService);
+var OS = Cc["@mozilla.org/observer-service;1"]
+.getService(Ci.nsIObserverService);
 
 var originallyInsecureCookies = [];
 
@@ -54,20 +54,26 @@ function _insecureIndividualCookie(cookie) {
 function handleInsecureCookie(cookie){
     if(httpsfinder.results.cookieHostWhitelist.indexOf(cookie.host) != -1)
         return;
-        
-    if(httpsfinder.results.goodSSL.indexOf(cookie.host) != -1)
-        this._secureIndividualCookie(cookie);    
+    
+    if(httpsfinder.results.goodSSL.indexOf(cookie.host) != -1){
+        this._secureIndividualCookie(cookie);       
+    }
     //Only securing wildcard cookies for normal "www.", or "no sub" domains. It seems that most incompatibility problems are 
     //fixed by doing this, since typically specialized subdomains may have HTTPS support whereas the whole site might not.
     //On the other hand, if the www. subdomain has good HTTPS, we're usually safe securing wildcard cookies here.
-    else if(httpsfinder.prefs.getBoolPref("secureWildcardCookies") && 
-        (cookie.host.indexOf("www.") != -1 || cookie.host.indexOf(".") == cookie.host.lastIndexOf("."))){
+    else if(httpsfinder.prefs.getBoolPref("secureWildcardCookies")){
         for(var i = 0; i < httpsfinder.results.goodSSL.length; i++){
             var trimmed = httpsfinder.results.goodSSL[i];
-            trimmed = trimmed.substring(trimmed.indexOf("."), trimmed.length);    
             
-            if(cookie.host === trimmed)
-                this._secureIndividualCookie(cookie);
+            if(trimmed.indexOf("www.") != -1 || trimmed.indexOf(".") == trimmed.lastIndexOf(".")){                
+                if(trimmed.indexOf(".") != trimmed.lastIndexOf("."))
+                    trimmed = trimmed.substring(trimmed.indexOf("."), trimmed.length);    
+                else
+                    trimmed = "." + trimmed;
+                
+                if(cookie.host === trimmed)
+                    this._secureIndividualCookie(cookie);
+            }
         }        
     }
 }

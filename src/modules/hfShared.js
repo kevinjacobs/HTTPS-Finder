@@ -19,9 +19,9 @@
  *
  *  ***** END LICENSE BLOCK *****
  */ 
-const hfCI = Components.interfaces;
-const hfCC = Components.classes;
-const hfCU = Components.utils;
+const Ci = Components.interfaces;
+const Cc = Components.classes;
+const Cu = Components.utils;
 
 var EXPORTED_SYMBOLS = ['results',
 'popupNotify',
@@ -46,8 +46,8 @@ var results = {
 var redirectedTab =  [[]]; //Tab info for pre-redirect URLs.
 
 function restoreDefaultCookiesForHost(host, wildcardHost){
-    var cookieManager = hfCC["@mozilla.org/cookiemanager;1"]
-    .getService(hfCI.nsICookieManager2);
+    var cookieManager = Cc["@mozilla.org/cookiemanager;1"]
+    .getService(Ci.nsICookieManager2);
     
     var enumerator = cookieManager.getCookiesFromHost(host);
     
@@ -70,8 +70,8 @@ function restoreDefaultCookiesForHost(host, wildcardHost){
 //Generic notifier method
 function popupNotify(title,body){
     try{
-        var alertsService = hfCC["@mozilla.org/alerts-service;1"]
-        .getService(hfCI.nsIAlertsService);
+        var alertsService = Cc["@mozilla.org/alerts-service;1"]
+        .getService(Ci.nsIAlertsService);
         alertsService.showAlertNotification("chrome://httpsfinder/skin/httpRedirect.png",
             title, body, false, "", null);
     }
@@ -80,7 +80,7 @@ function popupNotify(title,body){
 
 function openWebsiteInTab(addr){
     if(typeof gBrowser == "undefined"){
-        var window = hfCC["@mozilla.org/appshell/window-mediator;1"].getService(hfCI.nsIWindowMediator);
+        var window = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
         var browserWindow = window.getMostRecentWindow("navigator:browser").getBrowser();
         var newTab = browserWindow.addTab(addr, null, null);
         browserWindow.selectedTab = newTab;
@@ -92,8 +92,8 @@ function openWebsiteInTab(addr){
 
 //Remove notification called from setTimeout(). Looks through each tab for an alert with mataching key. Removes it, if exists.
 function removeNotification(key){
-    var windowMediator = hfCC["@mozilla.org/appshell/window-mediator;1"]
-    .getService(hfCI.nsIWindowMediator);
+    var windowMediator = Cc["@mozilla.org/appshell/window-mediator;1"]
+    .getService(Ci.nsIWindowMediator);
 
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");    
 
@@ -109,11 +109,11 @@ function removeNotification(key){
 
 //Passed in uri variable is an asciispec uri from pre-redirect. (i.e. full http://www.domain.com)
 function sharedWriteRule(hostname, topLevel, OSXRule){
-    var windowMediator = hfCC["@mozilla.org/appshell/window-mediator;1"]
-    .getService(hfCI.nsIWindowMediator);
+    var windowMediator = Cc["@mozilla.org/appshell/window-mediator;1"]
+    .getService(Ci.nsIWindowMediator);
 
-    var prefService = hfCC["@mozilla.org/preferences-service;1"]
-    .getService(hfCI.nsIPrefService);
+    var prefService = Cc["@mozilla.org/preferences-service;1"]
+    .getService(Ci.nsIPrefService);
 
     var prefs = prefService.getBranch("extensions.httpsfinder.");
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
@@ -258,8 +258,8 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
             //the dialog until prefwindow closes. So we just make the rule preview non-modal here.
         
             // Returns "WINNT" on Windows,"Linux" on GNU/Linux. and "Darwin" on Mac OS X.
-            var osString = hfCC["@mozilla.org/xre/app-info;1"]
-            .getService(hfCI.nsIXULRuntime).OS;
+            var osString = Cc["@mozilla.org/xre/app-info;1"]
+            .getService(Ci.nsIXULRuntime).OS;
 
             if(osString == "Darwin")
                 currentWindow.openDialog("chrome://httpsfinder/content/RulePreview.xul", "",
@@ -283,15 +283,15 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
     title = rule.@name; //Re-grab the title from XML for file name (user may have edited it)
 
 
-    var ostream = hfCC["@mozilla.org/network/file-output-stream;1"].
-    createInstance(hfCI.nsIFileOutputStream);
-    var file = hfCC["@mozilla.org/file/directory_service;1"].
-    getService(hfCI.nsIProperties).get("ProfD", hfCI.nsIFile);
+    var ostream = Cc["@mozilla.org/network/file-output-stream;1"].
+    createInstance(Ci.nsIFileOutputStream);
+    var file = Cc["@mozilla.org/file/directory_service;1"].
+    getService(Ci.nsIProperties).get("ProfD", Ci.nsIFile);
 
     file.append("HTTPSEverywhereUserRules")
     file.append(title + ".xml");
     try{
-        file.create(hfCI.nsIFile.NORMAL_FILE_TYPE, 0666);
+        file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0666);
     }
     catch(e){
         if(e.name == 'NS_ERROR_FILE_ALREADY_EXISTS'){
@@ -302,8 +302,8 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
         }
     }
     ostream.init(file, 0x02 | 0x08 | 0x20, 0666, ostream.DEFER_OPEN);
-    var converter = hfCC["@mozilla.org/intl/scriptableunicodeconverter"].
-    createInstance(hfCI.nsIScriptableUnicodeConverter);
+    var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
+    createInstance(Ci.nsIScriptableUnicodeConverter);
     converter.charset = "UTF-8";
     
     var istream = null;
@@ -312,7 +312,7 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
     else
         istream = converter.convertToInputStream(rule);
     
-    hfCU.import("resource://gre/modules/NetUtil.jsm");
+    Cu.import("resource://gre/modules/NetUtil.jsm");
     NetUtil.asyncCopy(istream, ostream);
 
     if(this.results.tempNoAlerts.indexOf(hostname) == -1)
@@ -330,18 +330,18 @@ function getHostWithoutSub(fullHost){
 };
 
 function restartNow(){
-    var Application = hfCC["@mozilla.org/fuel/application;1"].getService(hfCI.fuelIApplication);
+    var Application = Cc["@mozilla.org/fuel/application;1"].getService(Ci.fuelIApplication);
     Application.restart();
 };
 
 function alertRuleFinished(aDocument){ 
     //Check firefox version and use appropriate method
-    var Application = hfCC["@mozilla.org/fuel/application;1"]
-        .getService(hfCI.fuelIApplication);
-    var windowMediator = hfCC["@mozilla.org/appshell/window-mediator;1"]
-        .getService(hfCI.nsIWindowMediator);
-    var prefService = hfCC["@mozilla.org/preferences-service;1"]
-        .getService(hfCI.nsIPrefService);
+    var Application = Cc["@mozilla.org/fuel/application;1"]
+        .getService(Ci.fuelIApplication);
+    var windowMediator = Cc["@mozilla.org/appshell/window-mediator;1"]
+        .getService(Ci.nsIWindowMediator);
+    var prefService = Cc["@mozilla.org/preferences-service;1"]
+        .getService(Ci.nsIPrefService);
 
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
     var strings = currentWindow.document.getElementById("httpsfinderStrings");
@@ -356,7 +356,7 @@ function alertRuleFinished(aDocument){
          .getService(Components.interfaces.nsIVersionComparator);  
                         
     if(versionChecker.compare(appInfo.version, "4.0") >= 0){
-        hfCU.import("resource://gre/modules/AddonManager.jsm");
+        Cu.import("resource://gre/modules/AddonManager.jsm");
         AddonManager.getAddonByID("https-everywhere@eff.org", function(addon) {
             //Addon is null if not installed
             if(addon == null)
@@ -395,8 +395,8 @@ function alertRuleFinished(aDocument){
     //HTTPS Everywhere is installed. Prompt for restart
     var promptForRestart = function() {
         var nb = currentWindow.gBrowser.getNotificationBox(currentWindow.gBrowser.getBrowserForDocument(aDocument));
-        var pbs = hfCC["@mozilla.org/privatebrowsing;1"]
-        .getService(hfCI.nsIPrivateBrowsingService);
+        var pbs = Cc["@mozilla.org/privatebrowsing;1"]
+        .getService(Ci.nsIPrivateBrowsingService);
 
         var restartButtons = [{
             label: strings.getString("httpsfinder.main.restartYes"),

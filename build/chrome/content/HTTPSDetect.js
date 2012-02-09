@@ -5,8 +5,8 @@
 httpsfinder.Cookies = {};
 httpsfinder_INCLUDE('Cookies', httpsfinder.Cookies);
     
-var OS = hfCC["@mozilla.org/observer-service;1"]
-.getService(hfCI.nsIObserverService);
+var OS = Cc["@mozilla.org/observer-service;1"]
+.getService(Ci.nsIObserverService);
 
 
 ////Not a great solution, but this is for problematic domains.
@@ -14,15 +14,15 @@ var OS = hfCC["@mozilla.org/observer-service;1"]
 var cacheExempt = ["www.google.com", "translate.google.com", "encrypted.google.com"];
 
 function QueryInterface (aIID){
-    if (aIID.equals(hfCI.nsIObserver) || aIID.equals(hfCI.nsISupports))
+    if (aIID.equals(Ci.nsIObserver) || aIID.equals(Ci.nsISupports))
         return this;
-    throw hfCR.NS_NOINTERFACE;
+    throw Cr.NS_NOINTERFACE;
 }
 
 //Watches HTTP responses, filters and calls Detection if needed
 function observe (request,aTopic, aData){
     if (aTopic == "http-on-examine-response") {
-        request.QueryInterface(hfCI.nsIHttpChannel);
+        request.QueryInterface(Ci.nsIHttpChannel);
         if(!httpsfinder.prefs.getBoolPref("enable"))
             return;
 
@@ -31,14 +31,13 @@ function observe (request,aTopic, aData){
             var loadFlags = httpsfinder.Detect.getStringArrayOfLoadFlags(request.loadFlags);
         else
             return;
-
+        
         if(loadFlags.indexOf("LOAD_DOCUMENT_URI") != -1 && loadFlags.indexOf("LOAD_INITIAL_DOCUMENT_URI") != -1){
             if(httpsfinder.Overlay.isWhitelisted(request.URI.host.toLowerCase())){
                 if(httpsfinder.debug)
                     dump("Canceling Detection on " + request.URI.host.toLowerCase() + ". Host is whitelisted\n");
                 return;
             }
-
             var browser = httpsfinder.Detect.getBrowserFromChannel(request);
             if (browser == null){
                 if(httpsfinder.debug)
@@ -75,7 +74,7 @@ function observe (request,aTopic, aData){
     }
 }
 
-function register() {
+function register() {    
     OS.addObserver(httpsfinder.Detect, "http-on-examine-response", false);
 }
 
@@ -103,7 +102,7 @@ function detectSSL (aBrowser, request){
         var getReq = new XMLHttpRequest();
         getReq.mozBackgroundRequest = true;
         getReq.open('GET', requestURL, true);            
-        getReq.channel.loadFlags |= hfCI.nsIRequest.LOAD_BYPASS_CACHE;
+        getReq.channel.loadFlags |= Ci.nsIRequest.LOAD_BYPASS_CACHE;
         getReq.onreadystatechange = function (aEvt) {
             if (getReq.readyState == 4){
                 httpsfinder.Detect.handleDetectionResponse(aBrowser, getReq, requestURL);
@@ -115,7 +114,7 @@ function detectSSL (aBrowser, request){
         var headReq = new XMLHttpRequest();
         headReq.mozBackgroundRequest = true;
         headReq.open('HEAD', requestURL, true);
-        headReq.channel.loadFlags |= hfCI.nsIRequest.LOAD_BYPASS_CACHE;
+        headReq.channel.loadFlags |= Ci.nsIRequest.LOAD_BYPASS_CACHE;
         headReq.onreadystatechange = function (aEvt) {
             if (headReq.readyState == 4){
                 if(headReq.status == 200 || headReq.status == 0 ||
@@ -126,7 +125,7 @@ function detectSSL (aBrowser, request){
                     var getReq = new XMLHttpRequest();
                     getReq.mozBackgroundRequest = true;
                     getReq.open('GET', requestURL, true);
-                    getReq.channel.loadFlags |= hfCI.nsIRequest.LOAD_BYPASS_CACHE;
+                    getReq.channel.loadFlags |= Ci.nsIRequest.LOAD_BYPASS_CACHE;
                     getReq.onreadystatechange = function (aEvt) {
                         if (getReq.readyState == 4)
                             httpsfinder.Detect.handleDetectionResponse(aBrowser, getReq, requestURL);
@@ -144,9 +143,9 @@ function getStringArrayOfLoadFlags (flags) {
     var flagsArr = [];
 
     //Look for the two load flags that indicate a page load (ignore others)
-    if (flags & hfCI.nsIChannel.LOAD_DOCUMENT_URI)
+    if (flags & Ci.nsIChannel.LOAD_DOCUMENT_URI)
         flagsArr.push("LOAD_DOCUMENT_URI");
-    if (flags & hfCI.nsIChannel.LOAD_INITIAL_DOCUMENT_URI)
+    if (flags & Ci.nsIChannel.LOAD_INITIAL_DOCUMENT_URI)
         flagsArr.push("LOAD_INITIAL_DOCUMENT_URI");
 
     return flagsArr;
@@ -158,7 +157,7 @@ function getBrowserFromChannel (aChannel) {
         var notificationCallbacks = aChannel.notificationCallbacks ? aChannel.notificationCallbacks : aChannel.loadGroup.notificationCallbacks;
         if (!notificationCallbacks)
             return null;
-        var domWin = notificationCallbacks.getInterface(hfCI.nsIDOMWindow);
+        var domWin = notificationCallbacks.getInterface(Ci.nsIDOMWindow);
         return gBrowser.getBrowserForDocument(domWin.top.document);
     }
     catch (e) {
@@ -176,21 +175,21 @@ function handleCachedSSL (aBrowser, request){
     
     var nb = gBrowser.getNotificationBox(aBrowser);
     var sslFoundButtons = [{
-        label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
-        accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
-        popup: null,
-        callback: httpsfinder.Overlay.whitelistDomain
-    },{
-        label: httpsfinder.strings.getString("httpsfinder.main.noRedirect"),
-        accessKey: httpsfinder.strings.getString("httpsfinder.main.noRedirectKey"),
-        popup: null,
-        callback: httpsfinder.Overlay.redirectNotNow
-    },{
-        label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
-        accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
-        popup: null,
-        callback: httpsfinder.Overlay.redirect
-    }];
+            label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
+            accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
+            popup: null,
+            callback: httpsfinder.Overlay.whitelistDomain
+        },{
+            label: httpsfinder.strings.getString("httpsfinder.main.noRedirect"),
+            accessKey: httpsfinder.strings.getString("httpsfinder.main.noRedirectKey"),
+            popup: null,
+            callback: httpsfinder.Overlay.redirectNotNow
+        },{
+            label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
+            accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
+            popup: null,
+            callback: httpsfinder.Overlay.redirect
+        }];
 
 
     if(httpsfinder.prefs.getBoolPref("autoforward"))
@@ -199,8 +198,8 @@ function handleCachedSSL (aBrowser, request){
         httpsfinder.prefs.getBoolPref("httpsfoundalert")){
 
         nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-            "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
-            nb.PRIORITY_INFO_HIGH, sslFoundButtons);
+        "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
+        nb.PRIORITY_INFO_HIGH, sslFoundButtons);
 
         if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
             setTimeout(function(){
@@ -275,25 +274,25 @@ function handleDetectionResponse (aBrowser, sslTest){
 
             var nb = gBrowser.getNotificationBox(aBrowser);
             var sslFoundButtons = [{
-                label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
-                popup: null,
-                callback: httpsfinder.Overlay.whitelistDomain
-            },{
-                label: httpsfinder.strings.getString("httpsfinder.main.noRedirect"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.noRedirectKey"),
-                popup: null,
-                callback: httpsfinder.Overlay.redirectNotNow
-            },{
-                label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
-                popup: null,
-                callback: httpsfinder.Overlay.redirect
-            }];
+                    label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
+                    popup: null,
+                    callback: httpsfinder.Overlay.whitelistDomain
+                },{
+                    label: httpsfinder.strings.getString("httpsfinder.main.noRedirect"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.noRedirectKey"),
+                    popup: null,
+                    callback: httpsfinder.Overlay.redirectNotNow
+                },{
+                    label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
+                    popup: null,
+                    callback: httpsfinder.Overlay.redirect
+                }];
 
             nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.httpsFoundPrompt"),
-                "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
-                nb.PRIORITY_INFO_HIGH, sslFoundButtons);
+            "httpsfinder-https-found",'chrome://httpsfinder/skin/httpsAvailable.png',
+            nb.PRIORITY_INFO_HIGH, sslFoundButtons);
             httpsfinder.Overlay.removeFromWhitelist(aBrowser.contentDocument, null);
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
@@ -305,7 +304,7 @@ function handleDetectionResponse (aBrowser, sslTest){
             //Catches certain browser location changes and page content that had load flags to fire Detection
             if(httpsfinder.debug)
                 dump("Host mismatch, alert blocked (Document: " +
-                    aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " , Detection host: " + host + "\n");
+                aBrowser.contentDocument.baseURIObject.host.toLowerCase() + " , Detection host: " + host + "\n");
         }
     }
 }
@@ -319,63 +318,63 @@ function addHostToGoodSSLList(host) {
 function testCertificate (channel, status, aBrowser) {
     var secure = false;
     try {
-        if (! channel instanceof  hfCI.nsIChannel){
+        if (! channel instanceof  Ci.nsIChannel){
             if(httpsfinder.debug)
                 dump("httpsfinder testCertificate: Invalid channel object\n");
             return false;
         }
 
         var secInfo = channel.securityInfo;
-        if (secInfo instanceof hfCI.nsITransportSecurityInfo) {
-            secInfo.QueryInterface(hfCI.nsITransportSecurityInfo);
+        if (secInfo instanceof Ci.nsITransportSecurityInfo) {
+            secInfo.QueryInterface(Ci.nsITransportSecurityInfo);
             // Check security state flags
-            if ((secInfo.securityState & hfCI.nsIWebProgressListener.STATE_IS_SECURE) ==
-                hfCI.nsIWebProgressListener.STATE_IS_SECURE)
+            if ((secInfo.securityState & Ci.nsIWebProgressListener.STATE_IS_SECURE) ==
+                Ci.nsIWebProgressListener.STATE_IS_SECURE)
                 secure = true;
         }
         //Check SSL certificate details
-        if (secInfo instanceof hfCI.nsISSLStatusProvider) {
-            var cert = secInfo.QueryInterface(hfCI.nsISSLStatusProvider).
-            SSLStatus.QueryInterface(hfCI.nsISSLStatus).serverCert;
-            var verificationResult = cert.verifyForUsage(hfCI.nsIX509Cert.CERT_USAGE_SSLServer);
+        if (secInfo instanceof Ci.nsISSLStatusProvider) {
+            var cert = secInfo.QueryInterface(Ci.nsISSLStatusProvider).
+                SSLStatus.QueryInterface(Ci.nsISSLStatus).serverCert;
+            var verificationResult = cert.verifyForUsage(Ci.nsIX509Cert.CERT_USAGE_SSLServer);
                
             switch (verificationResult) {
-                case hfCI.nsIX509Cert.VERIFIED_OK:
+                case Ci.nsIX509Cert.VERIFIED_OK:
                     if(status != 0)
                         secure = true;                       
                     break;
-                case hfCI.nsIX509Cert.NOT_VERIFIED_UNKNOWN:
+                case Ci.nsIX509Cert.NOT_VERIFIED_UNKNOWN:
                     secure = false;
                     break;
-                case hfCI.nsIX509Cert.CERT_REVOKED:
+                case Ci.nsIX509Cert.CERT_REVOKED:
                     secure = false;
                     break;
-                case hfCI.nsIX509Cert.CERT_EXPIRED:
+                case Ci.nsIX509Cert.CERT_EXPIRED:
                     secure = false;
                     break;
-                case hfCI.nsIX509Cert.CERT_NOT_TRUSTED:
+                case Ci.nsIX509Cert.CERT_NOT_TRUSTED:
                     secure = false;
                     break;
-                case hfCI.nsIX509Cert.ISSUER_NOT_TRUSTED:
+                case Ci.nsIX509Cert.ISSUER_NOT_TRUSTED:
                     if(httpsfinder.prefs.getBoolPref("allowSelfSignedCerts")){
                             
                         var nb = gBrowser.getNotificationBox(aBrowser);
                             
                         var wlButton = [{
-                            label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
-                            accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
-                            popup: null,
-                            callback: httpsfinder.Overlay.whitelistDomain
-                        },{
-                            label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
-                            accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
-                            popup: null,
-                            callback: httpsfinder.Overlay.redirect
-                        }];
+                                label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
+                                accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
+                                popup: null,
+                                callback: httpsfinder.Overlay.whitelistDomain
+                            },{
+                                label: httpsfinder.strings.getString("httpsfinder.main.yesRedirect"),
+                                accessKey: httpsfinder.strings.getString("httpsfinder.main.yesRedirectKey"),
+                                popup: null,
+                                callback: httpsfinder.Overlay.redirect
+                            }];
 
                         nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.selfSignedAlert"),
-                            "httpsfinder-ssl-selfSigned", 'chrome://httpsfinder/skin/httpsAvailable.png',
-                            nb.PRIORITY_INFO_HIGH, wlButton);
+                        "httpsfinder-ssl-selfSigned", 'chrome://httpsfinder/skin/httpsAvailable.png',
+                        nb.PRIORITY_INFO_HIGH, wlButton);
                         if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                             setTimeout(function(){
                                 httpsfinder.removeNotification("httpsfinder-ssl-selfSigned")
@@ -383,10 +382,10 @@ function testCertificate (channel, status, aBrowser) {
                     }
                     secure = false;                                
                     break;
-                case hfCI.nsIX509Cert.ISSUER_UNKNOWN:
+                case Ci.nsIX509Cert.ISSUER_UNKNOWN:
                     secure = false;
                     break;
-                case hfCI.nsIX509Cert.INVALID_CA:
+                case Ci.nsIX509Cert.INVALID_CA:
                     secure = false;
                     break;
                 default:
@@ -397,10 +396,10 @@ function testCertificate (channel, status, aBrowser) {
     }
     catch(err){
         secure = false;
-        hfCU.reportError("HTTPS Finder: testCertificate error: " + err.toString() + "\n");
+        Cu.reportError("HTTPS Finder: testCertificate error: " + err.toString() + "\n");
     } 
     if(httpsfinder.debug && secure)
         dump("httpsfinder testCertificate: cert OK (on "+
-            channel.URI.host.toLowerCase()+ ")\n");         
+        channel.URI.host.toLowerCase()+ ")\n");         
     return secure;
 }

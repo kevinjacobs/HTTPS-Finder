@@ -5,8 +5,8 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.83">
-<!ENTITY httpsfinder.buildDate "2012年2月6日">   <!--Format is "yyyy年mm月dd日", and prefixed zero should be ignored.-->
+<!ENTITY httpsfinder.version "0.84">
+<!ENTITY httpsfinder.buildDate "2012年2月8日">   <!--Format is "yyyy年mm月dd日", and prefixed zero should be ignored.-->
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "更新時間:">
 <!ENTITY httpsfinder.authorTitle "作者:">

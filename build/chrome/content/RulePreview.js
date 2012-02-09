@@ -20,13 +20,6 @@
  *  ***** END LICENSE BLOCK *****
  */ 
 
-
-if(typeof window.hfCI == "undefined") const hfCI = Components.interfaces;
-if(typeof window.hfCC == "undefined") const hfCC = Components.classes;
-if(typeof window.hfCU == "undefined") const hfCU = Components.utils;
-
-
-
 if (!httpsfinder) var httpsfinder = {};
 
 httpsfinder.RulePreview = {
@@ -38,11 +31,11 @@ httpsfinder.RulePreview = {
 
     //User clicked ok - return textbox contents as rule
     httpsfinderOkRulePreview: function(doc){
-        var osString = hfCC["@mozilla.org/xre/app-info;1"]
-        .getService(hfCI.nsIXULRuntime).OS;
+        var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+        .getService(Components.interfaces.nsIXULRuntime).OS;
 
         if(osString == "Darwin"){
-            hfCU.import("resource://hfShared/hfShared.js", httpsfinder.RulePreview);
+            Components.utils.import("resource://hfShared/hfShared.js", httpsfinder.RulePreview);
             //This is to work around a difference in the way OSX handles modal dialog windows.
             httpsfinder.RulePreview.sharedWriteRule("","",document.getElementById("ruleBox").value);
         }

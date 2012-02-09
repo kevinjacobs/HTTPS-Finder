@@ -3,7 +3,7 @@
 "message":"作者:"
 },
 "httpsfinder_buildDate":{
-"message":"6 February 2012"
+"message":"8 February 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"插件最后打包于:"
@@ -315,9 +315,9 @@
 "message":"- Chinese (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.83"
+"message":"0.84"
 },
 "httpsfinder_version":{
-"message":"0.83"
+"message":"0.84"
 }
 }

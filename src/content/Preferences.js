@@ -18,17 +18,14 @@
  *  Contributor(s): Translators - see install.rdf for updated list.
  *
  *  ***** END LICENSE BLOCK *****
- */ 
-
-if(typeof window.hfCI == "undefined") const hfCI = Components.interfaces;
-if(typeof window.hfCC == "undefined") const hfCC = Components.classes;
-if(typeof window.hfCU == "undefined") const hfCU = Components.utils;
+ */
 
 if (!httpsfinder) var httpsfinder = {};
 
-httpsfinder.Preferences = {
-    loadWindowObjects: function(){
-        hfCU.import("resource://hfShared/hfShared.js", httpsfinder.Preferences);
+httpsfinder.Preferences = {    
+    
+    loadWindowObjects: function(){                
+        Components.utils.import("resource://hfShared/hfShared.js", httpsfinder.Preferences);
 
         var enable = document.getElementById('enable');
         if (enable.checked){
@@ -72,8 +69,8 @@ httpsfinder.Preferences = {
     loadResults: function(){
         var theList = document.getElementById('cacheList');
 
-        var pbs = hfCC["@mozilla.org/privatebrowsing;1"]
-        .getService(hfCI.nsIPrivateBrowsingService);
+        var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
+        .getService(Components.interfaces.nsIPrivateBrowsingService);
 
         if (pbs.privateBrowsingEnabled){
             let row = document.createElement('listitem');
@@ -104,10 +101,20 @@ httpsfinder.Preferences = {
             hbox.setAttribute('pack', 'center');
             row.appendChild(hbox);
             
+            //Set up alternate host name to match wildcard cookies
+            var altHost = "";
+            if(host.indexOf(".") == host.lastIndexOf("."))
+                altHost = "." + host;
+            else
+                altHost = host.substring(host.indexOf("."), host.length);
+            
+       
+            
 
             if(httpsfinder.Preferences.results.cookieHostWhitelist.indexOf(host) == -1){
                 for(var j = 0; j < httpsfinder.Preferences.results.securedCookieHosts.length; j++){
-                    if(httpsfinder.Preferences.results.securedCookieHosts[j] == host){                   
+                    if(httpsfinder.Preferences.results.securedCookieHosts[j] == host ||
+                      httpsfinder.Preferences.results.securedCookieHosts[j] ==  altHost){                   
                         //Add check mark to Cookies Secured column
                         checkIcon = document.createElement('image');
                         checkIcon.setAttribute('src', 'chrome://httpsfinder/skin/goodSSL.png');
@@ -115,6 +122,7 @@ httpsfinder.Preferences = {
                         hbox.appendChild(checkIcon);
                         hbox.setAttribute('pack', 'center');
                         row.appendChild(hbox);  
+                        break;
                     }
                 }          
             }
@@ -148,11 +156,11 @@ httpsfinder.Preferences = {
     LoadWhitelist: function(){
         var theList = document.getElementById('whitelist');
         try{
-            var file = hfCC["@mozilla.org/file/directory_service;1"]
-            .getService(hfCI.nsIProperties).get("ProfD", hfCI.nsIFile);
+            var file = Components.classes["@mozilla.org/file/directory_service;1"]
+            .getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
             file.append("httpsfinder.sqlite");
-            var storageService = hfCC["@mozilla.org/storage/service;1"]
-            .getService(hfCI.mozIStorageService);
+            var storageService = Components.classes["@mozilla.org/storage/service;1"]
+            .getService(Components.interfaces.mozIStorageService);
             var mDBConn = storageService.openDatabase(file);
 
             var statement = mDBConn.createStatement("SELECT rule FROM whitelist");
@@ -172,13 +180,13 @@ httpsfinder.Preferences = {
                     dump("httpsfinder database error " + anError.message);
                 },
                 handleCompletion: function(aReason){
-                    if (aReason != hfCI.mozIStorageStatementCallback.REASON_FINISHED)
+                    if (aReason != Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED)
                         dump("httpsfinder database error " + aReason.message);
                 }
             });
         }
         catch(e){
-            hfCU.reportError("httpsfinder loadWhitelist " + e);
+            Components.utils.reportError("httpsfinder loadWhitelist " + e);
         }
         finally{
             statement.reset();
@@ -195,12 +203,12 @@ httpsfinder.Preferences = {
         }
         var theList = document.getElementById('whitelist');
         try{
-            var file = hfCC["@mozilla.org/file/directory_service;1"]
-            .getService(hfCI.nsIProperties)
-            .get("ProfD", hfCI.nsIFile);
+            var file = Components.classes["@mozilla.org/file/directory_service;1"]
+            .getService(Components.interfaces.nsIProperties)
+            .get("ProfD", Components.interfaces.nsIFile);
             file.append("httpsfinder.sqlite");
-            var storageService = hfCC["@mozilla.org/storage/service;1"]
-            .getService(hfCI.mozIStorageService);
+            var storageService = Components.classes["@mozilla.org/storage/service;1"]
+            .getService(Components.interfaces.mozIStorageService);
             var mDBConn = storageService.openDatabase(file);
 
             var statement = mDBConn.createStatement("INSERT INTO whitelist (rule) VALUES (?1)");
@@ -212,13 +220,13 @@ httpsfinder.Preferences = {
                 },
                 handleCompletion: function(aReason){
                     //Append new rule to list if it was added without error.
-                    if (aReason == hfCI.mozIStorageStatementCallback.REASON_FINISHED){
+                    if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED){
                         var row2 = document.createElement('listitem');
                         var cell = document.createElement('listcell');
                         cell.setAttribute("label", url);
                         row2.appendChild(cell);
                         theList.appendChild(row2);
-                        var prefs = hfCC["@mozilla.org/preferences-service;1"].getService(hfCI.nsIPrefService);
+                        var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
                         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
                         document.getElementById('whitelistURL').value = "";
                     }
@@ -226,7 +234,7 @@ httpsfinder.Preferences = {
             });
         }
         catch(e){
-            hfCU.reportError("httpsfinder addToWhitelist " + e);
+            Components.utils.reportError("httpsfinder addToWhitelist " + e);
         }
         finally{
             statement.reset();
@@ -282,11 +290,11 @@ httpsfinder.Preferences = {
             urls.push(selectedItems[i].firstChild.getAttribute("label"));
 
         try{
-            var file = hfCC["@mozilla.org/file/directory_service;1"]
-            .getService(hfCI.nsIProperties).get("ProfD", hfCI.nsIFile);
+            var file = Components.classes["@mozilla.org/file/directory_service;1"]
+            .getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
             file.append("httpsfinder.sqlite");
-            var storageService = hfCC["@mozilla.org/storage/service;1"]
-            .getService(hfCI.mozIStorageService);
+            var storageService = Components.classes["@mozilla.org/storage/service;1"]
+            .getService(Components.interfaces.mozIStorageService);
             var mDBConn = storageService.openDatabase(file);
 
             var statement = mDBConn.createStatement("DELETE FROM whitelist where rule = (:value)");
@@ -306,7 +314,7 @@ httpsfinder.Preferences = {
                     dump("httpsfinder whitelist rule delete error " + anError.message);
                 },
                 handleCompletion: function(aReason){
-                    if (aReason == hfCI.mozIStorageStatementCallback.REASON_FINISHED){
+                    if (aReason == Components.interfaces.mozIStorageStatementCallback.REASON_FINISHED){
                         //Remove any selected/removed items
                         for (let i=0; i < selectedItems.length; i++){
                             for (let j=0; j < urls.length; j++){
@@ -320,14 +328,14 @@ httpsfinder.Preferences = {
                             document.getElementById('removeRule').disabled = true;
                         }
 
-                        var prefs = hfCC["@mozilla.org/preferences-service;1"].getService(hfCI.nsIPrefService);
+                        var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
                         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
                     }
                 }
             });
         }
         catch(e){
-            hfCU.reportError("httpsfinder removeFromWhitelist " + e);
+            Components.utils.reportError("httpsfinder removeFromWhitelist " + e);
         }
         finally{
             statement.reset();
@@ -428,7 +436,7 @@ httpsfinder.Preferences = {
 
     //User clicked "Clear temporary whitelist". Clear whitelist array and reimport
     resetWhitelist: function(){
-        var prefs = hfCC["@mozilla.org/preferences-service;1"].getService(hfCI.nsIPrefService);
+        var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
         prefs.setBoolPref("extensions.httpsfinder.whitelistChanged",true);
 
         var strings = document.getElementById("httpsfinderStrings");
@@ -465,8 +473,8 @@ httpsfinder.Preferences = {
         theList.ensureIndexIsVisible(theList.selectedIndex);
         var selectedItems = theList.selectedItems;
 
-        var eTLDService = hfCC["@mozilla.org/network/effective-tld-service;1"]
-        .getService(hfCI.nsIEffectiveTLDService);
+        var eTLDService = Components.classes["@mozilla.org/network/effective-tld-service;1"]
+        .getService(Components.interfaces.nsIEffectiveTLDService);
 
         var hostname = selectedItems[0].firstChild.getAttribute("label");
         var topLevel = "." + eTLDService.getPublicSuffixFromHost(hostname);
