@@ -7,7 +7,7 @@
 
 <!--Styczeń, Luty, Marzec, Kwiecień, Maj, Czerwiec, Lipiec, Sierpień, Wrzesień, Październik, Listopad, Grudzień-->
 
-<!ENTITY httpsfinder.version "0.84">
+<!ENTITY httpsfinder.version "0.85">
 <!ENTITY httpsfinder.buildDate "8 Luty 2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Data wydania:">

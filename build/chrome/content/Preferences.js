@@ -114,7 +114,7 @@ httpsfinder.Preferences = {
             if(httpsfinder.Preferences.results.cookieHostWhitelist.indexOf(host) == -1){
                 for(var j = 0; j < httpsfinder.Preferences.results.securedCookieHosts.length; j++){
                     if(httpsfinder.Preferences.results.securedCookieHosts[j] == host ||
-                      httpsfinder.Preferences.results.securedCookieHosts[j] ==  altHost){                   
+                        httpsfinder.Preferences.results.securedCookieHosts[j] ==  altHost){                   
                         //Add check mark to Cookies Secured column
                         checkIcon = document.createElement('image');
                         checkIcon.setAttribute('src', 'chrome://httpsfinder/skin/goodSSL.png');
@@ -411,10 +411,16 @@ httpsfinder.Preferences = {
         document.getElementById('writeRule').disabled = false;
         
         var theList = document.getElementById('cacheList');
-        var selectedItems = theList.selectedItems;  
+        var selectedItems = theList.selectedItems;          
         
-        if(selectedItems[0].childNodes.length > 2)
+        if(selectedItems.length > 0 && selectedItems[0].childNodes.length > 2)
             document.getElementById('restoreCookies').disabled = false;
+        else if(selectedItems.length == 0){
+            document.getElementById('writeRule').disabled = true;
+            document.getElementById('removeFromCache').disabled = true;            
+            document.getElementById('viewReport').disabled = true;
+            document.getElementById('restoreCookies').disabled = true;            
+        }
         else
             document.getElementById('restoreCookies').disabled = true;
     },
