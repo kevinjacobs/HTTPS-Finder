@@ -71,7 +71,7 @@ httpsfinder.Overlay = {
 
         //History observer
         var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
-        getService(Ci.nsINavHistoryService);
+            getService(Ci.nsINavHistoryService);
         hs.addObserver(httpsfinder.history, false);
 
         //Used for auto-dismissing alerts (auto-dismiss timer is started when user clicks on a tab, so they don't miss background alerts)
@@ -158,10 +158,10 @@ httpsfinder.Overlay = {
     },
     
     /*
-    * onPageLoadListener checks for any HTTPS redirect/Detection activity for the tab. If there is something that the user needs to be alerted of,
-    * The notification is added. We can't add the notification directly from the Detection callback, because page content still being loaded
-    * causes the notifications to be automatically dismissed from time to time. This is basically a method to slow down alerts until the page is ready.
-    */
+     * onPageLoadListener checks for any HTTPS redirect/Detection activity for the tab. If there is something that the user needs to be alerted of,
+     * The notification is added. We can't add the notification directly from the Detection callback, because page content still being loaded
+     * causes the notifications to be automatically dismissed from time to time. This is basically a method to slow down alerts until the page is ready.
+     */
     onPageLoadListener: function(aEvent) {
         var brow = gBrowser.getBrowserForDocument(aEvent.originalTarget);
         var index = gBrowser.getBrowserIndexForDocument(aEvent.originalTarget);
@@ -315,9 +315,9 @@ httpsfinder.Overlay = {
                 handleCompletion: function(aReason){
                     if (aReason == Ci.mozIStorageStatementCallback.REASON_FINISHED)
                         if(!httpsfinder.Overlay.isWhitelisted(hostname) &&
-                            !httpsfinder.pbs.privateBrowsingEnabled){
-                            httpsfinder.results.whitelist.push(hostname);
-                        }
+                        !httpsfinder.pbs.privateBrowsingEnabled){
+                        httpsfinder.results.whitelist.push(hostname);
+                    }
                 }
             });
         }
@@ -349,30 +349,30 @@ httpsfinder.Overlay = {
 
             var nb = gBrowser.getNotificationBox(gBrowser.getBrowserForDocument(aDocument));
             var saveRuleButtons = [{
-                label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
-                popup: null,
-                callback: httpsfinder.Overlay.whitelistDomain
-            },{
-                label: httpsfinder.strings.getString("httpsfinder.main.noThanks"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.noThanksKey"),
-                popup: null,
-                callback: httpsfinder.Overlay.redirectNotNow
-            },{
-                label: httpsfinder.strings.getString("httpsfinder.main.rememberSetting"),
-                accessKey: httpsfinder.strings.getString("httpsfinder.main.rememberSettingKey"),
-                popup: null,
-                callback: httpsfinder.Overlay.writeRule
-            }];
+                    label: httpsfinder.strings.getString("httpsfinder.main.whitelist"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.whitelistKey"),
+                    popup: null,
+                    callback: httpsfinder.Overlay.whitelistDomain
+                },{
+                    label: httpsfinder.strings.getString("httpsfinder.main.noThanks"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.noThanksKey"),
+                    popup: null,
+                    callback: httpsfinder.Overlay.redirectNotNow
+                },{
+                    label: httpsfinder.strings.getString("httpsfinder.main.rememberSetting"),
+                    accessKey: httpsfinder.strings.getString("httpsfinder.main.rememberSettingKey"),
+                    popup: null,
+                    callback: httpsfinder.Overlay.writeRule
+                }];
 
             if(httpsfinder.prefs.getBoolPref("autoforward"))
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.autoForwardRulePrompt"),
-                    "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
-                    nb.PRIORITY_INFO_HIGH, saveRuleButtons);
+            "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
+            nb.PRIORITY_INFO_HIGH, saveRuleButtons);
             else
                 nb.appendNotification(httpsfinder.strings.getString("httpsfinder.main.saveRulePrompt"),
-                    "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
-                    nb.PRIORITY_INFO_HIGH, saveRuleButtons);
+            "httpsfinder-ssl-enforced", 'chrome://httpsfinder/skin/httpsAvailable.png',
+            nb.PRIORITY_INFO_HIGH, saveRuleButtons);
 
             if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
                 setTimeout(function(){
@@ -390,7 +390,7 @@ httpsfinder.Overlay = {
 
             //If rule starts with *., check the end of the hostname (i.e. for *.google.com, check for host ending in .google.com
             else if(whitelistItem.substr(0,2) == "*.")
-                //Delete * from rule, compare to last "rule length" chars of the hostname
+            //Delete * from rule, compare to last "rule length" chars of the hostname
                 if(whitelistItem.replace("*","") == host.substr(host.length -
                     whitelistItem.length + 1,host.length))
                     return true;
@@ -408,7 +408,7 @@ httpsfinder.Overlay = {
 
             //If rule starts with *., check the end of the hostname (i.e. for *.google.com, check for host ending in .google.com
             else if(whitelistItem.substr(0,2) == "*.")
-                //Delete * from rule, compare to last "rule length" chars of the hostname
+            //Delete * from rule, compare to last "rule length" chars of the hostname
                 if(whitelistItem.replace("*","") == host.substr(host.length -
                     whitelistItem.length + 1,host.length))
                     return true;
@@ -504,8 +504,8 @@ httpsfinder.Overlay = {
         else{
             if(httpsfinder.debug && !redirectLoop)
                 dump("Host mismatch, forward blocked (Document: " +
-                    aBrowser.contentDocument.baseURIObject.host.toLowerCase() +
-                    " , Detection host: " + host + "\n");
+                aBrowser.contentDocument.baseURIObject.host.toLowerCase() +
+                " , Detection host: " + host + "\n");
         }
 
         httpsfinder.Overlay.recent.push([host,index]);
@@ -539,7 +539,7 @@ httpsfinder.Overlay = {
                         dump("1 httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
                     httpsfinder.results.whitelist.splice(i,1);
                 }
-            }
+        }
 
         // Else, if called as removeFromWhitelist(tab.contentDocument, null) - get the host and remove that from the whitelist
         else if(aDocument && !host){
@@ -558,11 +558,20 @@ httpsfinder.Overlay = {
         else
             for(var i=0; i<httpsfinder.results.whitelist.length; i++)
                 if(i > httpsfinder.results.permWhitelistLength - 1 &&
-                    httpsfinder.Overlay.getHostWithoutSub(httpsfinder.results.whitelist[i]) == httpsfinder.Overlay.getHostWithoutSub(host)){
-                    if(httpsfinder.debug)
-                        dump("3 httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
-                    httpsfinder.results.whitelist.splice(i,1);
-                }
+            httpsfinder.Overlay.getHostWithoutSub(httpsfinder.results.whitelist[i]) == httpsfinder.Overlay.getHostWithoutSub(host)){
+            if(httpsfinder.debug)
+                dump("3 httpsfinder removing " + httpsfinder.results.whitelist[i] + " from whitelist\n");
+            httpsfinder.results.whitelist.splice(i,1);
+        }
+    },
+    
+    openPreferences: function(){
+        var prefs = Cc["@mozilla.org/preferences-service;1"]
+        .getService(Ci.nsIPrefBranch);
+        var instantApply = prefs.getBoolPref("browser.preferences.instantApply");
+        var features = "chrome,resizable=no,centerscreen" + (instantApply ?
+            ",dialog=no" : ",modal");
+        openDialog("chrome://httpsfinder/content/Preferences.xul", 'preferences', features);
     },
 
     //User clicked "Clear Session Whitelist" - Reset good and bad cached results, as well as user temporary whitelist.
@@ -582,7 +591,7 @@ httpsfinder.Overlay = {
     //Preference observer
     observe: function(subject, topic, data){
         if (topic != "nsPref:changed")
-            return;
+        return;
 
         switch(data){
             //Reimport whitelist if user added or removed item
@@ -591,126 +600,126 @@ httpsfinder.Overlay = {
                 break;
 
             //Remove/add window listener if httpsfinder is enabled or disabled
-            case "enable":
-                if(!httpsfinder.prefs.getBoolPref("enable")){
-                    try{
-                        httpsfinder.Detect.unregister();
-                    } catch(e){ /*do nothing - it is already removed if the extension was disabled*/ }
+        case "enable":
+            if(!httpsfinder.prefs.getBoolPref("enable")){
+                try{
+                    httpsfinder.Detect.unregister();
+                } catch(e){ /*do nothing - it is already removed if the extension was disabled*/ }
 
-                    try{
-                        var appcontent = document.getElementById("appcontent");
-                        if(appcontent)
-                            appcontent.removeEventListener("DOMContentLoaded", httpsfinder.Overlay.onPageLoadListener, true);
-                    } catch(e){ /*appcontent may be null*/ }
+                try{
+                    var appcontent = document.getElementById("appcontent");
+                    if(appcontent)
+                        appcontent.removeEventListener("DOMContentLoaded", httpsfinder.Overlay.onPageLoadListener, true);
+                } catch(e){ /*appcontent may be null*/ }
 
-                    gBrowser.tabContainer.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
+                gBrowser.tabContainer.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
 
-                    var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
+                var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
                     getService(Ci.nsINavHistoryService);
-                    hs.removeObserver(httpsfinder.history, "false");
+                hs.removeObserver(httpsfinder.history, "false");
         
-                    httpsfinder.Cookies.unregister();
-                }
-                else if(httpsfinder.prefs.getBoolPref("enable"))
-                    httpsfinder.Overlay.init();
-                break;
+                httpsfinder.Cookies.unregister();
+            }
+            else if(httpsfinder.prefs.getBoolPref("enable"))
+                httpsfinder.Overlay.init();
+            break;
 
-            case "debugLogging":
-                httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
-                break;
+        case "debugLogging":
+            httpsfinder.debug = httpsfinder.prefs.getBoolPref("debugLogging");
+            break;
 
-            case "dismissAlerts":
-                var container = gBrowser.tabContainer;
+        case "dismissAlerts":
+            var container = gBrowser.tabContainer;
 
-                if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
-                    container.addEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
-                else
-                    container.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
-                break;
-        }
-    },
+            if(httpsfinder.prefs.getBoolPref("dismissAlerts"))
+                container.addEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
+            else
+                container.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
+            break;
+    }
+},
 
-    //Window is shutting down - remove listeners/observers
-    shutdown: function(){
-        try{
-            httpsfinder.prefs.removeObserver("", this);
-            httpsfinder.Detect.unregister();
-        }
-        catch(e){ /*do nothing - it is already removed if the extension was disabled*/ }
+//Window is shutting down - remove listeners/observers
+shutdown: function(){
+    try{
+        httpsfinder.prefs.removeObserver("", this);
+        httpsfinder.Detect.unregister();
+    }
+    catch(e){ /*do nothing - it is already removed if the extension was disabled*/ }
 
-        try{
-            var appcontent = document.getElementById("appcontent");
-            if(appcontent)
-                appcontent.removeEventListener("DOMContentLoaded", httpsfinder.Overlay.onPageLoadListener, true);
-        }
-        catch(e){ /*appcontent may be null*/ }
+    try{
+        var appcontent = document.getElementById("appcontent");
+        if(appcontent)
+            appcontent.removeEventListener("DOMContentLoaded", httpsfinder.Overlay.onPageLoadListener, true);
+    }
+    catch(e){ /*appcontent may be null*/ }
 
 
-        var container = gBrowser.tabContainer;
-        container.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
+    var container = gBrowser.tabContainer;
+    container.removeEventListener("TabSelect", httpsfinder.Overlay.tabChangedListener, false);
 
-        var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
+    var hs = Cc["@mozilla.org/browser/nav-history-service;1"].
         getService(Ci.nsINavHistoryService);
     
-        try{
-            hs.removeObserver(httpsfinder.history, "false");
-        } catch(e) {/*may be null if enabled pref is false*/ }
+    try{
+        hs.removeObserver(httpsfinder.history, "false");
+    } catch(e) {/*may be null if enabled pref is false*/ }
         
-        httpsfinder.Cookies.unregister();
+    httpsfinder.Cookies.unregister();
         
-        window.removeEventListener("unload", function(){
-            httpsfinder.Overlay.shutdown();
-        }, false);
+    window.removeEventListener("unload", function(){
+        httpsfinder.Overlay.shutdown();
+    }, false);
 
-        window.removeEventListener("load", function(){
-            httpsfinder.Overlay.init();
-        }, false);
-    }
+    window.removeEventListener("load", function(){
+        httpsfinder.Overlay.init();
+    }, false);
+}
 };
 
 httpsfinder.history = {
-    onBeginUpdateBatch: function() {},
-    onEndUpdateBatch: function() {},
-    onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
-    onTitleChanged: function(aURI, aPageTitle) {},
-    onBeforeDeleteURI: function(aURI) {},
-    onPageChanged: function(aURI, aWhat, aValue) {},
-    onDeleteVisits: function(aURI, aVisitTime, aGUID) {},
+onBeginUpdateBatch: function() {},
+onEndUpdateBatch: function() {},
+onVisit: function(aURI, aVisitID, aTime, aSessionID, aReferringID, aTransitionType) {},
+onTitleChanged: function(aURI, aPageTitle) {},
+onBeforeDeleteURI: function(aURI) {},
+onPageChanged: function(aURI, aWhat, aValue) {},
+onDeleteVisits: function(aURI, aVisitTime, aGUID) {},
 
-    /*
-                *Called when user deletes all instances of a specific URI
-                *(warning: Called for each URI in batch operations too)
-                */
-    onDeleteURI: function(aURI){
-        let host = aURI.host;
+/*
+ *Called when user deletes all instances of a specific URI
+ *(warning: Called for each URI in batch operations too)
+ */
+onDeleteURI: function(aURI){
+    let host = aURI.host;
 
-        if(httpsfinder.results.goodSSL.indexOf(host) != -1)
-            for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
-                if(httpsfinder.results.goodSSL[i] == host){
-                    httpsfinder.results.goodSSL.splice(i,1);
-                    return;
-                }
+    if(httpsfinder.results.goodSSL.indexOf(host) != -1)
+        for(let i = 0; i < httpsfinder.results.goodSSL.length; i++){
+            if(httpsfinder.results.goodSSL[i] == host){
+                httpsfinder.results.goodSSL.splice(i,1);
+                return;
             }
+    }
 
-        else if(httpsfinder.Overlay.isWhitelisted(host) && !httpsfinder.Overlay.isPermWhitelisted(host)){
-            httpsfinder.Overlay.removeFromWhitelist(null, host);
-        }
-    },
+    else if(httpsfinder.Overlay.isWhitelisted(host) && !httpsfinder.Overlay.isPermWhitelisted(host)){
+        httpsfinder.Overlay.removeFromWhitelist(null, host);
+    }
+},
 
-    //Called when all history is cleared.
-    onClearHistory: function() {
-        httpsfinder.Overlay.resetWhitelist();
-    },
+//Called when all history is cleared.
+onClearHistory: function() {
+    httpsfinder.Overlay.resetWhitelist();
+},
 
-    QueryInterface: XPCOMUtils.generateQI([Ci.nsINavHistoryObserver])
+QueryInterface: XPCOMUtils.generateQI([Ci.nsINavHistoryObserver])
 };        
 
 
 
 window.addEventListener("load", function(){
-    httpsfinder.Overlay.init();
+httpsfinder.Overlay.init();
 }, false);
 
 window.addEventListener("unload", function(){
-    httpsfinder.Overlay.shutdown();
+httpsfinder.Overlay.shutdown();
 }, false);

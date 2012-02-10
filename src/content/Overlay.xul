@@ -24,8 +24,7 @@
                     id="httpsfinderSettingsItem"
                     image="chrome://httpsfinder/skin/settings.png"
                     label="&httpsfinder.menu.settings;" accesskey="&httpsfinder.menu.settingsKey;"
-                    oncommand="window.openDialog('chrome://httpsfinder/content/Preferences.xul', '',
-                        'chrome, dialog, modal,centerscreen, resizable=no', null).focus();" />
+                    oncommand="httpsfinder.Overlay.openPreferences()" />
                 <menuitem class="menuitem-iconic"
                     id="httpsfinderReloadWhitelist"
                     image="chrome://httpsfinder/skin/refresh.png"

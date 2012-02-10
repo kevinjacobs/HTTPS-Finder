@@ -3,7 +3,7 @@
 "message":"Author:"
 },
 "httpsfinder_buildDate":{
-"message":"8 February 2012"
+"message":"9 February 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Build Date:"
@@ -315,9 +315,9 @@
 "message":"- Chinese (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.85"
+"message":"0.86"
 },
 "httpsfinder_version":{
-"message":"0.85"
+"message":"0.86"
 }
 }
