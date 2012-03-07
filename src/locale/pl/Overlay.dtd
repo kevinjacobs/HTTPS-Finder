@@ -38,9 +38,9 @@
 <!ENTITY httpsfinder.preference.aboutTab "O wtyczce">
 <!ENTITY httpsfinder.preference.detectionLabel "Metoda wykrywania">
 <!ENTITY httpsfinder.preference.showpreview "Pokaż podgląd reguły (z możliwością edycji) przed jej zapisaniem">
-<!ENTITY httpsfinder.preference.detectionDescLONG "Żądania HEAD wykorzystują mniej łącza niż GET, ale niektóre serwery mogą nie obsługiwać go. Jeśli tak się stanie, HTTPS Finder będzie próbował ponownie połączyć się przez żądanie GET.">
+<!ENTITY httpsfinder.preference.detectionDescLONG "Żądania HEAD obciążają łącze mniej niż GET, ale niektóre serwery mogą nie obsługiwać go. Jeśli tak się stanie, HTTPS Finder będzie próbował ponownie połączyć się przez żądanie GET.">
 <!ENTITY httpsfinder.preference.detectionDescRec "Zalecenia do ustawień: Jeśli masz szybkie łącze, usuń zaznaczenie, aby używać żądań GET. Na wolniejszych łączach, HEAD może być zauważalnie szybsze na większości witryn.">
-<!ENTITY httpsfinder.preference.debug "Włącz 'gadatliwy' tryb">
+<!ENTITY httpsfinder.preference.debug "Włącz logowanie debugerskie">
 <!ENTITY httpsfinder.rulePreview.top "Podgląd reguły">
 <!ENTITY httpsfinder.rulePreview.tip1 "Wszelkie wprowadzone zmiany zostaną uwzględnione w zapisanej regule.">
 <!ENTITY httpsfinder.rulePreview.tip2 "Kliknij przycisk OK, aby zapisać regułę lub Anuluj, aby powrócić bez zapisywania">
@@ -76,4 +76,4 @@
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Odznacz, aby aktywować ciche wykrywanie. Podgląd rezultatów i tworzenie reguł z zakładki Zaawansowane">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Włącz alarmy o znalezieniu HTTPS (jeżeli automatyczne wymuszanie HTTPS jest wyłączone)">
 <!ENTITY httpsfinder.preference.secureCookies "Bezpieczne ciasteczka dla poprawnych domen HTTPS">
-<!ENTITY httpsfinder.preference.secureWildcardCookies "Również bezpieczne wieloznaczne ciasteczka dla domen HTTPS">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Również bezpieczne ciasteczka wielodomenowe dla domen HTTPS">
