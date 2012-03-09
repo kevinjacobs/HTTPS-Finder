@@ -63,7 +63,7 @@
 <!ENTITY httpsfinder.preference.sslReport "Generuj raport SSL">
 <!ENTITY httpsfinder.preference.clearResults "Wyczyść wszystkie wyniki">
 <!ENTITY httpsfinder.preference.listHeaderHTTPS "Wyniki dla HTTPS">
-<!ENTITY httpsfinder.preference.listHeaderTitle "Wyniki wykrywania sesji">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Wyniki wykrywania dla bieżącej sesji">
 <!ENTITY httpsfinder.preference.autoDismissTitle "Automatycznie ukrywaj powiadomienia po (w sekundach)">
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Czas wyświetlania (w sekundach)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Odznacz, aby aktywować ciche wykrywanie. Podgląd wyników i tworzenie reguł z zakładki Zaawansowane.">
