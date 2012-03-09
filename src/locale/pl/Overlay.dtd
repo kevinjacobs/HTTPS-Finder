@@ -5,8 +5,10 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "480">
 <!--End prefWindow sizing-->
 
+<!-- stycznia, lutego, marca, kwietnia, maja, czerwca, lipca, sierpnia, września, października, listopada, grudnia -->
+
 <!ENTITY httpsfinder.version "0.86">
-<!ENTITY httpsfinder.buildDate "9 luty 2012">
+<!ENTITY httpsfinder.buildDate "9 lutego 2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Data wydania:">
 <!ENTITY httpsfinder.authorTitle "Autor:">
@@ -68,7 +70,7 @@
 <!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Wyświetlaj powiadomienia o wykryciu HTTPS, jeśli automatyczne wymuszanie HTTPS jest wyłączone">
 <!ENTITY httpsfinder.translation.german "- Niemiecki (Michael Wolf i Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Holenderski (Donné Brok)">
-<!ENTITY httpsfinder.translation.polish "- Polski (PcP)">
+<!ENTITY httpsfinder.translation.polish "- Polski (PcP, Szpak &amp; Teo)">
 <!ENTITY httpsfinder.translation.swedish "- Szwedzki (Mikael Hiort)">
 <!ENTITY httpsfinder.translation.spanish "- Hiszpański (strel)">
 <!ENTITY httpsfinder.translation.portuguese "- Portugalski (Megahertz)">
