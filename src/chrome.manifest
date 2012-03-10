@@ -1,8 +1,8 @@
 content {appname} 		              content/
 skin	{appname}	classic/1.0           skin/
 
-locale	{appname}	de		      locale/de/
 locale	{appname}	en-US		      locale/en-US/
+locale	{appname}	de		      locale/de/
 locale	{appname}	es-ES		      locale/es-ES/
 locale	{appname}	fi		      locale/fi/
 locale	{appname}	nl		      locale/nl/
