@@ -1,17 +1,19 @@
-content httpsfinder 		              content/
-skin	httpsfinder	classic/1.0           skin/
+content {appname} content/
+skin {appname} classic/1.0 skin/
 
-locale	httpsfinder	de		      locale/de/
-locale	httpsfinder	en-US		      locale/en-US/
-locale	httpsfinder	es-ES		      locale/es-ES/
-locale	httpsfinder	fi		      locale/fi/
-locale	httpsfinder	nl		      locale/nl/
-locale	httpsfinder	pl		      locale/pl/
-locale	httpsfinder	pt-PT		      locale/pt/
-locale	httpsfinder	sv-SE		      locale/sv-SE/
-locale	httpsfinder	pt-BR		      locale/pt/
-locale	httpsfinder	zh-CN		      locale/zh-CN/
-locale	httpsfinder	zh-TW		      locale/zh-TW/
+locale {appname} en-US locale/en-US/
+locale {appname} de locale/de/
+locale {appname} es-ES locale/es-ES/
+locale {appname} fi locale/fi/
+locale {appname} it locale/it/
+locale {appname} nl locale/nl/
+locale {appname} pl locale/pl/
+locale {appname} pt-BR locale/pt/
+locale {appname} pt-PT locale/pt/
+locale {appname} sv-SE locale/sv-SE/
+locale {appname} zh-CN locale/zh-CN/
+locale {appname} zh-TW locale/zh-TW/
+locale {appname} vi-VN locale/vi-VN/
 
 resource hfShared /../modules/
-overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/Overlay.xul
+overlay chrome://browser/content/browser.xul chrome://httpsfinder/content/Overlay.xul
