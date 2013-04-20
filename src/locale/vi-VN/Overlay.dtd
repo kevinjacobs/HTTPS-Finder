@@ -1,0 +1,81 @@
+<!--Pref window sizing for different translated string lengths-->
+<!ENTITY httpsfinder.prefSize.windowWidth "515">
+<!ENTITY httpsfinder.prefSize.windowHeight "570">
+<!ENTITY httpsfinder.prefSize.detectDescWidth "450">
+<!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
+<!--End prefWindow sizing-->
+
+<!ENTITY httpsfinder.version "0.86">
+
+<!-- For month in Vietnamese: Tháng Giêng, Tháng Hai, Tháng Ba, Tháng Tư, Tháng Năm, Tháng Sáu, Tháng Bảy, Tháng Tám, Tháng Chín, Tháng Mười, Tháng Mười Một, Tháng Mười Hai -->
+
+<!ENTITY httpsfinder.buildDate "09/02/2012"><!--Format is "dd/mm/yyyy" or "Ngày dd tháng mm, yyyy".-->
+<!ENTITY httpsfinder.title "HTTPS Finder">
+<!ENTITY httpsfinder.buildDateTitle "Ngày tạo:">
+<!ENTITY httpsfinder.authorTitle "Tác giả:">
+<!ENTITY httpsfinder.googleCodeURL "https://code.google.com/p/https-finder/">
+<!ENTITY httpsfinder.mySite "http://www.KevinAJacobs.com">
+<!ENTITY httpsfinder.preference.title "Tùy chọn HTTPS Finder">
+<!ENTITY httpsfinder.preference.titleKey "H">
+<!ENTITY httpsfinder.preference.translations "Bản dịch được cung cấp bởi các cá nhân sau đây:">
+<!ENTITY httpsfinder.preference.supportTitle "Email hỗ trợ:">
+<!ENTITY httpsfinder.preference.supportEmail "httpsfinder@gmail.com">
+<!ENTITY httpsfinder.preference.enable "Bật HTTPS Finder">
+<!ENTITY httpsfinder.preference.noRulePrompt "Không hỏi lại khi lưu thiết lập HTTPS (Dùng khi không có HTTPS Everywhere)">
+<!ENTITY httpsfinder.preference.autoForward "Tự động bắt buộc HTTPS khi sẵn sàng.">
+<!ENTITY httpsfinder.preference.whitelistLabel "Danh sách an toàn (Không cần HTTPS với những tên miền này)">
+<!ENTITY httpsfinder.preference.whitelistAddButton "Thêm vào danh sách an toàn">
+<!ENTITY httpsfinder.preference.whitelistModify "Chỉnh sửa">
+<!ENTITY httpsfinder.preference.whitelistRemove "Xóa">
+<!ENTITY httpsfinder.preference.savedRulesTip "Thiết lập đã lưu có thể bị vô hiệu hóa trong thiết lập HTTPS Everywhere.">
+<!ENTITY httpsfinder.preference.ruleTip "Với thiết lập danh sách an toàn, chú ý rằng www.domain.com là tên miền phụ (domain con) của domain.com.">
+<!ENTITY httpsfinder.preference.learnMoreTip "Tìm hiểu thêm về HTTPS Finder">
+<!ENTITY httpsfinder.preference.learnLinkName "tại đây">
+<!ENTITY httpsfinder.preference.whitelistAddTextbox "Hostname (domain.tld, sub.domain.tld, *.domain.tld)">
+<!ENTITY httpsfinder.preference.whitelistUrlColumn "Hostname">
+<!ENTITY httpsfinder.preference.headFirst "Dùng dò tìm với HEAD trước (Trở lại dùng GET nếu không được hỗ trợ từ máy chủ)">
+<!ENTITY httpsfinder.preference.generalTab "Tổng quát">
+<!ENTITY httpsfinder.preference.advancedTab "Nâng cao">
+<!ENTITY httpsfinder.preference.aboutTab "Thông tin">
+<!ENTITY httpsfinder.preference.detectionLabel "Phương pháp phát hiện">
+<!ENTITY httpsfinder.preference.showpreview "Hiển thị bản xem trước của thiết lập (cho phép chỉnh sửa) trước khi lưu">
+<!ENTITY httpsfinder.preference.secureCookies "Bảo vệ cookies cho những HTTPS domain hợp lệ">
+<!ENTITY httpsfinder.preference.secureWildcardCookies "Đồng thời bảo vệ wildcard cookies cho các HTTPS domain">
+<!ENTITY httpsfinder.preference.detectionDescLONG "Truy vấn HEAD sử dụng ít băng thông hơn GET nhưng một số máy chủ không hỗ trợ nó. Nếu điều này xảy ra, HTTPS Finder sẽ trở về sử dụng truy vấn GET.">
+<!ENTITY httpsfinder.preference.detectionDescRec "Tùy chọn được khuyến nghị: Nếu bạn có một kết nối internet tốt, bỏ chọn để chỉ dùng GET. Với một đường truyền chậm, sử dụng HEAD trước có thể nhanh hơn rõ rệt ở đa phần các trang.">
+<!ENTITY httpsfinder.preference.debug "Bật debug (verbose) logging">
+<!ENTITY httpsfinder.rulePreview.top "Bản xem trước của thiết lập:">
+<!ENTITY httpsfinder.rulePreview.tip1 "Những gì bạn thay đổi sẽ thể hiện trong các thiết lập được lưu.">
+<!ENTITY httpsfinder.rulePreview.tip2 "Nhấn OK để lưu thiết lập hoặc Hủy bỏ (Cancel) để trở lại.">
+<!ENTITY httpsfinder.rulePreview.link "https://www.eff.org/https-everywhere/rulesets">
+<!ENTITY httpsfinder.rulePreview.clickhere "tại đây">
+<!ENTITY httpsfinder.rulePreview.learnmore "Tìm hiểu thêm về cấu trúc thiết lập">
+<!ENTITY httpsfinder.menu.settings "Tùy chọn">
+<!ENTITY httpsfinder.menu.settingsKey "P">
+<!ENTITY httpsfinder.menu.refresh "Xóa danh sách an toàn tạm thời">
+<!ENTITY httpsfinder.menu.refreshKey "C">
+<!ENTITY httpsfinder.menu.homepage "Website dự án">
+<!ENTITY httpsfinder.menu.homepageKey "P">
+<!ENTITY httpsfinder.menu.rate "Bình chọn HTTPS Finder">
+<!ENTITY httpsfinder.menu.rateKey "R">
+<!ENTITY httpsfinder.menu.help "Giúp đỡ">
+<!ENTITY httpsfinder.menu.helpKey "H">
+<!ENTITY httpsfinder.preference.createRule "Tạo Rule (thiết lập mới)">
+<!ENTITY httpsfinder.preference.sslReport "Tạo báo cáo SSL">
+<!ENTITY httpsfinder.preference.clearResults "Xóa toàn bộ kết quả">
+<!ENTITY httpsfinder.preference.listHeaderHTTPS "Kết quả HTTPS">
+<!ENTITY httpsfinder.preference.listHeaderTitle "Kết quả tìm phiên làm việc">
+<!ENTITY httpsfinder.preference.autoDismissTitle "Tự động bỏ qua thông báo sau (giây)">
+<!ENTITY httpsfinder.preference.autoDismissToolTip "Thời gian (giây)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Bỏ chọn để chạy ngầm dò tìm. Hiển thị kết quả và tạo thiết lập trong thẻ Nâng cao">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Bật thông báo Tìm thấy HTTPS (nếu tự động chuyển HTTPS bị tắt)">
+<!ENTITY httpsfinder.translation.german "- German (Michael Wolf &amp; Daniel Helmert)">
+<!ENTITY httpsfinder.translation.dutch "- Dutch (Donné Brok)">
+<!ENTITY httpsfinder.translation.polish "- Polish (PcP)">
+<!ENTITY httpsfinder.translation.swedish "- Swedish (Mikael Hiort)">
+<!ENTITY httpsfinder.translation.spanish "- Spanish (strel)">
+<!ENTITY httpsfinder.translation.portuguese "- Portuguese (Megahertz)">
+<!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">
+<!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng)">
+<!ENTITY httpsfinder.translation.taiwan "- Chinese (Taiwan) (swda289346)">
+<!ENTITY httpsfinder.translation.italian "- Italian (Walter Purcaro)">
