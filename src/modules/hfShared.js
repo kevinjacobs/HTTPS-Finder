@@ -159,7 +159,7 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
 
 		rule += "<rule from=";
 		rule += "\"" + from + "\"";
-		rule += "to=\"" + to + "\"\/>\n";
+		rule += " to=\"" + to + "\"\/>\n";
 		
 		rule += "<\/ruleset>";	
 		
@@ -191,7 +191,7 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
 
 		rule += "<rule from=";
 		rule += "\"" + from + "\"";
-		rule += "to=\"" + to + "\"\/>\n";
+		rule += " to=\"" + to + "\"\/>\n";
 		
 		rule += "<\/ruleset>";
 	/*
@@ -213,7 +213,7 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
 
 	rule += "<rule from=";
 	rule += "\"" + from + "\"";
-	rule += "to=\"" + to + "\"\/>\n";
+	rule += " to=\"" + to + "\"\/>\n";
 		
 	rule += "<\/ruleset>";
 
