@@ -13,41 +13,57 @@
                 <em:translator>Michael Wolf</em:translator>
                 <em:translator>Daniel Helmert</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>nl</em:locale>
                 <em:description>Laat zien of een website beschikbaar is in SSL en maakt automatisch regels voor HTTPS Everywhere</em:description>
                 <em:translator>Donné Brok</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>pl</em:locale>
                 <em:description>Automatycznie wykrywaj i ostrzegaj, gdy SSL jest dostepne na stronie internetowej. Automatyczne twórz reguly dla HTTPS Everywhere</em:description>
                 <em:translator>PcP</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>sv-SE</em:locale>
                 <em:description>Identifierar automatiskt om SSL Ã¤r tillgÃ¤ngligt pÃ¥ en webbsida och meddelar dig om det. Automatiserat regelskapande fÃ¶r HTTPS Everywhere</em:description>
                 <em:translator>Mikael Hiort af OrnÃ¤s</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>es-ES</em:locale>
                 <em:description>Detectar automáticamente y alertar cuando SSL esté disponible en una página web.</em:description>
                 <em:translator>strel</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>pt-PT</em:locale>
                 <em:description>Automaticamente detecta e alerta quando SSL (protocólo de segurança) está disponível numa página da web. Automatiza a criação de uma regra para uso do aditivo HTTPS Everywhere.</em:description>
                 <em:translator>Megahertz</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>fi</em:locale>
                 <em:description>Havaitsee ja hälyttää automaattisesti kun SSL on käytettävissä webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sääntöluominen</em:description>
                 <em:translator>Jorma Karvonen</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>zh-CN</em:locale>
                 <em:description>当前页面可用HTTPS时，自动提示并为HTTPS Everywhere创建规则。</em:description>
                 <em:translator>Christopher Meng</em:translator>
             </Description>
+        </em:localized>
+        <em:localized>
             <Description>
                 <em:locale>zh-TW</em:locale>
                 <em:description>自動偵測並提示可用的SSL網頁，並加入HTTPS Everywhere規則。</em:description>
