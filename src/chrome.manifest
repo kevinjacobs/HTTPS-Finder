@@ -14,5 +14,5 @@ locale	{appname}	sv-SE			locale/sv-SE/
 locale	{appname}	zh-CN			locale/zh-CN/
 locale	{appname}	zh-TW			locale/zh-TW/
 
-resource hfShared /../modules/
+resource hfShared modules/
 overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/Overlay.xul
