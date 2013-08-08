@@ -3,31 +3,31 @@
 "message":"Autor:"
 },
 "httpsfinder_buildDate":{
-"message":"9 Luty 2012"
+"message":"9 lutego 2012"
 },
 "httpsfinder_buildDateTitle":{
 "message":"Data wydania:"
 },
 "httpsfinder_description":{
-"message":"Automatycznie wykrywaj i ostrzegaj, gdy SSL jest dostepne na stronie internetowej. Automatyczne twÃ³rz reguly dla HTTPS Everywhere "
+"message":"Automatycznie wykrywa i informuje, gdy na stronie internetowej dostÄpny jest protokÃ³Å SSL. Automatycznie tworzy reguÅy dla HTTPS Everywhere."
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"Wyglada na to,ze nie masz HTTPS-Everywhere zainstalowane. Reguly zostana zapisane, ale nie wykonywane, az do zainstalowania go."
+"message":"WyglÄda na to, Å¼e dodatek HTTPS Everywhere nie jest zainstalowany. ReguÅy zostanÄ zapisane, ale nie bÄdÄ wykorzystywane do czasu zainstalowania tego dodatku."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS wymuszone. Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie rÃ³znic od wersji HTTP)"
+"message":"HTTPS wymuszone. ZapisaÄ tÄ reguÅÄ dla HTTPS Everywhere? Informacja. UsÅugi oferowane przez HTTPS mogÄ siÄ rÃ³Å¼niÄ od wersji HTTP."
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"Pobierz HTTPS Everywhere"
 },
 "httpsfinder_main_getHttpsEverywhereKey":{
-"message":"G"
+"message":"M"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Wyglada na to, ze istnieje zaszyfrowana wersja tej strony. Chcesz tam isc teraz?"
+"message":"WyglÄda na to, Å¼e istnieje szyfrowana wersja tej strony. Chcesz tam przejÅÄ teraz?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Nie teraz"
@@ -42,61 +42,61 @@
 "message":"N"
 },
 "httpsfinder_main_rememberSetting":{
-"message":"Zapisz regule"
+"message":"Zapisz reguÅÄ"
 },
 "httpsfinder_main_rememberSettingKey":{
 "message":"S"
 },
 "httpsfinder_main_restartNo":{
-"message":"Zrestartuj pÃ³zniej"
+"message":"Uruchom ponownie pÃ³Åºniej"
 },
 "httpsfinder_main_restartNoKey":{
-"message":"l"
+"message":"H"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"Reguly beda wykorzystywane po nastepnym restarcie Fx. Zrestartowac teraz? (Otwarte karty beda zapisane)"
+"message":"ReguÅy bÄdÄ wykorzystywane po ponownym uruchomieniu Firefoksa. UruchomiÄ ponownie teraz? Otwarte karty zostanÄ zapisane."
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"Reguly beda wykorzystywane po nastepnym restarcie Fx. Zrestartowac teraz?"
+"message":"ReguÅy bÄdÄ wykorzystywane po ponownym uruchomieniu Firefoksa. UruchomiÄ ponownie teraz?"
 },
 "httpsfinder_main_restartYes":{
-"message":"Zrestartuj teraz"
+"message":"Uruchom ponownie teraz"
 },
 "httpsfinder_main_restartYesKey":{
-"message":"n"
+"message":"U"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"Reguly beda wykonywane przez HTTPS-Everywhere po kolejnym restartu przegladarki."
+"message":"ReguÅy bÄdÄ wykonywane przez HTTPS Everywhere po ponownym uruchomieniu przeglÄdarki."
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"Regula dodana"
+"message":"ReguÅa zostaÅa dodana"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie rÃ³znic od wersji HTTP)"
+"message":"ZapisaÄ tÄ reguÅÄ dla HTTPS Everywhere? Informacja. UsÅugi oferowane przez HTTPS mogÄ siÄ rÃ³Å¼niÄ od wersji HTTP."
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
+"message":"Ta strona oferuje podpisany przez siebie certyfikat dla HTTPS. Dodaj do listy domen lub przejdÅº do strony HTTPS i dodaj wyjÄtek. Informacja. HTTP Finder nie bÄdzie wymuszaÅ HTTPS dla stron, ktÃ³re same podpisaÅy certyfikat. UtwÃ³rz reguÅÄ, jeÅ¼eli chcesz zawsze uÅ¼ywaÄ HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"Domena zostala dodana do tymczasowej (na okres sesji) bialej listy."
+"message":"Domena zostaÅa dodana do tymczasowej listy â na czas trwania sesji."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
-"message":"Tymczasowo umieszczony na bialej liscie"
+"message":"Tymczasowo umieszczona na liÅcie"
 },
 "httpsfinder_main_whitelist":{
-"message":"Dodaj do bialej listy"
+"message":"Dodaj do listy domen, na ktÃ³rych nie jest wykrywany HTTPS"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"Domena dodana do bialej listy"
+"message":"Domena zostaÅa dodana"
 },
 "httpsfinder_main_whitelistKey":{
-"message":"A"
+"message":"D"
 },
 "httpsfinder_main_yesRedirect":{
-"message":"Tak, idz doHTTPS"
+"message":"Tak, idÅº do HTTPS"
 },
 "httpsfinder_main_yesRedirectKey":{
-"message":"Y"
+"message":"T"
 },
 "httpsfinder_menu_help":{
 "message":"Pomoc"
@@ -117,7 +117,7 @@
 "message":"O"
 },
 "httpsfinder_menu_refresh":{
-"message":"Usuń tymczasową białą liste"
+"message":"Usuń tymczasową listę domen"
 },
 "httpsfinder_menu_refreshKey":{
 "message":"t"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"Biala lista i wyniki wykrywania sesji wyczyszczone"
+"message":"Lista i wyniki wykrywania sesji zostaÅy wyczyszczone"
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"480"
@@ -147,112 +147,112 @@
 "message":"515"
 },
 "httpsfinder_preference_aboutTab":{
-"message":"O wtyczce"
+"message":"HTTPS Finder – informacje"
 },
 "httpsfinder_preference_advancedTab":{
 "message":"Zaawansowane"
 },
 "httpsfinder_preference_autoDismissTitle":{
-"message":"Auto-dismiss alerts after (seconds)"
+"message":"Automatycznie ukrywaj powiadomienia po (w sekundach)"
 },
 "httpsfinder_preference_autoDismissToolTip":{
-"message":"Duration (seconds)"
+"message":"Czas wyświetlania (w sekundach)"
 },
 "httpsfinder_preference_autoForward":{
-"message":"Automatycznie przekieruj na HTTPS, kiedy dostępne"
+"message":"Automatycznie przekieruj na HTTPS, gdy jest dostępne"
 },
 "httpsfinder_preference_clearResults":{
-"message":"Clear All Results"
+"message":"Wyczyść wszystkie wyniki"
 },
 "httpsfinder_preference_createRule":{
-"message":"Create Rule"
+"message":"Utwórz regułę"
 },
 "httpsfinder_preference_debug":{
-"message":"Włącz 'gadatliwy' tryb"
+"message":"Włącz zapis zdarzeń"
 },
 "httpsfinder_preference_detectionDescLONG":{
-"message":"Żądania HEAD używają mniej łącza niż GET, ale niektóre serwery mogą nie obsługiwać go. Jeśli tak się stanie, HTTPS Finder będzie próbował ponownie połączyć się przez żądanie GET."
+"message":"Żądania HEAD mniej obciążają łącze niż GET, ale niektóre serwery mogą ich nie obsługiwać. Jeśli tak się stanie, HTTPS Finder będzie próbował ponownie połączyć się, używając żądania GET."
 },
 "httpsfinder_preference_detectionDescRec":{
-"message":"Zalecenia do ustawień: Jeśli masz szybkie łącze, usuń zaznaczenie, aby używać żądań GET. Na wolniejszych łączach, HEAD może być zauważalnie szybsze na większości witryn."
+"message":"Zalecenia do ustawień: Jeśli masz szybkie łącze usuń zaznaczenie, aby używać żądań GET. Na wolniejszych łączach żądanie HEAD może być zauważalnie szybsze na większości witryn."
 },
 "httpsfinder_preference_detectionLabel":{
-"message":"Meteoda wykrywania"
+"message":"Metoda wykrywania"
 },
 "httpsfinder_preference_enable":{
-"message":"Uruchom HTTPS Finder"
+"message":"Włącz HTTPS Finder"
 },
 "httpsfinder_preference_generalTab":{
 "message":"Ogólne"
 },
 "httpsfinder_preference_headFirst":{
-"message":"Używaj pierw wykrywania HEAD (Powróci do żądań GET, jeśli nie wspierane przez serwer)"
+"message":"Wykrywaj najpierw HEAD, powróć do żądań GET, jeśli HEAD nie jest obsługiwany przez serwer"
 },
 "httpsfinder_preference_learnLinkName":{
-"message":"tutaj"
+"message":"tutaj."
 },
 "httpsfinder_preference_learnMoreTip":{
-"message":"Czytaj więcej na temat HTTPS Finder"
+"message":"Więcej informacji na temat HTTPS Finder znajdziesz"
 },
 "httpsfinder_preference_listHeaderHTTPS":{
-"message":"HTTPS Result"
+"message":"Wyniki dla HTTPS"
 },
 "httpsfinder_preference_listHeaderTitle":{
-"message":"Session discovery results"
+"message":"Wyniki wykrywania dla bieżącej sesji"
 },
 "httpsfinder_preference_noHTTPSAlertTitle":{
-"message":"Enable HTTPS Found alerts (if auto-enforce HTTPS is disabled)"
+"message":"Wyświetlaj powiadomienia o wykryciu HTTPS, jeśli automatyczne wymuszanie HTTPS jest wyłączone"
 },
 "httpsfinder_preference_noHTTPSAlertTooltip":{
-"message":"Uncheck for silent detection only. View results and create rules from the Advanced tab"
+"message":"Odznacz, aby aktywować ciche wykrywanie. Podgląd wyników i tworzenie reguł z zakładki Zaawansowane."
 },
 "httpsfinder_preference_noResultsPB":{
-"message":"No results saved in Private Browsing"
+"message":"Brak wynikÃ³w zapisanych w trybie prywatnym"
 },
 "httpsfinder_preference_noRulePrompt":{
 "message":"Nie pytaj o zapisanie reguł przekierowań (do wykorzystania bez HTTPS Everywhere)"
 },
 "httpsfinder_preference_ruleTip":{
-"message":"Do reguł białej listy pamiętaj, że www.domain.com jest subdomeną domain.com."
+"message":"Tworząc reguły pamiętaj, że www.domain.com jest subdomeną domain.com."
 },
 "httpsfinder_preference_savedRulesTip":{
-"message":"Zapisane reguły mogą zostać wyłączone w ustawieniach HTTPS Everywhere"
+"message":"Zapisane reguły mogą zostać wyłączone w ustawieniach HTTPS Everywhere."
 },
 "httpsfinder_preference_secureCookies":{
-"message":"Secure cookies for valid HTTPS domains"
+"message":"Bezpieczne ciasteczka dla poprawnych domen HTTPS"
 },
 "httpsfinder_preference_secureWildcardCookies":{
-"message":"Also secure wildcard cookies for HTTPS domains"
+"message":"Bezpieczne ciasteczka wielodomenowe dla domen HTTPS"
 },
 "httpsfinder_preference_showpreview":{
-"message":"Pokaż podgląd reguły (pozwala edytować) przed zapisaniem reguły"
+"message":"Pokaż podgląd reguły (z możliwością edycji) przed jej zapisaniem"
 },
 "httpsfinder_preference_sslReport":{
-"message":"Generate SSL Report"
+"message":"Generuj raport SSL"
 },
 "httpsfinder_preference_supportEmail":{
 "message":"httpsfinder@gmail.com"
 },
 "httpsfinder_preference_supportTitle":{
-"message":"E-mail wsparcia:"
+"message":"E-mail pomocy:"
 },
 "httpsfinder_preference_title":{
-"message":"Ustawienia HTTPS Finder "
+"message":"HTTPS Finder – ustawienia"
 },
 "httpsfinder_preference_titleKey":{
-"message":"H"
+"message":"T"
 },
 "httpsfinder_preference_translations":{
-"message":"Przettłumaczono przez następujące osoby:"
+"message":"Autorzy tłumaczeń:"
 },
 "httpsfinder_preference_whitelistAddButton":{
-"message":"Dodaj do białej listy"
+"message":"Dodaj do listy"
 },
 "httpsfinder_preference_whitelistAddTextbox":{
 "message":"Nazwa hosta (domain.tld, sub.domain.tld, *.domain.tld)"
 },
 "httpsfinder_preference_whitelistLabel":{
-"message":"Biała lista domen (Nie wykrywaj HTTPS na nich)"
+"message":"Lista domen, na których HTTPS nie jest wykrywany"
 },
 "httpsfinder_preference_whitelistModify":{
 "message":"Modyfikuj"
@@ -267,19 +267,19 @@
 "message":"tutaj"
 },
 "httpsfinder_rulePreview_learnmore":{
-"message":"Dowiedz się więcej o zasadach formatowania"
+"message":"Dowiedz się więcej o formatowaniu reguł"
 },
 "httpsfinder_rulePreview_link":{
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"Overwrite existing rule?"
+"message":"ZastÄpiÄ istniejÄcÄ reguÅÄ?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Wszelkie wprowadzone zmiany zostaną uwzględnione w zapisanej regule."
 },
 "httpsfinder_rulePreview_tip2":{
-"message":"Kliknij przycisk OK, aby zapisać regułę, lub Anuluj, aby powrócić bez zapisywania"
+"message":"Naciśnij przycisk OK, by zapisać regułę lub Anuluj, aby powrócić bez zapisywania"
 },
 "httpsfinder_rulePreview_top":{
 "message":"Podgląd reguły"
@@ -297,10 +297,13 @@
 "message":"- Fiński (Jorma Karvonen)"
 },
 "httpsfinder_translation_german":{
-"message":"- Niemiecki (Michael Wolf &amp; Daniel Helmert)"
+"message":"- Niemiecki (Michael Wolf i Daniel Helmert)"
+},
+"httpsfinder_translation_italian":{
+"message":"- Włoski (Walter Purcaro)"
 },
 "httpsfinder_translation_polish":{
-"message":"- Polska (PcP)"
+"message":"- Polski (PcP, Szpak &amp; Teo)"
 },
 "httpsfinder_translation_portuguese":{
 "message":"- Portugalski (Megahertz)"
@@ -312,12 +315,12 @@
 "message":"- Szwedzki (Mikael Hiort)"
 },
 "httpsfinder_translation_taiwan":{
-"message":"- Chinese (Taiwan) (swda289346)"
+"message":"- Chiński (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.86"
+"message":"0.90"
 },
 "httpsfinder_version":{
-"message":"0.86"
+"message":"0.90"
 }
 }

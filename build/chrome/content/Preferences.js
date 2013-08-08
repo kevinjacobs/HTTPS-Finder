@@ -68,11 +68,24 @@ httpsfinder.Preferences = {
 
     loadResults: function(){
         var theList = document.getElementById('cacheList');
+        var privatebrowsing = false;
+        try {
+          // Firefox 20+
+          Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+          privatebrowsing = PrivateBrowsingUtils.isWindowPrivate(window);
+        } catch(e) {
+          // pre Firefox 20 (if you do not have access to a doc. 
+          // might use doc.hasAttribute("privatebrowsingmode") then instead)
+          try {
+            privatebrowsing = Components.classes["@mozilla.org/privatebrowsing;1"].
+                                    getService(Components.interfaces.nsIPrivateBrowsingService).
+                                    privateBrowsingEnabled;
+          } catch(e) {
+            Components.utils.reportError(e);
+          }
+        }
 
-        var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]
-        .getService(Components.interfaces.nsIPrivateBrowsingService);
-
-        if (pbs.privateBrowsingEnabled){
+        if (privatebrowsing){
             let row = document.createElement('listitem');
             let cell = document.createElement('listcell');
             var strings = document.getElementById("httpsfinderStrings");

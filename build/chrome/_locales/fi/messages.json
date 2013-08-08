@@ -299,6 +299,9 @@
 "httpsfinder_translation_german":{
 "message":"- saksa (Michael Wolf &amp; Daniel Helmert)"
 },
+"httpsfinder_translation_italian":{
+"message":"- Italialainen (Walter Purcaro)"
+},
 "httpsfinder_translation_polish":{
 "message":"- puola (PcP)"
 },
@@ -318,6 +321,6 @@
 "message":"0.89"
 },
 "httpsfinder_version":{
-"message":"0.86"
+"message":"0.89"
 }
 }

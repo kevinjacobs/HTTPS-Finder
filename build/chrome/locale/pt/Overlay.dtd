@@ -8,7 +8,7 @@
 <!--janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro -->
 
 
-<!ENTITY httpsfinder.version "0.86">
+<!ENTITY httpsfinder.version "0.90">
 <!ENTITY httpsfinder.buildDate "9/fevereiro/2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Data da revisão:">
@@ -76,7 +76,7 @@
 <!ENTITY httpsfinder.translation.finnish "- Finlandês (Jorma Karvonen)">
 <!ENTITY httpsfinder.translation.chinese "- Chinês (Christopher Meng)">
 <!ENTITY httpsfinder.translation.taiwan "- Chinese (Taiwan) (swda289346)">
-
+<!ENTITY httpsfinder.translation.italian "- Italiano (Walter Purcaro)">
 
 
 

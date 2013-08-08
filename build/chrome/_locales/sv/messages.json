@@ -299,6 +299,9 @@
 "httpsfinder_translation_german":{
 "message":"- Tyska (Michael Wolf &amp; Daniel Helmert)"
 },
+"httpsfinder_translation_italian":{
+"message":"- Italienska (Walter Purcaro)"
+},
 "httpsfinder_translation_polish":{
 "message":"- Polska (PcP)"
 },
@@ -315,9 +318,9 @@
 "message":"- Kinesiska (traditionell) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.86"
+"message":"0.90"
 },
 "httpsfinder_version":{
-"message":"0.86"
+"message":"0.90"
 }
 }

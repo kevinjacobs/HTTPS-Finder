@@ -1,0 +1,329 @@
+{
+"httpsfinder_authorTitle":{
+"message":"Автор:"
+},
+"httpsfinder_buildDate":{
+"message":"4 апреля 2013"
+},
+"httpsfinder_buildDateTitle":{
+"message":"Дата сборки:"
+},
+"httpsfinder_description":{
+"message":"ÐÐ²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¸ Ð¾Ð±Ð½Ð°ÑÑÐ¶Ð¸Ð²Ð°ÐµÑ Ð¸ ÑÐ¾Ð¾Ð±ÑÐ°ÐµÑ, ÐµÑÐ»Ð¸ Ð´Ð»Ñ Ð´Ð°Ð½Ð½Ð¾Ð¹ ÑÑÑÐ°Ð½Ð¸ÑÑ Ð´Ð¾ÑÑÑÐ¿Ð½Ð¾ SSL. ÐÐ²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¸ ÑÐ¾Ð·Ð´Ð°ÑÑ Ð¿ÑÐ°Ð²Ð¸Ð»Ð° Ð´Ð»Ñ HTTPS Everywhere."
+},
+"httpsfinder_googleCodeURL":{
+"message":"https://code.google.com/p/https-finder/"
+},
+"httpsfinder_main_NoHttpsEverywhere":{
+"message":"ÐÐµ Ð¿Ð¾ÑÐ¾Ð¶Ðµ, ÑÑÐ¾ Ñ ÐÐ°Ñ ÑÑÑÐ°Ð½Ð¾Ð²Ð»ÐµÐ½ HTTPS Everywhere. ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ ÑÐ¾ÑÑÐ°Ð½ÐµÐ½Ñ, Ð½Ð¾ Ð½Ðµ Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÑÑÑÑÑ, Ð¿Ð¾ÐºÐ° ÐÑ Ð½Ðµ ÑÑÑÐ°Ð½Ð¾Ð²Ð¸ÑÐµ HTTPS Everywhere."
+},
+"httpsfinder_main_autoForwardRulePrompt":{
+"message":"HTTPS ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ ÑÑÑÐ°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾. Ð¡Ð¾ÑÑÐ°Ð½Ð¸ÑÑ ÑÑÐ¾ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð»Ñ HTTPS Everywhere? (ÐÑÐ¸Ð¼ÐµÑÐ°Ð½Ð¸Ðµ: Ð¡ÑÑÐ°Ð½Ð¸ÑÐ° Ð¸ ÑÐµÑÐ²Ð¸ÑÑ HTTPS Ð¼Ð¾Ð³ÑÑ Ð¾ÑÐ»Ð¸ÑÐ°ÑÑÑÑ Ð¾Ñ HTTP Ð²ÐµÑÑÐ¸Ð¸)"
+},
+"httpsfinder_main_getHttpsEverywhere":{
+"message":"Ð¡ÐºÐ°ÑÐ°ÑÑ HTTPS Everywhere"
+},
+"httpsfinder_main_getHttpsEverywhereKey":{
+"message":"G"
+},
+"httpsfinder_main_httpsFoundPrompt":{
+"message":"Ð­ÑÐ¾ Ð¿Ð¾ÑÐ¾Ð¶Ðµ Ð½Ð° Ð·Ð°ÑÐ¸ÑÑÐ¾Ð²Ð°Ð½Ð½ÑÑ Ð²ÐµÑÑÐ¸Ñ ÑÑÑÐ°Ð½Ð¸ÑÑ. ÐÑ Ð¶ÐµÐ»Ð°ÐµÑÐµ Ð¿ÐµÑÐµÐ¹ÑÐ¸ Ð½Ð° Ð½ÐµÑ?"
+},
+"httpsfinder_main_noRedirect":{
+"message":"ÐÐµ ÑÐµÐ¹ÑÐ°Ñ"
+},
+"httpsfinder_main_noRedirectKey":{
+"message":"N"
+},
+"httpsfinder_main_noThanks":{
+"message":"ÐÐµ ÑÐµÐ¹ÑÐ°Ñ"
+},
+"httpsfinder_main_noThanksKey":{
+"message":"N"
+},
+"httpsfinder_main_rememberSetting":{
+"message":"Ð¡Ð¾ÑÑÐ°Ð½Ð¸ÑÑ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾"
+},
+"httpsfinder_main_rememberSettingKey":{
+"message":"S"
+},
+"httpsfinder_main_restartNo":{
+"message":"ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ Ð¿Ð¾ÑÐ¾Ð¼"
+},
+"httpsfinder_main_restartNoKey":{
+"message":"l"
+},
+"httpsfinder_main_restartPrompt":{
+"message":"ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÐµÐ½Ñ Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑÐµÐ·Ð°Ð¿ÑÑÐºÐ° Firefox. ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ ÑÐµÐ¹ÑÐ°Ñ? (ÐÐºÐ»Ð°Ð´ÐºÐ¸ Ð±ÑÐ´ÑÑ ÑÐ¾ÑÑÐ°Ð½ÐµÐ½Ñ)"
+},
+"httpsfinder_main_restartPromptPrivate":{
+"message":"ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÐµÐ½Ñ Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑÐµÐ·Ð°Ð¿ÑÑÐºÐ° Firefox. ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ ÑÐµÐ¹ÑÐ°Ñ? ÐÐºÐ»Ð°Ð´ÐºÐ¸ ÐÐ Ð±ÑÐ´ÑÑ ÑÐ¾ÑÑÐ°Ð½ÐµÐ½Ñ (Ð²ÐºÐ»ÑÑÐµÐ½ ÑÐµÐ¶Ð¸Ð¼ Ð¿ÑÐ¸Ð²Ð°ÑÐ½Ð¾Ð³Ð¾ Ð¿ÑÐ¾ÑÐ¼Ð¾ÑÑÐ°)"
+},
+"httpsfinder_main_restartYes":{
+"message":"ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ ÑÐµÐ¹ÑÐ°Ñ"
+},
+"httpsfinder_main_restartYesKey":{
+"message":"n"
+},
+"httpsfinder_main_ruleAddedText":{
+"message":"ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÐµÐ½Ñ Ðº HTTPS-Everywhere Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑÐµÐ·Ð°Ð¿ÑÑÐºÐ° Ð±ÑÐ°ÑÐ·ÐµÑÐ°."
+},
+"httpsfinder_main_ruleAddedTitle":{
+"message":"ÐÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾"
+},
+"httpsfinder_main_saveRulePrompt":{
+"message":"Ð¡Ð¾ÑÑÐ°Ð½Ð¸ÑÑ ÑÑÐ¾ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð»Ñ HTTPS Everywhere? (ÐÑÐ¸Ð¼ÐµÑÐ°Ð½Ð¸Ðµ: Ð¡ÑÑÐ°Ð½Ð¸ÑÐ° Ð¸ ÑÐµÑÐ²Ð¸ÑÑ HTTPS Ð¼Ð¾Ð³ÑÑ Ð¾ÑÐ»Ð¸ÑÐ°ÑÑÑÑ Ð¾Ñ HTTP Ð²ÐµÑÑÐ¸Ð¸)"
+},
+"httpsfinder_main_selfSignedAlert":{
+"message":"Ð­ÑÐ° ÑÑÑÐ°Ð½Ð¸ÑÐ° Ð¿ÑÐµÐ´Ð»Ð¾Ð¶Ð¸Ð»Ð° ÑÐ°Ð¼Ð¾-Ð¿Ð¾Ð´Ð¿Ð¸ÑÐ°Ð½Ð½ÑÐ¹ ÑÐµÑÑÐ¸ÑÐ¸ÐºÐ°Ñ Ð´Ð»Ñ HTTPS. ÐÐ¾Ð±Ð°Ð²ÑÑÐµ ÑÑÑÐ°Ð½Ð¸ÑÑ Ð² Ð±ÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¸Ð»Ð¸ Ð·Ð°Ð¹Ð´Ð¸ÑÐµ Ð½Ð° HTTPS Ð²ÐµÑÑÐ¸Ñ ÑÑÑÐ°Ð½Ð¸ÑÑ Ð¸ Ð´Ð¾Ð±Ð°Ð²ÑÑÐµ ÐµÑ Ð² Ð¸ÑÐºÐ»ÑÑÐµÐ½Ð¸Ñ Firefox. ÐÐ ÐÐÐÐ§ÐÐÐÐ: HTTPS Finder Ð½Ðµ Ð¾ÑÑÑÐµÑÑÐ²Ð»ÑÐµÑ Ð¿ÑÐ¸Ð½ÑÐ´Ð¸ÑÐµÐ»ÑÐ½ÑÐ¹ HTTPS Ð½Ð° ÑÐ°Ð¹ÑÐ°Ñ Ñ ÑÐ°Ð¼Ð¾-Ð¿Ð¾Ð´Ð¿Ð¸ÑÐ°Ð½Ð½ÑÐ¼Ð¸ ÑÐµÑÑÐ¸ÑÐ¸ÐºÐ°ÑÐ°Ð¼Ð¸. Ð¡Ð¾Ð·Ð´Ð°Ð¹ÑÐµ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾ ÐµÑÐ»Ð¸ ÐÑ ÑÐ¾ÑÐ¸ÑÐµ Ð²ÑÐµÐ³Ð´Ð° Ð·Ð°ÑÐ¾Ð´Ð¸ÑÑ Ð¿Ð¾ HTTPS."
+},
+"httpsfinder_main_tempWhitelistedBody":{
+"message":"ÐÐ¾Ð¼ÐµÐ½ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½ (Ð½Ð° ÑÐµÐºÑÑÑÑ ÑÐµÑÑÐ¸Ñ) Ð²Ð¾ ÐÑÐµÐ¼ÐµÐ½Ð½ÑÐ¹ ÐÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº."
+},
+"httpsfinder_main_tempWhitelistedTitle":{
+"message":"ÐÑÐµÐ¼ÐµÐ½Ð½ÑÐ¹ ÐÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº"
+},
+"httpsfinder_main_whitelist":{
+"message":"ÐÐ¾Ð±Ð°Ð²Ð¸ÑÑ Ð² Ð±ÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº"
+},
+"httpsfinder_main_whitelistAdded":{
+"message":"ÐÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð»Ñ Ð´Ð¾Ð¼ÐµÐ½Ð° Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾ Ð² Ð±ÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº"
+},
+"httpsfinder_main_whitelistKey":{
+"message":"A"
+},
+"httpsfinder_main_yesRedirect":{
+"message":"ÐÐ°, Ð¿ÐµÑÐµÐ¹ÑÐ¸ Ðº HTTPS"
+},
+"httpsfinder_main_yesRedirectKey":{
+"message":"Y"
+},
+"httpsfinder_menu_help":{
+"message":"Помощь"
+},
+"httpsfinder_menu_helpKey":{
+"message":"H"
+},
+"httpsfinder_menu_homepage":{
+"message":"Сайт дополнения"
+},
+"httpsfinder_menu_homepageKey":{
+"message":"P"
+},
+"httpsfinder_menu_rate":{
+"message":"Добавить отзыв об HTTPS Finder"
+},
+"httpsfinder_menu_rateKey":{
+"message":"R"
+},
+"httpsfinder_menu_refresh":{
+"message":"Очистить временный белый список"
+},
+"httpsfinder_menu_refreshKey":{
+"message":"C"
+},
+"httpsfinder_menu_settings":{
+"message":"Настройки"
+},
+"httpsfinder_menu_settingsKey":{
+"message":"P"
+},
+"httpsfinder_mySite":{
+"message":"http://www.KevinAJacobs.com"
+},
+"httpsfinder_overlay_whitelistReset":{
+"message":"ÐÑÐµÐ¼ÐµÐ½Ð½ÑÐ¹ ÐÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¸ Ð¾Ð±Ð½Ð°ÑÑÐ¶ÐµÐ½Ð½ÑÐµ Ð·Ð° ÑÐµÑÑÐ¸Ñ ÑÐµÐ·ÑÐ»ÑÑÐ°ÑÑ Ð¾ÑÐ¸ÑÐµÐ½Ñ."
+},
+"httpsfinder_prefSize_detectChkDescWidth":{
+"message":"405"
+},
+"httpsfinder_prefSize_detectDescWidth":{
+"message":"450"
+},
+"httpsfinder_prefSize_windowHeight":{
+"message":"570"
+},
+"httpsfinder_prefSize_windowWidth":{
+"message":"515"
+},
+"httpsfinder_preference_aboutTab":{
+"message":"О расширении"
+},
+"httpsfinder_preference_advancedTab":{
+"message":"Дополнительно"
+},
+"httpsfinder_preference_autoDismissTitle":{
+"message":"Автоматически скрывать предупреждение после (секунд)"
+},
+"httpsfinder_preference_autoDismissToolTip":{
+"message":"Длительность (секунд)"
+},
+"httpsfinder_preference_autoForward":{
+"message":"Автоматически использовать HTTPS, если возможно"
+},
+"httpsfinder_preference_clearResults":{
+"message":"Очистить Все результаты"
+},
+"httpsfinder_preference_createRule":{
+"message":"Создать Правило"
+},
+"httpsfinder_preference_debug":{
+"message":"Включить отладку (подробно) логов"
+},
+"httpsfinder_preference_detectionDescLONG":{
+"message":"HEAD запрашивает ширину полосы пропускания меньше чем GET, некоторые серверы этого не поддерживают. Если такое происходит, то HTTPS Finder попытается снизить ширину запроса GET."
+},
+"httpsfinder_preference_detectionDescRec":{
+"message":"Рекомендуемое значение: Если у вас есть быстрое подключение, снимите флажок использовать только GET. С медленным соединением HEAD может быть заметно быстрее на большинстве сайтов."
+},
+"httpsfinder_preference_detectionLabel":{
+"message":"Метод обнаружения"
+},
+"httpsfinder_preference_enable":{
+"message":"Включить HTTPS Finder"
+},
+"httpsfinder_preference_generalTab":{
+"message":"Основные"
+},
+"httpsfinder_preference_headFirst":{
+"message":"Обнаружение через HEAD (используется GET, если сервер не поддерживает HEAD)"
+},
+"httpsfinder_preference_learnLinkName":{
+"message":"здесь"
+},
+"httpsfinder_preference_learnMoreTip":{
+"message":"Узнать больше о HTTPS Finder"
+},
+"httpsfinder_preference_listHeaderHTTPS":{
+"message":"HTTPS Результаты"
+},
+"httpsfinder_preference_listHeaderTitle":{
+"message":"Обнаруженное за сессию"
+},
+"httpsfinder_preference_noHTTPSAlertTitle":{
+"message":"Включить оповещение о найденном HTTPS (если авто-применение HTTPS отключено)"
+},
+"httpsfinder_preference_noHTTPSAlertTooltip":{
+"message":"Снимите флажок для тихого обнаружения. Просмотр результатов и создание правил во вкладке Дополнительно"
+},
+"httpsfinder_preference_noResultsPB":{
+"message":"ÐÐµÑ ÑÐ¾ÑÑÐ°Ð½ÑÐ½Ð½ÑÑ ÑÐµÐ·ÑÐ»ÑÑÐ°ÑÐ¾Ð² Ð²Ð¾ Ð²ÑÐµÐ¼Ñ ÐÑÐ¸Ð²Ð°ÑÐ½Ð¾Ð³Ð¾ Ð¿ÑÐ¾ÑÐ¼Ð¾ÑÑÐ°"
+},
+"httpsfinder_preference_noRulePrompt":{
+"message":"Не предлагать сохранение HTTPS правил (Для использования без HTTPS Everywhere)"
+},
+"httpsfinder_preference_ruleTip":{
+"message":"Примечание для правил белого списка, домен www.domain.com это субдомен domain.com."
+},
+"httpsfinder_preference_savedRulesTip":{
+"message":"Сохранённые правила могут быть отключены в настройках HTTPS Everywhere."
+},
+"httpsfinder_preference_secureCookies":{
+"message":"Использовать Secure cookies для HTTPS доменов"
+},
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"Также использовать шаблон безопасности cookies для HTTPS доменов"
+},
+"httpsfinder_preference_showpreview":{
+"message":"Осуществлять предварительный показ правил (возможно редактирование) перед сохранением"
+},
+"httpsfinder_preference_sslReport":{
+"message":"Сгенерировать SSL Отчёт"
+},
+"httpsfinder_preference_supportEmail":{
+"message":"httpsfinder@gmail.com"
+},
+"httpsfinder_preference_supportTitle":{
+"message":"Email техподдержки:"
+},
+"httpsfinder_preference_title":{
+"message":"Настройки HTTPS Finder"
+},
+"httpsfinder_preference_titleKey":{
+"message":"H"
+},
+"httpsfinder_preference_translations":{
+"message":"Переводы осуществлены:"
+},
+"httpsfinder_preference_whitelistAddButton":{
+"message":"Добавить в Белый список"
+},
+"httpsfinder_preference_whitelistAddTextbox":{
+"message":"Имя хоста (domain.tld, sub.domain.tld, *.domain.tld)"
+},
+"httpsfinder_preference_whitelistLabel":{
+"message":"Белый список доменов (Не обнаруживать HTTPS на этих адресах)"
+},
+"httpsfinder_preference_whitelistModify":{
+"message":"Редактировать"
+},
+"httpsfinder_preference_whitelistRemove":{
+"message":"Удалить элемент"
+},
+"httpsfinder_preference_whitelistUrlColumn":{
+"message":"Имя хоста"
+},
+"httpsfinder_rulePreview_clickhere":{
+"message":"здесь"
+},
+"httpsfinder_rulePreview_learnmore":{
+"message":"Узнайте больше о форматировании правил"
+},
+"httpsfinder_rulePreview_link":{
+"message":"https://www.eff.org/https-everywhere/rulesets"
+},
+"httpsfinder_rulePreview_overwriteConfirm":{
+"message":"ÐÐµÑÐµÐ¿Ð¸ÑÐ°ÑÑ ÑÑÑÐµÑÑÐ²ÑÑÑÐµÐµ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾?"
+},
+"httpsfinder_rulePreview_tip1":{
+"message":"Любые изменения, которые Вы сделаете, будут отражены в сохраненных правилах."
+},
+"httpsfinder_rulePreview_tip2":{
+"message":"Нажмите OK, чтобы сохранить правило или Отменить, чтобы выйти не сохраняя"
+},
+"httpsfinder_rulePreview_top":{
+"message":"Предварительный просмотр Правил:"
+},
+"httpsfinder_title":{
+"message":"HTTPS Finder"
+},
+"httpsfinder_translation_chinese":{
+"message":"- Chinese (Christopher Meng)"
+},
+"httpsfinder_translation_dutch":{
+"message":"- Dutch (Donné Brok)"
+},
+"httpsfinder_translation_finnish":{
+"message":"- Finnish (Jorma Karvonen)"
+},
+"httpsfinder_translation_german":{
+"message":"- German (Michael Wolf &amp; Daniel Helmert)"
+},
+"httpsfinder_translation_italian":{
+"message":"- Italian (Walter Purcaro)"
+},
+"httpsfinder_translation_polish":{
+"message":"- Polish (PcP)"
+},
+"httpsfinder_translation_portuguese":{
+"message":"- Portuguese (Megahertz)"
+},
+"httpsfinder_translation_russian":{
+"message":"- Russian (Zaycoff)"
+},
+"httpsfinder_translation_spanish":{
+"message":"- Spanish (strel)"
+},
+"httpsfinder_translation_swedish":{
+"message":"- Swedish (Mikael Hiort)"
+},
+"httpsfinder_translation_taiwan":{
+"message":"- Chinese (Taiwan) (swda289346)"
+},
+"httpsfinder_version":{
+"message":"0.89"
+},
+"httpsfinder_version":{
+"message":"0.90"
+}
+}

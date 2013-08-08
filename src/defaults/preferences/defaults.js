@@ -14,3 +14,4 @@ pref("extensions.httpsfinder.appendVersionTagToRules", true);
 pref("extensions.httpsfinder.allowSelfSignedCerts", false);
 pref("extensions.httpsfinder.attemptSecureCookies", false);
 pref("extensions.httpsfinder.secureWildcardCookies", false);
+pref("extensions.httpsfinder.useNoscript", false);

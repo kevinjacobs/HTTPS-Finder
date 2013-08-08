@@ -118,7 +118,18 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
     var prefs = prefService.getBranch("extensions.httpsfinder.");
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
     var strings = currentWindow.document.getElementById("httpsfinderStrings");
-
+    
+    if(prefs.getBoolPref("useNoscript")){
+        var noscriptPrefs = prefService.getBranch("noscript.");
+        var existingRules = noscriptPrefs.getCharPref("httpsForced");
+        if(existingRules.indexOf(hostname + ",") == -1){
+            noscriptPrefs.setCharPref("httpsForced", existingRules + hostname + ",");
+            if(this.results.tempNoAlerts.indexOf(hostname) == -1)
+                this.results.tempNoAlerts.push(hostname);
+            alertRuleFinished(currentWindow.gBrowser.contentDocument);  
+        }
+        return;
+    }
     var title = "";
     var tldLength = topLevel.length - 1;
     if(hostname.indexOf("www.") != -1)
@@ -145,36 +156,32 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
         //Then the hostname is of the form "mysite.com". We add a "www." rule as well in this case.
         var wwwHost =  "www." + hostname;
         to = "https://" + hostname + "/";
-        rule = <{
-        "ruleset"
-        }
-        name = {
-        name
-        }>
-        <{
-        "target"
-        }
-        host={
-        hostname
-        }/>
-        <{
-        "target"
-        }
-        host={
-        wwwHost
-        }/>
-        <{
-        "rule"
-        }
-        from={
-        from
-        }
-        to={
-        to
-        }/>
-        </{
-        'ruleset'
-        }>;
+	rule = "<ruleset name=";
+		rule += "\"" + name + "\"";
+		rule += ">\n";
+
+		rule += "<target host=";
+		rule += "\"" + hostname + "\"";
+		rule += "\/>\n";
+
+		rule += "<target host=";
+		rule += "\"" + wwwHost + "\"";
+		rule += "\/>\n";
+
+		rule += "<rule from=";
+		rule += "\"" + from + "\"";
+		rule += " to=\"" + to + "\"\/>\n";
+		
+		rule += "<\/ruleset>";	
+		
+
+
+        /*rule = <{"ruleset"} name = {name}>
+        		<{"target"} host={hostname}/>
+        		<{"target"} host={wwwHost}/>
+        		<{"rule"} from={from} to={to}/>
+               </{'ruleset'}>;
+	*/
     }
     else if(domains.length == 3){
         //Then the hostname already contains subdomain info (www or non-www).
@@ -185,60 +192,49 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
             from = "^http://(www\\.)?" + fromBits[0] + "\\." + fromBits[1]  + "\\"  + topLevel + "/";         
         }
         to = "https://" + hostname + "/";
-        rule = <{
-        "ruleset"
-        }
-        name = {
-        name
-        }>
-        <{
-        "target"
-        }
-        host={
-        hostname
-        }/>
-        <{
-        'rule'
-        }
-        from={
-        from
-        }
-        to={
-        to
-        }/>
-        </{
-        "ruleset"
-        }>;
-    }
-    else
-        //Catch all
-        rule = <{
-        "ruleset"
-        }
-        name = {
-        name
-        }>
-        <{
-        "target"
-        }
-        host={
-        hostname
-        }/>
-        <{
-        "rule"
-        }
-        from={
-        from
-        }
-        to={
-        to
-        }/>
-        </{
-        "ruleset"
-        }>;
+	rule = "<ruleset name=";
+		rule += "\"" + name + "\"";
+		rule += ">\n";
 
-    if(rule)
-        rule = rule.toXMLString();
+		rule += "<target host=";
+		rule += "\"" + hostname + "\"";
+		rule += "\/>\n";
+
+		rule += "<rule from=";
+		rule += "\"" + from + "\"";
+		rule += " to=\"" + to + "\"\/>\n";
+		
+		rule += "<\/ruleset>";
+	/*
+        rule = <{"ruleset"} name = {name}>
+        <{"target"} host={hostname}/>
+        <{'rule'} from={from} to={to}/>
+        </{"ruleset"}>;
+	*/
+    }
+    else{
+        //Catch all
+	rule = "<ruleset name=";
+	rule += "\"" + name + "\"";
+	rule += ">\n";
+
+	rule += "<target host=";
+	rule += "\"" + hostname + "\"";
+	rule += "\/>\n";
+
+	rule += "<rule from=";
+	rule += "\"" + from + "\"";
+	rule += " to=\"" + to + "\"\/>\n";
+		
+	rule += "<\/ruleset>";
+
+	/*
+        rule = <{"ruleset"} name = {name}>
+        <{"target"} host={hostname}/>
+        <{"rule"} from={from} to={to}/>
+        </{"ruleset"}>;
+	*/
+    }
 
     //OSX returns null parameters unless the rule preview dialog is modal.
     //This mucks up the rule writing from Preferences, since that dialog is also modal.
@@ -273,14 +269,11 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
             else
                 rule = params.out.rule; //reassign rule value from the textbox
         }
-
-        //Reconstruct E4X object from user input to insure it's valid XML
-        rule =  new XML(rule);
     }
     else
-        rule =  new XML(OSXRule); //Optional parameter used on only OSX to get around null parameter output on non-modal rule preview
+        rule =  OSXRule; //Optional parameter used on only OSX to get around null parameter output on non-modal rule preview
 
-    title = rule.@name; //Re-grab the title from XML for file name (user may have edited it)
+    title = name; //Re-grab the title from XML for file name (user may have edited it)
 
 
     var ostream = Cc["@mozilla.org/network/file-output-stream;1"].
@@ -395,8 +388,24 @@ function alertRuleFinished(aDocument){
     //HTTPS Everywhere is installed. Prompt for restart
     var promptForRestart = function() {
         var nb = currentWindow.gBrowser.getNotificationBox(currentWindow.gBrowser.getBrowserForDocument(aDocument));
-        var pbs = Cc["@mozilla.org/privatebrowsing;1"]
-        .getService(Ci.nsIPrivateBrowsingService);
+        var privatebrowsing = false;
+        try {
+          // Firefox 20+
+          Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+          if (!PrivateBrowsingUtils.isWindowPrivate(window)) {
+            privatebrowsing = true;
+          }
+        } catch(e) {
+          // pre Firefox 20 (if you do not have access to a doc. 
+          // might use doc.hasAttribute("privatebrowsingmode") then instead)
+          try {
+            privatebrowsing = Components.classes["@mozilla.org/privatebrowsing;1"].
+                                    getService(Components.interfaces.nsIPrivateBrowsingService).
+                                    privateBrowsingEnabled;
+          } catch(e) {
+            Components.utils.reportError(e);
+          }
+        }
 
         var restartButtons = [{
             label: strings.getString("httpsfinder.main.restartYes"),
@@ -405,7 +414,7 @@ function alertRuleFinished(aDocument){
             callback: restartNow
         }];
 
-        if (pbs.privateBrowsingEnabled)
+        if (privatebrowsing)
             nb.appendNotification(strings.getString("httpsfinder.main.restartPromptPrivate"),
                 "httpsfinder-restart",'chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_HIGH, restartButtons);

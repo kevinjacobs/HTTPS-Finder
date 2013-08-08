@@ -5,7 +5,7 @@
 <!ENTITY httpsfinder.prefSize.detectChkDescWidth "405">
 <!--End prefWindow sizing-->
 
-<!ENTITY httpsfinder.version "0.86">
+<!ENTITY httpsfinder.version "0.90">
 <!ENTITY httpsfinder.buildDate "9 February 2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build Date:">
@@ -75,3 +75,4 @@
 <!ENTITY httpsfinder.translation.finnish "- Finnish (Jorma Karvonen)">
 <!ENTITY httpsfinder.translation.chinese "- Chinese (Christopher Meng)">
 <!ENTITY httpsfinder.translation.taiwan "- Chinese (Taiwan) (swda289346)">
+<!ENTITY httpsfinder.translation.italian "- Italian (Walter Purcaro)">

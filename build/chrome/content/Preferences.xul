@@ -29,6 +29,7 @@
             <preference id="httpsfinder-HTTPSFoundAlerts" name="extensions.httpsfinder.httpsfoundalert" type="bool"/>
             <preference id="httpsfinder-secureCookies" name="extensions.httpsfinder.attemptSecureCookies" type="bool"/>
             <preference id="httpsfinder-secureWildcardCookies" name="extensions.httpsfinder.secureWildcardCookies" type="bool"/>
+            <preference id="httpsfinder-useNoscript" name="extensions.httpsfinder.useNoscript" type="bool"/>
         </preferences>
 
         <tabbox id="httpsfindertabs" selectedIndex="0">
@@ -157,6 +158,10 @@
                                 </row>
                             </groupbox>
                         </hbox>
+                         <row>
+                                    <checkbox id="noscript" preference="httpsfinder-useNoscript"/>
+                                    <label id="noscript" control="noscript" value="Save rules for NoScript (instead of HTTPS Everywhere)"/>                                 
+                                </row>
                     </column>
                 </tabpanel>
 
@@ -169,8 +174,8 @@
                                 <description class="name">&httpsfinder.version;</description>
                                 <image id="logo" src='chrome://httpsfinder/skin/iconLarge.png'/>
                             </hbox>
-                            <description value="&httpsfinder.buildDateTitle;" class="title"/>
-                            <description>&httpsfinder.buildDate;</description>
+                            <!--<description value="&httpsfinder.buildDateTitle;" class="title"/>
+                            <description>&httpsfinder.buildDate;</description>-->
                             <description value="&httpsfinder.authorTitle;" class="title"/>
                             <description>Kevin Jacobs</description>
 

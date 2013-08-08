@@ -118,7 +118,18 @@ function sharedWriteRule(hostname, topLevel, OSXRule){
     var prefs = prefService.getBranch("extensions.httpsfinder.");
     var currentWindow = windowMediator.getMostRecentWindow("navigator:browser");
     var strings = currentWindow.document.getElementById("httpsfinderStrings");
-
+    
+    if(prefs.getBoolPref("useNoscript")){
+        var noscriptPrefs = prefService.getBranch("noscript.");
+        var existingRules = noscriptPrefs.getCharPref("httpsForced");
+        if(existingRules.indexOf(hostname + ",") == -1){
+            noscriptPrefs.setCharPref("httpsForced", existingRules + hostname + ",");
+            if(this.results.tempNoAlerts.indexOf(hostname) == -1)
+                this.results.tempNoAlerts.push(hostname);
+            alertRuleFinished(currentWindow.gBrowser.contentDocument);  
+        }
+        return;
+    }
     var title = "";
     var tldLength = topLevel.length - 1;
     if(hostname.indexOf("www.") != -1)

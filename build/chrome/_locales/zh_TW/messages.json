@@ -1,0 +1,326 @@
+{
+"httpsfinder_authorTitle":{
+"message":"作者:"
+},
+"httpsfinder_buildDate":{
+"message":"2012年2月9日\">   <!--Format is \"yyyy年mm月dd日"
+},
+"httpsfinder_buildDateTitle":{
+"message":"更新時間:"
+},
+"httpsfinder_description":{
+"message":"èªååµæ¸¬ä¸¦æç¤ºå¯ç¨çSSLç¶²é ï¼ä¸¦å å¥HTTPS Everywhereè¦åã"
+},
+"httpsfinder_googleCodeURL":{
+"message":"https://code.google.com/p/https-finder/"
+},
+"httpsfinder_main_NoHttpsEverywhere":{
+"message":"è«å®è£HTTPS Everywhereï¼å¦åå²å­çè¦åä¸æè¢«å¥ç¨ã"
+},
+"httpsfinder_main_autoForwardRulePrompt":{
+"message":"èªåä½¿ç¨HTTPSé£ç·ãæ¯å¦çºHTTPS Everywhereæ°å¢æ­¤è¦åï¼(æ³¨æ:é¨ä»½ç¶²é ä½¿ç¨HTTPSå¯è½æç°å¸¸)"
+},
+"httpsfinder_main_getHttpsEverywhere":{
+"message":"ä¸è¼HTTPS Everywhere"
+},
+"httpsfinder_main_getHttpsEverywhereKey":{
+"message":"G"
+},
+"httpsfinder_main_httpsFoundPrompt":{
+"message":"éåç¶²é è½ç¨HTTPSçè¦½ï¼ä½¿ç¨HTTPSçè¦½ï¼"
+},
+"httpsfinder_main_noRedirect":{
+"message":"ç¾å¨ä¸è¦"
+},
+"httpsfinder_main_noRedirectKey":{
+"message":"N"
+},
+"httpsfinder_main_noThanks":{
+"message":"ç¾å¨ä¸è¦"
+},
+"httpsfinder_main_noThanksKey":{
+"message":"N"
+},
+"httpsfinder_main_rememberSetting":{
+"message":"å²å­è¨­å®"
+},
+"httpsfinder_main_rememberSettingKey":{
+"message":"S"
+},
+"httpsfinder_main_restartNo":{
+"message":"ç¾å¨ä¸è¦"
+},
+"httpsfinder_main_restartNoKey":{
+"message":"l"
+},
+"httpsfinder_main_restartPrompt":{
+"message":"è¦åå°å¨çè¦½å¨éæ°ååå¾çæï¼éæ°ååï¼(èªåå²å­ç®åçåé )"
+},
+"httpsfinder_main_restartPromptPrivate":{
+"message":"è¦åå°å¨çè¦½å¨éæ°ååå¾çæï¼éæ°ååï¼(è«æ³¨æ:å¨ç§å¯çè¦½ä¸­çåé å°ä¸è¢«å²å­ï¼)"
+},
+"httpsfinder_main_restartYes":{
+"message":"éæ°åå"
+},
+"httpsfinder_main_restartYesKey":{
+"message":"n"
+},
+"httpsfinder_main_ruleAddedText":{
+"message":"å å¥çè¦åå°å¨çè¦½å¨éæ°ååå¾çæ"
+},
+"httpsfinder_main_ruleAddedTitle":{
+"message":"æåå å¥è¦å"
+},
+"httpsfinder_main_saveRulePrompt":{
+"message":"æ¯å¦çºHTTPS Everywhereæ°å¢æ­¤è¦åï¼(æ³¨æ:é¨ä»½ç¶²é ä½¿ç¨HTTPSå¯è½æç°å¸¸)"
+},
+"httpsfinder_main_selfSignedAlert":{
+"message":"éåç¶²é ä½¿ç¨self-signed certificateï¼å å¥ç½åå®æä½¿ç¨HTTPSçè¦½ä¸¦å å¥ä¾å¤ãæ³¨æ:HTTPS Finderå¨self signedç¶²é ä¸æèªåä½¿ç¨HTTPSé£ç·ï¼æ¨å¿é èªå·±å»ºç«è¦åã"
+},
+"httpsfinder_main_tempWhitelistedBody":{
+"message":"æåå°ç¶²åå å¥æ«æç½åå®"
+},
+"httpsfinder_main_tempWhitelistedTitle":{
+"message":"æ«æç½åå®"
+},
+"httpsfinder_main_whitelist":{
+"message":"å å¥ç½åå®"
+},
+"httpsfinder_main_whitelistAdded":{
+"message":"æåå°ç¶²åè¦åå å¥ç½åå®"
+},
+"httpsfinder_main_whitelistKey":{
+"message":"A"
+},
+"httpsfinder_main_yesRedirect":{
+"message":"æ¯çï¼ä½¿ç¨HTTPS"
+},
+"httpsfinder_main_yesRedirectKey":{
+"message":"Y"
+},
+"httpsfinder_menu_help":{
+"message":"幫助"
+},
+"httpsfinder_menu_helpKey":{
+"message":"H"
+},
+"httpsfinder_menu_homepage":{
+"message":"官方網站"
+},
+"httpsfinder_menu_homepageKey":{
+"message":"P"
+},
+"httpsfinder_menu_rate":{
+"message":"為HTTPS Finder評分"
+},
+"httpsfinder_menu_rateKey":{
+"message":"R"
+},
+"httpsfinder_menu_refresh":{
+"message":"清除暫時白名單"
+},
+"httpsfinder_menu_refreshKey":{
+"message":"C"
+},
+"httpsfinder_menu_settings":{
+"message":"設定"
+},
+"httpsfinder_menu_settingsKey":{
+"message":"P"
+},
+"httpsfinder_mySite":{
+"message":"http://www.KevinAJacobs.com"
+},
+"httpsfinder_overlay_whitelistReset":{
+"message":"æåæ¸é¤æ«æç½åå®"
+},
+"httpsfinder_prefSize_detectChkDescWidth":{
+"message":"405"
+},
+"httpsfinder_prefSize_detectDescWidth":{
+"message":"450"
+},
+"httpsfinder_prefSize_windowHeight":{
+"message":"570"
+},
+"httpsfinder_prefSize_windowWidth":{
+"message":"515"
+},
+"httpsfinder_preference_aboutTab":{
+"message":"關於"
+},
+"httpsfinder_preference_advancedTab":{
+"message":"進階"
+},
+"httpsfinder_preference_autoDismissTitle":{
+"message":"多久後自動忽略提示 (秒)"
+},
+"httpsfinder_preference_autoDismissToolTip":{
+"message":"持續時間 (秒)"
+},
+"httpsfinder_preference_autoForward":{
+"message":"當HTTPS可用時自動使用"
+},
+"httpsfinder_preference_clearResults":{
+"message":"清除所有結果"
+},
+"httpsfinder_preference_createRule":{
+"message":"新增規則"
+},
+"httpsfinder_preference_debug":{
+"message":"啟用除錯紀錄"
+},
+"httpsfinder_preference_detectionDescLONG":{
+"message":"HEAD使用較少的頻寬，但是有些伺服器不支援，發生時HTTPS Finder會自動使用GET。"
+},
+"httpsfinder_preference_detectionDescRec":{
+"message":"建議設定: 如果你有較快的網路，不要勾選。在較慢的網路下，使用HEAD會明顯的加快。"
+},
+"httpsfinder_preference_detectionLabel":{
+"message":"偵測方法"
+},
+"httpsfinder_preference_enable":{
+"message":"啟用HTTPS Finder"
+},
+"httpsfinder_preference_generalTab":{
+"message":"一般"
+},
+"httpsfinder_preference_headFirst":{
+"message":"先使用HEAD偵測 (若伺服器不支援則用GET)"
+},
+"httpsfinder_preference_learnLinkName":{
+"message":"這裡"
+},
+"httpsfinder_preference_learnMoreTip":{
+"message":"更多關於HTTPS Finder"
+},
+"httpsfinder_preference_listHeaderHTTPS":{
+"message":"HTTPS結果"
+},
+"httpsfinder_preference_listHeaderTitle":{
+"message":"可用HTTPS的網域 (session)"
+},
+"httpsfinder_preference_noHTTPSAlertTitle":{
+"message":"當HTTPS可用時提示 (若沒開啟自動使用HTTPS)"
+},
+"httpsfinder_preference_noHTTPSAlertTooltip":{
+"message":"Uncheck for silent detection only. View results and create rules from the Advanced tab"
+},
+"httpsfinder_preference_noResultsPB":{
+"message":"ç§å¯çè¦½ä¸å²å­ä»»ä½çµæ"
+},
+"httpsfinder_preference_noRulePrompt":{
+"message":"不要提示我儲存HTTPS規則 (適用於不使用HTTPS Everywhere的使用者)"
+},
+"httpsfinder_preference_ruleTip":{
+"message":"請注意: www.domain.com 為 domain.com 的子網域"
+},
+"httpsfinder_preference_savedRulesTip":{
+"message":"儲存的規則可以在HTTPS Everywhere設定中停用"
+},
+"httpsfinder_preference_secureCookies":{
+"message":"在HTTPS網域使用Secure cookies"
+},
+"httpsfinder_preference_secureWildcardCookies":{
+"message":"同時在HTTPS網域使用secure wildcard cookies"
+},
+"httpsfinder_preference_showpreview":{
+"message":"儲存之前預覽規則(可以編輯)"
+},
+"httpsfinder_preference_sslReport":{
+"message":"產生SSL報告"
+},
+"httpsfinder_preference_supportEmail":{
+"message":"httpsfinder@gmail.com"
+},
+"httpsfinder_preference_supportTitle":{
+"message":"Email幫助:"
+},
+"httpsfinder_preference_title":{
+"message":"HTTPS Finder設定"
+},
+"httpsfinder_preference_titleKey":{
+"message":"H"
+},
+"httpsfinder_preference_translations":{
+"message":"翻譯由以下人士提供:"
+},
+"httpsfinder_preference_whitelistAddButton":{
+"message":"加入白名單"
+},
+"httpsfinder_preference_whitelistAddTextbox":{
+"message":"網域名稱(domain.tld, sub.domain.tld, *.domain.tld)"
+},
+"httpsfinder_preference_whitelistLabel":{
+"message":"網域白名單(不偵測這些網頁)"
+},
+"httpsfinder_preference_whitelistModify":{
+"message":"修改"
+},
+"httpsfinder_preference_whitelistRemove":{
+"message":"移除"
+},
+"httpsfinder_preference_whitelistUrlColumn":{
+"message":"網域名稱"
+},
+"httpsfinder_rulePreview_clickhere":{
+"message":"這裡"
+},
+"httpsfinder_rulePreview_learnmore":{
+"message":"更多的規則格式"
+},
+"httpsfinder_rulePreview_link":{
+"message":"https://www.eff.org/https-everywhere/rulesets"
+},
+"httpsfinder_rulePreview_overwriteConfirm":{
+"message":"è¦å¯«ç¾å¨çè¦åï¼"
+},
+"httpsfinder_rulePreview_tip1":{
+"message":"任何改變將會儲存到規則中"
+},
+"httpsfinder_rulePreview_tip2":{
+"message":"按確定儲存規則或按取消直接返回"
+},
+"httpsfinder_rulePreview_top":{
+"message":"預覽規則:"
+},
+"httpsfinder_title":{
+"message":"HTTPS Finder"
+},
+"httpsfinder_translation_chinese":{
+"message":"- Chinese (Christopher Meng)"
+},
+"httpsfinder_translation_dutch":{
+"message":"- Dutch (Donné Brok)"
+},
+"httpsfinder_translation_finnish":{
+"message":"- Finnish (Jorma Karvonen)"
+},
+"httpsfinder_translation_german":{
+"message":"- German (Michael Wolf &amp; Daniel Helmert)"
+},
+"httpsfinder_translation_italian":{
+"message":"- 意大利的 (Walter Purcaro)"
+},
+"httpsfinder_translation_polish":{
+"message":"- Polish (PcP)"
+},
+"httpsfinder_translation_portuguese":{
+"message":"- Portuguese (Megahertz)"
+},
+"httpsfinder_translation_spanish":{
+"message":"- Spanish (strel)"
+},
+"httpsfinder_translation_swedish":{
+"message":"- Swedish (Mikael Hiort)"
+},
+"httpsfinder_translation_taiwan":{
+"message":"- Chinese (Taiwan) (swda289346)"
+},
+"httpsfinder_version":{
+"message":"0.90"
+},
+"httpsfinder_version":{
+"message":"0.90"
+}
+}

@@ -7,7 +7,7 @@
 
 <!--Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember. Format: 23. Mai 2011-->
 
-<!ENTITY httpsfinder.version "0.86">
+<!ENTITY httpsfinder.version "0.90">
 <!ENTITY httpsfinder.buildDate "9. Februar 2012">
 <!ENTITY httpsfinder.title "HTTPS Finder">
 <!ENTITY httpsfinder.buildDateTitle "Build-Datum:">
@@ -77,6 +77,4 @@
 <!ENTITY httpsfinder.translation.finnish "- Finnisch (Jorma Karvonen)">
 <!ENTITY httpsfinder.translation.chinese "- Chinesisch (Christopher Meng)">
 <!ENTITY httpsfinder.translation.taiwan "- Chinesisch (Taiwan) (swda289346)">
-
-
-
+<!ENTITY httpsfinder.translation.italian "- Italienisch (Walter Purcaro)">
