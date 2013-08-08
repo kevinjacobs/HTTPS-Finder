@@ -1,18 +1,19 @@
-content {appname}					content/
-skin	{appname}	classic/1.0		skin/
+content httpsfinder                                        jar:chrome/httpsfinder.jar!/content/
+skin        httpsfinder        classic/1.0                jar:chrome/httpsfinder.jar!/skin/
 
-locale	{appname}	en-US			locale/en-US/
-locale	{appname}	de				locale/de/
-locale	{appname}	es-ES			locale/es-ES/
-locale	{appname}	fi				locale/fi/
-locale	{appname}	it				locale/it/
-locale	{appname}	nl				locale/nl/
-locale	{appname}	pl				locale/pl/
-locale	{appname}	pt-BR			locale/pt/
-locale	{appname}	pt-PT			locale/pt/
-locale	{appname}	sv-SE			locale/sv-SE/
-locale	{appname}	zh-CN			locale/zh-CN/
-locale	{appname}	zh-TW			locale/zh-TW/
+locale        httpsfinder        en-US                        jar:chrome/httpsfinder.jar!/locale/en-US/
+locale        httpsfinder        de                                jar:chrome/httpsfinder.jar!/locale/de/
+locale        httpsfinder        es-ES                        jar:chrome/httpsfinder.jar!/locale/es-ES/
+locale        httpsfinder        fi                                jar:chrome/httpsfinder.jar!/locale/fi/
+locale        httpsfinder        it                                jar:chrome/httpsfinder.jar!/locale/it/
+locale        httpsfinder        nl                                jar:chrome/httpsfinder.jar!/locale/nl/
+locale        httpsfinder        pl                                jar:chrome/httpsfinder.jar!/locale/pl/
+locale        httpsfinder        pt-BR                        jar:chrome/httpsfinder.jar!/locale/pt/
+locale        httpsfinder        pt-PT                        jar:chrome/httpsfinder.jar!/locale/pt/
+locale        httpsfinder        sv-SE                        jar:chrome/httpsfinder.jar!/locale/sv-SE/
+locale        httpsfinder        zh-CN                        jar:chrome/httpsfinder.jar!/locale/zh-CN/
+locale        httpsfinder        zh-TW                        jar:chrome/httpsfinder.jar!/locale/zh-TW/
+locale        httpsfinder        ru-RU                        jar:chrome/httpsfinder.jar!/locale/ru-RU/
 
 resource hfShared modules/
 overlay chrome://browser/content/browser.xul  chrome://httpsfinder/content/Overlay.xul

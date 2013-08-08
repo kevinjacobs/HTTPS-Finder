@@ -83,9 +83,29 @@ httpsfinder.Overlay = {
         if(appcontent)
             appcontent.addEventListener("load", httpsfinder.Overlay.onPageLoadListener, true);
 
-        //Used to check private browsing status before caching Detection results
-        httpsfinder.pbs = Cc["@mozilla.org/privatebrowsing;1"]
-        .getService(Ci.nsIPrivateBrowsingService);
+        //Used to check private browsing status before caching Detection results   
+        try {
+          // Firefox 20+
+          Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+
+          //Hack new per-window private browsing service into existing httpsfinder.pbs
+          httpsfinder.pbs = {
+               privateBrowsingEnabled: null //check private browsing status before saving Detection results
+          };
+          httpsfinder.pbs.privateBrowsingEnabled = PrivateBrowsingUtils.isWindowPrivate(window);
+          
+        } catch(e) {
+          // pre Firefox 20 (if you do not have access to a doc. 
+          // might use doc.hasAttribute("privatebrowsingmode") then instead)
+          try {
+            httpsfinder.pbs = Cc["@mozilla.org/privatebrowsing;1"]
+                                .getService(Ci.nsIPrivateBrowsingService);
+            
+          } catch(e) {
+            Components.utils.reportError(e);
+          }
+        }
+
         
         //Register HTTP observer for HTTPS Detection   
         httpsfinder.Detect.register();        

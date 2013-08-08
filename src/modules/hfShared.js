@@ -377,8 +377,24 @@ function alertRuleFinished(aDocument){
     //HTTPS Everywhere is installed. Prompt for restart
     var promptForRestart = function() {
         var nb = currentWindow.gBrowser.getNotificationBox(currentWindow.gBrowser.getBrowserForDocument(aDocument));
-        var pbs = Cc["@mozilla.org/privatebrowsing;1"]
-        .getService(Ci.nsIPrivateBrowsingService);
+        var privatebrowsing = false;
+        try {
+          // Firefox 20+
+          Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+          if (!PrivateBrowsingUtils.isWindowPrivate(window)) {
+            privatebrowsing = true;
+          }
+        } catch(e) {
+          // pre Firefox 20 (if you do not have access to a doc. 
+          // might use doc.hasAttribute("privatebrowsingmode") then instead)
+          try {
+            privatebrowsing = Components.classes["@mozilla.org/privatebrowsing;1"].
+                                    getService(Components.interfaces.nsIPrivateBrowsingService).
+                                    privateBrowsingEnabled;
+          } catch(e) {
+            Components.utils.reportError(e);
+          }
+        }
 
         var restartButtons = [{
             label: strings.getString("httpsfinder.main.restartYes"),
@@ -387,7 +403,7 @@ function alertRuleFinished(aDocument){
             callback: restartNow
         }];
 
-        if (pbs.privateBrowsingEnabled)
+        if (privatebrowsing)
             nb.appendNotification(strings.getString("httpsfinder.main.restartPromptPrivate"),
                 "httpsfinder-restart",'chrome://httpsfinder/skin/httpsAvailable.png',
                 nb.PRIORITY_INFO_HIGH, restartButtons);

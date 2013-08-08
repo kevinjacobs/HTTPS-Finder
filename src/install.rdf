@@ -69,13 +69,19 @@
                 <em:description>自動偵測並提示可用的SSL網頁，並加入HTTPS Everywhere規則。</em:description>
                 <em:translator>swda289346</em:translator>
             </Description>
-
+        </em:localized>     
+        <em:localized>
+            <Description>
+                <em:locale>ru-RU</em:locale>
+                <em:description>Автоматически обнаруживает и сообщает, если для данной страницы доступно SSL. Автоматически создаёт правила для HTTPS Everywhere.</em:description>
+                <em:translator>Zaycoff</em:translator>
+            </Description>
         </em:localized>
 
         <em:name>HTTPS Finder</em:name>
         <em:description>Automatically detect and alert when SSL is available on a web page. Automated rule creation for HTTPS Everywhere</em:description>
         <em:optionsURL>chrome://httpsfinder/content/Preferences.xul</em:optionsURL>
-        <em:version>0.87</em:version>
+        <em:version>0.89</em:version>
         <em:creator>Kevin Jacobs</em:creator>
         <em:iconURL>chrome://httpsfinder/skin/iconLarge.png</em:iconURL>
         <em:icon64URL>chrome://httpsfinder/skin/icon64.png</em:icon64URL>
