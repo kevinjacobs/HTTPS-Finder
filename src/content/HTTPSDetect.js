@@ -99,21 +99,11 @@ function detectSSL(aBrowser, request) {
         getReq.channel.loadFlags |= Ci.nsIRequest.LOAD_BYPASS_CACHE;
         getReq.addEventListener("error",
                 function(e) {
-                    //var error = createTCPErrorFromFailedXHR(getReq);
-                    //testCertificate(getReq.channel);
                     handleDetectionResponse(aBrowser, getReq)
-                },
-                false);
+                },false);
         getReq.onload = function(e) {
-            //testCertificate(getReq.channel);
             handleDetectionResponse(aBrowser, getReq)
         };
-        /*getReq.onreadystatechange = function(aEvt) {
-         if (getReq.readyState == 4) {
-         httpsfinder.Detect.handleDetectionResponse(aBrowser, getReq, requestURL);
-         }
-         };
-         */
         getReq.send(null);
     }
     else { //Otherwise, try HEAD and fall back to GET if necessary (default bahavior)
@@ -134,19 +124,11 @@ function detectSSL(aBrowser, request) {
                     getReq.channel.loadFlags |= Ci.nsIRequest.LOAD_BYPASS_CACHE;
                     getReq.addEventListener("error",
                             function(e) {
-                                //var error = createTCPErrorFromFailedXHR(getReq);
-                                //testCertificate(getReq.channel);
                                 handleDetectionResponse(aBrowser, getReq)
-                            },
-                            false);
+                            },false);
                     getReq.onload = function(e) {
-                        //testCertificate(getReq.channel);
                         handleDetectionResponse(aBrowser, getReq)
                     };
-                    /*getReq.onreadystatechange = function(aEvt) {
-                     if (getReq.readyState == 4)
-                     httpsfinder.Detect.handleDetectionResponse(aBrowser, getReq, requestURL);
-                     };*/
                     getReq.send(null);
                 }
             }
