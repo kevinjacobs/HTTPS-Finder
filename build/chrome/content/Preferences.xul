@@ -158,10 +158,10 @@
                                 </row>
                             </groupbox>
                         </hbox>
-                         <row>
+                        <!--<row>
                                     <checkbox id="noscript" preference="httpsfinder-useNoscript"/>
                                     <label id="noscript" control="noscript" value="Save rules for NoScript (instead of HTTPS Everywhere)"/>                                 
-                                </row>
+                        </row>-->
                     </column>
                 </tabpanel>
 
@@ -178,8 +178,7 @@
                             <description>&httpsfinder.buildDate;</description>-->
                             <description value="&httpsfinder.authorTitle;" class="title"/>
                             <description>Kevin Jacobs</description>
-
-                            <description onclick="httpsfinder.Preferences.openWebsiteInTab('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>
+                            <!--<description onclick="httpsfinder.Preferences.openWebsiteInTab('http://kevinajacobs.com/');" class="url">&httpsfinder.mySite;</description>-->
                             <description value="&httpsfinder.preference.supportTitle;" class="title"/>
                             <description onclick="location.href='mailto:&httpsfinder.preference.supportEmail;'" class="url">&httpsfinder.preference.supportEmail;</description>
                         </vbox>
