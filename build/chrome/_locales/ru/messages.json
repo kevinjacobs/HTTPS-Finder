@@ -9,91 +9,91 @@
 "message":"Дата сборки:"
 },
 "httpsfinder_description":{
-"message":"ÐÐ²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¸ Ð¾Ð±Ð½Ð°ÑÑÐ¶Ð¸Ð²Ð°ÐµÑ Ð¸ ÑÐ¾Ð¾Ð±ÑÐ°ÐµÑ, ÐµÑÐ»Ð¸ Ð´Ð»Ñ Ð´Ð°Ð½Ð½Ð¾Ð¹ ÑÑÑÐ°Ð½Ð¸ÑÑ Ð´Ð¾ÑÑÑÐ¿Ð½Ð¾ SSL. ÐÐ²ÑÐ¾Ð¼Ð°ÑÐ¸ÑÐµÑÐºÐ¸ ÑÐ¾Ð·Ð´Ð°ÑÑ Ð¿ÑÐ°Ð²Ð¸Ð»Ð° Ð´Ð»Ñ HTTPS Everywhere."
+"message":"Автоматически обнаруживает и сообщает, если для данной страницы доступно SSL. Автоматически создаёт правила для HTTPS Everywhere."
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"ÐÐµ Ð¿Ð¾ÑÐ¾Ð¶Ðµ, ÑÑÐ¾ Ñ ÐÐ°Ñ ÑÑÑÐ°Ð½Ð¾Ð²Ð»ÐµÐ½ HTTPS Everywhere. ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ ÑÐ¾ÑÑÐ°Ð½ÐµÐ½Ñ, Ð½Ð¾ Ð½Ðµ Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÑÑÑÑÑ, Ð¿Ð¾ÐºÐ° ÐÑ Ð½Ðµ ÑÑÑÐ°Ð½Ð¾Ð²Ð¸ÑÐµ HTTPS Everywhere."
+"message":"Не похоже, что у Вас установлен HTTPS Everywhere. Правила будут сохранены, но не будут применяться, пока Вы не установите HTTPS Everywhere."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ ÑÑÑÐ°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾. Ð¡Ð¾ÑÑÐ°Ð½Ð¸ÑÑ ÑÑÐ¾ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð»Ñ HTTPS Everywhere? (ÐÑÐ¸Ð¼ÐµÑÐ°Ð½Ð¸Ðµ: Ð¡ÑÑÐ°Ð½Ð¸ÑÐ° Ð¸ ÑÐµÑÐ²Ð¸ÑÑ HTTPS Ð¼Ð¾Ð³ÑÑ Ð¾ÑÐ»Ð¸ÑÐ°ÑÑÑÑ Ð¾Ñ HTTP Ð²ÐµÑÑÐ¸Ð¸)"
+"message":"HTTPS соединение установлено. Сохранить это правило для HTTPS Everywhere? (Примечание: Страница и сервисы HTTPS могут отличаться от HTTP версии)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
-"message":"Ð¡ÐºÐ°ÑÐ°ÑÑ HTTPS Everywhere"
+"message":"Скачать HTTPS Everywhere"
 },
 "httpsfinder_main_getHttpsEverywhereKey":{
 "message":"G"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Ð­ÑÐ¾ Ð¿Ð¾ÑÐ¾Ð¶Ðµ Ð½Ð° Ð·Ð°ÑÐ¸ÑÑÐ¾Ð²Ð°Ð½Ð½ÑÑ Ð²ÐµÑÑÐ¸Ñ ÑÑÑÐ°Ð½Ð¸ÑÑ. ÐÑ Ð¶ÐµÐ»Ð°ÐµÑÐµ Ð¿ÐµÑÐµÐ¹ÑÐ¸ Ð½Ð° Ð½ÐµÑ?"
+"message":"Это похоже на зашифрованную версию страницы. Вы желаете перейти на неё?"
 },
 "httpsfinder_main_noRedirect":{
-"message":"ÐÐµ ÑÐµÐ¹ÑÐ°Ñ"
+"message":"Не сейчас"
 },
 "httpsfinder_main_noRedirectKey":{
 "message":"N"
 },
 "httpsfinder_main_noThanks":{
-"message":"ÐÐµ ÑÐµÐ¹ÑÐ°Ñ"
+"message":"Не сейчас"
 },
 "httpsfinder_main_noThanksKey":{
 "message":"N"
 },
 "httpsfinder_main_rememberSetting":{
-"message":"Ð¡Ð¾ÑÑÐ°Ð½Ð¸ÑÑ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾"
+"message":"Сохранить правило"
 },
 "httpsfinder_main_rememberSettingKey":{
 "message":"S"
 },
 "httpsfinder_main_restartNo":{
-"message":"ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ Ð¿Ð¾ÑÐ¾Ð¼"
+"message":"Перезапустить потом"
 },
 "httpsfinder_main_restartNoKey":{
 "message":"l"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÐµÐ½Ñ Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑÐµÐ·Ð°Ð¿ÑÑÐºÐ° Firefox. ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ ÑÐµÐ¹ÑÐ°Ñ? (ÐÐºÐ»Ð°Ð´ÐºÐ¸ Ð±ÑÐ´ÑÑ ÑÐ¾ÑÑÐ°Ð½ÐµÐ½Ñ)"
+"message":"Правила будут применены после перезапуска Firefox. Перезапустить сейчас? (Вкладки будут сохранены)"
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÐµÐ½Ñ Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑÐµÐ·Ð°Ð¿ÑÑÐºÐ° Firefox. ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ ÑÐµÐ¹ÑÐ°Ñ? ÐÐºÐ»Ð°Ð´ÐºÐ¸ ÐÐ Ð±ÑÐ´ÑÑ ÑÐ¾ÑÑÐ°Ð½ÐµÐ½Ñ (Ð²ÐºÐ»ÑÑÐµÐ½ ÑÐµÐ¶Ð¸Ð¼ Ð¿ÑÐ¸Ð²Ð°ÑÐ½Ð¾Ð³Ð¾ Ð¿ÑÐ¾ÑÐ¼Ð¾ÑÑÐ°)"
+"message":"Правила будут применены после перезапуска Firefox. Перезапустить сейчас? Вкладки НЕ будут сохранены (включен режим приватного просмотра)"
 },
 "httpsfinder_main_restartYes":{
-"message":"ÐÐµÑÐµÐ·Ð°Ð¿ÑÑÑÐ¸ÑÑ ÑÐµÐ¹ÑÐ°Ñ"
+"message":"Перезапустить сейчас"
 },
 "httpsfinder_main_restartYesKey":{
 "message":"n"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"ÐÑÐ°Ð²Ð¸Ð»Ð° Ð±ÑÐ´ÑÑ Ð¿ÑÐ¸Ð¼ÐµÐ½ÐµÐ½Ñ Ðº HTTPS-Everywhere Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑÐµÐ·Ð°Ð¿ÑÑÐºÐ° Ð±ÑÐ°ÑÐ·ÐµÑÐ°."
+"message":"Правила будут применены к HTTPS-Everywhere после перезапуска браузера."
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"ÐÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾"
+"message":"Правило добавлено"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Ð¡Ð¾ÑÑÐ°Ð½Ð¸ÑÑ ÑÑÐ¾ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð»Ñ HTTPS Everywhere? (ÐÑÐ¸Ð¼ÐµÑÐ°Ð½Ð¸Ðµ: Ð¡ÑÑÐ°Ð½Ð¸ÑÐ° Ð¸ ÑÐµÑÐ²Ð¸ÑÑ HTTPS Ð¼Ð¾Ð³ÑÑ Ð¾ÑÐ»Ð¸ÑÐ°ÑÑÑÑ Ð¾Ñ HTTP Ð²ÐµÑÑÐ¸Ð¸)"
+"message":"Сохранить это правило для HTTPS Everywhere? (Примечание: Страница и сервисы HTTPS могут отличаться от HTTP версии)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"Ð­ÑÐ° ÑÑÑÐ°Ð½Ð¸ÑÐ° Ð¿ÑÐµÐ´Ð»Ð¾Ð¶Ð¸Ð»Ð° ÑÐ°Ð¼Ð¾-Ð¿Ð¾Ð´Ð¿Ð¸ÑÐ°Ð½Ð½ÑÐ¹ ÑÐµÑÑÐ¸ÑÐ¸ÐºÐ°Ñ Ð´Ð»Ñ HTTPS. ÐÐ¾Ð±Ð°Ð²ÑÑÐµ ÑÑÑÐ°Ð½Ð¸ÑÑ Ð² Ð±ÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¸Ð»Ð¸ Ð·Ð°Ð¹Ð´Ð¸ÑÐµ Ð½Ð° HTTPS Ð²ÐµÑÑÐ¸Ñ ÑÑÑÐ°Ð½Ð¸ÑÑ Ð¸ Ð´Ð¾Ð±Ð°Ð²ÑÑÐµ ÐµÑ Ð² Ð¸ÑÐºÐ»ÑÑÐµÐ½Ð¸Ñ Firefox. ÐÐ ÐÐÐÐ§ÐÐÐÐ: HTTPS Finder Ð½Ðµ Ð¾ÑÑÑÐµÑÑÐ²Ð»ÑÐµÑ Ð¿ÑÐ¸Ð½ÑÐ´Ð¸ÑÐµÐ»ÑÐ½ÑÐ¹ HTTPS Ð½Ð° ÑÐ°Ð¹ÑÐ°Ñ Ñ ÑÐ°Ð¼Ð¾-Ð¿Ð¾Ð´Ð¿Ð¸ÑÐ°Ð½Ð½ÑÐ¼Ð¸ ÑÐµÑÑÐ¸ÑÐ¸ÐºÐ°ÑÐ°Ð¼Ð¸. Ð¡Ð¾Ð·Ð´Ð°Ð¹ÑÐµ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾ ÐµÑÐ»Ð¸ ÐÑ ÑÐ¾ÑÐ¸ÑÐµ Ð²ÑÐµÐ³Ð´Ð° Ð·Ð°ÑÐ¾Ð´Ð¸ÑÑ Ð¿Ð¾ HTTPS."
+"message":"Эта страница предложила само-подписанный сертификат для HTTPS. Добавьте страницу в белый список или зайдите на HTTPS версию страницы и добавьте её в исключения Firefox. ПРИМЕЧАНИЕ: HTTPS Finder не осуществляет принудительный HTTPS на сайтах с само-подписанными сертификатами. Создайте правило если Вы хотите всегда заходить по HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"ÐÐ¾Ð¼ÐµÐ½ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½ (Ð½Ð° ÑÐµÐºÑÑÑÑ ÑÐµÑÑÐ¸Ñ) Ð²Ð¾ ÐÑÐµÐ¼ÐµÐ½Ð½ÑÐ¹ ÐÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº."
+"message":"Домен добавлен (на текущую сессию) во Временный Белый список."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
-"message":"ÐÑÐµÐ¼ÐµÐ½Ð½ÑÐ¹ ÐÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº"
+"message":"Временный Белый список"
 },
 "httpsfinder_main_whitelist":{
-"message":"ÐÐ¾Ð±Ð°Ð²Ð¸ÑÑ Ð² Ð±ÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº"
+"message":"Добавить в белый список"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"ÐÑÐ°Ð²Ð¸Ð»Ð¾ Ð´Ð»Ñ Ð´Ð¾Ð¼ÐµÐ½Ð° Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾ Ð² Ð±ÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº"
+"message":"Правило для домена добавлено в белый список"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"A"
 },
 "httpsfinder_main_yesRedirect":{
-"message":"ÐÐ°, Ð¿ÐµÑÐµÐ¹ÑÐ¸ Ðº HTTPS"
+"message":"Да, перейти к HTTPS"
 },
 "httpsfinder_main_yesRedirectKey":{
 "message":"Y"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"ÐÑÐµÐ¼ÐµÐ½Ð½ÑÐ¹ ÐÐµÐ»ÑÐ¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¸ Ð¾Ð±Ð½Ð°ÑÑÐ¶ÐµÐ½Ð½ÑÐµ Ð·Ð° ÑÐµÑÑÐ¸Ñ ÑÐµÐ·ÑÐ»ÑÑÐ°ÑÑ Ð¾ÑÐ¸ÑÐµÐ½Ñ."
+"message":"Временный Белый список и обнаруженные за сессию результаты очищены."
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"405"
@@ -207,7 +207,7 @@
 "message":"Снимите флажок для тихого обнаружения. Просмотр результатов и создание правил во вкладке Дополнительно"
 },
 "httpsfinder_preference_noResultsPB":{
-"message":"ÐÐµÑ ÑÐ¾ÑÑÐ°Ð½ÑÐ½Ð½ÑÑ ÑÐµÐ·ÑÐ»ÑÑÐ°ÑÐ¾Ð² Ð²Ð¾ Ð²ÑÐµÐ¼Ñ ÐÑÐ¸Ð²Ð°ÑÐ½Ð¾Ð³Ð¾ Ð¿ÑÐ¾ÑÐ¼Ð¾ÑÑÐ°"
+"message":"Нет сохранённых результатов во время Приватного просмотра"
 },
 "httpsfinder_preference_noRulePrompt":{
 "message":"Не предлагать сохранение HTTPS правил (Для использования без HTTPS Everywhere)"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"ÐÐµÑÐµÐ¿Ð¸ÑÐ°ÑÑ ÑÑÑÐµÑÑÐ²ÑÑÑÐµÐµ Ð¿ÑÐ°Ð²Ð¸Ð»Ð¾?"
+"message":"Переписать существующее правило?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Любые изменения, которые Вы сделаете, будут отражены в сохраненных правилах."
@@ -321,9 +321,9 @@
 "message":"- Chinese (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.89"
+"message":"0.91"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 }
 }

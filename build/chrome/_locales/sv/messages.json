@@ -9,25 +9,25 @@
 "message":"Versionsdatum:"
 },
 "httpsfinder_description":{
-"message":"Identifierar automatiskt om SSL Ã¤r tillgÃ¤ngligt pÃ¥ en webbsida och meddelar dig om det. Automatiserat regelskapande fÃ¶r HTTPS Everywhere"
+"message":"Identifierar automatiskt om SSL är tillgängligt på en webbsida och meddelar dig om det. Automatiserat regelskapande för HTTPS Everywhere"
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"Det verkar som att du inte har installerat HTTPS Everywhere. Reglerna kommer att sparas, men inte tillÃ¤mpas fÃ¶rrÃ¤n du installerar det tillÃ¤gget."
+"message":"Det verkar som att du inte har installerat HTTPS Everywhere. Reglerna kommer att sparas, men inte tillämpas förrän du installerar det tillägget."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS anvÃ¤nds. Spara denna regel fÃ¶r HTTPS Everywhere? (Obs.: TjÃ¤nster som erbjuds Ã¶ver HTTPS kan skilja sig frÃ¥n HTTP-versionen)"
+"message":"HTTPS används. Spara denna regel för HTTPS Everywhere? (Obs.: Tjänster som erbjuds över HTTPS kan skilja sig från HTTP-versionen)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
-"message":"HÃ¤mta HTTPS Everywhere"
+"message":"Hämta HTTPS Everywhere"
 },
 "httpsfinder_main_getHttpsEverywhereKey":{
 "message":"H"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Det verkar som att det finns en krypterad version av denna sida. Vill du gÃ¥ till den nu?"
+"message":"Det verkar som att det finns en krypterad version av denna sida. Vill du gå till den nu?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Inte nu"
@@ -54,10 +54,10 @@
 "message":"e"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"Regeln kommer att tillÃ¤mpas efter nÃ¤sta omstart av Firefox. Starta om nu? (Flikar kommer att sparas)"
+"message":"Regeln kommer att tillämpas efter nästa omstart av Firefox. Starta om nu? (Flikar kommer att sparas)"
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"Regeln kommer att tillÃ¤mpas efter nÃ¤sta omstart av Firefox. Starta om nu?"
+"message":"Regeln kommer att tillämpas efter nästa omstart av Firefox. Starta om nu?"
 },
 "httpsfinder_main_restartYes":{
 "message":"Starta om nu"
@@ -66,34 +66,34 @@
 "message":"n"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"Regeln kommer att tillÃ¤mpas av HTTPS Everywhere efter nÃ¤sta omstart av webblÃ¤saren."
+"message":"Regeln kommer att tillämpas av HTTPS Everywhere efter nästa omstart av webbläsaren."
 },
 "httpsfinder_main_ruleAddedTitle":{
 "message":"Regel har lagts till"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Spara denna regel fÃ¶r HTTPS Everywhere? (Obs.: TjÃ¤nster som erbjuds Ã¶ver HTTPS kan skilja sig frÃ¥n HTTP-versionen)"
+"message":"Spara denna regel för HTTPS Everywhere? (Obs.: Tjänster som erbjuds över HTTPS kan skilja sig från HTTP-versionen)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"Denna sida erbjÃ¶d ett sjÃ¤lvsignerat certifikat fÃ¶r HTTPS. Du kan lÃ¤gga till det i listan Ã¶ver betrodda domÃ¤ner eller gÃ¥ till HTTPS-sidan och lÃ¤gga till ett undantag. Obs.: HTTPS Finder tvingar aldrig HTTPS pÃ¥ sjÃ¤lvsignerade webbplatser. Skapa en regel om du alltid vill anvÃ¤nda HTTPS."
+"message":"Denna sida erbjöd ett självsignerat certifikat för HTTPS. Du kan lägga till det i listan över betrodda domäner eller gå till HTTPS-sidan och lägga till ett undantag. Obs.: HTTPS Finder tvingar aldrig HTTPS på självsignerade webbplatser. Skapa en regel om du alltid vill använda HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"DomÃ¤nen lades till i temporÃ¤r lista (session) Ã¶ver betrodda domÃ¤ner."
+"message":"Domänen lades till i temporär lista (session) över betrodda domäner."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
-"message":"TemporÃ¤r listning"
+"message":"Temporär listning"
 },
 "httpsfinder_main_whitelist":{
-"message":"LÃ¤gg till i listan Ã¶ver betrodda domÃ¤ner"
+"message":"Lägg till i listan över betrodda domäner"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"En domÃ¤nregel lades till i listan Ã¶ver betrodda domÃ¤ner"
+"message":"En domänregel lades till i listan över betrodda domäner"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"L"
 },
 "httpsfinder_main_yesRedirect":{
-"message":"Ja, anvÃ¤nd HTTPS"
+"message":"Ja, använd HTTPS"
 },
 "httpsfinder_main_yesRedirectKey":{
 "message":"J"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"Listan Ã¶ver betrodda domÃ¤ner och sessionens identifieringsresultat har rensats"
+"message":"Listan över betrodda domäner och sessionens identifieringsresultat har rensats"
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"405"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"ErsÃ¤tt befintlig regel?"
+"message":"Ersätt befintlig regel?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Alla ändringar du gör kommer att återspeglas i den sparade regeln."
@@ -318,9 +318,9 @@
 "message":"- Kinesiska (traditionell) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 }
 }

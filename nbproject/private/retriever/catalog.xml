@@ -4,4 +4,6 @@
     <system systemId="http://home.netscape.com/NC-rdf#?fetch=false&amp;&amp;sync=true" uri="netscape.aol.com"/>
     <system systemId="http://www.mozilla.org/2004/em-rdf#?fetch=false&amp;&amp;sync=true" uri="www.mozilla.org/2004/em-rdf.xml"/>
     <system systemId="http://www.w3.org/1999/xhtml" uri="www.w3.org/1999/xhtml/index.xml"/>
+    <system systemId="http://www.mozilla.org/2004/em-rdf" uri="www.mozilla.org/2004/em-rdf.xml"/>
+    <system systemId="http://www.w3.org/1999/02/22-rdf-syntax-ns" uri="www.w3.org/1999/02/22-rdf-syntax-ns.xml"/>
 </catalog>

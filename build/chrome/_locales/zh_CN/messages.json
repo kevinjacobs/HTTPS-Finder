@@ -9,91 +9,91 @@
 "message":"插件最后打包于:"
 },
 "httpsfinder_description":{
-"message":"å½åé¡µé¢å¯ç¨HTTPSæ¶ï¼èªå¨æç¤ºå¹¶ä¸ºHTTPS Everywhereåå»ºè§åã"
+"message":"当前页面可用HTTPS时，自动提示并为HTTPS Everywhere创建规则。"
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"è¯·æ¨å®è£HTTPS Everywhereè¿æ¬¾æä»¶ãå¦åå·²ç»ä¿å­çè§åä¸ä¼è¢«å¼ºå¶åºç¨"
+"message":"请您安装HTTPS Everywhere这款插件。否则已经保存的规则不会被强制应用"
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"å·²å¼ºå¶ä½¿ç¨HTTPSãæ¯å¦åæ¶ä¸ºHTTPS Everywhereåå»ºæ­¤è§å?(æç¤ºï¼é¨åç½é¡µå¨HTTPSä¸å¯è½å¼å¸¸)"
+"message":"已强制使用HTTPS。是否同时为HTTPS Everywhere创建此规则?(提示，部分网页在HTTPS下可能异常)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
-"message":"è·åHTTPS Everywhereæä»¶"
+"message":"获取HTTPS Everywhere插件"
 },
 "httpsfinder_main_getHttpsEverywhereKey":{
 "message":"G"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"çä¸å»è¿ä¸ªé¡µé¢æ¯æHTTPSè®¿é®ãæ¯å¦ç«å³ä½¿ç¨HTTPSè®¿é®ï¼"
+"message":"看上去这个页面支持HTTPS访问。是否立即使用HTTPS访问？"
 },
 "httpsfinder_main_noRedirect":{
-"message":"ææ¶ä¸è¦"
+"message":"暂时不要"
 },
 "httpsfinder_main_noRedirectKey":{
 "message":"N"
 },
 "httpsfinder_main_noThanks":{
-"message":"ææ¶ä¸è¦"
+"message":"暂时不要"
 },
 "httpsfinder_main_noThanksKey":{
 "message":"N"
 },
 "httpsfinder_main_rememberSetting":{
-"message":"ä¿å­è§å"
+"message":"保存规则"
 },
 "httpsfinder_main_rememberSettingKey":{
 "message":"S"
 },
 "httpsfinder_main_restartNo":{
-"message":"ç¨åéå¯"
+"message":"稍后重启"
 },
 "httpsfinder_main_restartNoKey":{
 "message":"l"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"éå¯åè§åæè½çæ.æ¯å¦ç«å³éå¯?(èªå¨ä¿å­å½åæµè§çé¡µé¢)"
+"message":"重启后规则才能生效.是否立即重启?(自动保存当前浏览的页面)"
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"éå¯åè§åæè½çæ.æ¯å¦ç«å³éå¯?è¯·æ³¨æï¼å½åæµè§çé¡µé¢ä¸ä¼è¢«ä¿å­ï¼ï¼ï¼(éç§æµè§æ¨¡å¼å¯å¨)"
+"message":"重启后规则才能生效.是否立即重启?请注意：当前浏览的页面不会被保存！！！(隐私浏览模式启动)"
 },
 "httpsfinder_main_restartYes":{
-"message":"ç«å³éå¯"
+"message":"立即重启"
 },
 "httpsfinder_main_restartYesKey":{
 "message":"n"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"æµè§å¨éå¯åHTTPS Everywhereçè§åæ¹å¯çæ"
+"message":"浏览器重启后HTTPS Everywhere的规则方可生效"
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"è§åå·²æ·»å "
+"message":"规则已添加"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"æ¯å¦ä¸ºHTTPS Everywhereåå»ºæ­¤è§å?(æç¤ºï¼é¨åç½é¡µå¨HTTPSä¸å¯è½å¼å¸¸)"
+"message":"是否为HTTPS Everywhere创建此规则?(提示，部分网页在HTTPS下可能异常)"
 },
 "httpsfinder_main_selfSignedAlert":{
 "message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"ååå·²å å¥ä¸´æ¶ç½åååè¡¨"
+"message":"域名已加入临时白名单列表"
 },
 "httpsfinder_main_tempWhitelistedTitle":{
-"message":"å·²ç»ä¸´æ¶è®¾ç½®ä¸ºç½åå"
+"message":"已经临时设置为白名单"
 },
 "httpsfinder_main_whitelist":{
-"message":"å å¥ç½åå"
+"message":"加入白名单"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"ååè§åå·²æ·»å è³ç½åååè¡¨"
+"message":"域名规则已添加至白名单列表"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"A"
 },
 "httpsfinder_main_yesRedirect":{
-"message":"æ¯çï¼è¯·å¸®å©æå¼ºå¶ä½¿ç¨HTTPS"
+"message":"是的，请帮助我强制使用HTTPS"
 },
 "httpsfinder_main_yesRedirectKey":{
 "message":"Y"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"æåæ¸é¤ç½åååå·²æ£æµå°å¯ç¨HTTPSçç½ç«åè¡¨"
+"message":"成功清除白名单和已检测到可用HTTPS的网站列表"
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"405"
@@ -207,7 +207,7 @@
 "message":"去除勾选仅限于安静模式。请在高级选项卡查看检测记录和规则"
 },
 "httpsfinder_preference_noResultsPB":{
-"message":"éç§æµè§ä¸ä¿å­ä»»ä½ç»æ"
+"message":"隐私浏览不保存任何结果"
 },
 "httpsfinder_preference_noRulePrompt":{
 "message":"不要提示我保存HTTPS规则(针对不使用HTTPS Everywhere的用户)"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"è¦çç°æè§åï¼"
+"message":"Overwrite existing rule?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"所有更改将会体现在已保存的规则中"
@@ -318,9 +318,9 @@
 "message":"- Chinese (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 }
 }

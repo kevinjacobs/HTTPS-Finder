@@ -9,7 +9,7 @@
 "message":"Build-Datum:"
 },
 "httpsfinder_description":{
-"message":"Automatische Erkennung und Alarm, wenn SSL auf einer Web-Seite ist. Automatische Regel-Erstellung fÃ¼r HTTPS Everywhere"
+"message":"Automatische Erkennung und Alarm, wenn SSL auf einer Web-Seite ist. Automatische Regel-Erstellung für HTTPS Everywhere"
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
@@ -18,7 +18,7 @@
 "message":"Anscheinend haben Sie HTTPS Everywhere nicht installiert. Regeln werden gespeichert, aber nicht vor der Installation von HTTP Everywhere angewendet."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS erzwungen. Diese Regel fÃ¼r HTTPS Everywhere speichern? (Beachte: Ãber HTTPS angebotene Dienste kÃ¶nnen von der HTTP-Version abweichen)"
+"message":"HTTPS erzwungen. Diese Regel für HTTPS Everywhere speichern? (Beachte: Über HTTPS angebotene Dienste können von der HTTP-Version abweichen)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"HTTPS Everywhere aufrufen"
@@ -27,7 +27,7 @@
 "message":"E"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"Es scheint, dass es eine verschlÃ¼sselte Version dieser Seite gibt. MÃ¶chten Sie diese jetzt aufrufen?"
+"message":"Es scheint, dass es eine verschlüsselte Version dieser Seite gibt. Möchten Sie diese jetzt aufrufen?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Nein, hier bleiben"
@@ -48,7 +48,7 @@
 "message":"R"
 },
 "httpsfinder_main_restartNo":{
-"message":"SpÃ¤ter neu starten"
+"message":"Später neu starten"
 },
 "httpsfinder_main_restartNoKey":{
 "message":"S"
@@ -69,25 +69,25 @@
 "message":"Regel wird nach dem Neustart des Browsers durch  HTTPS Everywhere angewendet."
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"Regel hinzugefÃ¼gt"
+"message":"Regel hinzugefügt"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"Diese Regel fÃ¼r HTTPS Everywhere speichern? (Beachte: Ãber HTTPS angebotene Dienste kÃ¶nnen von der HTTP-Version abweichen)"
+"message":"Diese Regel für HTTPS Everywhere speichern? (Beachte: Über HTTPS angebotene Dienste können von der HTTP-Version abweichen)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"Diese Seite bot ein selbstsigniertes Zertifikat fÃ¼r HTTPS. FÃ¼gen Sie sie zur Positivliste hinzu oder gehen Sie auf die HTTP-Seite und fÃ¼gen Sie eine Ausnahme hinzu. ACHTUNG: HTTPS Finder erzwingt HTTPS nicht auf selbstsignierten Websites. Legen Sie eine Regel an, wenn Sie immer zu HTTPS gehen mÃ¶chten."
+"message":"Diese Seite bot ein selbstsigniertes Zertifikat für HTTPS. Fügen Sie sie zur Positivliste hinzu oder gehen Sie auf die HTTP-Seite und fügen Sie eine Ausnahme hinzu. ACHTUNG: HTTPS Finder erzwingt HTTPS nicht auf selbstsignierten Websites. Legen Sie eine Regel an, wenn Sie immer zu HTTPS gehen möchten."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"DomÃ¤ne wurde zeitweise (fÃ¼r eine Sitzung) zur Positivliste hinzugefÃ¼gt."
+"message":"Domäne wurde zeitweise (für eine Sitzung) zur Positivliste hinzugefügt."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
 "message":"Zeitweise in der Positivliste"
 },
 "httpsfinder_main_whitelist":{
-"message":"Zur Positivliste hinzufÃ¼gen"
+"message":"Zur Positivliste hinzufügen"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"DomÃ¤nenregel zur Positivliste hinzugefÃ¼gt"
+"message":"Domänenregel zur Positivliste hinzugefügt"
 },
 "httpsfinder_main_whitelistKey":{
 "message":"Z"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"Positivliste und Erkennungsergebnisse der Sitzung gelÃ¶scht"
+"message":"Positivliste und Erkennungsergebnisse der Sitzung gelöscht"
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"480"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"Bestehende Regel Ã¼berschreiben?"
+"message":"Bestehende Regel überschreiben?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Alle von Ihnen vorgenommenen Änderungen spiegeln sich in der gespeicherten Regel wider."
@@ -318,9 +318,9 @@
 "message":"- Chinesisch (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 }
 }

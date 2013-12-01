@@ -9,25 +9,25 @@
 "message":"Data wydania:"
 },
 "httpsfinder_description":{
-"message":"Automatycznie wykrywa i informuje, gdy na stronie internetowej dostÄpny jest protokÃ³Å SSL. Automatycznie tworzy reguÅy dla HTTPS Everywhere."
+"message":"Automatycznie wykrywaj i ostrzegaj, gdy SSL jest dostepne na stronie internetowej. Automatyczne twórz reguly dla HTTPS Everywhere "
 },
 "httpsfinder_googleCodeURL":{
 "message":"https://code.google.com/p/https-finder/"
 },
 "httpsfinder_main_NoHttpsEverywhere":{
-"message":"WyglÄda na to, Å¼e dodatek HTTPS Everywhere nie jest zainstalowany. ReguÅy zostanÄ zapisane, ale nie bÄdÄ wykorzystywane do czasu zainstalowania tego dodatku."
+"message":"Wyglada na to,ze nie masz HTTPS-Everywhere zainstalowane. Reguly zostana zapisane, ale nie wykonywane, az do zainstalowania go."
 },
 "httpsfinder_main_autoForwardRulePrompt":{
-"message":"HTTPS wymuszone. ZapisaÄ tÄ reguÅÄ dla HTTPS Everywhere? Informacja. UsÅugi oferowane przez HTTPS mogÄ siÄ rÃ³Å¼niÄ od wersji HTTP."
+"message":"HTTPS wymuszone. Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie róznic od wersji HTTP)"
 },
 "httpsfinder_main_getHttpsEverywhere":{
 "message":"Pobierz HTTPS Everywhere"
 },
 "httpsfinder_main_getHttpsEverywhereKey":{
-"message":"M"
+"message":"G"
 },
 "httpsfinder_main_httpsFoundPrompt":{
-"message":"WyglÄda na to, Å¼e istnieje szyfrowana wersja tej strony. Chcesz tam przejÅÄ teraz?"
+"message":"Wyglada na to, ze istnieje zaszyfrowana wersja tej strony. Chcesz tam isc teraz?"
 },
 "httpsfinder_main_noRedirect":{
 "message":"Nie teraz"
@@ -42,61 +42,61 @@
 "message":"N"
 },
 "httpsfinder_main_rememberSetting":{
-"message":"Zapisz reguÅÄ"
+"message":"Zapisz regule"
 },
 "httpsfinder_main_rememberSettingKey":{
 "message":"S"
 },
 "httpsfinder_main_restartNo":{
-"message":"Uruchom ponownie pÃ³Åºniej"
+"message":"Zrestartuj pózniej"
 },
 "httpsfinder_main_restartNoKey":{
-"message":"H"
+"message":"l"
 },
 "httpsfinder_main_restartPrompt":{
-"message":"ReguÅy bÄdÄ wykorzystywane po ponownym uruchomieniu Firefoksa. UruchomiÄ ponownie teraz? Otwarte karty zostanÄ zapisane."
+"message":"Reguly beda wykorzystywane po nastepnym restarcie Fx. Zrestartowac teraz? (Otwarte karty beda zapisane)"
 },
 "httpsfinder_main_restartPromptPrivate":{
-"message":"ReguÅy bÄdÄ wykorzystywane po ponownym uruchomieniu Firefoksa. UruchomiÄ ponownie teraz?"
+"message":"Reguly beda wykorzystywane po nastepnym restarcie Fx. Zrestartowac teraz?"
 },
 "httpsfinder_main_restartYes":{
-"message":"Uruchom ponownie teraz"
+"message":"Zrestartuj teraz"
 },
 "httpsfinder_main_restartYesKey":{
-"message":"U"
+"message":"n"
 },
 "httpsfinder_main_ruleAddedText":{
-"message":"ReguÅy bÄdÄ wykonywane przez HTTPS Everywhere po ponownym uruchomieniu przeglÄdarki."
+"message":"Reguly beda wykonywane przez HTTPS-Everywhere po kolejnym restartu przegladarki."
 },
 "httpsfinder_main_ruleAddedTitle":{
-"message":"ReguÅa zostaÅa dodana"
+"message":"Regula dodana"
 },
 "httpsfinder_main_saveRulePrompt":{
-"message":"ZapisaÄ tÄ reguÅÄ dla HTTPS Everywhere? Informacja. UsÅugi oferowane przez HTTPS mogÄ siÄ rÃ³Å¼niÄ od wersji HTTP."
+"message":"Zapisac te regule dla HTTPS-Everywhere? (Uwaga: Uslugi oferowane przez HTTPS moze sie róznic od wersji HTTP)"
 },
 "httpsfinder_main_selfSignedAlert":{
-"message":"Ta strona oferuje podpisany przez siebie certyfikat dla HTTPS. Dodaj do listy domen lub przejdÅº do strony HTTPS i dodaj wyjÄtek. Informacja. HTTP Finder nie bÄdzie wymuszaÅ HTTPS dla stron, ktÃ³re same podpisaÅy certyfikat. UtwÃ³rz reguÅÄ, jeÅ¼eli chcesz zawsze uÅ¼ywaÄ HTTPS."
+"message":"This page offered a self-signed certificate for HTTPS. Add to whitelist, or go to the HTTPS page and add the exception. NOTE: HTTPS Finder won't enforce HTTPS on self signed sites. Create a rule if you want to always go HTTPS."
 },
 "httpsfinder_main_tempWhitelistedBody":{
-"message":"Domena zostaÅa dodana do tymczasowej listy â na czas trwania sesji."
+"message":"Domena zostala dodana do tymczasowej (na okres sesji) bialej listy."
 },
 "httpsfinder_main_tempWhitelistedTitle":{
-"message":"Tymczasowo umieszczona na liÅcie"
+"message":"Tymczasowo umieszczony na bialej liscie"
 },
 "httpsfinder_main_whitelist":{
-"message":"Dodaj do listy domen, na ktÃ³rych nie jest wykrywany HTTPS"
+"message":"Dodaj do bialej listy"
 },
 "httpsfinder_main_whitelistAdded":{
-"message":"Domena zostaÅa dodana"
+"message":"Domena dodana do bialej listy"
 },
 "httpsfinder_main_whitelistKey":{
-"message":"D"
+"message":"A"
 },
 "httpsfinder_main_yesRedirect":{
-"message":"Tak, idÅº do HTTPS"
+"message":"Tak, idz doHTTPS"
 },
 "httpsfinder_main_yesRedirectKey":{
-"message":"T"
+"message":"Y"
 },
 "httpsfinder_menu_help":{
 "message":"Pomoc"
@@ -132,7 +132,7 @@
 "message":"http://www.KevinAJacobs.com"
 },
 "httpsfinder_overlay_whitelistReset":{
-"message":"Lista i wyniki wykrywania sesji zostaÅy wyczyszczone"
+"message":"Biala lista i wyniki wykrywania sesji wyczyszczone"
 },
 "httpsfinder_prefSize_detectChkDescWidth":{
 "message":"480"
@@ -207,7 +207,7 @@
 "message":"Odznacz, aby aktywować ciche wykrywanie. Podgląd wyników i tworzenie reguł z zakładki Zaawansowane."
 },
 "httpsfinder_preference_noResultsPB":{
-"message":"Brak wynikÃ³w zapisanych w trybie prywatnym"
+"message":"No results saved in Private Browsing"
 },
 "httpsfinder_preference_noRulePrompt":{
 "message":"Nie pytaj o zapisanie reguł przekierowań (do wykorzystania bez HTTPS Everywhere)"
@@ -273,7 +273,7 @@
 "message":"https://www.eff.org/https-everywhere/rulesets"
 },
 "httpsfinder_rulePreview_overwriteConfirm":{
-"message":"ZastÄpiÄ istniejÄcÄ reguÅÄ?"
+"message":"Overwrite existing rule?"
 },
 "httpsfinder_rulePreview_tip1":{
 "message":"Wszelkie wprowadzone zmiany zostaną uwzględnione w zapisanej regule."
@@ -318,9 +318,9 @@
 "message":"- Chiński (Taiwan) (swda289346)"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 },
 "httpsfinder_version":{
-"message":"0.90"
+"message":"0.91"
 }
 }

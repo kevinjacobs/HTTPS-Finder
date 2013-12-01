@@ -9,6 +9,7 @@
         <em:localized>
             <Description>
                 <em:locale>de</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Automatische Erkennung und Alarm, wenn SSL auf einer Web-Seite ist. Automatische Regel-Erstellung für HTTPS Everywhere</em:description>
                 <em:translator>Michael Wolf</em:translator>
                 <em:translator>Daniel Helmert</em:translator>
@@ -17,6 +18,7 @@
         <em:localized>
             <Description>
                 <em:locale>nl</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Laat zien of een website beschikbaar is in SSL en maakt automatisch regels voor HTTPS Everywhere</em:description>
                 <em:translator>Donné Brok</em:translator>
             </Description>
@@ -24,6 +26,7 @@
         <em:localized>
             <Description>
                 <em:locale>pl</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Automatycznie wykrywaj i ostrzegaj, gdy SSL jest dostepne na stronie internetowej. Automatyczne twórz reguly dla HTTPS Everywhere</em:description>
                 <em:translator>PcP</em:translator>
             </Description>
@@ -31,6 +34,7 @@
         <em:localized>
             <Description>
                 <em:locale>sv-SE</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Identifierar automatiskt om SSL Ã¤r tillgÃ¤ngligt pÃ¥ en webbsida och meddelar dig om det. Automatiserat regelskapande fÃ¶r HTTPS Everywhere</em:description>
                 <em:translator>Mikael Hiort af OrnÃ¤s</em:translator>
             </Description>
@@ -38,6 +42,7 @@
         <em:localized>
             <Description>
                 <em:locale>es-ES</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Detectar automáticamente y alertar cuando SSL esté disponible en una página web.</em:description>
                 <em:translator>strel</em:translator>
             </Description>
@@ -45,6 +50,7 @@
         <em:localized>
             <Description>
                 <em:locale>pt-PT</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Automaticamente detecta e alerta quando SSL (protocólo de segurança) está disponível numa página da web. Automatiza a criação de uma regra para uso do aditivo HTTPS Everywhere.</em:description>
                 <em:translator>Megahertz</em:translator>
             </Description>
@@ -52,6 +58,7 @@
         <em:localized>
             <Description>
                 <em:locale>fi</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Havaitsee ja hälyttää automaattisesti kun SSL on käytettävissä webbisivulla. HTTPS Everywhere -ohjelmiston automaattinen sääntöluominen</em:description>
                 <em:translator>Jorma Karvonen</em:translator>
             </Description>
@@ -59,6 +66,7 @@
         <em:localized>
             <Description>
                 <em:locale>zh-CN</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>当前页面可用HTTPS时，自动提示并为HTTPS Everywhere创建规则。</em:description>
                 <em:translator>Christopher Meng</em:translator>
             </Description>
@@ -66,6 +74,7 @@
         <em:localized>
             <Description>
                 <em:locale>zh-TW</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>自動偵測並提示可用的SSL網頁，並加入HTTPS Everywhere規則。</em:description>
                 <em:translator>swda289346</em:translator>
             </Description>
@@ -73,6 +82,7 @@
         <em:localized>
             <Description>
                 <em:locale>ru-RU</em:locale>
+                <em:name>HTTPS Finder</em:name>
                 <em:description>Автоматически обнаруживает и сообщает, если для данной страницы доступно SSL. Автоматически создаёт правила для HTTPS Everywhere.</em:description>
                 <em:translator>Zaycoff</em:translator>
             </Description>
@@ -81,7 +91,7 @@
         <em:name>HTTPS Finder</em:name>
         <em:description>Automatically detect and alert when SSL is available on a web page. Automated rule creation for HTTPS Everywhere</em:description>
         <em:optionsURL>chrome://httpsfinder/content/Preferences.xul</em:optionsURL>
-        <em:version>0.89</em:version>
+        <em:version>0.91</em:version>
         <em:creator>Kevin Jacobs</em:creator>
         <em:iconURL>chrome://httpsfinder/skin/iconLarge.png</em:iconURL>
         <em:icon64URL>chrome://httpsfinder/skin/icon64.png</em:icon64URL>
@@ -94,7 +104,7 @@
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <em:minVersion>4.0</em:minVersion>
-                <em:maxVersion>23.0</em:maxVersion>
+                <em:maxVersion>26.0</em:maxVersion>
             </Description>
         </em:targetApplication>
     </Description>
