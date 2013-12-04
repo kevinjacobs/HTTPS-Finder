@@ -201,7 +201,7 @@
 "message":"Risultati della sessione di rilevamento"
 },
 "httpsfinder_preference_noHTTPSAlertTitle":{
-"message":"Abilita gli avvisi di rilevamento HTTPS (se l'opzione \"Applica automaticamente HTTPS\" è disabilitata)"
+"message":"Abilita gli avvisi di rilevamento HTTPS (se l'opzione 'Applica automaticamente HTTPS' è disabilitata)"
 },
 "httpsfinder_preference_noHTTPSAlertTooltip":{
 "message":"Deseleziona per utilizzare solo il rilevamento silenzioso (Controlla i risultati e crea regole attraverso la scheda Avanzate)"

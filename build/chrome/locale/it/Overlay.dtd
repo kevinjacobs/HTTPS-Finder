@@ -67,7 +67,7 @@
 <!ENTITY httpsfinder.preference.autoDismissTitle "Nascondi avvisi automaticamente dopo (secondi)">
 <!ENTITY httpsfinder.preference.autoDismissToolTip "Durata (secondi)">
 <!ENTITY httpsfinder.preference.noHTTPSAlertTooltip "Deseleziona per utilizzare solo il rilevamento silenzioso (Controlla i risultati e crea regole attraverso la scheda Avanzate)">
-<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Abilita gli avvisi di rilevamento HTTPS (se l'opzione "Applica automaticamente HTTPS" è disabilitata)">
+<!ENTITY httpsfinder.preference.noHTTPSAlertTitle "Abilita gli avvisi di rilevamento HTTPS (se l'opzione 'Applica automaticamente HTTPS' è disabilitata)">
 <!ENTITY httpsfinder.translation.german "- Tedesco (Michael Wolf &amp; Daniel Helmert)">
 <!ENTITY httpsfinder.translation.dutch "- Olandese (Donné Brok)">
 <!ENTITY httpsfinder.translation.polish "- Polacco (PcP)">
