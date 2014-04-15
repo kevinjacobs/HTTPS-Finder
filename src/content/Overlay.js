@@ -168,7 +168,7 @@ httpsfinder.Overlay = {
         for(var i=0; i < alerts.length; i++){
             var key = alerts[i];
             //If the tab contains that alert, set a timeout and removeNotification() for the auto-dismiss time.
-            if (item = window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key)){
+            if (window.getBrowser().getNotificationBox(browser).getNotificationWithValue(key)){
                 setTimeout(function(){
                     httpsfinder.removeNotification(key)
                 },httpsfinder.prefs.getIntPref("alertDismissTime") * 1000);
